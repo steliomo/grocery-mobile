@@ -3,4 +3,15 @@
     <string name="sales">Vendas</string>
     <string name="reports">Relatórios</string>
     <string name="stocks">Stocks</string>
+    <string name="sale_regist">Registar Vendas</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="discount">Desconto:</string>
+    <string name="value">Valor:</string>
+    <string name="quantity">Qty:</string>
+    <string name="total_sale">Valor Total da Venda</string>
+    <string name="wait">Aguarde...</string>
+    <string name="processing_request">A processar o pedido.</string>
+    <string name="products">Productos</string>
 </resources>

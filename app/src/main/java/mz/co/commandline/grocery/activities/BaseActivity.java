@@ -10,7 +10,7 @@ import mz.co.commandline.grocery.infra.GroceryApplication;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
+    protected Toolbar toolbar;
 
     protected GroceryApplication application;
 

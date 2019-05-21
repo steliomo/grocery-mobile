@@ -1,10 +1,22 @@
 package mz.co.commandline.grocery.menu;
 
-enum MenuItemType {
+import mz.co.commandline.grocery.activities.SaleActivity;
 
-    SALE,
+public enum MenuItemType {
 
-    REPORT,
+    SALE(SaleActivity.class),
 
-    STOCK;
+    REPORT(null),
+
+    STOCK(null);
+
+    private final Class clazz;
+
+    MenuItemType(Class clazz) {
+        this.clazz = clazz;
+    }
+
+    public Class getClazz() {
+        return clazz;
+    }
 }
