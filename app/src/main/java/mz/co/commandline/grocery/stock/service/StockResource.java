@@ -9,7 +9,7 @@ import retrofit2.http.Path;
 
 public interface StockResource {
 
-    @GET("stocks/by-product/{product}")
-    Call<List<Stock>> findStocksByProducts(@Path("product") String product);
+    @GET("stocks/by-product/{productUuid}")
+    Call<List<Stock>> findStocksByProduct(@Path("productUuid") String productUuid);
 
 }

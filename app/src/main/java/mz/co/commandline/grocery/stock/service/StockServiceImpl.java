@@ -23,7 +23,7 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public void findProductStocksByProduct(Product product, final ResponseListner<List<Stock>> responseListner) {
-        getResource().findStocksByProducts(product.getUuid()).enqueue(new Callback<List<Stock>>() {
+        getResource().findStocksByProduct(product.getUuid()).enqueue(new Callback<List<Stock>>() {
             @Override
             public void onResponse(Call<List<Stock>> call, Response<List<Stock>> response) {
                 responseListner.success(response.body());

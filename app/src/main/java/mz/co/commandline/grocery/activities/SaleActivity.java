@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -22,6 +23,9 @@ import mz.co.commandline.grocery.product.model.Product;
 import mz.co.commandline.grocery.product.service.ProductService;
 import mz.co.commandline.grocery.sale.delegate.SaleDelegate;
 import mz.co.commandline.grocery.sale.fragment.SaleRegistFragment;
+import mz.co.commandline.grocery.stock.fragment.StockFragment;
+import mz.co.commandline.grocery.stock.model.Stock;
+import mz.co.commandline.grocery.stock.service.StockService;
 
 public class SaleActivity extends BaseAuthActivity implements SaleDelegate {
 
@@ -31,11 +35,16 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate {
     @Inject
     ProductService productService;
 
+    @Inject
+    StockService stockService;
+
     private FragmentManager fragmentManager;
 
     private ProgressDialog progressBar;
 
-    List<Product> products;
+    private List<Product> products;
+
+    private List<Stock> stocks;
 
     @Override
     public void onGroceryCreate(Bundle bundle) {
@@ -88,11 +97,33 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate {
 
     @Override
     public List<Product> getProducts() {
-        return products;
+        return Collections.unmodifiableList(products);
     }
 
     @Override
     public void selectedProduct(Product product) {
 
+        progressBar.show();
+        stockService.findProductStocksByProduct(product, new ResponseListner<List<Stock>>() {
+            @Override
+            public void success(List<Stock> response) {
+                stocks = response;
+                progressBar.dismiss();
+                showFragment(new StockFragment(), Boolean.TRUE);
+            }
+
+            @Override
+            public void error(String message) {
+                Log.e("STOCKS", message);
+                progressBar.dismiss();
+            }
+        });
+
+
+    }
+
+    @Override
+    public List<Stock> getStocks() {
+        return Collections.unmodifiableList(stocks);
     }
 }

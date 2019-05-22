@@ -11,6 +11,8 @@ import mz.co.commandline.grocery.product.service.ProductService;
 import mz.co.commandline.grocery.product.service.ProductServiceImpl;
 import mz.co.commandline.grocery.service.RetrofitService;
 import mz.co.commandline.grocery.service.RetrofitServiceImpl;
+import mz.co.commandline.grocery.stock.service.StockService;
+import mz.co.commandline.grocery.stock.service.StockServiceImpl;
 import mz.co.commandline.grocery.user.service.UserService;
 import mz.co.commandline.grocery.user.service.UserServiceImpl;
 import retrofit2.Retrofit;
@@ -44,5 +46,10 @@ public class GroceryModule {
     @Provides
     public UserService provideUserService(UserServiceImpl userService) {
         return userService;
+    }
+
+    @Provides
+    public StockService provideStockService(StockServiceImpl stockService) {
+        return stockService;
     }
 }

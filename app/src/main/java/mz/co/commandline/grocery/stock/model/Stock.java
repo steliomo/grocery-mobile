@@ -3,6 +3,7 @@ package mz.co.commandline.grocery.stock.model;
 import java.math.BigDecimal;
 
 import mz.co.commandline.grocery.model.GenericModel;
+import mz.co.commandline.grocery.product.model.ProductDescription;
 
 public class Stock extends GenericModel {
 
@@ -25,4 +26,5 @@ public class Stock extends GenericModel {
     public void setSalePrice(BigDecimal salePrice) {
         this.salePrice = salePrice;
     }
+
 }
