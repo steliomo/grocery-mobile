@@ -27,7 +27,7 @@ public class RetrofitServiceImpl implements RetrofitService {
     private OkHttpClient configureClient() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        interceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
 
         return new OkHttpClient
                 .Builder()
@@ -35,8 +35,7 @@ public class RetrofitServiceImpl implements RetrofitService {
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
-                        Request request = chain.request();
-                        request.newBuilder().header(AUTH_HEADER, userService.getToken());
+                        Request request = chain.request().newBuilder().header(AUTH_HEADER, userService.getToken()).build();
                         return chain.proceed(request);
                     }
                 })

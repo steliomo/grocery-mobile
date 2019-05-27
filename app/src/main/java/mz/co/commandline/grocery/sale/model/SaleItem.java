@@ -10,39 +10,34 @@ public class SaleItem {
 
     private BigDecimal quantity;
 
-    private BigDecimal saleItemValue = BigDecimal.ZERO;
+    private BigDecimal saleItemValue;
 
-    private BigDecimal discount = BigDecimal.ZERO;
+    private BigDecimal discount;
+
+    public SaleItem(Stock stock, BigDecimal quantity, BigDecimal saleItemValue, BigDecimal discount) {
+        this.stock = stock;
+        this.quantity = quantity;
+        this.saleItemValue = saleItemValue;
+        this.discount = discount;
+    }
 
     public Stock getStock() {
         return stock;
-    }
-
-    public void setStock(Stock stock) {
-        this.stock = stock;
     }
 
     public BigDecimal getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(BigDecimal quantity) {
-        this.quantity = quantity;
-    }
-
     public BigDecimal getSaleItemValue() {
         return saleItemValue;
-    }
-
-    public void setSaleItemValue(BigDecimal saleItemValue) {
-        this.saleItemValue = saleItemValue;
     }
 
     public BigDecimal getDiscount() {
         return discount;
     }
 
-    public void setDiscount(BigDecimal discount) {
-        this.discount = discount;
+    public BigDecimal getTotal() {
+        return stock.getSalePrice().multiply(quantity).subtract(discount);
     }
 }

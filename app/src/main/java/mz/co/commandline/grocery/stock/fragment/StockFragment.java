@@ -35,6 +35,6 @@ public class StockFragment extends BaseFragment implements ClickListner<Stock> {
 
     @Override
     public void onClickListner(Stock stock) {
-
+        delegate.selectedStock(stock);
     }
 }

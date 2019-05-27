@@ -14,4 +14,13 @@
     <string name="wait">Aguarde...</string>
     <string name="processing_request">A processar o pedido.</string>
     <string name="products">Productos</string>
+    <string name="required_field">*Campo obrigatório</string>
+
+
+    <string name="sale_error_on_add_item">Ocorreu um erro ao adicionar o item. Por favor tente novamente!</string>
+    <string name="sale_without_item_not_allowed">Não é permitido o registo da venda de sem pelo menos um item adicionado!</string>
+    <string name="sale_registed_with_success">O Registo da venda foi realizado com sucesso!</string>
+    <string name="sale_error_on_regist">Ocorreu um erro ao registar a venda. por favor tente novamente!</string>
+    <string name="sale_error_on_selecting_product">Erro ao seleccionar o producto. Por favor tente novamente</string>
+
 </resources>

@@ -9,21 +9,23 @@ import dagger.Provides;
 import mz.co.commandline.grocery.infra.SharedPreferencesManager;
 import mz.co.commandline.grocery.product.service.ProductService;
 import mz.co.commandline.grocery.product.service.ProductServiceImpl;
+import mz.co.commandline.grocery.sale.service.SaleService;
+import mz.co.commandline.grocery.sale.service.SaleServiceImpl;
 import mz.co.commandline.grocery.service.RetrofitService;
 import mz.co.commandline.grocery.service.RetrofitServiceImpl;
 import mz.co.commandline.grocery.stock.service.StockService;
 import mz.co.commandline.grocery.stock.service.StockServiceImpl;
 import mz.co.commandline.grocery.user.service.UserService;
 import mz.co.commandline.grocery.user.service.UserServiceImpl;
-import retrofit2.Retrofit;
+import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 
 @Module
 public class GroceryModule {
 
-    private Context contenxt;
+    private Context context;
 
-    public GroceryModule(Context contenxt) {
-        this.contenxt = contenxt;
+    public GroceryModule(Context context) {
+        this.context = context;
     }
 
     @Singleton
@@ -35,7 +37,7 @@ public class GroceryModule {
     @Singleton
     @Provides
     public SharedPreferencesManager provideSharedPreferencesManager() {
-        return new SharedPreferencesManager(contenxt);
+        return new SharedPreferencesManager(context);
     }
 
     @Provides
@@ -51,5 +53,10 @@ public class GroceryModule {
     @Provides
     public StockService provideStockService(StockServiceImpl stockService) {
         return stockService;
+    }
+
+    @Provides
+    public SaleService provideSaleService(SaleServiceImpl saleService) {
+        return saleService;
     }
 }
