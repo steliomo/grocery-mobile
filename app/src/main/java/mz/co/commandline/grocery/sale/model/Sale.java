@@ -20,7 +20,7 @@ public class Sale {
     }
 
     public void addSaleItem(SaleItem saleItem) {
-        totalSale = totalSale.add(saleItem.getSaleItemValue()).subtract(saleItem.getDiscount());
+        totalSale = totalSale.add(saleItem.getTotal());
         items.add(saleItem);
     }
 
