@@ -2,6 +2,7 @@ package mz.co.commandline.grocery.product.service;
 
 import android.support.annotation.NonNull;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -36,7 +37,12 @@ public class ProductServiceImpl implements ProductService {
 
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-                listner.success(response.body());
+                if (response.isSuccessful()) {
+                    listner.success(response.body());
+                    return;
+                }
+
+                setErrorBody(response, listner);
             }
 
             @Override
@@ -44,5 +50,13 @@ public class ProductServiceImpl implements ProductService {
                 listner.error(t.getMessage());
             }
         });
+    }
+
+    private void setErrorBody(Response response, ResponseListner listner) {
+        try {
+            listner.error(response.errorBody().string());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

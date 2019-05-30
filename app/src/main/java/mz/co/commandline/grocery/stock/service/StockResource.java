@@ -12,4 +12,7 @@ public interface StockResource {
     @GET("stocks/by-product/{productUuid}")
     Call<List<Stock>> findStocksByProduct(@Path("productUuid") String productUuid);
 
+    @GET("stocks/all")
+    Call<List<Stock>> findAllStocks();
+
 }

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#017a84"
+    android:elevation="6dp"
     android:minHeight="?attr/actionBarSize"
     android:theme="@style/ToolbarTheme"
     app:navigationIcon="@drawable/ic_menu"

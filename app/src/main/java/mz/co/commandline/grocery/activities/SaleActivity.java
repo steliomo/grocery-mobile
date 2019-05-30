@@ -130,8 +130,14 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
         stockService.findProductStocksByProduct(product, new ResponseListner<List<Stock>>() {
             @Override
             public void success(List<Stock> response) {
-                stocks = response;
                 progressBar.dismiss();
+
+                if (response.isEmpty()) {
+                    dialogManager.dialog(AlertType.ERROR, getString(R.string.sale_no_stock_for_the_product_selected), null);
+                    return;
+                }
+
+                stocks = response;
                 showFragment(new StockFragment(), Boolean.TRUE);
             }
 

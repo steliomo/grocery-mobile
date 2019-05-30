@@ -1,5 +1,6 @@
 package mz.co.commandline.grocery.stock.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -21,12 +22,29 @@ public class StockServiceImpl implements StockService {
     public StockServiceImpl() {
     }
 
+    private StockResource getResource() {
+        return retrofitService.getResource(StockResource.class);
+    }
+
+    private void setErrorBody(Response response, ResponseListner responseListner) {
+        try {
+            responseListner.error(response.errorBody().string());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void findProductStocksByProduct(Product product, final ResponseListner<List<Stock>> responseListner) {
         getResource().findStocksByProduct(product.getUuid()).enqueue(new Callback<List<Stock>>() {
             @Override
             public void onResponse(Call<List<Stock>> call, Response<List<Stock>> response) {
-                responseListner.success(response.body());
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setErrorBody(response, responseListner);
             }
 
             @Override
@@ -36,8 +54,24 @@ public class StockServiceImpl implements StockService {
         });
     }
 
-    private StockResource getResource() {
-        return retrofitService.getResource(StockResource.class);
+    @Override
+    public void findAllStocks(final ResponseListner<List<Stock>> responseListner) {
+        getResource().findAllStocks().enqueue(new Callback<List<Stock>>() {
+            @Override
+            public void onResponse(Call<List<Stock>> call, Response<List<Stock>> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setErrorBody(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<List<Stock>> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
     }
 
 }

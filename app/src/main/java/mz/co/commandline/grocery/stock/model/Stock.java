@@ -9,7 +9,15 @@ public class Stock extends GenericModel {
 
     private ProductDescription productDescription;
 
+    private BigDecimal purchasePrice;
+
     private BigDecimal salePrice;
+
+    private BigDecimal quantity;
+
+    public BigDecimal getPurchasePrice() {
+        return purchasePrice;
+    }
 
     public ProductDescription getProductDescription() {
         return productDescription;
@@ -27,4 +35,11 @@ public class Stock extends GenericModel {
         this.salePrice = salePrice;
     }
 
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
 }

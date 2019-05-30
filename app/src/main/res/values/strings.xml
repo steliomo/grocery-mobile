@@ -22,5 +22,6 @@
     <string name="sale_registed_with_success">O Registo da venda foi realizado com sucesso!</string>
     <string name="sale_error_on_regist">Ocorreu um erro ao registar a venda. por favor tente novamente!</string>
     <string name="sale_error_on_selecting_product">Erro ao seleccionar o producto. Por favor tente novamente</string>
+    <string name="sale_no_stock_for_the_product_selected">Não existe stock para o producto seleccinado</string>
 
 </resources>

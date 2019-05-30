@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/fragment_sale_report_view"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="#D7CCC8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fragment_sale_report_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@mipmap/ic_report"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_sale_report_view"
+        app:layout_constraintStart_toStartOf="@+id/fragment_sale_report_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_sale_report_view" />
+
+    <TextView
+        android:id="@+id/fragment_sale_report_textView"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="6dp"
+        android:text="Vendas nos últimos 7 dias"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_sale_report_imageView"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_sale_report_view"
+        app:layout_constraintStart_toStartOf="@+id/fragment_sale_report_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_sale_report_imageView" />
+
+    <TextView
+        android:id="@+id/fragment_sale_report_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:background="#ccc"
+        android:padding="6dp"
+        android:text="Data"
+        android:textColor="#000"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_sale_report_profit"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/fragment_sale_report_view"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_sale_report_view" />
+
+    <TextView
+        android:id="@+id/fragment_sale_report_profit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="8dp"
+        android:background="#ccc"
+        android:padding="6dp"
+        android:text="Lucro"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_sale_report_date"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_sale_report_sale"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragment_sale_report_date"
+        app:layout_constraintTop_toTopOf="@+id/fragment_sale_report_date" />
+
+    <TextView
+        android:id="@+id/fragment_sale_report_sale"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="8dp"
+        android:background="#ccc"
+        android:padding="6dp"
+        android:text="Valor venda"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_sale_report_profit"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_sale_report_view"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragment_sale_report_profit"
+        app:layout_constraintTop_toTopOf="@+id/fragment_sale_report_profit" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_sale_report_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_sale_report_sale"
+        app:layout_constraintStart_toStartOf="@+id/fragment_sale_report_date"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_sale_report_profit"
+        tools:listitem="@layout/sale_report" />
+
+    <TextView
+        android:id="@+id/fragment_sale_report_total"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginTop="8dp"
+        android:background="#ccc"
+        android:padding="6dp"
+        android:text="Total"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_sale_report_total_profit"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/fragment_sale_report_recycler_view"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_sale_report_recycler_view" />
+
+    <TextView
+        android:id="@+id/fragment_sale_report_total_profit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginStart="2dp"
+        android:background="#ccc"
+        android:padding="6dp"
+        android:textAlignment="textEnd"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_sale_report_total"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_sale_report_total_sale"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragment_sale_report_total"
+        app:layout_constraintTop_toTopOf="@+id/fragment_sale_report_total"
+        tools:text="13.208,00 MT" />
+
+    <TextView
+        android:id="@+id/fragment_sale_report_total_sale"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:background="#ccc"
+        android:padding="6dp"
+        android:textAlignment="textEnd"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_sale_report_total_profit"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_sale_report_recycler_view"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragment_sale_report_total_profit"
+        app:layout_constraintTop_toTopOf="@+id/fragment_sale_report_total_profit"
+        tools:text="13.208,00 MT" />
+
+</android.support.constraint.ConstraintLayout>

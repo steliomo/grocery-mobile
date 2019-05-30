@@ -9,4 +9,6 @@ import mz.co.commandline.grocery.stock.model.Stock;
 public interface StockService {
 
     void findProductStocksByProduct(Product product, ResponseListner<List<Stock>> responseListner);
+
+    void findAllStocks(ResponseListner<List<Stock>> responseListner);
 }
