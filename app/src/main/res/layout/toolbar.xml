@@ -9,5 +9,5 @@
     android:minHeight="?attr/actionBarSize"
     android:theme="@style/ToolbarTheme"
     app:navigationIcon="@drawable/ic_menu"
-    app:title="Mercearia"
+    app:title="@string/toolbar_title"
     app:titleTextColor="#FFF" />

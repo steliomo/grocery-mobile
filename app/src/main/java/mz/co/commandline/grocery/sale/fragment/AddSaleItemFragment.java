@@ -24,7 +24,7 @@ public class AddSaleItemFragment extends BaseFragment {
     @BindView(R.id.fragment_add_sale_item_product_name)
     TextView productName;
 
-    @BindView(R.id.fragment_add_sale_item_quantity)
+    @BindView(R.id.fragment_stocks_and_prices_quantity)
     TextInputLayout quantity;
 
     @BindView(R.id.fragment_add_sale_item_value)

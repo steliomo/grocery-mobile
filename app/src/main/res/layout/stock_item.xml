@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/sale_item_icon"
+        android:id="@+id/stock_item_icon"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginStart="8dp"
@@ -16,76 +16,74 @@
         app:srcCompat="@mipmap/ic_product" />
 
     <TextView
-        android:id="@+id/sale_item_name"
+        android:id="@+id/stock_item_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:padding="4dp"
-        app:layout_constraintEnd_toStartOf="@+id/sale_item_quantity_label"
+        app:layout_constraintEnd_toStartOf="@+id/stock_item_quantity_label"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/sale_item_icon"
+        app:layout_constraintStart_toEndOf="@+id/stock_item_icon"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Sumo Ceres 2L" />
 
     <TextView
-        android:id="@+id/sale_item_quantity_label"
+        android:id="@+id/stock_item_quantity_label"
         android:layout_width="35dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:padding="4dp"
         android:text="@string/quantity"
-        app:layout_constraintBottom_toBottomOf="@+id/sale_item_name"
-        app:layout_constraintEnd_toStartOf="@+id/sale_item_quantity"
+        app:layout_constraintBottom_toBottomOf="@+id/stock_item_name"
+        app:layout_constraintEnd_toStartOf="@+id/stock_item_quantity"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/sale_item_name" />
+        app:layout_constraintStart_toEndOf="@+id/stock_item_name" />
 
 
     <TextView
-        android:id="@+id/sale_item_quantity"
+        android:id="@+id/stock_item_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:padding="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/sale_item_quantity_label"
+        app:layout_constraintBottom_toBottomOf="@+id/stock_item_quantity_label"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="30.00" />
 
     <TextView
-        android:id="@+id/sale_item_value_label"
+        android:id="@+id/stock_item_purchase_price_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
-        android:text="@string/value"
-        app:layout_constraintStart_toStartOf="@+id/sale_item_name"
-        app:layout_constraintTop_toBottomOf="@+id/sale_item_name" />
+        android:text="@string/purchase_price"
+        app:layout_constraintStart_toStartOf="@+id/stock_item_name"
+        app:layout_constraintTop_toBottomOf="@+id/stock_item_name" />
 
     <TextView
-        android:id="@+id/sale_item_value"
+        android:id="@+id/stock_item_purchase_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/sale_item_value_label"
-        app:layout_constraintStart_toEndOf="@+id/sale_item_value_label"
+        app:layout_constraintBottom_toBottomOf="@+id/stock_item_purchase_price_label"
+        app:layout_constraintStart_toEndOf="@+id/stock_item_purchase_price_label"
         tools:text="1.000,00 MT" />
 
     <TextView
-        android:id="@+id/sale_item_discount_label"
+        android:id="@+id/stock_item_sale_price_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
-        android:text="@string/discount"
-        app:layout_constraintBottom_toBottomOf="@+id/sale_item_value"
-        app:layout_constraintEnd_toStartOf="@+id/sale_item_discount"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/sale_item_value" />
+        android:text="@string/sale_price"
+        app:layout_constraintBottom_toBottomOf="@+id/stock_item_purchase_price"
+        app:layout_constraintEnd_toStartOf="@+id/stock_item_sale_price" />
 
     <TextView
-        android:id="@+id/sale_item_discount"
+        android:id="@+id/stock_item_sale_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
         android:text="20,00 MT"
-        app:layout_constraintBottom_toBottomOf="@+id/sale_item_discount_label"
-        app:layout_constraintEnd_toEndOf="@+id/sale_item_quantity" />
+        app:layout_constraintBottom_toBottomOf="@+id/stock_item_sale_price_label"
+        app:layout_constraintEnd_toEndOf="@+id/stock_item_quantity" />
 
 </android.support.constraint.ConstraintLayout>

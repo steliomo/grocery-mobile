@@ -19,6 +19,10 @@ public class Stock extends GenericModel {
         return purchasePrice;
     }
 
+    public void setPurchasePrice(BigDecimal purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
+
     public ProductDescription getProductDescription() {
         return productDescription;
     }

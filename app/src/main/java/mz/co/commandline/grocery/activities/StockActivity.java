@@ -1,5 +1,6 @@
 package mz.co.commandline.grocery.activities;
 
+
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,20 +24,17 @@ import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.product.fragment.ProductFragment;
 import mz.co.commandline.grocery.product.model.Product;
 import mz.co.commandline.grocery.product.service.ProductService;
-import mz.co.commandline.grocery.sale.delegate.SaleDelegate;
-import mz.co.commandline.grocery.sale.fragment.AddSaleItemFragment;
-import mz.co.commandline.grocery.sale.fragment.SaleRegistFragment;
-import mz.co.commandline.grocery.sale.model.Sale;
-import mz.co.commandline.grocery.sale.model.SaleItem;
-import mz.co.commandline.grocery.sale.service.SaleService;
+import mz.co.commandline.grocery.stock.delegate.StockDelegate;
 import mz.co.commandline.grocery.stock.fragment.StockFragment;
+import mz.co.commandline.grocery.stock.fragment.StocksAndPricesFragment;
+import mz.co.commandline.grocery.stock.fragment.UpdateStockFragment;
 import mz.co.commandline.grocery.stock.model.Stock;
 import mz.co.commandline.grocery.stock.service.StockService;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
 
-public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View.OnClickListener {
+public class StockActivity extends BaseAuthActivity implements View.OnClickListener, StockDelegate {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -46,12 +45,11 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
     @Inject
     StockService stockService;
 
-    @Inject
-    SaleService saleService;
-
     private FragmentManager fragmentManager;
 
     private ProgressDialog progressBar;
+
+    private AlertDialogManager dialogManager;
 
     private List<Product> products;
 
@@ -59,42 +57,44 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
 
     private Stock stock;
 
-    private Sale sale;
-
-    private AlertDialogManager dialogManager;
+    private List<Stock> updatedStocksAndPrices;
 
     @Override
     public void onGroceryCreate(Bundle bundle) {
-        setContentView(R.layout.activity_sale);
+        setContentView(R.layout.activity_stock);
 
-        toolbar.setTitle(R.string.sale_regist);
         toolbar.setNavigationIcon(R.drawable.ic_back);
+        toolbar.setTitle(R.string.stocks_and_prices);
         toolbar.setNavigationOnClickListener(this);
 
         GroceryComponent component = application.getComponent();
         component.inject(this);
 
         fragmentManager = getSupportFragmentManager();
-
-        sale = new Sale();
-
         ProgressDialogManager progressDialogManager = new ProgressDialogManager(this);
         progressBar = progressDialogManager.getProgressBar(getString(R.string.wait), getString(R.string.processing_request));
 
         dialogManager = new AlertDialogManager(this);
 
-        showFragment(new SaleRegistFragment(), Boolean.FALSE);
+        updatedStocksAndPrices = new ArrayList<>();
+
+        displayFragment(new UpdateStockFragment(), Boolean.FALSE);
     }
 
-    private void showFragment(Fragment fragment, boolean onStack) {
+    private void displayFragment(Fragment fragment, Boolean onStack) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.sale_activity_frame_layout, fragment);
+        transaction.replace(R.id.stock_activity_framelayout, fragment);
 
         if (onStack) {
             transaction.addToBackStack(null);
         }
 
         transaction.commit();
+    }
+
+    @Override
+    public void onClick(View view) {
+        finish();
     }
 
     @Override
@@ -106,7 +106,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
             public void success(List<Product> response) {
                 progressBar.dismiss();
                 products = response;
-                showFragment(new ProductFragment(), Boolean.TRUE);
+                displayFragment(new ProductFragment(), Boolean.TRUE);
             }
 
             @Override
@@ -116,7 +116,6 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
                 Log.e("PRODUCTS", message);
             }
         });
-
     }
 
     @Override
@@ -139,7 +138,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
                 }
 
                 stocks = response;
-                showFragment(new StockFragment(), Boolean.TRUE);
+                displayFragment(new StockFragment(), Boolean.TRUE);
             }
 
             @Override
@@ -149,7 +148,6 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
                 Log.e("STOCKS", message);
             }
         });
-
 
     }
 
@@ -161,7 +159,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
     @Override
     public void selectedStock(Stock stock) {
         this.stock = stock;
-        showFragment(new AddSaleItemFragment(), Boolean.TRUE);
+        displayFragment(new StocksAndPricesFragment(), Boolean.TRUE);
     }
 
     @Override
@@ -170,41 +168,35 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
     }
 
     @Override
-    public void addSaleItem(SaleItem saleItem) {
-        sale.addSaleItem(saleItem);
+    public void cancel() {
         resetFragment();
     }
 
     private void resetFragment() {
         fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        showFragment(new SaleRegistFragment(), Boolean.FALSE);
+        displayFragment(new UpdateStockFragment(), Boolean.TRUE);
     }
 
     @Override
-    public Sale getSale() {
-        return sale;
-    }
-
-    @Override
-    public void cancel() {
+    public void addStockItem(Stock stock) {
+        updatedStocksAndPrices.add(stock);
         resetFragment();
     }
 
     @Override
-    public void registSale() {
+    public void updateStocksAndPrices() {
+        progressBar.dismiss();
 
-        if (sale.getItems().isEmpty()) {
-            dialogManager.dialog(AlertType.ERROR, getString(R.string.sale_without_item_not_allowed), null);
+        if (updatedStocksAndPrices.isEmpty()) {
+            dialogManager.dialog(AlertType.ERROR, getString(R.string.add_item_to_update), null);
             return;
         }
 
-        progressBar.show();
-
-        saleService.registSale(sale, new ResponseListner<Sale>() {
+        stockService.updateStocksAndPrices(updatedStocksAndPrices, new ResponseListner<Void>() {
             @Override
-            public void success(Sale response) {
+            public void success(Void responses) {
                 progressBar.dismiss();
-                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.sale_registed_with_success), new AlertListner() {
+                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.stock_and_sale_updated_success), new AlertListner() {
                     @Override
                     public void perform() {
                         finish();
@@ -214,20 +206,13 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
 
             @Override
             public void error(String message) {
-                progressBar.dismiss();
-                dialogManager.dialog(AlertType.ERROR, getString(R.string.sale_error_on_regist), null);
-                Log.e("SALE", message);
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_on_updating_stock_and_prices), null);
             }
         });
     }
 
     @Override
-    public void onClick(View view) {
-        if (fragmentManager.getBackStackEntryCount() > 0) {
-            fragmentManager.popBackStack();
-            return;
-        }
-
-        finish();
+    public List<Stock> updatedStocksAndPrices() {
+        return Collections.unmodifiableList(updatedStocksAndPrices);
     }
 }

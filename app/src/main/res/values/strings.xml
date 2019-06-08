@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Grocery</string>
+    <string name="app_name">Mercearias</string>
     <string name="sales">Vendas</string>
     <string name="reports">Relatórios</string>
     <string name="stocks">Stocks</string>
@@ -23,5 +23,12 @@
     <string name="sale_error_on_regist">Ocorreu um erro ao registar a venda. por favor tente novamente!</string>
     <string name="sale_error_on_selecting_product">Erro ao seleccionar o producto. Por favor tente novamente</string>
     <string name="sale_no_stock_for_the_product_selected">Não existe stock para o producto seleccinado</string>
+    <string name="toolbar_title">Mercearias Online</string>
+    <string name="stocks_and_prices">Stocks e Vendas</string>
+    <string name="purchase_price">Compra:</string>
+    <string name="sale_price">Venda:</string>
+    <string name="stock_and_sale_updated_success">Os preços e as quantidades foram actualizados com sucesso!</string>
+    <string name="error_on_updating_stock_and_prices">Ocorreu um erro ao actualizar os preços as quantidades. Por favor tente novamente</string>
+    <string name="add_item_to_update">Adiciona pelo menos um producto para actualizar!</string>
 
 </resources>

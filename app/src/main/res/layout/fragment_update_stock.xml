@@ -6,47 +6,51 @@
     android:layout_height="match_parent">
 
     <View
-        android:id="@+id/fragment_sale_regist_view"
+        android:id="@+id/fragment_update_stock_view"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="#ccc"
+        android:background="#D7CCC8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/fragment_sale_regist_total_sale"
-        android:layout_width="0dp"
+    <ImageView
+        android:id="@+id/fragment_update_stock_imageView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:padding="6dp"
-        android:text="@string/total_sale"
-        android:textAlignment="center"
-        android:textColor="#000"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_sale_regist_view"
-        app:layout_constraintStart_toStartOf="@+id/fragment_sale_regist_view"
-        app:layout_constraintTop_toTopOf="@+id/fragment_sale_regist_view" />
+        android:src="@mipmap/ic_stock"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_update_stock_view"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_update_stock_view"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/fragment_update_stock_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_update_stock_view" />
 
     <TextView
-        android:id="@+id/fragment_sale_regist_total_sale_value"
-        android:layout_width="0dp"
+        android:id="@+id/fragment_update_stock_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:textAlignment="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="10dp"
+        android:text="Actualizar Stocks e Preços"
         android:textColor="#000"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_sale_regist_total_sale"
-        app:layout_constraintStart_toStartOf="@+id/fragment_sale_regist_total_sale"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_sale_regist_total_sale"
-        tools:text="1.000,00 MT" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_update_stock_view"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_update_stock_view"
+        app:layout_constraintStart_toStartOf="@+id/fragment_update_stock_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_update_stock_view" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/fragment_sale_regist_recycleview"
+        android:id="@+id/fragment_update_stock_recyclerview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -54,46 +58,43 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_sale_regist_add_item"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_update_stock_select_item_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_sale_regist_view"
-        tools:listitem="@layout/sale_item" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_update_stock_view"
+        tools:listitem="@layout/stock_item" />
 
     <Button
-        android:id="@+id/fragment_sale_regist_add_item"
+        android:id="@+id/fragment_update_stock_select_item_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="4dp"
         android:layout_marginStart="8dp"
         android:background="#017a84"
-        android:padding="8dp"
         android:text="Seleccionar o producto"
         android:textAllCaps="false"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_sale_regist_regist_sale"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_update_stock_update_btn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/fragment_sale_regist_regist_sale"
+        android:id="@+id/fragment_update_stock_update_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="4dp"
         android:background="#017a84"
-        android:padding="8dp"
-        android:text="Registar a Venda"
+        android:text="Actualizar Stocks"
         android:textAllCaps="false"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/fragment_sale_regist_add_item" />
-
+        app:layout_constraintStart_toEndOf="@+id/fragment_update_stock_select_item_btn" />
 
 </android.support.constraint.ConstraintLayout>

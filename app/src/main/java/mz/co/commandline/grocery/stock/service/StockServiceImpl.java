@@ -74,4 +74,23 @@ public class StockServiceImpl implements StockService {
         });
     }
 
+    @Override
+    public void updateStocksAndPrices(List<Stock> stocks, final ResponseListner<Void> responseListner) {
+        getResource().updateStocksAndPrices(stocks).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setErrorBody(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
 }

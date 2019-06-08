@@ -2,6 +2,7 @@ package mz.co.commandline.grocery.menu;
 
 import mz.co.commandline.grocery.activities.ReportActivity;
 import mz.co.commandline.grocery.activities.SaleActivity;
+import mz.co.commandline.grocery.activities.StockActivity;
 
 public enum MenuItemType {
 
@@ -9,7 +10,7 @@ public enum MenuItemType {
 
     REPORT(ReportActivity.class),
 
-    STOCK(null);
+    STOCK(StockActivity.class);
 
     private final Class clazz;
 

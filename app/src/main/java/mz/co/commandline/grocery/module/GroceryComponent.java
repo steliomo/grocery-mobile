@@ -8,6 +8,7 @@ import mz.co.commandline.grocery.activities.BaseAuthActivity;
 import mz.co.commandline.grocery.activities.MainActivity;
 import mz.co.commandline.grocery.activities.ReportActivity;
 import mz.co.commandline.grocery.activities.SaleActivity;
+import mz.co.commandline.grocery.activities.StockActivity;
 
 @Singleton
 @Component(modules = GroceryModule.class)
@@ -20,4 +21,6 @@ public interface GroceryComponent {
     void inject(SaleActivity activity);
 
     void inject(ReportActivity activity);
+
+    void inject(StockActivity activity);
 }

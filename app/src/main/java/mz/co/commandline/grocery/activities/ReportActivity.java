@@ -66,6 +66,8 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
         GroceryComponent component = application.getComponent();
         component.inject(this);
 
+        fragmentManager = getSupportFragmentManager();
+
         alertDialogManager = new AlertDialogManager(this);
 
         ProgressDialogManager progressDialogManager = new ProgressDialogManager(this);
@@ -75,7 +77,6 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     }
 
     private void displayFragment(Fragment fragment, boolean onStack) {
-        fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.report_activity_framelayout, fragment);
 

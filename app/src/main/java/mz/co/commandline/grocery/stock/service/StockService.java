@@ -11,4 +11,6 @@ public interface StockService {
     void findProductStocksByProduct(Product product, ResponseListner<List<Stock>> responseListner);
 
     void findAllStocks(ResponseListner<List<Stock>> responseListner);
+
+    void updateStocksAndPrices(List<Stock> stocks, ResponseListner<Void> responseListner);
 }
