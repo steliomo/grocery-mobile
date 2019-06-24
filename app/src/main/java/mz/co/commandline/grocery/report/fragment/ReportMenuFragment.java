@@ -1,7 +1,5 @@
 package mz.co.commandline.grocery.report.fragment;
 
-import android.support.v4.app.FragmentActivity;
-
 import butterknife.OnClick;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.fragment.BaseFragment;
@@ -20,7 +18,7 @@ public class ReportMenuFragment extends BaseFragment {
 
     @Override
     public void onCreateView() {
-         delegate = (ReportDelegate) getActivity();
+        delegate = (ReportDelegate) getActivity();
     }
 
     @OnClick(R.id.fragment_report_menu_last_7days_btn)
@@ -31,5 +29,10 @@ public class ReportMenuFragment extends BaseFragment {
     @OnClick(R.id.fragment_report_menu_stocks_btn)
     public void onClickStocksBtn() {
         delegate.displayProductStocks();
+    }
+
+    @OnClick(R.id.fragment_report_menu_per_period_btn)
+    public void onClickPerPeriodBtn() {
+        delegate.displayPeriodSelectionFragment();
     }
 }

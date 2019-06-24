@@ -17,7 +17,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import mz.co.commandline.grocery.Listner.ResponseListner;
+import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.dialog.ProgressDialogManager;
 import mz.co.commandline.grocery.module.GroceryComponent;
@@ -185,9 +185,10 @@ public class StockActivity extends BaseAuthActivity implements View.OnClickListe
 
     @Override
     public void updateStocksAndPrices() {
-        progressBar.dismiss();
+        progressBar.show();
 
         if (updatedStocksAndPrices.isEmpty()) {
+            progressBar.dismiss();
             dialogManager.dialog(AlertType.ERROR, getString(R.string.add_item_to_update), null);
             return;
         }
@@ -206,7 +207,9 @@ public class StockActivity extends BaseAuthActivity implements View.OnClickListe
 
             @Override
             public void error(String message) {
+                progressBar.dismiss();
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.error_on_updating_stock_and_prices), null);
+                Log.e("UPDATE_STOCKS", message);
             }
         });
     }

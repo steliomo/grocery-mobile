@@ -15,11 +15,12 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import mz.co.commandline.grocery.Listner.ResponseListner;
+import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.dialog.ProgressDialogManager;
 import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.report.delegate.ReportDelegate;
+import mz.co.commandline.grocery.report.fragment.PeriodSelectionFragment;
 import mz.co.commandline.grocery.report.fragment.ReportMenuFragment;
 import mz.co.commandline.grocery.report.fragment.SaleReportFragment;
 import mz.co.commandline.grocery.report.fragment.StockReportFragment;
@@ -54,6 +55,8 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     private BigDecimal totalProfit;
 
     private BigDecimal totalSale;
+
+    private String reportTitle;
 
     @Override
     public void onGroceryCreate(Bundle bundle) {
@@ -113,6 +116,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
                 }
 
                 sales = response;
+                reportTitle = "Vendas nos últimos 7 dias";
                 displayFragment(new SaleReportFragment(), Boolean.TRUE);
             }
 
@@ -182,5 +186,44 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     @Override
     public BigDecimal getTotalSale() {
         return totalSale;
+    }
+
+    @Override
+    public void displayPeriodSelectionFragment() {
+        displayFragment(new PeriodSelectionFragment(), Boolean.TRUE);
+    }
+
+    @Override
+    public void displaySalesPerPeriodReport(String startDate, String endDate) {
+        progressBar.show();
+
+        saleService.findSalesPerPeriod(startDate, endDate, new ResponseListner<List<SaleReport>>() {
+            @Override
+            public void success(List<SaleReport> response) {
+                progressBar.dismiss();
+
+                if (response.isEmpty()) {
+                    alertDialogManager.dialog(AlertType.ERROR, "Nenhuma venada foi realizada no período especificado!", null);
+                    return;
+                }
+
+                sales = response;
+                reportTitle = "Vendas por período";
+                displayFragment(new SaleReportFragment(), Boolean.TRUE);
+
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                alertDialogManager.dialog(AlertType.ERROR, "Ocorreu um erro ao processar os dados. Por favor tente novamente", null);
+                Log.e("REPORT_SALES_PER_PERIOD", message);
+            }
+        });
+    }
+
+    @Override
+    public String getReportTitle() {
+        return reportTitle;
     }
 }

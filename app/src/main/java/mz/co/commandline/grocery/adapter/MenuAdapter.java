@@ -2,14 +2,13 @@ package mz.co.commandline.grocery.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
 
-import mz.co.commandline.grocery.Listner.ClickListner;
+import mz.co.commandline.grocery.listner.ClickListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.holder.MenuViewHolder;
 import mz.co.commandline.grocery.menu.MenuItem;

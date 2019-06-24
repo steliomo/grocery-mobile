@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -63,6 +64,20 @@
         app:layout_constraintTop_toBottomOf="@+id/fragment_report_menu_view" />
 
     <Button
+        android:id="@+id/fragment_report_menu_per_period_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#017a84"
+        android:text="Vendas por período"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_report_menu_last_7days_btn"
+        app:layout_constraintStart_toStartOf="@+id/fragment_report_menu_last_7days_btn"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_report_menu_last_7days_btn" />
+
+    <Button
         android:id="@+id/fragment_report_menu_stocks_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -72,8 +87,8 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#fff"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_report_menu_last_7days_btn"
-        app:layout_constraintStart_toStartOf="@+id/fragment_report_menu_last_7days_btn"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_report_menu_last_7days_btn" />
+        app:layout_constraintEnd_toEndOf="@+id/fragment_report_menu_per_period_btn"
+        app:layout_constraintStart_toStartOf="@+id/fragment_report_menu_per_period_btn"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_report_menu_per_period_btn" />
 
 </android.support.constraint.ConstraintLayout>

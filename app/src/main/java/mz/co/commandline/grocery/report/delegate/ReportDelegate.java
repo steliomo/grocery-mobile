@@ -19,4 +19,10 @@ public interface ReportDelegate {
     BigDecimal getTotalProfit();
 
     BigDecimal getTotalSale();
+
+    void displayPeriodSelectionFragment();
+
+    void displaySalesPerPeriodReport(String startDate, String endDate);
+
+    String getReportTitle();
 }

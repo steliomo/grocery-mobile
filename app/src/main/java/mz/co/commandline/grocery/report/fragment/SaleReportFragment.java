@@ -22,6 +22,9 @@ public class SaleReportFragment extends BaseFragment {
     @BindView(R.id.fragment_sale_report_total_sale)
     TextView totalSale;
 
+    @BindView(R.id.fragment_sale_report_textView)
+    TextView reportTitle;
+
     private ReportDelegate delegate;
 
     @Override
@@ -32,6 +35,8 @@ public class SaleReportFragment extends BaseFragment {
     @Override
     public void onCreateView() {
         delegate = (ReportDelegate) getActivity();
+
+        reportTitle.setText(delegate.getReportTitle());
 
         SaleReportAdapter adapter = new SaleReportAdapter(getActivity(), delegate.getSales());
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));

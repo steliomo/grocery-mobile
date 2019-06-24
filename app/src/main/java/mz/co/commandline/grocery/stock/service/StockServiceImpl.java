@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import mz.co.commandline.grocery.Listner.ResponseListner;
+import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.product.model.Product;
 import mz.co.commandline.grocery.service.RetrofitService;
 import mz.co.commandline.grocery.stock.model.Stock;

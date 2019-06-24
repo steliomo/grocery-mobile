@@ -7,14 +7,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import mz.co.commandline.grocery.Listner.ResponseListner;
+import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.product.model.Product;
 import mz.co.commandline.grocery.service.RetrofitService;
-import mz.co.commandline.grocery.user.service.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class ProductServiceImpl implements ProductService {
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import mz.co.commandline.grocery.Listner.ClickListner;
+import mz.co.commandline.grocery.listner.ClickListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.adapter.BaseAdapter;
 import mz.co.commandline.grocery.stock.holder.StockViewHolder;

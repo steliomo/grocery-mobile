@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import mz.co.commandline.grocery.Listner.ResponseListner;
+import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.sale.model.Sale;
 import mz.co.commandline.grocery.sale.model.SaleReport;
 import mz.co.commandline.grocery.service.RetrofitService;
@@ -57,6 +57,26 @@ public class SaleServiceImpl implements SaleService {
     @Override
     public void findLast7DaysSales(final ResponseListner<List<SaleReport>> responseListner) {
         getResource().findLast7DaysSales().enqueue(new Callback<List<SaleReport>>() {
+            @Override
+            public void onResponse(Call<List<SaleReport>> call, Response<List<SaleReport>> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setErrorBody(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<List<SaleReport>> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void findSalesPerPeriod(String startDate, String endDate, final ResponseListner<List<SaleReport>> responseListner) {
+        getResource().findSalesPerPeriod(startDate, endDate).enqueue(new Callback<List<SaleReport>>() {
             @Override
             public void onResponse(Call<List<SaleReport>> call, Response<List<SaleReport>> response) {
                 if (response.isSuccessful()) {

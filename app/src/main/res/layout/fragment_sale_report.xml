@@ -31,21 +31,21 @@
 
     <TextView
         android:id="@+id/fragment_sale_report_textView"
-        android:layout_width="312dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:padding="6dp"
-        android:text="Vendas nos últimos 7 dias"
         android:textAlignment="center"
         android:textColor="#000"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_sale_report_imageView"
         app:layout_constraintEnd_toEndOf="@+id/fragment_sale_report_view"
         app:layout_constraintStart_toStartOf="@+id/fragment_sale_report_view"
-        app:layout_constraintTop_toTopOf="@+id/fragment_sale_report_imageView" />
+        app:layout_constraintTop_toTopOf="@+id/fragment_sale_report_imageView"
+        tools:text="Vendas nos últimos 7 dias" />
 
     <TextView
         android:id="@+id/fragment_sale_report_date"

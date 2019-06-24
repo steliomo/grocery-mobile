@@ -1,4 +1,4 @@
-package mz.co.commandline.grocery.Listner;
+package mz.co.commandline.grocery.listner;
 
 public interface ResponseListner<T> {
     void success(T response);

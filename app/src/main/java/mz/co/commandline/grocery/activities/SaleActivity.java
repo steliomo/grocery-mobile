@@ -15,7 +15,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import mz.co.commandline.grocery.Listner.ResponseListner;
+import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.dialog.ProgressDialogManager;
 import mz.co.commandline.grocery.module.GroceryComponent;

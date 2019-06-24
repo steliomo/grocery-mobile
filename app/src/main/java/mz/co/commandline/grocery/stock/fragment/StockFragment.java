@@ -4,11 +4,10 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 
 import butterknife.BindView;
-import mz.co.commandline.grocery.Listner.ClickListner;
+import mz.co.commandline.grocery.listner.ClickListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.delegate.SaleAndStockDelegate;
 import mz.co.commandline.grocery.fragment.BaseFragment;
-import mz.co.commandline.grocery.sale.delegate.SaleDelegate;
 import mz.co.commandline.grocery.stock.adapter.StockAdapter;
 import mz.co.commandline.grocery.stock.model.Stock;
 
