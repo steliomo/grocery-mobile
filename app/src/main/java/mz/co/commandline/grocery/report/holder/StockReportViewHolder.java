@@ -11,6 +11,9 @@ import mz.co.commandline.grocery.stock.model.Stock;
 
 public class StockReportViewHolder extends BaseViewHolder<Stock> {
 
+    @BindView(R.id.stock_report_ord)
+    TextView ord;
+
     @BindView(R.id.stock_report_product)
     TextView product;
 
@@ -23,6 +26,7 @@ public class StockReportViewHolder extends BaseViewHolder<Stock> {
 
     @Override
     public void bind(Stock stock) {
+        ord.setText(stock.getPosition());
         product.setText(stock.getProductDescription().getName());
         quantity.setText(stock.getQuantity().toString());
     }

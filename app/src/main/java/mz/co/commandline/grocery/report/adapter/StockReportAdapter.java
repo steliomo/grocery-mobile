@@ -39,6 +39,7 @@ public class StockReportAdapter extends BaseAdapter<StockReportViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull StockReportViewHolder holder, int position) {
         Stock stock = stocks.get(position);
+        stock.setPosition(position);
         holder.bind(stock);
     }
 

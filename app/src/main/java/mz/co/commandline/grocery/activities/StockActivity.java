@@ -94,6 +94,12 @@ public class StockActivity extends BaseAuthActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStack();
+            return;
+        }
+
         finish();
     }
 
@@ -127,7 +133,7 @@ public class StockActivity extends BaseAuthActivity implements View.OnClickListe
     public void selectedProduct(Product product) {
 
         progressBar.show();
-        stockService.findProductStocksByProduct(product, new ResponseListner<List<Stock>>() {
+        stockService.findProductStocksByGroceryAndProduct(userService.getGrocery(), product, new ResponseListner<List<Stock>>() {
             @Override
             public void success(List<Stock> response) {
                 progressBar.dismiss();

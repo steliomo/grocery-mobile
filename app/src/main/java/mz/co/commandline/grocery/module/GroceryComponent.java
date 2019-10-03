@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import mz.co.commandline.grocery.activities.BaseAuthActivity;
+import mz.co.commandline.grocery.activities.LoginActivity;
 import mz.co.commandline.grocery.activities.MainActivity;
 import mz.co.commandline.grocery.activities.ReportActivity;
 import mz.co.commandline.grocery.activities.SaleActivity;
@@ -23,4 +24,6 @@ public interface GroceryComponent {
     void inject(ReportActivity activity);
 
     void inject(StockActivity activity);
+
+    void inject(LoginActivity activity);
 }

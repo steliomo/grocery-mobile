@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import mz.co.commandline.grocery.grocery.model.Grocery;
 import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.product.model.Product;
 import mz.co.commandline.grocery.service.RetrofitService;
@@ -35,8 +36,8 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public void findProductStocksByProduct(Product product, final ResponseListner<List<Stock>> responseListner) {
-        getResource().findStocksByProduct(product.getUuid()).enqueue(new Callback<List<Stock>>() {
+    public void findProductStocksByGroceryAndProduct(Grocery grocery, Product product, final ResponseListner<List<Stock>> responseListner) {
+        getResource().findStocksByGroceyAndProduct(grocery.getUuid(), product.getUuid()).enqueue(new Callback<List<Stock>>() {
             @Override
             public void onResponse(Call<List<Stock>> call, Response<List<Stock>> response) {
                 if (response.isSuccessful()) {
@@ -55,8 +56,8 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public void findAllStocks(final ResponseListner<List<Stock>> responseListner) {
-        getResource().findAllStocks().enqueue(new Callback<List<Stock>>() {
+    public void findAllStocksByGrocery(Grocery grocery, final ResponseListner<List<Stock>> responseListner) {
+        getResource().findAllStocksByGrocery(grocery.getUuid()).enqueue(new Callback<List<Stock>>() {
             @Override
             public void onResponse(Call<List<Stock>> call, Response<List<Stock>> response) {
                 if (response.isSuccessful()) {

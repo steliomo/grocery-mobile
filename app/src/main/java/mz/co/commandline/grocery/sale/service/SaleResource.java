@@ -9,6 +9,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface SaleResource {
@@ -16,9 +17,9 @@ public interface SaleResource {
     @POST("sales")
     Call<Sale> registeSale(@Body Sale sale);
 
-    @GET("sales/last-7-days")
-    Call<List<SaleReport>> findLast7DaysSales();
+    @GET("sales/last-7-days/{groceryUuid}")
+    Call<List<SaleReport>> findLast7DaysSales(@Path("groceryUuid") String groceryUuid);
 
     @GET("sales/per-period")
-    Call<List<SaleReport>> findSalesPerPeriod(@Query("startDate") String startDate, @Query("endDate") String endDate);
+    Call<List<SaleReport>> findSalesPerPeriod(@Query("groceryUuid") String groceryUuid, @Query("startDate") String startDate, @Query("endDate") String endDate);
 }

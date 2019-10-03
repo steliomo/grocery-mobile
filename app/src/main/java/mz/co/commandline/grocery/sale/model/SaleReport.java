@@ -16,6 +16,10 @@ public class SaleReport {
         return DateUtil.format(saleDate);
     }
 
+    public void setProfit(BigDecimal profit) {
+        this.profit = profit;
+    }
+
     public BigDecimal getProfit() {
         return profit;
     }

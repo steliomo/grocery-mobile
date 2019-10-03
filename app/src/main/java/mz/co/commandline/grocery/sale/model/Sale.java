@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import mz.co.commandline.grocery.grocery.model.Grocery;
 import mz.co.commandline.grocery.util.DateUtil;
 
 public class Sale {
@@ -15,6 +16,8 @@ public class Sale {
     private List<SaleItem> items;
 
     private String saleDate;
+
+    private Grocery grocery;
 
     public Sale() {
         this.items = new ArrayList<>();
@@ -36,5 +39,13 @@ public class Sale {
 
     public String getSaleDate() {
         return saleDate;
+    }
+
+    public void setGrocery(Grocery grocery) {
+        this.grocery = grocery;
+    }
+
+    public Grocery getGrocery() {
+        return grocery;
     }
 }

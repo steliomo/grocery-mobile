@@ -2,19 +2,40 @@ package mz.co.commandline.grocery.user.service;
 
 import android.util.Base64;
 
+import java.io.IOException;
+
 import javax.inject.Inject;
 
+import mz.co.commandline.grocery.grocery.model.Grocery;
+import mz.co.commandline.grocery.grocery.model.GroceryUser;
 import mz.co.commandline.grocery.infra.SharedPreferencesManager;
+import mz.co.commandline.grocery.listner.ResponseListner;
+import mz.co.commandline.grocery.service.RetrofitService;
+import mz.co.commandline.grocery.user.model.UserDTO;
+import mz.co.commandline.grocery.user.model.UserRole;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserServiceImpl implements UserService {
 
     private static final String TOKEN = "TOKEN";
+    private static final String GROCERY = "GROCERY";
+    private static final String GROCERY_USER = "GROCERY_USER";
+    private static final String FULL_NAME = "FULL_NAME";
 
     @Inject
     SharedPreferencesManager preferencesManager;
 
     @Inject
+    RetrofitService retrofitService;
+
+    @Inject
     public UserServiceImpl() {
+    }
+
+    private UserResource getResource() {
+        return retrofitService.getResource(UserResource.class);
     }
 
     @Override
@@ -23,9 +44,43 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void login(String username, String password) {
-        String token = prepareToken(username, password);
-        preferencesManager.storeString(TOKEN, token);
+    public void login(final String username, final String password, final ResponseListner<UserDTO> responseListner) {
+
+        getResource().login(new UserDTO(username, password)).enqueue(new Callback<UserDTO>() {
+
+            @Override
+            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
+                if (response.isSuccessful()) {
+
+                    UserDTO userDTO = response.body();
+                    responseListner.success(userDTO);
+
+                    String token = prepareToken(username, password);
+
+                    preferencesManager.storeString(TOKEN, token);
+                    preferencesManager.storeString(GROCERY, userDTO.getGroceryUser().getGrocery().toString());
+                    preferencesManager.storeString(GROCERY_USER, userDTO.getGroceryUser().toString());
+                    preferencesManager.storeString(FULL_NAME, userDTO.getFullName());
+
+                    return;
+                }
+
+                setErrorBody(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<UserDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    private void setErrorBody(Response<UserDTO> response, ResponseListner<UserDTO> responseListner) {
+        try {
+            responseListner.error(response.errorBody().string());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -40,6 +95,36 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Override
+    public Grocery getGrocery() {
+        return getGroceryUser().getGrocery();
+    }
+
+    @Override
+    public GroceryUser getGroceryUser() {
+
+        String groceryString = preferencesManager.getString(GROCERY);
+        String groceryUserString = preferencesManager.getString(GROCERY_USER);
+
+        String[] split = groceryString.split("_");
+        Grocery grocery = new Grocery();
+        grocery.setId(Long.valueOf(split[0]));
+        grocery.setUuid(split[1]);
+
+        GroceryUser groceryUser = new GroceryUser();
+        String[] groceryUserSplit = groceryUserString.split("_");
+        groceryUser.setGrocery(grocery);
+        groceryUser.setUserRole(UserRole.valueOf(groceryUserSplit[0]));
+        groceryUser.setExpiryDate(groceryUserSplit[1]);
+
+        return groceryUser;
+    }
+
+    @Override
+    public void logout() {
+        preferencesManager.clearPreferences();
+    }
+
     private String prepareToken(String username, String password) {
 
         StringBuilder builder = new StringBuilder();
@@ -49,5 +134,10 @@ public class UserServiceImpl implements UserService {
                 .append(password);
 
         return "Basic " + Base64.encodeToString(builder.toString().getBytes(), Base64.NO_WRAP);
+    }
+
+    @Override
+    public String getFullName() {
+        return preferencesManager.getString(FULL_NAME);
     }
 }

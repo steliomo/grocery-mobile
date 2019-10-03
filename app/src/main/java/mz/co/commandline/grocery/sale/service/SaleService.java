@@ -10,8 +10,8 @@ public interface SaleService {
 
     void registSale(Sale sale, ResponseListner<Sale> responseListner);
 
-    void findLast7DaysSales(ResponseListner<List<SaleReport>> responseListner);
+    void findLast7DaysSales(String groceryUuid, ResponseListner<List<SaleReport>> responseListner);
 
-    void findSalesPerPeriod(String startDate, String endDate, ResponseListner<List<SaleReport>> responseListner);
+    void findSalesPerPeriod(String groceryUuid, String startDate, String endDate, ResponseListner<List<SaleReport>> responseListner);
 
 }

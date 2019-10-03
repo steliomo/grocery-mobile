@@ -7,6 +7,8 @@ public class SharedPreferencesManager {
 
     public static final String GROERY_PREF_NAME = "GROERY_PREF_NAME";
 
+    public static final String TOKEN = "TOKEN";
+
     private Context context;
 
     public SharedPreferencesManager(Context context) {
@@ -36,5 +38,9 @@ public class SharedPreferencesManager {
 
     private SharedPreferences getSharedPreferences() {
         return context.getSharedPreferences(GROERY_PREF_NAME, context.MODE_PRIVATE);
+    }
+
+    public String getToken() {
+        return getString(TOKEN);
     }
 }

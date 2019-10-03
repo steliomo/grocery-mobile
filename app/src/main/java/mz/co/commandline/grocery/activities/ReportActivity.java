@@ -28,6 +28,8 @@ import mz.co.commandline.grocery.sale.model.SaleReport;
 import mz.co.commandline.grocery.sale.service.SaleService;
 import mz.co.commandline.grocery.stock.model.Stock;
 import mz.co.commandline.grocery.stock.service.StockService;
+import mz.co.commandline.grocery.user.model.UserRole;
+import mz.co.commandline.grocery.user.service.UserService;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertType;
 
@@ -41,6 +43,9 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
 
     @Inject
     StockService stockService;
+
+    @Inject
+    UserService userService;
 
     private FragmentManager fragmentManager;
 
@@ -105,7 +110,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     public void displayLast7DaysReport() {
         progressBar.show();
 
-        saleService.findLast7DaysSales(new ResponseListner<List<SaleReport>>() {
+        saleService.findLast7DaysSales(userService.getGrocery().getUuid(), new ResponseListner<List<SaleReport>>() {
             @Override
             public void success(List<SaleReport> response) {
                 progressBar.dismiss();
@@ -134,7 +139,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     public void displayProductStocks() {
         progressBar.show();
 
-        stockService.findAllStocks(new ResponseListner<List<Stock>>() {
+        stockService.findAllStocksByGrocery(userService.getGrocery(), new ResponseListner<List<Stock>>() {
             @Override
             public void success(List<Stock> response) {
                 progressBar.dismiss();
@@ -168,7 +173,13 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
         totalSale = BigDecimal.ZERO;
 
         for (SaleReport sale : sales) {
-            totalProfit = totalProfit.add(sale.getProfit());
+
+            if (hasRole(UserRole.OPERATOR)) {
+                sale.setProfit(new BigDecimal(0));
+            } else {
+                totalProfit = totalProfit.add(sale.getProfit());
+            }
+
             totalSale = totalSale.add(sale.getSale());
         }
     }
@@ -197,7 +208,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     public void displaySalesPerPeriodReport(String startDate, String endDate) {
         progressBar.show();
 
-        saleService.findSalesPerPeriod(startDate, endDate, new ResponseListner<List<SaleReport>>() {
+        saleService.findSalesPerPeriod(userService.getGrocery().getUuid(), startDate, endDate, new ResponseListner<List<SaleReport>>() {
             @Override
             public void success(List<SaleReport> response) {
                 progressBar.dismiss();
@@ -225,5 +236,15 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     @Override
     public String getReportTitle() {
         return reportTitle;
+    }
+
+    @Override
+    public boolean hasRole(UserRole userRole) {
+
+        if (userService.getGroceryUser().getUserRole() == userRole) {
+            return true;
+        }
+
+        return false;
     }
 }

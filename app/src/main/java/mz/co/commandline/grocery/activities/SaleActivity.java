@@ -31,6 +31,7 @@ import mz.co.commandline.grocery.sale.service.SaleService;
 import mz.co.commandline.grocery.stock.fragment.StockFragment;
 import mz.co.commandline.grocery.stock.model.Stock;
 import mz.co.commandline.grocery.stock.service.StockService;
+import mz.co.commandline.grocery.user.service.UserService;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
@@ -48,6 +49,9 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
 
     @Inject
     SaleService saleService;
+
+    @Inject
+    UserService userService;
 
     private FragmentManager fragmentManager;
 
@@ -128,7 +132,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
     public void selectedProduct(Product product) {
 
         progressBar.show();
-        stockService.findProductStocksByProduct(product, new ResponseListner<List<Stock>>() {
+        stockService.findProductStocksByGroceryAndProduct(userService.getGrocery(), product, new ResponseListner<List<Stock>>() {
             @Override
             public void success(List<Stock> response) {
                 progressBar.dismiss();
@@ -200,6 +204,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
 
         progressBar.show();
 
+        sale.setGrocery(userService.getGrocery());
         saleService.registSale(sale, new ResponseListner<Sale>() {
             @Override
             public void success(Sale response) {

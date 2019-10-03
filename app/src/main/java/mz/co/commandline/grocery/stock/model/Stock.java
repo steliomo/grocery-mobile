@@ -15,6 +15,8 @@ public class Stock extends GenericModel {
 
     private BigDecimal quantity;
 
+    private int position;
+
     public BigDecimal getPurchasePrice() {
         return purchasePrice;
     }
@@ -45,5 +47,13 @@ public class Stock extends GenericModel {
 
     public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public String getPosition() {
+        return String.valueOf(position + 1);
     }
 }

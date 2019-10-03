@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menu_drawer_sales"
+            android:checkable="true"
+            android:icon="@mipmap/ic_sale"
+            android:title="Vendas" />
+
+        <item
+            android:id="@+id/menu_drawer_stocks"
+            android:icon="@mipmap/ic_stock"
+            android:title="Stocks" />
+
+        <item
+            android:id="@+id/menu_drawer_reports"
+            android:icon="@mipmap/ic_report"
+            android:title="Relatórios" />
+
+    </group>
+
+    <item android:title="Configurações">
+        <menu>
+
+            <item
+                android:id="@+id/menu_drawer_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="Definições" />
+
+            <item
+                android:id="@+id/mennu_drawer_logout"
+                android:icon="@drawable/ic_power_off"
+                android:title="Sair" />
+
+        </menu>
+    </item>
+
+</menu>

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
+import mz.co.commandline.grocery.infra.SharedPreferencesManager;
 import mz.co.commandline.grocery.user.service.UserService;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -16,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitServiceImpl implements RetrofitService {
 
     @Inject
-    UserService userService;
+    SharedPreferencesManager sharedPreferencesManager;
 
     private Retrofit retrofit;
 
@@ -35,7 +36,11 @@ public class RetrofitServiceImpl implements RetrofitService {
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
-                        Request request = chain.request().newBuilder().header(AUTH_HEADER, userService.getToken()).build();
+                        if (chain.request().url().toString().contains("users/login")) {
+                            return chain.proceed(chain.request());
+                        }
+
+                        Request request = chain.request().newBuilder().header(AUTH_HEADER, sharedPreferencesManager.getToken()).build();
                         return chain.proceed(request);
                     }
                 })

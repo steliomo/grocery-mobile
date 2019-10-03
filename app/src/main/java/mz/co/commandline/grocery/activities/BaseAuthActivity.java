@@ -1,5 +1,6 @@
 package mz.co.commandline.grocery.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -20,8 +21,9 @@ public abstract class BaseAuthActivity extends BaseActivity {
         GroceryComponent component = application.getComponent();
         component.inject(this);
 
-        if(!userService.isLoggedIn()){
-            userService.login("822546100", "111111");
+        if (!userService.isLoggedIn()) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
         }
 
         onGroceryCreate(savedInstanceState);

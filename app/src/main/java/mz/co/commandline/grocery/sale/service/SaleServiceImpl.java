@@ -9,6 +9,7 @@ import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.sale.model.Sale;
 import mz.co.commandline.grocery.sale.model.SaleReport;
 import mz.co.commandline.grocery.service.RetrofitService;
+import mz.co.commandline.grocery.user.service.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -55,8 +56,8 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public void findLast7DaysSales(final ResponseListner<List<SaleReport>> responseListner) {
-        getResource().findLast7DaysSales().enqueue(new Callback<List<SaleReport>>() {
+    public void findLast7DaysSales(String groceryUuid, final ResponseListner<List<SaleReport>> responseListner) {
+        getResource().findLast7DaysSales(groceryUuid).enqueue(new Callback<List<SaleReport>>() {
             @Override
             public void onResponse(Call<List<SaleReport>> call, Response<List<SaleReport>> response) {
                 if (response.isSuccessful()) {
@@ -75,8 +76,8 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public void findSalesPerPeriod(String startDate, String endDate, final ResponseListner<List<SaleReport>> responseListner) {
-        getResource().findSalesPerPeriod(startDate, endDate).enqueue(new Callback<List<SaleReport>>() {
+    public void findSalesPerPeriod(String groceryUuid, String startDate, String endDate, final ResponseListner<List<SaleReport>> responseListner) {
+        getResource().findSalesPerPeriod(groceryUuid, startDate, endDate).enqueue(new Callback<List<SaleReport>>() {
             @Override
             public void onResponse(Call<List<SaleReport>> call, Response<List<SaleReport>> response) {
                 if (response.isSuccessful()) {

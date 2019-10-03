@@ -5,6 +5,7 @@ import java.util.List;
 
 import mz.co.commandline.grocery.sale.model.SaleReport;
 import mz.co.commandline.grocery.stock.model.Stock;
+import mz.co.commandline.grocery.user.model.UserRole;
 
 public interface ReportDelegate {
 
@@ -25,4 +26,6 @@ public interface ReportDelegate {
     void displaySalesPerPeriodReport(String startDate, String endDate);
 
     String getReportTitle();
+
+    boolean hasRole(UserRole operator);
 }
