@@ -7,8 +7,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.listner.ResponseListner;
-import mz.co.commandline.grocery.product.model.Product;
+import mz.co.commandline.grocery.product.dto.ProductDTO;
 import mz.co.commandline.grocery.service.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,12 +30,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void findAllProducts(final ResponseListner<List<Product>> listner) {
+    public void findProductsByGrocery(GroceryDTO groceryDTO, final ResponseListner<List<ProductDTO>> listner) {
 
-        getResource().findAllProducts().enqueue(new Callback<List<Product>>() {
+        getResource().findProductsByGrocery(groceryDTO.getUuid()).enqueue(new Callback<List<ProductDTO>>() {
 
             @Override
-            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+            public void onResponse(Call<List<ProductDTO>> call, Response<List<ProductDTO>> response) {
                 if (response.isSuccessful()) {
                     listner.success(response.body());
                     return;
@@ -44,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
             }
 
             @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
+            public void onFailure(Call<List<ProductDTO>> call, Throwable t) {
                 listner.error(t.getMessage());
             }
         });

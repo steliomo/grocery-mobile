@@ -22,7 +22,11 @@
         <activity android:name=".activities.SaleActivity" />
         <activity android:name=".activities.ReportActivity" />
         <activity android:name=".activities.StockActivity" />
-        <activity android:name=".activities.LoginActivity"></activity>
+        <activity android:name=".activities.LoginActivity" />
+        <activity
+            android:name=".activities.InventoryActivity"
+            android:label="@string/title_activity_inventory"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

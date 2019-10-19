@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".inventory.fragment.ApproveInventoryFragment">
+
+    <View
+        android:id="@+id/fragment_approve_inventory_view"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="#D7CCC8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fragment_approve_inventory_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@mipmap/ic_inventory"
+        app:layout_constraintStart_toStartOf="@+id/fragment_approve_inventory_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_approve_inventory_view" />
+
+    <TextView
+        android:id="@+id/fragment_approve_inventory_textView"
+        android:layout_width="0dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="10dp"
+        android:text="@string/approve_inventory"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="9pt"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_approve_inventory_image_view"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_approve_inventory_view"
+        app:layout_constraintStart_toStartOf="@+id/fragment_approve_inventory_image_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_approve_inventory_image_view" />
+
+    <TextView
+        android:id="@+id/fragment_approve_inventory_start_date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/start_date"
+        android:textColor="#000"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_approve_inventory_start_date"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/fragment_approve_inventory_view"
+        app:layout_constraintStart_toStartOf="@+id/fragment_approve_inventory_view"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_approve_inventory_textView" />
+
+    <TextView
+        android:id="@+id/fragment_approve_inventory_start_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="2dp"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_approve_inventory_start_date_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragment_approve_inventory_start_date_label"
+        tools:text="20-09-2019" />
+
+    <TextView
+        android:id="@+id/fragment_approve_inventory_status_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/inventory_status"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_approve_inventory_view"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_approve_inventory_status"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/fragment_approve_inventory_view"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_approve_inventory_start_date" />
+
+    <TextView
+        android:id="@+id/fragment_approve_inventory_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="2dp"
+        android:textColor="#D50000"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_approve_inventory_status_label"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_approve_inventory_view"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragment_approve_inventory_status_label"
+        tools:text="Pendente" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_approve_inventory_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_approve_inventory_aprove_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_approve_inventory_view"
+        tools:listitem="@layout/inventory_item" />
+
+    <Button
+        android:id="@+id/fragment_approve_inventory_aprove_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginStart="48dp"
+        android:background="#017a84"
+        android:padding="8dp"
+        android:text="@string/approve_inventory"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_approve_inventory_recycler_view"
+        app:layout_constraintStart_toStartOf="@+id/fragment_approve_inventory_recycler_view" />
+
+</android.support.constraint.ConstraintLayout>

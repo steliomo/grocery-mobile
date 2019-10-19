@@ -4,28 +4,28 @@ import android.view.View;
 import android.widget.TextView;
 
 import butterknife.BindView;
-import mz.co.commandline.grocery.listner.ClickListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.holder.BaseViewHolder;
-import mz.co.commandline.grocery.product.model.Product;
+import mz.co.commandline.grocery.listner.ClickListner;
+import mz.co.commandline.grocery.product.dto.ProductDTO;
 
-public class ProductViewHolder extends BaseViewHolder<Product> {
+public class ProductViewHolder extends BaseViewHolder<ProductDTO> {
 
     @BindView(R.id.product_name)
     TextView productName;
 
     private ClickListner listner;
 
-    private Product product;
+    private ProductDTO productDTO;
 
     public ProductViewHolder(View view) {
         super(view);
     }
 
     @Override
-    public void bind(Product product) {
-        this.product = product;
-        productName.setText(product.getName());
+    public void bind(ProductDTO productDTO) {
+        this.productDTO = productDTO;
+        productName.setText(productDTO.getName());
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ProductViewHolder extends BaseViewHolder<Product> {
 
     @Override
     public void onClick(View v) {
-        listner.onClickListner(product);
+        listner.onClickListner(productDTO);
     }
 
     @Override

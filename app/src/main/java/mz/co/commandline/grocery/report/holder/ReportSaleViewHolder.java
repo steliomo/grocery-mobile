@@ -7,7 +7,7 @@ import butterknife.BindView;
 import mz.co.commandline.grocery.listner.ClickListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.holder.BaseViewHolder;
-import mz.co.commandline.grocery.sale.model.SaleReport;
+import mz.co.commandline.grocery.sale.dto.SaleReport;
 import mz.co.commandline.grocery.util.FormatterUtil;
 
 public class ReportSaleViewHolder extends BaseViewHolder<SaleReport> {

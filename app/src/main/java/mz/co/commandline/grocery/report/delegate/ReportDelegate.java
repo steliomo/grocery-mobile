@@ -3,9 +3,9 @@ package mz.co.commandline.grocery.report.delegate;
 import java.math.BigDecimal;
 import java.util.List;
 
-import mz.co.commandline.grocery.sale.model.SaleReport;
-import mz.co.commandline.grocery.stock.model.Stock;
-import mz.co.commandline.grocery.user.model.UserRole;
+import mz.co.commandline.grocery.sale.dto.SaleReport;
+import mz.co.commandline.grocery.stock.dto.StockDTO;
+import mz.co.commandline.grocery.user.dto.UserRole;
 
 public interface ReportDelegate {
 
@@ -15,7 +15,7 @@ public interface ReportDelegate {
 
     List<SaleReport> getSales();
 
-    List<Stock> getStocks();
+    List<StockDTO> getStocks();
 
     BigDecimal getTotalProfit();
 
@@ -26,6 +26,4 @@ public interface ReportDelegate {
     void displaySalesPerPeriodReport(String startDate, String endDate);
 
     String getReportTitle();
-
-    boolean hasRole(UserRole operator);
 }

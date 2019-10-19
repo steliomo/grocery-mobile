@@ -2,14 +2,13 @@ package mz.co.commandline.grocery.stock.delegate;
 
 import java.util.List;
 
-import mz.co.commandline.grocery.delegate.SaleAndStockDelegate;
-import mz.co.commandline.grocery.stock.model.Stock;
+import mz.co.commandline.grocery.stock.dto.StockDTO;
 
-public interface StockDelegate extends SaleAndStockDelegate {
+public interface StockDelegate {
 
-    void addStockItem(Stock stock);
+    List<StockDTO> getStocks();
 
-    void updateStocksAndPrices();
+    void selectedStock(StockDTO stockDTO);
 
-    List<Stock> updatedStocksAndPrices();
+    StockDTO getStock();
 }

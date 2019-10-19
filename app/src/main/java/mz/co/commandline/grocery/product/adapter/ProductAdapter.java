@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import mz.co.commandline.grocery.listner.ClickListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.adapter.BaseAdapter;
+import mz.co.commandline.grocery.listner.ClickListner;
+import mz.co.commandline.grocery.product.dto.ProductDTO;
 import mz.co.commandline.grocery.product.holder.ProductViewHolder;
-import mz.co.commandline.grocery.product.model.Product;
 
 public class ProductAdapter extends BaseAdapter<ProductViewHolder> {
 
@@ -20,11 +20,11 @@ public class ProductAdapter extends BaseAdapter<ProductViewHolder> {
 
     private Context context;
 
-    private List<Product> products;
+    private List<ProductDTO> productDTOs;
 
-    public ProductAdapter(Context context, List<Product> products) {
+    public ProductAdapter(Context context, List<ProductDTO> productDTOs) {
         this.context = context;
-        this.products = products;
+        this.productDTOs = productDTOs;
     }
 
     @Override
@@ -42,13 +42,13 @@ public class ProductAdapter extends BaseAdapter<ProductViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        Product product = products.get(position);
+        ProductDTO productDTO = productDTOs.get(position);
         holder.setItemClickListner(listner);
-        holder.bind(product);
+        holder.bind(productDTO);
     }
 
     @Override
     public int getItemCount() {
-        return products.size();
+        return productDTOs.size();
     }
 }

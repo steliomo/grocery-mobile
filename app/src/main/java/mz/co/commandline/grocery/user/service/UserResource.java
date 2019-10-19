@@ -1,6 +1,6 @@
 package mz.co.commandline.grocery.user.service;
 
-import mz.co.commandline.grocery.user.model.UserDTO;
+import mz.co.commandline.grocery.user.dto.UserDTO;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;

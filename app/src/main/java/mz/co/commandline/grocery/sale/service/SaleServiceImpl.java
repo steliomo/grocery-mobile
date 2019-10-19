@@ -6,10 +6,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import mz.co.commandline.grocery.listner.ResponseListner;
-import mz.co.commandline.grocery.sale.model.Sale;
-import mz.co.commandline.grocery.sale.model.SaleReport;
+import mz.co.commandline.grocery.sale.dto.SaleDTO;
+import mz.co.commandline.grocery.sale.dto.SaleReport;
 import mz.co.commandline.grocery.service.RetrofitService;
-import mz.co.commandline.grocery.user.service.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,10 +27,10 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public void registSale(Sale sale, final ResponseListner<Sale> responseListner) {
-        getResource().registeSale(sale).enqueue(new Callback<Sale>() {
+    public void registSale(SaleDTO sale, final ResponseListner<SaleDTO> responseListner) {
+        getResource().registeSale(sale).enqueue(new Callback<SaleDTO>() {
             @Override
-            public void onResponse(Call<Sale> call, Response<Sale> response) {
+            public void onResponse(Call<SaleDTO> call, Response<SaleDTO> response) {
                 if (response.isSuccessful()) {
                     responseListner.success(response.body());
                     return;
@@ -41,7 +40,7 @@ public class SaleServiceImpl implements SaleService {
             }
 
             @Override
-            public void onFailure(Call<Sale> call, Throwable t) {
+            public void onFailure(Call<SaleDTO> call, Throwable t) {
                 responseListner.error(t.getMessage());
             }
         });

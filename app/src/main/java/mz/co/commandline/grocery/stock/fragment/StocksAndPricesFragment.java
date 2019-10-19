@@ -3,7 +3,6 @@ package mz.co.commandline.grocery.stock.fragment;
 import android.support.design.widget.TextInputLayout;
 import android.widget.TextView;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,8 @@ import butterknife.OnClick;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.fragment.BaseFragment;
 import mz.co.commandline.grocery.stock.delegate.StockDelegate;
-import mz.co.commandline.grocery.stock.model.Stock;
+import mz.co.commandline.grocery.stock.delegate.UpdateStockDelegate;
+import mz.co.commandline.grocery.stock.dto.StockDTO;
 import mz.co.commandline.grocery.validator.DefaultValidator;
 import mz.co.commandline.grocery.validator.Validator;
 
@@ -30,11 +30,13 @@ public class StocksAndPricesFragment extends BaseFragment {
     @BindView(R.id.fragment_stocks_and_prices_quantity)
     TextInputLayout quantity;
 
-    private StockDelegate delegate;
+    private UpdateStockDelegate updateStockDelegate;
 
-    private Stock stock;
+    private StockDTO stockDTO;
 
     private List<Validator> validators;
+
+    private StockDelegate stockDelegate;
 
     @Override
     public int getResourceId() {
@@ -43,13 +45,15 @@ public class StocksAndPricesFragment extends BaseFragment {
 
     @Override
     public void onCreateView() {
-        delegate = (StockDelegate) getActivity();
-        stock = delegate.getStock();
-        productName.setText(stock.getProductDescription().getName());
+        updateStockDelegate = (UpdateStockDelegate) getActivity();
+        stockDelegate = (StockDelegate) getActivity();
 
-        purchasePrice.getEditText().setText(stock.getPurchasePrice().toString());
-        salePrice.getEditText().setText(stock.getSalePrice().toString());
-        quantity.getEditText().setText(stock.getQuantity().toString());
+        stockDTO = stockDelegate.getStock();
+        productName.setText(stockDTO.getProductDescriptionDTO().getName());
+
+        purchasePrice.getEditText().setText(stockDTO.getPurchasePrice().toString());
+        salePrice.getEditText().setText(stockDTO.getSalePrice().toString());
+        quantity.getEditText().setText(stockDTO.getQuantity().toString());
 
         validateFields();
     }
@@ -63,7 +67,7 @@ public class StocksAndPricesFragment extends BaseFragment {
 
     @OnClick(R.id.fragment_stocks_and_prices_cancel)
     public void onClickCancel() {
-        delegate.cancel();
+        updateStockDelegate.cancel();
     }
 
     @OnClick(R.id.fragment_stocks_and_prices_add)
@@ -75,10 +79,10 @@ public class StocksAndPricesFragment extends BaseFragment {
             }
         }
 
-        stock.setPurchasePrice(new BigDecimal(purchasePrice.getEditText().getText().toString()));
-        stock.setSalePrice(new BigDecimal(salePrice.getEditText().getText().toString()));
-        stock.setQuantity(new BigDecimal(quantity.getEditText().getText().toString()));
+        stockDTO.setPurchasePrice(purchasePrice.getEditText().getText().toString());
+        stockDTO.setSalePrice(salePrice.getEditText().getText().toString());
+        stockDTO.setQuantity(quantity.getEditText().getText().toString());
 
-        delegate.addStockItem(stock);
+        updateStockDelegate.addStockItem(stockDTO);
     }
 }

@@ -8,7 +8,7 @@ import butterknife.OnClick;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.fragment.BaseFragment;
 import mz.co.commandline.grocery.report.delegate.ReportDelegate;
-import mz.co.commandline.grocery.user.model.UserRole;
+import mz.co.commandline.grocery.user.dto.UserRole;
 
 
 public class ReportMenuFragment extends BaseFragment {
@@ -28,7 +28,7 @@ public class ReportMenuFragment extends BaseFragment {
     public void onCreateView() {
         delegate = (ReportDelegate) getActivity();
 
-        if (delegate.hasRole(UserRole.OPERATOR)) {
+        if (hasRole(UserRole.OPERATOR)) {
             stockBtn.setVisibility(View.INVISIBLE);
         }
     }

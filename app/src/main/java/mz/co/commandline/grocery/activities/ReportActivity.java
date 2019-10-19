@@ -15,20 +15,20 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.dialog.ProgressDialogManager;
+import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.report.delegate.ReportDelegate;
 import mz.co.commandline.grocery.report.fragment.PeriodSelectionFragment;
 import mz.co.commandline.grocery.report.fragment.ReportMenuFragment;
 import mz.co.commandline.grocery.report.fragment.SaleReportFragment;
 import mz.co.commandline.grocery.report.fragment.StockReportFragment;
-import mz.co.commandline.grocery.sale.model.SaleReport;
+import mz.co.commandline.grocery.sale.dto.SaleReport;
 import mz.co.commandline.grocery.sale.service.SaleService;
-import mz.co.commandline.grocery.stock.model.Stock;
+import mz.co.commandline.grocery.stock.dto.StockDTO;
 import mz.co.commandline.grocery.stock.service.StockService;
-import mz.co.commandline.grocery.user.model.UserRole;
+import mz.co.commandline.grocery.user.dto.UserRole;
 import mz.co.commandline.grocery.user.service.UserService;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertType;
@@ -55,7 +55,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
 
     private List<SaleReport> sales;
 
-    private List<Stock> stocks;
+    private List<StockDTO> stocks;
 
     private BigDecimal totalProfit;
 
@@ -110,7 +110,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     public void displayLast7DaysReport() {
         progressBar.show();
 
-        saleService.findLast7DaysSales(userService.getGrocery().getUuid(), new ResponseListner<List<SaleReport>>() {
+        saleService.findLast7DaysSales(userService.getGroceryDTO().getUuid(), new ResponseListner<List<SaleReport>>() {
             @Override
             public void success(List<SaleReport> response) {
                 progressBar.dismiss();
@@ -139,9 +139,9 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     public void displayProductStocks() {
         progressBar.show();
 
-        stockService.findAllStocksByGrocery(userService.getGrocery(), new ResponseListner<List<Stock>>() {
+        stockService.findAllStocksByGrocery(userService.getGroceryDTO(), new ResponseListner<List<StockDTO>>() {
             @Override
-            public void success(List<Stock> response) {
+            public void success(List<StockDTO> response) {
                 progressBar.dismiss();
 
                 if (response.isEmpty()) {
@@ -185,7 +185,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     }
 
     @Override
-    public List<Stock> getStocks() {
+    public List<StockDTO> getStocks() {
         return stocks;
     }
 
@@ -208,7 +208,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     public void displaySalesPerPeriodReport(String startDate, String endDate) {
         progressBar.show();
 
-        saleService.findSalesPerPeriod(userService.getGrocery().getUuid(), startDate, endDate, new ResponseListner<List<SaleReport>>() {
+        saleService.findSalesPerPeriod(userService.getGroceryDTO().getUuid(), startDate, endDate, new ResponseListner<List<SaleReport>>() {
             @Override
             public void success(List<SaleReport> response) {
                 progressBar.dismiss();
@@ -236,15 +236,5 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     @Override
     public String getReportTitle() {
         return reportTitle;
-    }
-
-    @Override
-    public boolean hasRole(UserRole userRole) {
-
-        if (userService.getGroceryUser().getUserRole() == userRole) {
-            return true;
-        }
-
-        return false;
     }
 }

@@ -36,5 +36,20 @@
     <string name="date">Data</string>
     <string name="profit">Lucro</string>
     <string name="sale_value">Valor da venda</string>
+    <string name="inventory">Inventário</string>
+    <string name="title_activity_inventory">InventoryActivity</string>
+    <string name="approve_inventory">Aprovar Inventário</string>
+    <string name="perform_inventory">Realizar Inventário</string>
+    <string name="start_date">Data de Início:</string>
+    <string name="inventory_status">Estado:</string>
+    <string name="error_on_performing_inventory">Ocorreu um erro ao realizar o inventário. Por favor tente novamente.</string>
+    <string name="inventory_not_found">Inventory not found</string>
+    <string name="pending">Pendente</string>
+    <string name="approved">Aprovado</string>
+    <string name="inventory_was_performed_with_success">O inventário foi realizado com sucesso!</string>
+    <string name="cannot_perform_inventory_without_items">Não é possivel realizar o inventario sem productos. Por favor adicione pelo menos um produto.</string>
+    <string name="no_inventory_to_approve">Nenhum Inventário disponível para aprovação</string>
+    <string name="inventory_approved_with_success">O inventário foi aprovado com sucesso!</string>
+    <string name="error_on_approving_inventory">Ocorreu um erro ao aprovar o inventário. Por favor tente novamente.</string>
 
 </resources>
