@@ -2,6 +2,7 @@ package mz.co.commandline.grocery.inventory.dto;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
@@ -39,16 +40,27 @@ public class InventoryDTO extends GenericDTO {
 
     public void addStockInventoryDTO(StockInventoryDTO stockInventoryDTO) {
 
+        List<StockInventoryDTO> updatedStockInventoriesDTO = new ArrayList<>();
+
         for (StockInventoryDTO stockInventory : stockInventoriesDTO) {
-            if (stockInventory.getStockDTO().getUuid().equals(stockInventoryDTO.getStockDTO().getUuid())) {
-                stockInventoriesDTO.remove(stockInventory);
+            if (!stockInventory.getStockDTO().getUuid().equals(stockInventoryDTO.getStockDTO().getUuid())) {
+                updatedStockInventoriesDTO.add(stockInventory);
             }
         }
 
-        stockInventoriesDTO.add(stockInventoryDTO);
+        updatedStockInventoriesDTO.add(stockInventoryDTO);
+        stockInventoriesDTO = new ArrayList<>(updatedStockInventoriesDTO);
     }
 
     public List<StockInventoryDTO> getStockInventoriesDTO() {
+
+        Collections.sort(stockInventoriesDTO, new Comparator<StockInventoryDTO>() {
+            @Override
+            public int compare(StockInventoryDTO a, StockInventoryDTO b) {
+                return a.getStockDTO().getProductDescriptionDTO().getName().compareTo(b.getStockDTO().getProductDescriptionDTO().getName());
+            }
+        });
+
         return Collections.unmodifiableList(stockInventoriesDTO);
     }
 }

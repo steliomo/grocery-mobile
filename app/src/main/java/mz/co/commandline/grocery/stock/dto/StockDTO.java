@@ -1,9 +1,12 @@
 package mz.co.commandline.grocery.stock.dto;
 
+import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.model.GenericDTO;
 import mz.co.commandline.grocery.product.dto.ProductDescriptionDTO;
 
 public class StockDTO extends GenericDTO {
+
+    private GroceryDTO groceryDTO;
 
     private ProductDescriptionDTO productDescriptionDTO;
 
@@ -63,5 +66,13 @@ public class StockDTO extends GenericDTO {
 
     public String getPosition() {
         return String.valueOf(position + 1);
+    }
+
+    public GroceryDTO getGroceryDTO() {
+        return groceryDTO;
+    }
+
+    public void setGroceryDTO(GroceryDTO groceryDTO) {
+        this.groceryDTO = groceryDTO;
     }
 }

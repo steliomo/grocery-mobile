@@ -12,20 +12,31 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity">
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SaleActivity" />
-        <activity android:name=".activities.ReportActivity" />
-        <activity android:name=".activities.StockActivity" />
-        <activity android:name=".activities.LoginActivity" />
+        <activity
+            android:name=".activities.SaleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ReportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.StockActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.LoginActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.InventoryActivity"
             android:label="@string/title_activity_inventory"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
     </application>
 
