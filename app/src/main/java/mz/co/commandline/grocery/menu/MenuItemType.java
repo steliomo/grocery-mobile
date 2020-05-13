@@ -1,5 +1,6 @@
 package mz.co.commandline.grocery.menu;
 
+import mz.co.commandline.grocery.activities.ExpenseActivity;
 import mz.co.commandline.grocery.activities.InventoryActivity;
 import mz.co.commandline.grocery.activities.ReportActivity;
 import mz.co.commandline.grocery.activities.SaleActivity;
@@ -13,7 +14,9 @@ public enum MenuItemType {
 
     STOCK(StockActivity.class),
 
-    INVENTORY(InventoryActivity.class);
+    INVENTORY(InventoryActivity.class),
+
+    EXPENSE(ExpenseActivity.class);
 
     private final Class clazz;
 

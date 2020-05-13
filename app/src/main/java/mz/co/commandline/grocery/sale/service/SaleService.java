@@ -5,13 +5,13 @@ import java.util.List;
 import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
 import mz.co.commandline.grocery.sale.dto.SaleReport;
+import mz.co.commandline.grocery.sale.dto.SalesDTO;
 
 public interface SaleService {
 
     void registSale(SaleDTO sale, ResponseListner<SaleDTO> responseListner);
 
-    void findLast7DaysSales(String groceryUuid, ResponseListner<List<SaleReport>> responseListner);
+    void findSalesPerPeriod(String groceryUuid, String startDate, String endDate, ResponseListner<SalesDTO> responseListner);
 
-    void findSalesPerPeriod(String groceryUuid, String startDate, String endDate, ResponseListner<List<SaleReport>> responseListner);
-
+    void findMonthlyalesPerPeriod(String groceryUuid, String startDate, String endDate, ResponseListner<SalesDTO> responseListner);
 }

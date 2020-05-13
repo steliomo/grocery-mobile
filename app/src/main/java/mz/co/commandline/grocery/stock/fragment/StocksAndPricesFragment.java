@@ -30,6 +30,9 @@ public class StocksAndPricesFragment extends BaseFragment {
     @BindView(R.id.fragment_stocks_and_prices_quantity)
     TextInputLayout quantity;
 
+    @BindView(R.id.fragment_add_inventory_minimum_stock)
+    TextInputLayout minimumStock;
+
     private UpdateStockDelegate updateStockDelegate;
 
     private StockDTO stockDTO;
@@ -54,6 +57,7 @@ public class StocksAndPricesFragment extends BaseFragment {
         purchasePrice.getEditText().setText(stockDTO.getPurchasePrice().toString());
         salePrice.getEditText().setText(stockDTO.getSalePrice().toString());
         quantity.getEditText().setText(stockDTO.getQuantity().toString());
+        minimumStock.getEditText().setText(stockDTO.getMinimumStock().toString());
 
         validateFields();
     }
@@ -63,6 +67,7 @@ public class StocksAndPricesFragment extends BaseFragment {
         validators.add(new DefaultValidator(purchasePrice));
         validators.add(new DefaultValidator(salePrice));
         validators.add(new DefaultValidator(quantity));
+        validators.add(new DefaultValidator(minimumStock));
     }
 
     @OnClick(R.id.fragment_stocks_and_prices_cancel)
@@ -82,7 +87,13 @@ public class StocksAndPricesFragment extends BaseFragment {
         stockDTO.setPurchasePrice(purchasePrice.getEditText().getText().toString());
         stockDTO.setSalePrice(salePrice.getEditText().getText().toString());
         stockDTO.setQuantity(quantity.getEditText().getText().toString());
+        stockDTO.setMinimumStock(minimumStock.getEditText().getText().toString());
 
         updateStockDelegate.addStockItem(stockDTO);
+    }
+
+    @Override
+    public String getTitle() {
+        return getString(R.string.add_stocks);
     }
 }

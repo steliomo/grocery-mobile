@@ -37,4 +37,9 @@ public class StockFragment extends BaseFragment implements ClickListner<StockDTO
     public void onClickListner(StockDTO stockDTO) {
         delegate.selectedStock(stockDTO);
     }
+
+    @Override
+    public String getTitle() {
+        return getString(R.string.stock_details);
+    }
 }

@@ -1,7 +1,7 @@
 package mz.co.commandline.grocery.user.dto;
 
 import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
-import mz.co.commandline.grocery.model.GenericDTO;
+import mz.co.commandline.grocery.dto.GenericDTO;
 
 public class GroceryUserDTO extends GenericDTO {
 

@@ -3,9 +3,7 @@ package mz.co.commandline.grocery.activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +14,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.dialog.ProgressDialogManager;
 import mz.co.commandline.grocery.listner.ResponseListner;
@@ -32,14 +29,16 @@ import mz.co.commandline.grocery.stock.fragment.StockFragment;
 import mz.co.commandline.grocery.stock.fragment.StocksAndPricesFragment;
 import mz.co.commandline.grocery.stock.fragment.UpdateStockFragment;
 import mz.co.commandline.grocery.stock.service.StockService;
+import mz.co.commandline.grocery.util.KeyboardUtil;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
 
-public class StockActivity extends BaseAuthActivity implements View.OnClickListener, UpdateStockDelegate, StockDelegate, ProductDelegate {
+import static mz.co.commandline.grocery.util.FragmentUtil.displayFragment;
+import static mz.co.commandline.grocery.util.FragmentUtil.popBackStack;
+import static mz.co.commandline.grocery.util.FragmentUtil.resetFragment;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+public class StockActivity extends BaseAuthActivity implements View.OnClickListener, UpdateStockDelegate, StockDelegate, ProductDelegate {
 
     @Inject
     ProductService productService;
@@ -61,10 +60,13 @@ public class StockActivity extends BaseAuthActivity implements View.OnClickListe
 
     private List<StockDTO> updatedStocksAndPrices;
 
+    private Toolbar toolbar;
+
     @Override
     public void onGroceryCreate(Bundle bundle) {
         setContentView(R.layout.activity_stock);
 
+        toolbar = getToolbar();
         toolbar.setNavigationIcon(R.drawable.ic_back);
         toolbar.setTitle(R.string.stocks_and_prices);
         toolbar.setNavigationOnClickListener(this);
@@ -80,29 +82,12 @@ public class StockActivity extends BaseAuthActivity implements View.OnClickListe
 
         updatedStocksAndPrices = new ArrayList<>();
 
-        displayFragment(new UpdateStockFragment(), Boolean.FALSE);
-    }
-
-    private void displayFragment(Fragment fragment, Boolean onStack) {
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.stock_activity_framelayout, fragment);
-
-        if (onStack) {
-            transaction.addToBackStack(null);
-        }
-
-        transaction.commit();
+        displayFragment(fragmentManager, R.id.stock_activity_framelayout, new UpdateStockFragment(), Boolean.FALSE);
     }
 
     @Override
     public void onClick(View view) {
-
-        if (fragmentManager.getBackStackEntryCount() > 0) {
-            fragmentManager.popBackStack();
-            return;
-        }
-
-        finish();
+        popBackStack(fragmentManager, this);
     }
 
     @Override
@@ -114,7 +99,7 @@ public class StockActivity extends BaseAuthActivity implements View.OnClickListe
             public void success(List<ProductDTO> response) {
                 progressBar.dismiss();
                 productsDTO = response;
-                displayFragment(new ProductFragment(), Boolean.TRUE);
+                displayFragment(fragmentManager, R.id.stock_activity_framelayout, new ProductFragment(), Boolean.TRUE);
             }
 
             @Override
@@ -128,13 +113,16 @@ public class StockActivity extends BaseAuthActivity implements View.OnClickListe
 
     @Override
     public List<ProductDTO> getProductsDTO() {
-        return Collections.unmodifiableList(productsDTO);
+        return productsDTO;
     }
 
     @Override
     public void selectedProduct(ProductDTO product) {
 
+        KeyboardUtil.hideKeyboard(this, toolbar);
+
         progressBar.show();
+
         stockService.findProductStocksByGroceryAndProduct(userService.getGroceryDTO(), product, new ResponseListner<List<StockDTO>>() {
             @Override
             public void success(List<StockDTO> response) {
@@ -146,7 +134,7 @@ public class StockActivity extends BaseAuthActivity implements View.OnClickListe
                 }
 
                 stocksDTO = response;
-                displayFragment(new StockFragment(), Boolean.TRUE);
+                displayFragment(fragmentManager, R.id.stock_activity_framelayout, new StockFragment(), Boolean.TRUE);
             }
 
             @Override
@@ -167,7 +155,7 @@ public class StockActivity extends BaseAuthActivity implements View.OnClickListe
     @Override
     public void selectedStock(StockDTO stockDTO) {
         this.stockDTO = stockDTO;
-        displayFragment(new StocksAndPricesFragment(), Boolean.TRUE);
+        displayFragment(fragmentManager, R.id.stock_activity_framelayout, new StocksAndPricesFragment(), Boolean.TRUE);
     }
 
     @Override
@@ -177,18 +165,15 @@ public class StockActivity extends BaseAuthActivity implements View.OnClickListe
 
     @Override
     public void cancel() {
-        resetFragment();
-    }
-
-    private void resetFragment() {
-        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        displayFragment(new UpdateStockFragment(), Boolean.TRUE);
+        resetFragment(fragmentManager);
+        displayFragment(fragmentManager, R.id.stock_activity_framelayout, new UpdateStockFragment(), Boolean.TRUE);
     }
 
     @Override
     public void addStockItem(StockDTO stockDTO) {
         updatedStocksAndPrices.add(stockDTO);
-        resetFragment();
+        resetFragment(fragmentManager);
+        displayFragment(fragmentManager, R.id.stock_activity_framelayout, new UpdateStockFragment(), Boolean.TRUE);
     }
 
     @Override

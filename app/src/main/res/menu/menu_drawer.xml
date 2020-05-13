@@ -6,25 +6,15 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/menu_drawer_sales"
+            android:id="@+id/menu_drawer_main_menu"
+            android:icon="@drawable/ic_home"
+            android:title="@string/main_menu" />
+
+        <item
+            android:id="@+id/menu_drawer_dashboard"
             android:checkable="true"
-            android:icon="@mipmap/ic_sale"
-            android:title="@string/sales" />
-
-        <item
-            android:id="@+id/menu_drawer_stocks"
-            android:icon="@mipmap/ic_stock"
-            android:title="@string/stocks" />
-
-        <item
-            android:id="@+id/menu_drawer_inventory"
-            android:icon="@mipmap/ic_inventory"
-            android:title="@string/inventory" />
-
-        <item
-            android:id="@+id/menu_drawer_reports"
-            android:icon="@mipmap/ic_report"
-            android:title="@string/reports" />
+            android:icon="@drawable/ic_dashboard"
+            android:title="@string/dashboard" />
 
     </group>
 
@@ -37,7 +27,7 @@
                 android:title="Definições" />
 
             <item
-                android:id="@+id/mennu_drawer_logout"
+                android:id="@+id/menu_drawer_logout"
                 android:icon="@drawable/ic_power_off"
                 android:title="Sair" />
 

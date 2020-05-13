@@ -74,6 +74,7 @@ public class AddSaleItemFragment extends BaseFragment {
 
                     if (value.isEmpty()) {
                         itemValue.setEnabled(true);
+                        quantity.setEnabled(true);
                         return;
                     }
 
@@ -99,6 +100,7 @@ public class AddSaleItemFragment extends BaseFragment {
 
                     if (value.isEmpty()) {
                         quantity.setEnabled(true);
+                        itemValue.setEnabled(true);
                         return;
                     }
 
@@ -132,5 +134,10 @@ public class AddSaleItemFragment extends BaseFragment {
     @OnClick(R.id.fragment_add_sale_item_cancel)
     public void onClickCancel() {
         saleDelegate.cancel();
+    }
+
+    @Override
+    public String getTitle() {
+        return getString(R.string.sale_item);
     }
 }

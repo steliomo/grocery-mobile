@@ -4,26 +4,23 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import mz.co.commandline.grocery.sale.dto.SaleReport;
+import mz.co.commandline.grocery.sale.dto.SalesDTO;
 import mz.co.commandline.grocery.stock.dto.StockDTO;
 import mz.co.commandline.grocery.user.dto.UserRole;
 
 public interface ReportDelegate {
 
-    void displayLast7DaysReport();
+    void displaySalesReport();
 
-    void displayProductStocks();
+    void displayProductOnStock();
 
-    List<SaleReport> getSales();
+    void displayReport(String startDate, String endDate);
+
+    SalesDTO getSales();
 
     List<StockDTO> getStocks();
 
-    BigDecimal getTotalProfit();
+    void displayProductsMostWantedWithLowStock();
 
-    BigDecimal getTotalSale();
-
-    void displayPeriodSelectionFragment();
-
-    void displaySalesPerPeriodReport(String startDate, String endDate);
-
-    String getReportTitle();
+    void onItemClick(StockDTO stockDTO);
 }

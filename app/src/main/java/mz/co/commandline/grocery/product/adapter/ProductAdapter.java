@@ -5,7 +5,11 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import mz.co.commandline.grocery.R;
@@ -14,7 +18,7 @@ import mz.co.commandline.grocery.listner.ClickListner;
 import mz.co.commandline.grocery.product.dto.ProductDTO;
 import mz.co.commandline.grocery.product.holder.ProductViewHolder;
 
-public class ProductAdapter extends BaseAdapter<ProductViewHolder> {
+public class ProductAdapter extends BaseAdapter<ProductViewHolder> implements Filterable {
 
     private ClickListner listner;
 
@@ -22,9 +26,42 @@ public class ProductAdapter extends BaseAdapter<ProductViewHolder> {
 
     private List<ProductDTO> productDTOs;
 
-    public ProductAdapter(Context context, List<ProductDTO> productDTOs) {
+    private Filter filter;
+
+    public ProductAdapter(Context context, final List<ProductDTO> productDTOs) {
         this.context = context;
         this.productDTOs = productDTOs;
+        final List<ProductDTO> mainProductDTOS = new ArrayList<>(productDTOs);
+
+        filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                List<ProductDTO> filteredProducts = new ArrayList<>();
+                FilterResults results = new FilterResults();
+
+                if (charSequence.length() != 0) {
+
+                    for (ProductDTO product : mainProductDTOS) {
+                        if (product.getName().toLowerCase().contains(charSequence.toString().toLowerCase().trim())) {
+                            filteredProducts.add(product);
+                        }
+                    }
+
+                    results.values = filteredProducts;
+                    return results;
+                }
+
+                results.values = mainProductDTOS;
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                productDTOs.clear();
+                productDTOs.addAll((List) filterResults.values);
+                notifyDataSetChanged();
+            }
+        };
     }
 
     @Override
@@ -50,5 +87,10 @@ public class ProductAdapter extends BaseAdapter<ProductViewHolder> {
     @Override
     public int getItemCount() {
         return productDTOs.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
     }
 }

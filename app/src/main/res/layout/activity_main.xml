@@ -19,22 +19,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/main_activity_recycleview"
+        <FrameLayout
+            android:id="@+id/main_activity_frame_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layoutManager="android.support.v7.widget.GridLayoutManager"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="0.0"
-            app:spanCount="2"
-            tools:listitem="@layout/main_menu" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -55,7 +51,7 @@
             android:background="#CFD8DC"
             android:fontFamily="@font/courgette"
             android:padding="10dp"
-            android:text="© 2019 © v1.0.0"
+            android:text="© 2020 © v1.2.0"
             android:textAlignment="center"
             android:textColor="#000" />
 

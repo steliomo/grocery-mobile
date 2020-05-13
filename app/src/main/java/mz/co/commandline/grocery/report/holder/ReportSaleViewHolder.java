@@ -33,7 +33,7 @@ public class ReportSaleViewHolder extends BaseViewHolder<SaleReport> {
     public void bind(SaleReport saleReport) {
         this.saleReport = saleReport;
         saleDate.setText(saleReport.getSaleDate());
-        profit.setText(FormatterUtil.mtFormat(saleReport.getProfit()));
+        profit.setText(FormatterUtil.mtFormat(saleReport.getBilling()));
         sale.setText(FormatterUtil.mtFormat(saleReport.getSale()));
     }
 

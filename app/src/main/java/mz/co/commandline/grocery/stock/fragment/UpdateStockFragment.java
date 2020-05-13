@@ -45,4 +45,9 @@ public class UpdateStockFragment extends BaseFragment {
     public void onClickAdd() {
         delegate.updateStocksAndPrices();
     }
+
+    @Override
+    public String getTitle() {
+        return getString(R.string.stocks_and_prices);
+    }
 }

@@ -8,13 +8,14 @@ import javax.inject.Inject;
 import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.product.dto.ProductDTO;
+import mz.co.commandline.grocery.service.AbstractService;
 import mz.co.commandline.grocery.service.RetrofitService;
 import mz.co.commandline.grocery.stock.dto.StockDTO;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class StockServiceImpl implements StockService {
+public class StockServiceImpl extends AbstractService implements StockService {
 
     @Inject
     RetrofitService retrofitService;
@@ -27,14 +28,6 @@ public class StockServiceImpl implements StockService {
         return retrofitService.getResource(StockResource.class);
     }
 
-    private void setErrorBody(Response response, ResponseListner responseListner) {
-        try {
-            responseListner.error(response.errorBody().string());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public void findProductStocksByGroceryAndProduct(GroceryDTO groceryDTO, ProductDTO productDTO, final ResponseListner<List<StockDTO>> responseListner) {
         getResource().findStocksByGroceyAndProduct(groceryDTO.getUuid(), productDTO.getUuid()).enqueue(new Callback<List<StockDTO>>() {
@@ -45,7 +38,7 @@ public class StockServiceImpl implements StockService {
                     return;
                 }
 
-                setErrorBody(response, responseListner);
+                setBodyError(response, responseListner);
             }
 
             @Override
@@ -65,7 +58,7 @@ public class StockServiceImpl implements StockService {
                     return;
                 }
 
-                setErrorBody(response, responseListner);
+                setBodyError(response, responseListner);
             }
 
             @Override
@@ -85,11 +78,31 @@ public class StockServiceImpl implements StockService {
                     return;
                 }
 
-                setErrorBody(response, responseListner);
+                setBodyError(response, responseListner);
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void findLowStocksByGroceryAndSalePeriod(GroceryDTO groceryDTO, String startDate, String endDate, final ResponseListner<List<StockDTO>> responseListner) {
+        getResource().findLowStocksByGroceryAndSalePeriod(groceryDTO.getUuid(), startDate, endDate).enqueue(new Callback<List<StockDTO>>() {
+            @Override
+            public void onResponse(Call<List<StockDTO>> call, Response<List<StockDTO>> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<List<StockDTO>> call, Throwable t) {
                 responseListner.error(t.getMessage());
             }
         });

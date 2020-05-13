@@ -1,4 +1,4 @@
-package mz.co.commandline.grocery.model;
+package mz.co.commandline.grocery.dto;
 
 public abstract class GenericDTO {
 

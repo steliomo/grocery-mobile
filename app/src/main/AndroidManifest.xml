@@ -11,7 +11,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".activities.ExpenseActivity"></activity>
         <activity
             android:name=".activities.MainActivity"
             android:screenOrientation="portrait">
@@ -37,7 +39,7 @@
             android:name=".activities.InventoryActivity"
             android:label="@string/title_activity_inventory"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

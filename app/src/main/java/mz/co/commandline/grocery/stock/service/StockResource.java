@@ -20,4 +20,7 @@ public interface StockResource {
 
     @PUT("stocks/update-stocks-and-prices")
     Call<Void> updateStocksAndPrices(@Body List<StockDTO> stocks);
+
+    @GET("stocks/by-grocery-and-sale-period")
+    Call<List<StockDTO>> findLowStocksByGroceryAndSalePeriod(@Query("groceryUuid") String groceryUuid, @Query("startDate") String startDate, @Query("endDate") String endDate);
 }

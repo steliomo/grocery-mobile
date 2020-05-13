@@ -66,4 +66,9 @@ public class AddInventoryItemFragment extends BaseFragment {
     public void onClickCancel() {
         inventoryDelegate.cancel();
     }
+
+    @Override
+    public String getTitle() {
+        return getString(R.string.add_inventory_item);
+    }
 }

@@ -1,19 +1,17 @@
 package mz.co.commandline.grocery.sale.service;
 
-import java.io.IOException;
-import java.util.List;
-
 import javax.inject.Inject;
 
 import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
-import mz.co.commandline.grocery.sale.dto.SaleReport;
+import mz.co.commandline.grocery.sale.dto.SalesDTO;
+import mz.co.commandline.grocery.service.AbstractService;
 import mz.co.commandline.grocery.service.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SaleServiceImpl implements SaleService {
+public class SaleServiceImpl extends AbstractService implements SaleService {
 
     @Inject
     RetrofitService retrofitService;
@@ -36,7 +34,7 @@ public class SaleServiceImpl implements SaleService {
                     return;
                 }
 
-                setErrorBody(response, responseListner);
+                setBodyError(response, responseListner);
             }
 
             @Override
@@ -46,49 +44,41 @@ public class SaleServiceImpl implements SaleService {
         });
     }
 
-    private void setErrorBody(Response response, ResponseListner responseListner) {
-        try {
-            responseListner.error(response.errorBody().string());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
-    public void findLast7DaysSales(String groceryUuid, final ResponseListner<List<SaleReport>> responseListner) {
-        getResource().findLast7DaysSales(groceryUuid).enqueue(new Callback<List<SaleReport>>() {
+    public void findSalesPerPeriod(String groceryUuid, String startDate, String endDate, final ResponseListner<SalesDTO> responseListner) {
+        getResource().findSalesPerPeriod(groceryUuid, startDate, endDate).enqueue(new Callback<SalesDTO>() {
             @Override
-            public void onResponse(Call<List<SaleReport>> call, Response<List<SaleReport>> response) {
+            public void onResponse(Call<SalesDTO> call, Response<SalesDTO> response) {
                 if (response.isSuccessful()) {
                     responseListner.success(response.body());
                     return;
                 }
 
-                setErrorBody(response, responseListner);
+                setBodyError(response, responseListner);
             }
 
             @Override
-            public void onFailure(Call<List<SaleReport>> call, Throwable t) {
+            public void onFailure(Call<SalesDTO> call, Throwable t) {
                 responseListner.error(t.getMessage());
             }
         });
     }
 
     @Override
-    public void findSalesPerPeriod(String groceryUuid, String startDate, String endDate, final ResponseListner<List<SaleReport>> responseListner) {
-        getResource().findSalesPerPeriod(groceryUuid, startDate, endDate).enqueue(new Callback<List<SaleReport>>() {
+    public void findMonthlyalesPerPeriod(String groceryUuid, String startDate, String endDate, final ResponseListner<SalesDTO> responseListner) {
+        getResource().findMonthlySalesPerPeriod(groceryUuid, startDate, endDate).enqueue(new Callback<SalesDTO>() {
             @Override
-            public void onResponse(Call<List<SaleReport>> call, Response<List<SaleReport>> response) {
+            public void onResponse(Call<SalesDTO> call, Response<SalesDTO> response) {
                 if (response.isSuccessful()) {
                     responseListner.success(response.body());
                     return;
                 }
 
-                setErrorBody(response, responseListner);
+                setBodyError(response, responseListner);
             }
 
             @Override
-            public void onFailure(Call<List<SaleReport>> call, Throwable t) {
+            public void onFailure(Call<SalesDTO> call, Throwable t) {
                 responseListner.error(t.getMessage());
             }
         });

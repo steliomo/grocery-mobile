@@ -59,4 +59,9 @@ public class SaleRegistFragment extends BaseFragment {
     public void onClickRegistSale() {
         saleDelegate.registSale();
     }
+
+    @Override
+    public String getTitle() {
+        return getString(R.string.regist_sales);
+    }
 }

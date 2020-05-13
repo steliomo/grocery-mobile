@@ -1,6 +1,6 @@
 package mz.co.commandline.grocery.product.dto;
 
-import mz.co.commandline.grocery.model.GenericDTO;
+import mz.co.commandline.grocery.dto.GenericDTO;
 
 public class ProductDTO extends GenericDTO {
 

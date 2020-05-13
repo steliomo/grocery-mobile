@@ -13,7 +13,10 @@ import mz.co.commandline.grocery.user.dto.UserRole;
 
 public class ReportMenuFragment extends BaseFragment {
 
-    @BindView(R.id.fragment_report_menu_stocks_btn)
+    @BindView(R.id.fragment_report_menu_most_wanted_low_stocks_btn)
+    Button lowStockBtn;
+
+    @BindView(R.id.fragment_report_menu_products_on_stock_btn)
     Button stockBtn;
 
 
@@ -29,22 +32,28 @@ public class ReportMenuFragment extends BaseFragment {
         delegate = (ReportDelegate) getActivity();
 
         if (hasRole(UserRole.OPERATOR)) {
+            lowStockBtn.setVisibility(View.INVISIBLE);
             stockBtn.setVisibility(View.INVISIBLE);
         }
     }
 
-    @OnClick(R.id.fragment_report_menu_last_7days_btn)
-    public void onClickLast7DaysBtn() {
-        delegate.displayLast7DaysReport();
+    @OnClick(R.id.fragment_report_menu_sales_btn)
+    public void onClickSalesBtn() {
+        delegate.displaySalesReport();
     }
 
-    @OnClick(R.id.fragment_report_menu_stocks_btn)
-    public void onClickStocksBtn() {
-        delegate.displayProductStocks();
+    @OnClick(R.id.fragment_report_menu_products_on_stock_btn)
+    public void onClickProductsOnStockBtn() {
+        delegate.displayProductOnStock();
     }
 
-    @OnClick(R.id.fragment_report_menu_per_period_btn)
-    public void onClickPerPeriodBtn() {
-        delegate.displayPeriodSelectionFragment();
+    @OnClick(R.id.fragment_report_menu_most_wanted_low_stocks_btn)
+    public void onClickMostWantedLowStockBtn() {
+        delegate.displayProductsMostWantedWithLowStock();
+    }
+
+    @Override
+    public String getTitle() {
+        return getString(R.string.reports);
     }
 }

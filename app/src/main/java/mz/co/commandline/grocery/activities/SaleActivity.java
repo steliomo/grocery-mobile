@@ -34,6 +34,7 @@ import mz.co.commandline.grocery.stock.dto.StockDTO;
 import mz.co.commandline.grocery.stock.fragment.StockFragment;
 import mz.co.commandline.grocery.stock.service.StockService;
 import mz.co.commandline.grocery.user.service.UserService;
+import mz.co.commandline.grocery.util.KeyboardUtil;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
@@ -107,7 +108,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Prod
     public void selectProduct() {
         progressBar.show();
 
-        productService.findProductsByGrocery(userService.getGroceryDTO(),new ResponseListner<List<ProductDTO>>() {
+        productService.findProductsByGrocery(userService.getGroceryDTO(), new ResponseListner<List<ProductDTO>>() {
             @Override
             public void success(List<ProductDTO> response) {
                 progressBar.dismiss();
@@ -127,11 +128,13 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Prod
 
     @Override
     public List<ProductDTO> getProductsDTO() {
-        return Collections.unmodifiableList(productsDTO);
+        return productsDTO;
     }
 
     @Override
     public void selectedProduct(ProductDTO productDTO) {
+
+        KeyboardUtil.hideKeyboard(this, toolbar);
         progressBar.show();
 
         stockService.findProductStocksByGroceryAndProduct(userService.getGroceryDTO(), productDTO, new ResponseListner<List<StockDTO>>() {

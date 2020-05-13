@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 public class FormatterUtil {
 
     public static String mtFormat(BigDecimal value) {
-        DecimalFormat formatter = new DecimalFormat("#,###.## MT");
+        DecimalFormat formatter = new DecimalFormat("#,###.00 MT");
         return formatter.format(value);
     }
 }

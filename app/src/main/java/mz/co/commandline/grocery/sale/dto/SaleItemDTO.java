@@ -29,15 +29,11 @@ public class SaleItemDTO {
         return quantity;
     }
 
-    public BigDecimal getSaleItemValue() {
-        return saleItemValue;
-    }
-
     public BigDecimal getDiscount() {
         return discount;
     }
 
     public BigDecimal getTotal() {
-        return new BigDecimal(stockDTO.getSalePrice()).multiply(quantity).subtract(discount);
+        return saleItemValue.subtract(discount);
     }
 }

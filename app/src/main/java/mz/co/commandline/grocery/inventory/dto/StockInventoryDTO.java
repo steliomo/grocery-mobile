@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.math.BigDecimal;
 
-import mz.co.commandline.grocery.model.GenericDTO;
+import mz.co.commandline.grocery.dto.GenericDTO;
 
 import mz.co.commandline.grocery.stock.dto.StockDTO;
 

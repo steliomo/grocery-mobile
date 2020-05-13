@@ -58,4 +58,9 @@ public class PerformInventoryFragment extends BaseFragment {
     public void onClickPerformInventory() {
         inventoryDelegate.performInventory();
     }
+
+    @Override
+    public String getTitle() {
+        return getString(R.string.perform_inventory);
+    }
 }

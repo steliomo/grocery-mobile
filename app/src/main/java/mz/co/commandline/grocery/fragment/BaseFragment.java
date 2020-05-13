@@ -4,24 +4,20 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import javax.inject.Inject;
-
 import butterknife.ButterKnife;
-import mz.co.commandline.grocery.activities.BaseActivity;
 import mz.co.commandline.grocery.activities.BaseAuthActivity;
-import mz.co.commandline.grocery.infra.GroceryApplication;
-import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.user.dto.UserRole;
-import mz.co.commandline.grocery.user.service.UserService;
 
 public abstract class BaseFragment extends Fragment {
 
     private BaseAuthActivity activity;
+
+    private Toolbar toolbar;
 
     @Nullable
     @Override
@@ -32,6 +28,9 @@ public abstract class BaseFragment extends Fragment {
 
         if (getActivity() instanceof BaseAuthActivity) {
             activity = (BaseAuthActivity) getActivity();
+            toolbar = activity.getToolbar();
+            toolbar.getMenu().clear();
+            toolbar.setTitle(getTitle());
         }
 
         onCreateView();
@@ -45,5 +44,13 @@ public abstract class BaseFragment extends Fragment {
 
     public boolean hasRole(UserRole userRole) {
         return activity.hasRole(userRole);
+    }
+
+    public Toolbar getToolBar() {
+        return toolbar;
+    }
+
+    public String getTitle() {
+        return "Base Fragment";
     }
 }

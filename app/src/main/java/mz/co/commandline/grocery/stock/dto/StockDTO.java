@@ -1,7 +1,9 @@
 package mz.co.commandline.grocery.stock.dto;
 
+import java.math.BigDecimal;
+
 import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
-import mz.co.commandline.grocery.model.GenericDTO;
+import mz.co.commandline.grocery.dto.GenericDTO;
 import mz.co.commandline.grocery.product.dto.ProductDescriptionDTO;
 
 public class StockDTO extends GenericDTO {
@@ -17,6 +19,8 @@ public class StockDTO extends GenericDTO {
     private String quantity;
 
     private String expireDate;
+
+    private String minimumStock;
 
     private int position;
 
@@ -74,5 +78,17 @@ public class StockDTO extends GenericDTO {
 
     public void setGroceryDTO(GroceryDTO groceryDTO) {
         this.groceryDTO = groceryDTO;
+    }
+
+    public String getMinimumStock() {
+        return minimumStock;
+    }
+
+    public void setMinimumStock(String minimumStock) {
+        this.minimumStock = minimumStock;
+    }
+
+    public boolean isLow() {
+        return new BigDecimal(quantity).doubleValue() <= new BigDecimal(minimumStock).doubleValue();
     }
 }

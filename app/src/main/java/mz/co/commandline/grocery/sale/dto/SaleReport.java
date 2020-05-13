@@ -8,24 +8,29 @@ public class SaleReport {
 
     private String saleDate;
 
-    private BigDecimal profit;
+    private BigDecimal billing;
 
     private BigDecimal sale;
+
+    private BigDecimal profit;
 
     public String getSaleDate() {
         return DateUtil.format(saleDate);
     }
 
-    public void setProfit(BigDecimal profit) {
-        this.profit = profit;
+    public void setBilling(BigDecimal billing) {
+        this.billing = billing;
     }
 
-    public BigDecimal getProfit() {
-        return profit;
+    public BigDecimal getBilling() {
+        return billing;
     }
 
     public BigDecimal getSale() {
         return sale;
     }
 
+    public BigDecimal getProfit() {
+        return profit;
+    }
 }

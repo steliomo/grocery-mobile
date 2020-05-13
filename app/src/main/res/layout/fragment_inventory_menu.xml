@@ -6,63 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".inventory.fragment.InventoryMenuFragment">
 
-    <View
-        android:id="@+id/fragment_inventory_menu_view"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#D7CCC8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/fragment_inventory_menu_imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:src="@mipmap/ic_inventory"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_inventory_menu_view"
-        app:layout_constraintStart_toStartOf="@+id/fragment_inventory_menu_view"
-        app:layout_constraintTop_toTopOf="@+id/fragment_inventory_menu_view" />
-
-    <TextView
-        android:id="@+id/fragment_inventory_menu_textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:padding="10dp"
-        android:text="@string/inventory"
-        android:textAlignment="center"
-        android:textColor="#000"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_inventory_menu_imageView"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_inventory_menu_view"
-        app:layout_constraintStart_toStartOf="@+id/fragment_inventory_menu_imageView"
-        app:layout_constraintTop_toTopOf="@+id/fragment_inventory_menu_imageView" />
-
     <Button
         android:id="@+id/fragment_inventory_menu_perform_inventory_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:background="#017a84"
         android:text="@string/perform_inventory"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#fff"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_inventory_menu_textView"
-        app:layout_constraintStart_toStartOf="@+id/fragment_inventory_menu_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_inventory_menu_view" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/fragment_inventory_menu_approve_inventory_btn"

@@ -41,4 +41,9 @@ public class InventoryMenuFragment extends BaseFragment {
     public void onClickApproveInventoryBtn() {
         delegate.displayApproveInventoryFragment();
     }
+
+    @Override
+    public String getTitle() {
+        return getString(R.string.inventory);
+    }
 }

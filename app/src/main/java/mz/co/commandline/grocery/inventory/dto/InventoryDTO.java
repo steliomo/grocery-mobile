@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
-import mz.co.commandline.grocery.model.GenericDTO;
+import mz.co.commandline.grocery.dto.GenericDTO;
 
 public class InventoryDTO extends GenericDTO {
 

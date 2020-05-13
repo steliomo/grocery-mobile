@@ -51,4 +51,9 @@ public class ApproveInventoryFragment extends BaseFragment {
     public void onClickApproveBtn() {
         inventoryDelegate.approveInventory();
     }
+
+    @Override
+    public String getTitle() {
+        return getString(R.string.approve_inventory);
+    }
 }
