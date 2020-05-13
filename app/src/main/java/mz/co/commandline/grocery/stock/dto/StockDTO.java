@@ -2,8 +2,8 @@ package mz.co.commandline.grocery.stock.dto;
 
 import java.math.BigDecimal;
 
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.dto.GenericDTO;
+import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.product.dto.ProductDescriptionDTO;
 
 public class StockDTO extends GenericDTO {

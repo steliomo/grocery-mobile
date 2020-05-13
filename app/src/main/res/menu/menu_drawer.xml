@@ -30,7 +30,6 @@
                 android:id="@+id/menu_drawer_logout"
                 android:icon="@drawable/ic_power_off"
                 android:title="Sair" />
-
         </menu>
     </item>
 
