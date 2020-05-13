@@ -15,28 +15,31 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.dialog.ProgressDialogManager;
+import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.module.GroceryComponent;
+import mz.co.commandline.grocery.product.delegate.ProductDelegate;
+import mz.co.commandline.grocery.product.dto.ProductDTO;
 import mz.co.commandline.grocery.product.fragment.ProductFragment;
-import mz.co.commandline.grocery.product.model.Product;
 import mz.co.commandline.grocery.product.service.ProductService;
 import mz.co.commandline.grocery.sale.delegate.SaleDelegate;
+import mz.co.commandline.grocery.sale.dto.SaleDTO;
+import mz.co.commandline.grocery.sale.dto.SaleItemDTO;
 import mz.co.commandline.grocery.sale.fragment.AddSaleItemFragment;
 import mz.co.commandline.grocery.sale.fragment.SaleRegistFragment;
-import mz.co.commandline.grocery.sale.model.Sale;
-import mz.co.commandline.grocery.sale.model.SaleItem;
 import mz.co.commandline.grocery.sale.service.SaleService;
+import mz.co.commandline.grocery.stock.delegate.StockDelegate;
+import mz.co.commandline.grocery.stock.dto.StockDTO;
 import mz.co.commandline.grocery.stock.fragment.StockFragment;
-import mz.co.commandline.grocery.stock.model.Stock;
 import mz.co.commandline.grocery.stock.service.StockService;
 import mz.co.commandline.grocery.user.service.UserService;
+import mz.co.commandline.grocery.util.KeyboardUtil;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
 
-public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View.OnClickListener {
+public class SaleActivity extends BaseAuthActivity implements SaleDelegate, ProductDelegate, StockDelegate, View.OnClickListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -57,13 +60,13 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
 
     private ProgressDialog progressBar;
 
-    private List<Product> products;
+    private List<ProductDTO> productsDTO;
 
-    private List<Stock> stocks;
+    private List<StockDTO> stocksDTO;
 
-    private Stock stock;
+    private StockDTO stockDTO;
 
-    private Sale sale;
+    private SaleDTO sale;
 
     private AlertDialogManager dialogManager;
 
@@ -80,7 +83,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
 
         fragmentManager = getSupportFragmentManager();
 
-        sale = new Sale();
+        sale = new SaleDTO();
 
         ProgressDialogManager progressDialogManager = new ProgressDialogManager(this);
         progressBar = progressDialogManager.getProgressBar(getString(R.string.wait), getString(R.string.processing_request));
@@ -102,14 +105,14 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
     }
 
     @Override
-    public void addItem() {
+    public void selectProduct() {
         progressBar.show();
 
-        productService.findAllProducts(new ResponseListner<List<Product>>() {
+        productService.findProductsByGrocery(userService.getGroceryDTO(), new ResponseListner<List<ProductDTO>>() {
             @Override
-            public void success(List<Product> response) {
+            public void success(List<ProductDTO> response) {
                 progressBar.dismiss();
-                products = response;
+                productsDTO = response;
                 showFragment(new ProductFragment(), Boolean.TRUE);
             }
 
@@ -124,17 +127,19 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
     }
 
     @Override
-    public List<Product> getProducts() {
-        return Collections.unmodifiableList(products);
+    public List<ProductDTO> getProductsDTO() {
+        return productsDTO;
     }
 
     @Override
-    public void selectedProduct(Product product) {
+    public void selectedProduct(ProductDTO productDTO) {
 
+        KeyboardUtil.hideKeyboard(this, toolbar);
         progressBar.show();
-        stockService.findProductStocksByGroceryAndProduct(userService.getGrocery(), product, new ResponseListner<List<Stock>>() {
+
+        stockService.findProductStocksByGroceryAndProduct(userService.getGroceryDTO(), productDTO, new ResponseListner<List<StockDTO>>() {
             @Override
-            public void success(List<Stock> response) {
+            public void success(List<StockDTO> response) {
                 progressBar.dismiss();
 
                 if (response.isEmpty()) {
@@ -142,7 +147,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
                     return;
                 }
 
-                stocks = response;
+                stocksDTO = response;
                 showFragment(new StockFragment(), Boolean.TRUE);
             }
 
@@ -153,28 +158,26 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
                 Log.e("STOCKS", message);
             }
         });
-
-
     }
 
     @Override
-    public List<Stock> getStocks() {
-        return Collections.unmodifiableList(stocks);
+    public List<StockDTO> getStocks() {
+        return Collections.unmodifiableList(stocksDTO);
     }
 
     @Override
-    public void selectedStock(Stock stock) {
-        this.stock = stock;
+    public void selectedStock(StockDTO stockDTO) {
+        this.stockDTO = stockDTO;
         showFragment(new AddSaleItemFragment(), Boolean.TRUE);
     }
 
     @Override
-    public Stock getStock() {
-        return stock;
+    public StockDTO getStock() {
+        return stockDTO;
     }
 
     @Override
-    public void addSaleItem(SaleItem saleItem) {
+    public void addSaleItem(SaleItemDTO saleItem) {
         sale.addSaleItem(saleItem);
         resetFragment();
     }
@@ -185,7 +188,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
     }
 
     @Override
-    public Sale getSale() {
+    public SaleDTO getSale() {
         return sale;
     }
 
@@ -204,10 +207,10 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, View
 
         progressBar.show();
 
-        sale.setGrocery(userService.getGrocery());
-        saleService.registSale(sale, new ResponseListner<Sale>() {
+        sale.setGrocery(userService.getGroceryDTO());
+        saleService.registSale(sale, new ResponseListner<SaleDTO>() {
             @Override
-            public void success(Sale response) {
+            public void success(SaleDTO response) {
                 progressBar.dismiss();
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.sale_registed_with_success), new AlertListner() {
                     @Override

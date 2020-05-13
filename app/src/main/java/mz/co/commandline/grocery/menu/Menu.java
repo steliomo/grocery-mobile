@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.user.model.UserRole;
+import mz.co.commandline.grocery.user.dto.UserRole;
 
 public class Menu {
 
@@ -20,7 +20,10 @@ public class Menu {
 
         if (UserRole.OPERATOR != userRole) {
             menuItems.add(new MenuItem(R.string.stocks, MenuItemType.STOCK, R.mipmap.ic_stock));
+            menuItems.add(new MenuItem(R.string.expenses, MenuItemType.EXPENSE, R.mipmap.ic_expense));
         }
+
+        menuItems.add(new MenuItem(R.string.inventory, MenuItemType.INVENTORY, R.mipmap.ic_inventory));
     }
 
     public List<MenuItem> getMenuItems() {

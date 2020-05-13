@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/fragment_add_expense_view"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#ccc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fragment_add_expense_image_view"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="8dp"
+        android:src="@mipmap/ic_expense"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_add_expense_view"
+        app:layout_constraintStart_toStartOf="@id/fragment_add_expense_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_add_expense_view" />
+
+    <TextView
+        android:id="@+id/fragment_add_expense_type_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_add_expense_view"
+        app:layout_constraintStart_toEndOf="@+id/fragment_add_expense_image_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_add_expense_image_view"
+        tools:text="Agua" />
+
+    <TextView
+        android:id="@+id/fragment_add_expense_type_description_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textColor="#000"
+        android:textSize="5pt"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_add_expense_type_label"
+        app:layout_constraintStart_toStartOf="@+id/fragment_add_expense_type_label"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_add_expense_type_label"
+        tools:text="Rúbrica para o pagamento da renda do estabelecimento" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/fragment_add_expense_performed_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_add_expense_view"
+        app:layout_constraintStart_toStartOf="@+id/fragment_add_expense_view"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_add_expense_view">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_calendar"
+            android:drawableLeft="@drawable/ic_calendar"
+            android:hint="Data da Realização"
+            android:inputType="date" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/fragment_add_expense_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_add_expense_performed_date"
+        app:layout_constraintStart_toStartOf="@+id/fragment_add_expense_performed_date"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_add_expense_performed_date">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_money"
+            android:drawableLeft="@drawable/ic_money"
+            android:hint="Valor"
+            android:inputType="numberDecimal" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/fragment_add_expense_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_add_expense_value"
+        app:layout_constraintStart_toStartOf="@+id/fragment_add_expense_value"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_add_expense_value">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_description"
+            android:drawableLeft="@drawable/ic_description"
+            android:hint="Descrição"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/fragment_add_expense_add_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="4dp"
+        android:background="#017a84"
+        android:text="Adicionar"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_add_expense_cancel_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_add_expense_description" />
+
+    <Button
+        android:id="@+id/fragment_add_expense_cancel_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="8dp"
+        android:background="#017a84"
+        android:text="Cancelar"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragment_add_expense_add_btn"
+        app:layout_constraintTop_toTopOf="@+id/fragment_add_expense_add_btn" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".inventory.fragment.AddInventoryItemFragment">
+
+    <View
+        android:id="@+id/fragment_add_inventory_item_view"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="#ccc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fragment_add_inventory_item_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@mipmap/ic_product"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_add_inventory_item_view"
+        app:layout_constraintStart_toStartOf="@+id/fragment_add_inventory_item_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_add_inventory_item_view" />
+
+    <TextView
+        android:id="@+id/fragment_add_inventory_item_product_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_add_inventory_item_image_view"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_add_inventory_item_view"
+        app:layout_constraintStart_toEndOf="@+id/fragment_add_inventory_item_image_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_add_inventory_item_image_view"
+        tools:text="Arroz Mariana 1.00 KG" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/fragment_add_inventory_item_quantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_add_inventory_item_view">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_quantity"
+            android:drawableStart="@drawable/ic_quantity"
+            android:hint="Quantidade"
+            android:inputType="numberDecimal" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/fragment_add_inventory_item_add"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:background="#017a84"
+        android:text="Adicionar"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_add_inventory_item_cancel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_add_inventory_item_quantity" />
+
+    <Button
+        android:id="@+id/fragment_add_inventory_item_cancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="4dp"
+        android:background="#017a84"
+        android:text="Cancelar"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragment_add_inventory_item_add"
+        app:layout_constraintTop_toTopOf="@+id/fragment_add_inventory_item_add" />
+
+</android.support.constraint.ConstraintLayout>

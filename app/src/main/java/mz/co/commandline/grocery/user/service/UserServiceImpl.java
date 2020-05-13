@@ -6,13 +6,13 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-import mz.co.commandline.grocery.grocery.model.Grocery;
-import mz.co.commandline.grocery.grocery.model.GroceryUser;
+import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.infra.SharedPreferencesManager;
 import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.service.RetrofitService;
-import mz.co.commandline.grocery.user.model.UserDTO;
-import mz.co.commandline.grocery.user.model.UserRole;
+import mz.co.commandline.grocery.user.dto.GroceryUserDTO;
+import mz.co.commandline.grocery.user.dto.UserDTO;
+import mz.co.commandline.grocery.user.dto.UserRole;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,8 +58,8 @@ public class UserServiceImpl implements UserService {
                     String token = prepareToken(username, password);
 
                     preferencesManager.storeString(TOKEN, token);
-                    preferencesManager.storeString(GROCERY, userDTO.getGroceryUser().getGrocery().toString());
-                    preferencesManager.storeString(GROCERY_USER, userDTO.getGroceryUser().toString());
+                    preferencesManager.storeString(GROCERY, userDTO.getGroceryUserDTO().getGroceryDTO().toString());
+                    preferencesManager.storeString(GROCERY_USER, userDTO.getGroceryUserDTO().toString());
                     preferencesManager.storeString(FULL_NAME, userDTO.getFullName());
 
                     return;
@@ -96,28 +96,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Grocery getGrocery() {
-        return getGroceryUser().getGrocery();
+    public GroceryDTO getGroceryDTO() {
+        return getGroceryUser().getGroceryDTO();
     }
 
     @Override
-    public GroceryUser getGroceryUser() {
+    public GroceryUserDTO getGroceryUser() {
 
         String groceryString = preferencesManager.getString(GROCERY);
         String groceryUserString = preferencesManager.getString(GROCERY_USER);
 
         String[] split = groceryString.split("_");
-        Grocery grocery = new Grocery();
-        grocery.setId(Long.valueOf(split[0]));
-        grocery.setUuid(split[1]);
+        GroceryDTO groceryDTO = new GroceryDTO();
+        groceryDTO.setId(Long.valueOf(split[0]));
+        groceryDTO.setUuid(split[1]);
 
-        GroceryUser groceryUser = new GroceryUser();
+        GroceryUserDTO groceryUserDTO = new GroceryUserDTO();
         String[] groceryUserSplit = groceryUserString.split("_");
-        groceryUser.setGrocery(grocery);
-        groceryUser.setUserRole(UserRole.valueOf(groceryUserSplit[0]));
-        groceryUser.setExpiryDate(groceryUserSplit[1]);
+        groceryUserDTO.setGroceryDTO(groceryDTO);
+        groceryUserDTO.setUserRole(UserRole.valueOf(groceryUserSplit[0]));
+        groceryUserDTO.setExpiryDate(groceryUserSplit[1]);
 
-        return groceryUser;
+        return groceryUserDTO;
     }
 
     @Override

@@ -5,16 +5,17 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import mz.co.commandline.grocery.grocery.model.Grocery;
+import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.listner.ResponseListner;
-import mz.co.commandline.grocery.product.model.Product;
+import mz.co.commandline.grocery.product.dto.ProductDTO;
+import mz.co.commandline.grocery.service.AbstractService;
 import mz.co.commandline.grocery.service.RetrofitService;
-import mz.co.commandline.grocery.stock.model.Stock;
+import mz.co.commandline.grocery.stock.dto.StockDTO;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class StockServiceImpl implements StockService {
+public class StockServiceImpl extends AbstractService implements StockService {
 
     @Inject
     RetrofitService retrofitService;
@@ -27,56 +28,48 @@ public class StockServiceImpl implements StockService {
         return retrofitService.getResource(StockResource.class);
     }
 
-    private void setErrorBody(Response response, ResponseListner responseListner) {
-        try {
-            responseListner.error(response.errorBody().string());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
-    public void findProductStocksByGroceryAndProduct(Grocery grocery, Product product, final ResponseListner<List<Stock>> responseListner) {
-        getResource().findStocksByGroceyAndProduct(grocery.getUuid(), product.getUuid()).enqueue(new Callback<List<Stock>>() {
+    public void findProductStocksByGroceryAndProduct(GroceryDTO groceryDTO, ProductDTO productDTO, final ResponseListner<List<StockDTO>> responseListner) {
+        getResource().findStocksByGroceyAndProduct(groceryDTO.getUuid(), productDTO.getUuid()).enqueue(new Callback<List<StockDTO>>() {
             @Override
-            public void onResponse(Call<List<Stock>> call, Response<List<Stock>> response) {
+            public void onResponse(Call<List<StockDTO>> call, Response<List<StockDTO>> response) {
                 if (response.isSuccessful()) {
                     responseListner.success(response.body());
                     return;
                 }
 
-                setErrorBody(response, responseListner);
+                setBodyError(response, responseListner);
             }
 
             @Override
-            public void onFailure(Call<List<Stock>> call, Throwable t) {
+            public void onFailure(Call<List<StockDTO>> call, Throwable t) {
                 responseListner.error(t.getMessage());
             }
         });
     }
 
     @Override
-    public void findAllStocksByGrocery(Grocery grocery, final ResponseListner<List<Stock>> responseListner) {
-        getResource().findAllStocksByGrocery(grocery.getUuid()).enqueue(new Callback<List<Stock>>() {
+    public void findAllStocksByGrocery(GroceryDTO groceryDTO, final ResponseListner<List<StockDTO>> responseListner) {
+        getResource().findAllStocksByGrocery(groceryDTO.getUuid()).enqueue(new Callback<List<StockDTO>>() {
             @Override
-            public void onResponse(Call<List<Stock>> call, Response<List<Stock>> response) {
+            public void onResponse(Call<List<StockDTO>> call, Response<List<StockDTO>> response) {
                 if (response.isSuccessful()) {
                     responseListner.success(response.body());
                     return;
                 }
 
-                setErrorBody(response, responseListner);
+                setBodyError(response, responseListner);
             }
 
             @Override
-            public void onFailure(Call<List<Stock>> call, Throwable t) {
+            public void onFailure(Call<List<StockDTO>> call, Throwable t) {
                 responseListner.error(t.getMessage());
             }
         });
     }
 
     @Override
-    public void updateStocksAndPrices(List<Stock> stocks, final ResponseListner<Void> responseListner) {
+    public void updateStocksAndPrices(List<StockDTO> stocks, final ResponseListner<Void> responseListner) {
         getResource().updateStocksAndPrices(stocks).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -85,11 +78,31 @@ public class StockServiceImpl implements StockService {
                     return;
                 }
 
-                setErrorBody(response, responseListner);
+                setBodyError(response, responseListner);
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void findLowStocksByGroceryAndSalePeriod(GroceryDTO groceryDTO, String startDate, String endDate, final ResponseListner<List<StockDTO>> responseListner) {
+        getResource().findLowStocksByGroceryAndSalePeriod(groceryDTO.getUuid(), startDate, endDate).enqueue(new Callback<List<StockDTO>>() {
+            @Override
+            public void onResponse(Call<List<StockDTO>> call, Response<List<StockDTO>> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<List<StockDTO>> call, Throwable t) {
                 responseListner.error(t.getMessage());
             }
         });

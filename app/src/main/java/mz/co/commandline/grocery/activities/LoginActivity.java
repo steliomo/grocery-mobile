@@ -16,7 +16,7 @@ import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.login.delegate.LoginDelegate;
 import mz.co.commandline.grocery.login.fragment.LoginFragment;
 import mz.co.commandline.grocery.module.GroceryComponent;
-import mz.co.commandline.grocery.user.model.UserDTO;
+import mz.co.commandline.grocery.user.dto.UserDTO;
 import mz.co.commandline.grocery.user.service.UserService;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertType;

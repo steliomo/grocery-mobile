@@ -5,8 +5,6 @@
     <string name="stocks">Stocks</string>
     <string name="sale_regist">Registar Vendas</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="discount">Desconto:</string>
     <string name="value">Valor:</string>
     <string name="quantity">Qty:</string>
@@ -36,5 +34,44 @@
     <string name="date">Data</string>
     <string name="profit">Lucro</string>
     <string name="sale_value">Valor da venda</string>
+    <string name="inventory">Inventário</string>
+    <string name="title_activity_inventory">InventoryActivity</string>
+    <string name="approve_inventory">Aprovar Inventário</string>
+    <string name="perform_inventory">Realizar Inventário</string>
+    <string name="start_date">Data de Início:</string>
+    <string name="inventory_status">Estado:</string>
+    <string name="error_on_performing_inventory">Ocorreu um erro ao realizar o inventário. Por favor tente novamente.</string>
+    <string name="inventory_not_found">Inventory not found</string>
+    <string name="pending">Pendente</string>
+    <string name="approved">Aprovado</string>
+    <string name="inventory_was_performed_with_success">O inventário foi realizado com sucesso!</string>
+    <string name="cannot_perform_inventory_without_items">Não é possivel realizar o inventario sem productos. Por favor adicione pelo menos um produto.</string>
+    <string name="no_inventory_to_approve">Nenhum Inventário disponível para aprovação</string>
+    <string name="inventory_approved_with_success">O inventário foi aprovado com sucesso!</string>
+    <string name="error_on_approving_inventory">Ocorreu um erro ao aprovar o inventário. Por favor tente novamente.</string>
+    <string name="expenses">Despesas</string>
+    <string name="select_expense">Seleccionar a despesa</string>
+    <string name="regist_expenses">Registar Despesas</string>
+    <string name="error_on_fetching_expenses_type">Ocorreu um erro ao selecionar os tipos de despesa... Por favor tente novamente!</string>
+    <string name="expenses_registed_success">Despesa(s) registada(s) com sucesso!</string>
+    <string name="expense_regist_error">Ocorreu um erro ao regisar a(s) despesa(s)!</string>
+    <string name="no_expenses_to_be_registered">Nenhuma despesa foi adicionada!</string>
+    <string name="stock_details">Detalhes do Producto</string>
+    <string name="sale_item">Item da Venda</string>
+    <string name="regist_sales">Registar Vendas</string>
+    <string name="billing">Facturação</string>
+    <string name="add_expense">Adicionar Despesa</string>
+    <string name="expenses_type">Tipos de despesa</string>
+    <string name="add_stocks">Adicionar stocks</string>
+    <string name="add_inventory_item">Adicionar Item do Inventário</string>
+    <string name="period">Período</string>
+    <string name="sales_report">Relatório de Vendas</string>
+    <string name="product_on_stock">Produtos no stock</string>
+    <string name="most_wanted_product_with_low_stock">Productos de alta procura com stock baixo</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="main_menu">Menú principal</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

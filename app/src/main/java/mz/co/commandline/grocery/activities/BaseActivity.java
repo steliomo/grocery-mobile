@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import butterknife.ButterKnife;
+import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.infra.GroceryApplication;
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -26,11 +27,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        if (toolbar == null) {
-            return;
-        }
+        toolbar = findViewById(R.id.toolbar);
 
-        toolbar.setTitle("");
         setSupportActionBar(toolbar);
+    }
+
+    public Toolbar getToolbar() {
+        return toolbar;
     }
 }

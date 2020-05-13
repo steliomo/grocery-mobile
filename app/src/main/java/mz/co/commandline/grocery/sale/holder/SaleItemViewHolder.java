@@ -7,10 +7,10 @@ import butterknife.BindView;
 import mz.co.commandline.grocery.listner.ClickListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.holder.BaseViewHolder;
-import mz.co.commandline.grocery.sale.model.SaleItem;
+import mz.co.commandline.grocery.sale.dto.SaleItemDTO;
 import mz.co.commandline.grocery.util.FormatterUtil;
 
-public class SaleItemViewHolder extends BaseViewHolder<SaleItem> {
+public class SaleItemViewHolder extends BaseViewHolder<SaleItemDTO> {
 
     @BindView(R.id.sale_item_name)
     TextView itemName;
@@ -26,17 +26,17 @@ public class SaleItemViewHolder extends BaseViewHolder<SaleItem> {
 
     private ClickListner listner;
 
-    private SaleItem saleItem;
+    private SaleItemDTO saleItem;
 
     public SaleItemViewHolder(View view) {
         super(view);
     }
 
     @Override
-    public void bind(SaleItem saleItem) {
+    public void bind(SaleItemDTO saleItem) {
         this.saleItem = saleItem;
 
-        itemName.setText(saleItem.getStock().getProductDescription().getName());
+        itemName.setText(saleItem.getStockDTO().getProductDescriptionDTO().getName());
         itemQuantity.setText(saleItem.getQuantity().toString());
         itemValue.setText(FormatterUtil.mtFormat(saleItem.getTotal()));
         itemDiscount.setText(FormatterUtil.mtFormat(saleItem.getDiscount()));

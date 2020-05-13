@@ -12,17 +12,17 @@ import mz.co.commandline.grocery.listner.ClickListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.adapter.BaseAdapter;
 import mz.co.commandline.grocery.sale.holder.SaleItemViewHolder;
-import mz.co.commandline.grocery.sale.model.SaleItem;
+import mz.co.commandline.grocery.sale.dto.SaleItemDTO;
 
 public class SaleItemAdapter extends BaseAdapter<SaleItemViewHolder> {
 
     private final Context context;
 
-    private final List<SaleItem> saleItems;
+    private final List<SaleItemDTO> saleItems;
 
     private ClickListner listner;
 
-    public SaleItemAdapter(Context context, List<SaleItem> saleItems) {
+    public SaleItemAdapter(Context context, List<SaleItemDTO> saleItems) {
         this.context = context;
         this.saleItems = saleItems;
     }
@@ -42,7 +42,7 @@ public class SaleItemAdapter extends BaseAdapter<SaleItemViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull SaleItemViewHolder holder, int position) {
-        SaleItem saleItem = saleItems.get(position);
+        SaleItemDTO saleItem = saleItems.get(position);
         holder.setItemClickListner(listner);
         holder.bind(saleItem);
     }

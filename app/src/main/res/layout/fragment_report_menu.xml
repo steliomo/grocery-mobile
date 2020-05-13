@@ -1,94 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/fragment_report_menu_view"
+    <Button
+        android:id="@+id/fragment_report_menu_sales_btn"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#D7CCC8"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="#017a84"
+        android:text="@string/sales"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#fff"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/fragment_report_menu_imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:src="@mipmap/ic_report"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_report_menu_view"
-        app:layout_constraintStart_toStartOf="@+id/fragment_report_menu_view"
-        app:layout_constraintTop_toTopOf="@+id/fragment_report_menu_view" />
-
-    <TextView
-        android:id="@+id/fragment_report_menu_textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:padding="10dp"
-        android:text="Relatórios de Vendas e Stocks"
-        android:textAlignment="center"
-        android:textColor="#000"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_report_menu_imageView"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_report_menu_view"
-        app:layout_constraintStart_toStartOf="@+id/fragment_report_menu_imageView"
-        app:layout_constraintTop_toTopOf="@+id/fragment_report_menu_imageView" />
-
     <Button
-        android:id="@+id/fragment_report_menu_last_7days_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:background="#017a84"
-        android:text="Vendas nos últimos 7 dias"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_report_menu_textView"
-        app:layout_constraintStart_toStartOf="@+id/fragment_report_menu_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_report_menu_view" />
-
-    <Button
-        android:id="@+id/fragment_report_menu_per_period_btn"
+        android:id="@+id/fragment_report_menu_products_on_stock_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="#017a84"
-        android:text="Vendas por período"
+        android:text="@string/product_on_stock"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#fff"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_report_menu_last_7days_btn"
-        app:layout_constraintStart_toStartOf="@+id/fragment_report_menu_last_7days_btn"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_report_menu_last_7days_btn" />
+        app:layout_constraintEnd_toEndOf="@+id/fragment_report_menu_sales_btn"
+        app:layout_constraintStart_toStartOf="@+id/fragment_report_menu_sales_btn"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_report_menu_sales_btn" />
 
     <Button
-        android:id="@+id/fragment_report_menu_stocks_btn"
+        android:id="@+id/fragment_report_menu_most_wanted_low_stocks_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="#017a84"
-        android:text="Stocks"
+        android:text="@string/most_wanted_product_with_low_stock"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#fff"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_report_menu_per_period_btn"
-        app:layout_constraintStart_toStartOf="@+id/fragment_report_menu_per_period_btn"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_report_menu_per_period_btn" />
+        app:layout_constraintEnd_toEndOf="@+id/fragment_report_menu_products_on_stock_btn"
+        app:layout_constraintStart_toStartOf="@+id/fragment_report_menu_products_on_stock_btn"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_report_menu_products_on_stock_btn" />
 
 </android.support.constraint.ConstraintLayout>

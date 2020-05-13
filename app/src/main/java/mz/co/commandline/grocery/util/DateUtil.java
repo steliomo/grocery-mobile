@@ -2,6 +2,7 @@ package mz.co.commandline.grocery.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtil {
@@ -61,5 +62,23 @@ public class DateUtil {
         }
 
         return dateFormatted;
+    }
+
+    public static String getFirstDateOfTheYear() {
+
+        Calendar instance = Calendar.getInstance();
+        instance.set(Calendar.MONTH, Calendar.JANUARY);
+        instance.set(Calendar.DAY_OF_MONTH, 1);
+
+        return format(instance.getTime(), NORMAL_PATTERN);
+    }
+
+    public static String getLastDateOfTheYear() {
+
+        Calendar instance = Calendar.getInstance();
+        instance.set(Calendar.MONTH, Calendar.DECEMBER);
+        instance.set(Calendar.DAY_OF_MONTH, 31);
+
+        return format(instance.getTime(), NORMAL_PATTERN);
     }
 }

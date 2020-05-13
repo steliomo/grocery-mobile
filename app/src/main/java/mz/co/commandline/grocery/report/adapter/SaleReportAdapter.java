@@ -12,7 +12,7 @@ import mz.co.commandline.grocery.listner.ClickListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.adapter.BaseAdapter;
 import mz.co.commandline.grocery.report.holder.ReportSaleViewHolder;
-import mz.co.commandline.grocery.sale.model.SaleReport;
+import mz.co.commandline.grocery.sale.dto.SaleReport;
 
 public class SaleReportAdapter extends BaseAdapter<ReportSaleViewHolder> {
 

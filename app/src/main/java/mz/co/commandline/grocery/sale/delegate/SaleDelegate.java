@@ -1,16 +1,15 @@
 package mz.co.commandline.grocery.sale.delegate;
 
-import mz.co.commandline.grocery.delegate.SaleAndStockDelegate;
-import mz.co.commandline.grocery.sale.model.Sale;
-import mz.co.commandline.grocery.sale.model.SaleItem;
+import mz.co.commandline.grocery.sale.dto.SaleDTO;
+import mz.co.commandline.grocery.sale.dto.SaleItemDTO;
 
-public interface SaleDelegate extends SaleAndStockDelegate {
+public interface SaleDelegate {
 
-    void addSaleItem(SaleItem saleItem);
+    void addSaleItem(SaleItemDTO saleItem);
 
-    Sale getSale();
-
-    void cancel();
+    SaleDTO getSale();
 
     void registSale();
+
+    void cancel();
 }

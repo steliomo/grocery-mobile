@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/stock_details_view"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:background="#CFD8DC"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/stock_details_image_view"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/stock_details_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/stock_details_view"
+        app:srcCompat="@mipmap/ic_product" />
+
+    <TextView
+        android:id="@+id/stock_details_product_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/stock_details_image_view"
+        app:layout_constraintEnd_toEndOf="@+id/stock_details_view"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/stock_details_image_view"
+        app:layout_constraintTop_toTopOf="@+id/stock_details_image_view"
+        tools:text="Nome do produto" />
+
+    <TextView
+        android:id="@+id/stock_details_purchase_price_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="6dp"
+        android:text="V. Compra:"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/stock_details_purchase_price"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stock_details_view" />
+
+    <TextView
+        android:id="@+id/stock_details_purchase_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/stock_details_purchase_price_label"
+        app:layout_constraintEnd_toStartOf="@+id/stock_details_minimum_stock_label"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/stock_details_purchase_price_label"
+        app:layout_constraintTop_toTopOf="@+id/stock_details_purchase_price_label"
+        tools:text="10,500.00 MT" />
+
+    <TextView
+        android:id="@+id/stock_details_minimum_stock_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:text="Stc. Min:"
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/stock_details_purchase_price"
+        app:layout_constraintEnd_toStartOf="@+id/stock_details_minimum_stock"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/stock_details_purchase_price"
+        app:layout_constraintTop_toTopOf="@+id/stock_details_purchase_price" />
+
+    <TextView
+        android:id="@+id/stock_details_minimum_stock"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/stock_details_minimum_stock_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/stock_details_minimum_stock_label"
+        app:layout_constraintTop_toTopOf="@+id/stock_details_minimum_stock_label"
+        tools:text="100.00" />
+
+    <TextView
+        android:id="@+id/stock_details_sale_price_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:padding="6dp"
+        android:text="V. Venda:"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/stock_details_sale_price"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stock_details_purchase_price_label" />
+
+    <TextView
+        android:id="@+id/stock_details_sale_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/stock_details_sale_price_label"
+        app:layout_constraintEnd_toStartOf="@+id/stock_details_quantity_label"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/stock_details_sale_price_label"
+        app:layout_constraintTop_toTopOf="@+id/stock_details_sale_price_label"
+        tools:text="12,500.00 MT" />
+
+    <TextView
+        android:id="@+id/stock_details_quantity_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:text="Quant:"
+        android:textAlignment="textEnd"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/stock_details_sale_price"
+        app:layout_constraintEnd_toStartOf="@+id/stock_details_quantity"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/stock_details_sale_price"
+        app:layout_constraintTop_toTopOf="@+id/stock_details_sale_price" />
+
+    <TextView
+        android:id="@+id/stock_details_quantity"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/stock_details_quantity_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/stock_details_quantity_label"
+        app:layout_constraintTop_toTopOf="@+id/stock_details_quantity_label"
+        tools:text="5.00" />
+
+    <Button
+        android:id="@+id/stock_details_ok_btn"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#017a84"
+        android:text="OK"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stock_details_sale_price_label" />
+
+</android.support.constraint.ConstraintLayout>

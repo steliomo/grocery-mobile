@@ -6,18 +6,18 @@ import android.support.v7.widget.RecyclerView;
 import butterknife.BindView;
 import mz.co.commandline.grocery.listner.ClickListner;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.delegate.SaleAndStockDelegate;
 import mz.co.commandline.grocery.fragment.BaseFragment;
 import mz.co.commandline.grocery.stock.adapter.StockAdapter;
-import mz.co.commandline.grocery.stock.model.Stock;
+import mz.co.commandline.grocery.stock.delegate.StockDelegate;
+import mz.co.commandline.grocery.stock.dto.StockDTO;
 
 
-public class StockFragment extends BaseFragment implements ClickListner<Stock> {
+public class StockFragment extends BaseFragment implements ClickListner<StockDTO> {
 
     @BindView(R.id.fragment_stock_recycleview)
     RecyclerView recyclerView;
 
-    private SaleAndStockDelegate delegate;
+    private StockDelegate delegate;
 
     @Override
     public int getResourceId() {
@@ -26,7 +26,7 @@ public class StockFragment extends BaseFragment implements ClickListner<Stock> {
 
     @Override
     public void onCreateView() {
-        delegate = (SaleAndStockDelegate) getActivity();
+        delegate = (StockDelegate) getActivity();
         StockAdapter adapter = new StockAdapter(getActivity(), delegate.getStocks());
         adapter.setItemClickListner(this);
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
@@ -34,7 +34,12 @@ public class StockFragment extends BaseFragment implements ClickListner<Stock> {
     }
 
     @Override
-    public void onClickListner(Stock stock) {
-        delegate.selectedStock(stock);
+    public void onClickListner(StockDTO stockDTO) {
+        delegate.selectedStock(stockDTO);
+    }
+
+    @Override
+    public String getTitle() {
+        return getString(R.string.stock_details);
     }
 }

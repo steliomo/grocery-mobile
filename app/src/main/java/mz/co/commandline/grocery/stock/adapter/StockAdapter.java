@@ -11,20 +11,20 @@ import java.util.List;
 import mz.co.commandline.grocery.listner.ClickListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.adapter.BaseAdapter;
+import mz.co.commandline.grocery.stock.dto.StockDTO;
 import mz.co.commandline.grocery.stock.holder.StockViewHolder;
-import mz.co.commandline.grocery.stock.model.Stock;
 
 public class StockAdapter extends BaseAdapter<StockViewHolder> {
 
     private Context context;
 
-    private List<Stock> stocks;
+    private List<StockDTO> stocksDTO;
 
     private ClickListner listner;
 
-    public StockAdapter(Context context, List<Stock> stocks) {
+    public StockAdapter(Context context, List<StockDTO> stocksDTO) {
         this.context = context;
-        this.stocks = stocks;
+        this.stocksDTO = stocksDTO;
     }
 
     @Override
@@ -42,13 +42,13 @@ public class StockAdapter extends BaseAdapter<StockViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull StockViewHolder holder, int position) {
-        Stock stock = stocks.get(position);
+        StockDTO stockDTO = stocksDTO.get(position);
         holder.setItemClickListner(listner);
-        holder.bind(stock);
+        holder.bind(stockDTO);
     }
 
     @Override
     public int getItemCount() {
-        return stocks.size();
+        return stocksDTO.size();
     }
 }
