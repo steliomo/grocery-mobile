@@ -18,9 +18,6 @@ public interface SaleResource {
     @POST("sales")
     Call<SaleDTO> registeSale(@Body SaleDTO sale);
 
-    @GET("sales/last-7-days/{groceryUuid}")
-    Call<SalesDTO> findLast7DaysSales(@Path("groceryUuid") String groceryUuid);
-
     @GET("sales/per-period")
     Call<SalesDTO> findSalesPerPeriod(@Query("groceryUuid") String groceryUuid, @Query("startDate") String startDate, @Query("endDate") String endDate);
 
