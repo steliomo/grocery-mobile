@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="#017a84"
-        android:text="@string/most_wanted_product_with_low_stock"
+        android:text="@string/recommended_products_to_aquire"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#fff"

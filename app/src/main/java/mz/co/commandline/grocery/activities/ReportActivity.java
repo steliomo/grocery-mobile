@@ -30,6 +30,7 @@ import mz.co.commandline.grocery.sale.service.SaleService;
 import mz.co.commandline.grocery.stock.dto.StockDTO;
 import mz.co.commandline.grocery.stock.service.StockService;
 import mz.co.commandline.grocery.user.service.UserService;
+import mz.co.commandline.grocery.util.DateUtil;
 import mz.co.commandline.grocery.util.FormatterUtil;
 import mz.co.commandline.grocery.util.FragmentUtil;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
@@ -131,9 +132,30 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     }
 
     @Override
-    public void displayProductsMostWantedWithLowStock() {
-        reportType = ReportType.LOW_STOCK_REPORT;
-        FragmentUtil.displayFragment(fragmentManager, R.id.report_activity_framelayout, new PeriodSelectionFragment(), Boolean.TRUE);
+    public void displayRecommendedProductsToAcquire() {
+        progressBar.show();
+
+        stockService.findLowStocksByGroceryAndSalePeriod(userService.getGroceryDTO(), DateUtil.getFirstDateOfTheYear(), DateUtil.getLastDateOfTheYear(), new ResponseListner<List<StockDTO>>() {
+            @Override
+            public void success(List<StockDTO> response) {
+                progressBar.dismiss();
+
+                if (response.isEmpty()) {
+                    alertDialogManager.dialog(AlertType.ERROR, "Estabelecimento sem stocks baixos!", null);
+                    return;
+                }
+
+                stocks = response;
+                FragmentUtil.displayFragment(fragmentManager, R.id.report_activity_framelayout, new StockReportFragment(), Boolean.TRUE);
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                alertDialogManager.dialog(AlertType.ERROR, "Ocorreu um erro ao processar os dados. Por favor tente novamente", null);
+                Log.e("REPORT_STOCKS", message);
+            }
+        });
     }
 
     @Override
@@ -142,31 +164,6 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
 
             case SALES_REPORT:
                 salesReport(startDate, endDate);
-                break;
-
-            case LOW_STOCK_REPORT:
-                stockService.findLowStocksByGroceryAndSalePeriod(userService.getGroceryDTO(), startDate, endDate, new ResponseListner<List<StockDTO>>() {
-                    @Override
-                    public void success(List<StockDTO> response) {
-                        progressBar.dismiss();
-
-                        if (response.isEmpty()) {
-                            alertDialogManager.dialog(AlertType.ERROR, "Estabelecimento sem stocks baixos!", null);
-                            return;
-                        }
-
-                        stocks = response;
-                        FragmentUtil.displayFragment(fragmentManager, R.id.report_activity_framelayout, new StockReportFragment(), Boolean.TRUE);
-                    }
-
-                    @Override
-                    public void error(String message) {
-                        progressBar.dismiss();
-                        alertDialogManager.dialog(AlertType.ERROR, "Ocorreu um erro ao processar os dados. Por favor tente novamente", null);
-                        Log.e("REPORT_STOCKS", message);
-                    }
-                });
-
                 break;
         }
     }

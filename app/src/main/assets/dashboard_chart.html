@@ -48,7 +48,7 @@
             data: {
                 labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
                 datasets: [{
-                    label: '# Facturação',
+                    label: 'Facturação',
                     data: data.salesReport.map(function(s){return s.sale}),
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -85,6 +85,8 @@
                         data: data.salesReport.map(function(s){return s.profit}),
                         borderColor: [
                         'rgba(0,128,0)'],
+                        backgroundColor: [
+                        'rgba(0,128,0, 0.2)'],
                         type: 'line',
                         borderWidth: 1
                     }

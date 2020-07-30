@@ -67,7 +67,7 @@
     <string name="period">Período</string>
     <string name="sales_report">Relatório de Vendas</string>
     <string name="product_on_stock">Produtos no stock</string>
-    <string name="most_wanted_product_with_low_stock">Productos de alta procura com stock baixo</string>
+    <string name="recommended_products_to_aquire">Productos recomendados para compra</string>
     <string name="dashboard">Dashboard</string>
     <string name="main_menu">Menú principal</string>
 

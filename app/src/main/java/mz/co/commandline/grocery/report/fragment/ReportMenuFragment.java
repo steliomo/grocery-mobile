@@ -49,7 +49,7 @@ public class ReportMenuFragment extends BaseFragment {
 
     @OnClick(R.id.fragment_report_menu_most_wanted_low_stocks_btn)
     public void onClickMostWantedLowStockBtn() {
-        delegate.displayProductsMostWantedWithLowStock();
+        delegate.displayRecommendedProductsToAcquire();
     }
 
     @Override

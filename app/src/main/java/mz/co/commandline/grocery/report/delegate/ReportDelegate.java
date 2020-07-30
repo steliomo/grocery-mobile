@@ -20,7 +20,7 @@ public interface ReportDelegate {
 
     List<StockDTO> getStocks();
 
-    void displayProductsMostWantedWithLowStock();
+    void displayRecommendedProductsToAcquire();
 
     void onItemClick(StockDTO stockDTO);
 }
