@@ -9,4 +9,6 @@ import mz.co.commandline.grocery.product.dto.ProductDTO;
 public interface ProductService {
 
     void findProductsByGrocery(GroceryDTO groceryDTO, ResponseListner<List<ProductDTO>> listner);
+
+    void findProductsNotInThisGrocery(GroceryDTO groceryDTO, ResponseListner<List<ProductDTO>> listner);
 }

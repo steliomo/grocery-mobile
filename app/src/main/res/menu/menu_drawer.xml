@@ -20,11 +20,10 @@
 
     <item android:title="Configurações">
         <menu>
-
             <item
-                android:id="@+id/menu_drawer_settings"
-                android:icon="@drawable/ic_settings"
-                android:title="Definições" />
+                android:id="@+id/menu_drawer_add_user"
+                android:icon="@drawable/ic_add_user"
+                android:title="Adicionar vendedor" />
 
             <item
                 android:id="@+id/menu_drawer_logout"

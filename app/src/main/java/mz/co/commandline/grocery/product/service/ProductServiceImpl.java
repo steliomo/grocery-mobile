@@ -51,6 +51,26 @@ public class ProductServiceImpl implements ProductService {
         });
     }
 
+    @Override
+    public void findProductsNotInThisGrocery(GroceryDTO groceryDTO, final ResponseListner<List<ProductDTO>> listner) {
+        getResource().findProductsNotInGrocery(groceryDTO.getUuid()).enqueue(new Callback<List<ProductDTO>>() {
+            @Override
+            public void onResponse(Call<List<ProductDTO>> call, Response<List<ProductDTO>> response) {
+                if (response.isSuccessful()) {
+                    listner.success(response.body());
+                    return;
+                }
+
+                setErrorBody(response, listner);
+            }
+
+            @Override
+            public void onFailure(Call<List<ProductDTO>> call, Throwable t) {
+                listner.error(t.getMessage());
+            }
+        });
+    }
+
     private void setErrorBody(Response response, ResponseListner listner) {
         try {
             listner.error(response.errorBody().string());

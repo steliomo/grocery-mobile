@@ -2,7 +2,7 @@
     <string name="app_name">Mercearias</string>
     <string name="sales">Vendas</string>
     <string name="reports">Relatórios</string>
-    <string name="stocks">Stocks</string>
+    <string name="products_and_stocks">Produtos e Stocks</string>
     <string name="sale_regist">Registar Vendas</string>
 
     <string name="discount">Desconto:</string>
@@ -73,5 +73,25 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="password_was_reseted">Uma senha nova foi enviada para o seu e-mail:</string>
+    <string name="username_not_exist">O número usado não existe. Por favor insira um número válido ou contacte o administrador do sistema. Obrigado</string>
+    <string name="sign_up">Cadastrar-se</string>
+    <string name="login">Entrar</string>
+    <string name="password">Senha</string>
+    <string name="user">Utilizador</string>
+    <string name="next">Prosseguir</string>
+    <string name="email">Email</string>
+    <string name="fullname">Nome completo</string>
+    <string name="welcome">Seja muito bem-vindo ao Mercearias Online. Um email com as credências foi enviado para</string>
+    <string name="welcome_saler">Um email com as credências foi enviado ao novo utilizador para</string>
+    <string name="error_on_sign_up">Ocorreu um erro ao registar o utilizador. por favor tente mais tarde.</string>
+    <string name="add_new_products">Adicionar Novos Produtos</string>
+    <string name="update_stocks_and_prices">Actualizar Stocks e Preços</string>
+    <string name="update">Actualizar</string>
+    <string name="select_product">Seleccionar o producto</string>
+    <string name="add">Adicionar</string>
+    <string name="grocery_without_products">Mercearia sem productos por actualizar. Por favor adicione.</string>
+    <string name="new_products_added_with_success">Novo(s) producto(s) adicionado(s) com sucesso!</string>
+    <string name="error_on_adding_products">Ocorreu um erro ao adicionar produto(s). Por favor tente mais tarde.</string>
 
 </resources>

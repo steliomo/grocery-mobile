@@ -1,6 +1,8 @@
 package mz.co.commandline.grocery.service;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -33,10 +35,13 @@ public class RetrofitServiceImpl implements RetrofitService {
         return new OkHttpClient
                 .Builder()
                 .addInterceptor(interceptor)
+                .connectTimeout(1, TimeUnit.MINUTES)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
-                        if (chain.request().url().toString().contains("users/login")) {
+                        if (chain.request().url().toString().contains("users/login") || chain.request().url().toString().contains("users/reset-password") || chain.request().url().toString().contains("users/signup")) {
                             return chain.proceed(chain.request());
                         }
 

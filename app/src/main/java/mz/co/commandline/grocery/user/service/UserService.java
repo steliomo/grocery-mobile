@@ -20,4 +20,10 @@ public interface UserService {
     String getFullName();
 
     void logout();
+
+    void resetPassword(UserDTO user, ResponseListner<UserDTO> responseListner);
+
+    void signUp(UserDTO user, ResponseListner<UserDTO> responseListner);
+
+    void addSaler(UserDTO user, ResponseListner<UserDTO> responseListner);
 }

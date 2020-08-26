@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.StockActivity">
+    tools:context=".activities.ProductsAndStocksActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
     <FrameLayout
-        android:id="@+id/stock_activity_framelayout"
+        android:id="@+id/products_and_stocks_activity_framelayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

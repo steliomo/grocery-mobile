@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.infra.SharedPreferencesManager;
 import mz.co.commandline.grocery.listner.ResponseListner;
+import mz.co.commandline.grocery.service.AbstractService;
 import mz.co.commandline.grocery.service.RetrofitService;
 import mz.co.commandline.grocery.user.dto.GroceryUserDTO;
 import mz.co.commandline.grocery.user.dto.UserDTO;
@@ -17,7 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends AbstractService implements UserService {
 
     private static final String TOKEN = "TOKEN";
     private static final String GROCERY = "GROCERY";
@@ -65,7 +66,7 @@ public class UserServiceImpl implements UserService {
                     return;
                 }
 
-                setErrorBody(response, responseListner);
+                setBodyError(response, responseListner);
             }
 
             @Override
@@ -73,14 +74,6 @@ public class UserServiceImpl implements UserService {
                 responseListner.error(t.getMessage());
             }
         });
-    }
-
-    private void setErrorBody(Response<UserDTO> response, ResponseListner<UserDTO> responseListner) {
-        try {
-            responseListner.error(response.errorBody().string());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -123,6 +116,69 @@ public class UserServiceImpl implements UserService {
     @Override
     public void logout() {
         preferencesManager.clearPreferences();
+    }
+
+    @Override
+    public void resetPassword(UserDTO user, final ResponseListner<UserDTO> responseListner) {
+
+        getResource().resetPassword(user).enqueue(new Callback<UserDTO>() {
+            @Override
+            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<UserDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void signUp(UserDTO user, final ResponseListner<UserDTO> responseListner) {
+
+        getResource().signUp(user).enqueue(new Callback<UserDTO>() {
+            @Override
+            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<UserDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+
+    }
+
+    @Override
+    public void addSaler(UserDTO user, final ResponseListner<UserDTO> responseListner) {
+        getResource().addSaler(user).enqueue(new Callback<UserDTO>() {
+            @Override
+            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<UserDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
     }
 
     private String prepareToken(String username, String password) {

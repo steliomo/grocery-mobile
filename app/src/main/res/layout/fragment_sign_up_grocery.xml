@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.fragment.SignUpGroceryFragment">
+
+    <View
+        android:id="@+id/fragment_sign_up_grocery_view_main"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/fragment_sign_up_grocery_view_header"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#017a84"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/fragment_sign_up_grocery_imageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:src="@mipmap/ic_logo"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_sign_up_grocery_view_header"
+        app:layout_constraintStart_toStartOf="@+id/fragment_sign_up_grocery_view_header"
+        app:layout_constraintTop_toTopOf="@+id/fragment_sign_up_grocery_view_header" />
+
+    <TextView
+        android:id="@+id/fragment_sign_up_grocery_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/courgette"
+        android:text="Dados da Mercearia"
+        android:textColor="#fff"
+        android:textSize="10pt"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_sign_up_grocery_imageView"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_sign_up_grocery_view_header"
+        app:layout_constraintStart_toEndOf="@+id/fragment_sign_up_grocery_imageView"
+        app:layout_constraintTop_toTopOf="@+id/fragment_sign_up_grocery_imageView" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/fragment_sign_up_grocery_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_sign_up_grocery_view_main"
+        app:layout_constraintStart_toStartOf="@+id/fragment_sign_up_grocery_view_main"
+        app:layout_constraintTop_toTopOf="@+id/fragment_sign_up_grocery_view_main">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_user"
+            android:drawableLeft="@drawable/ic_user"
+            android:hint=" Nome da mercearia"
+            android:inputType="text" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/fragment_sign_up_grocery_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_sign_up_grocery_name"
+        app:layout_constraintStart_toStartOf="@+id/fragment_sign_up_grocery_name"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_grocery_name">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_location"
+            android:drawableLeft="@drawable/ic_location"
+            android:hint=" Endereço"
+            android:inputType="textMultiLine"
+            android:lines="2" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/fragment_sign_up_grocery_phone_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_sign_up_grocery_address"
+        app:layout_constraintStart_toStartOf="@+id/fragment_sign_up_grocery_address"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_grocery_address">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_phone"
+            android:drawableLeft="@drawable/ic_phone"
+            android:hint="Telefone"
+            android:inputType="number" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/fragment_sign_up_grocery_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_sign_up_grocery_view_main"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_sign_up_grocery_phone_number"
+        app:layout_constraintStart_toStartOf="@+id/fragment_sign_up_grocery_phone_number"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_grocery_phone_number">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_email"
+            android:drawableLeft="@drawable/ic_email"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/fragment_sign_up_grocery_cancel_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
+        android:background="#017a84"
+        android:padding="8dp"
+        android:text="Cancelar"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_sign_up_grocery_regist_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/fragment_sign_up_grocery_regist_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="8dp"
+        android:background="#017a84"
+        android:padding="8dp"
+        android:text="Registar"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_sign_up_grocery_cancel_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragment_sign_up_grocery_cancel_btn" />
+
+</android.support.constraint.ConstraintLayout>

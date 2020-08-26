@@ -1,16 +1,12 @@
 package mz.co.commandline.grocery.sale.service;
 
 
-import java.util.List;
-
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
-import mz.co.commandline.grocery.sale.dto.SaleReport;
 import mz.co.commandline.grocery.sale.dto.SalesDTO;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface SaleResource {

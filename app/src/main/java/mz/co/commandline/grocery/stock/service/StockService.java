@@ -16,4 +16,9 @@ public interface StockService {
     void updateStocksAndPrices(List<StockDTO> stocksDTO, ResponseListner<Void> responseListner);
 
     void findLowStocksByGroceryAndSalePeriod(GroceryDTO groceryDTO, String startDate, String endDate, ResponseListner<List<StockDTO>> responseListner);
+
+    void findProductStocksNotInThisGroceryByProduct(GroceryDTO grocery, ProductDTO productDTO, ResponseListner<List<StockDTO>> responseListner);
+
+    void addStockProducts(List<StockDTO> stocksDTO, ResponseListner<Void> responseListner);
+
 }

@@ -50,7 +50,7 @@ public class StockReportFragment extends BaseFragment implements ClickListner<St
 
     @Override
     public String getTitle() {
-        return getString(R.string.stocks);
+        return getString(R.string.products_and_stocks);
     }
 
     @Override

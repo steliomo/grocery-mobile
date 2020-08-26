@@ -15,6 +15,7 @@ import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.fragment.BaseFragment;
 import mz.co.commandline.grocery.sale.delegate.SaleDelegate;
 import mz.co.commandline.grocery.sale.dto.SaleItemDTO;
+import mz.co.commandline.grocery.stock.delegate.ProductsAndStocksDelegate;
 import mz.co.commandline.grocery.stock.delegate.StockDelegate;
 import mz.co.commandline.grocery.stock.dto.StockDTO;
 import mz.co.commandline.grocery.validator.DefaultValidator;

@@ -9,10 +9,9 @@ import mz.co.commandline.grocery.activities.ExpenseActivity;
 import mz.co.commandline.grocery.activities.InventoryActivity;
 import mz.co.commandline.grocery.activities.LoginActivity;
 import mz.co.commandline.grocery.activities.MainActivity;
+import mz.co.commandline.grocery.activities.ProductsAndStocksActivity;
 import mz.co.commandline.grocery.activities.ReportActivity;
 import mz.co.commandline.grocery.activities.SaleActivity;
-import mz.co.commandline.grocery.activities.StockActivity;
-import mz.co.commandline.grocery.fragment.BaseFragment;
 
 @Singleton
 @Component(modules = GroceryModule.class)
@@ -26,7 +25,7 @@ public interface GroceryComponent {
 
     void inject(ReportActivity activity);
 
-    void inject(StockActivity activity);
+    void inject(ProductsAndStocksActivity activity);
 
     void inject(LoginActivity activity);
 

@@ -31,6 +31,7 @@ import mz.co.commandline.grocery.product.delegate.ProductDelegate;
 import mz.co.commandline.grocery.product.dto.ProductDTO;
 import mz.co.commandline.grocery.product.fragment.ProductFragment;
 import mz.co.commandline.grocery.product.service.ProductService;
+import mz.co.commandline.grocery.stock.delegate.ProductsAndStocksDelegate;
 import mz.co.commandline.grocery.stock.delegate.StockDelegate;
 import mz.co.commandline.grocery.stock.dto.StockDTO;
 import mz.co.commandline.grocery.stock.fragment.StockFragment;

@@ -56,4 +56,15 @@ public class LoginFragment extends BaseFragment {
     private String getText(TextInputLayout textInputLayout) {
         return textInputLayout.getEditText().getText().toString();
     }
+
+    @OnClick(R.id.fragment_login_forget_password)
+    public void onClickResetPassword() {
+        delegate.resetPasswordPage();
+    }
+
+
+    @OnClick(R.id.fragment_login_sign_up)
+    public void onClickSignUp(){
+        delegate.signUp();
+    }
 }

@@ -29,6 +29,7 @@ import mz.co.commandline.grocery.sale.dto.SaleItemDTO;
 import mz.co.commandline.grocery.sale.fragment.AddSaleItemFragment;
 import mz.co.commandline.grocery.sale.fragment.SaleRegistFragment;
 import mz.co.commandline.grocery.sale.service.SaleService;
+import mz.co.commandline.grocery.stock.delegate.ProductsAndStocksDelegate;
 import mz.co.commandline.grocery.stock.delegate.StockDelegate;
 import mz.co.commandline.grocery.stock.dto.StockDTO;
 import mz.co.commandline.grocery.stock.fragment.StockFragment;

@@ -107,4 +107,44 @@ public class StockServiceImpl extends AbstractService implements StockService {
             }
         });
     }
+
+    @Override
+    public void findProductStocksNotInThisGroceryByProduct(GroceryDTO grocery, ProductDTO productDTO, final ResponseListner<List<StockDTO>> responseListner) {
+        getResource().findProductStocksNotInThisGroceryByProduct(grocery.getUuid(), productDTO.getUuid()).enqueue(new Callback<List<StockDTO>>() {
+            @Override
+            public void onResponse(Call<List<StockDTO>> call, Response<List<StockDTO>> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<List<StockDTO>> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void addStockProducts(List<StockDTO> stocksDTO, final ResponseListner<Void> responseListner) {
+        getResource().addStockProducts(stocksDTO).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
 }

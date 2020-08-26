@@ -11,4 +11,7 @@ public interface ProductResource {
 
     @GET("products/by-grocery/{groceryUuid}")
     Call<List<ProductDTO>> findProductsByGrocery(@Path("groceryUuid") String groceryUuid);
+
+    @GET("products/not-in-this-grocery/{groceryUuid}")
+    Call<List<ProductDTO>> findProductsNotInGrocery(@Path("groceryUuid") String groceryUuid);
 }

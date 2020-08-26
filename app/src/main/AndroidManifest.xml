@@ -34,7 +34,7 @@
             android:name=".activities.ReportActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.StockActivity"
+            android:name=".activities.ProductsAndStocksActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.LoginActivity"

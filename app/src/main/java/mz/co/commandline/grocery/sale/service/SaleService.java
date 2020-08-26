@@ -1,10 +1,7 @@
 package mz.co.commandline.grocery.sale.service;
 
-import java.util.List;
-
 import mz.co.commandline.grocery.listner.ResponseListner;
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
-import mz.co.commandline.grocery.sale.dto.SaleReport;
 import mz.co.commandline.grocery.sale.dto.SalesDTO;
 
 public interface SaleService {

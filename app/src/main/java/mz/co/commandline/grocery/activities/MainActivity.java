@@ -19,21 +19,24 @@ import butterknife.BindView;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.dialog.ProgressDialogManager;
 import mz.co.commandline.grocery.listner.ResponseListner;
+import mz.co.commandline.grocery.login.delegate.SignUpDelegate;
+import mz.co.commandline.grocery.login.fragment.SignUpUserFragment;
 import mz.co.commandline.grocery.main.delegate.MainDelegate;
 import mz.co.commandline.grocery.main.fragment.DashboardFragment;
 import mz.co.commandline.grocery.main.fragment.MainMenuFragment;
 import mz.co.commandline.grocery.module.GroceryComponent;
-import mz.co.commandline.grocery.report.fragment.SaleReportFragment;
 import mz.co.commandline.grocery.sale.dto.SalesDTO;
 import mz.co.commandline.grocery.sale.service.SaleService;
+import mz.co.commandline.grocery.user.dto.UserDTO;
 import mz.co.commandline.grocery.user.dto.UserRole;
 import mz.co.commandline.grocery.user.service.UserService;
 import mz.co.commandline.grocery.util.DateUtil;
 import mz.co.commandline.grocery.util.FragmentUtil;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
+import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
 
-public class MainActivity extends BaseAuthActivity implements MainDelegate, View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseAuthActivity implements MainDelegate, SignUpDelegate, View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -52,7 +55,7 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, View
 
     private FragmentManager fragmentManager;
 
-    private AlertDialogManager alertDialogManager;
+    private AlertDialogManager dialogManager;
 
     private ProgressDialog progressBar;
 
@@ -71,7 +74,7 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, View
 
         fragmentManager = getSupportFragmentManager();
 
-        alertDialogManager = new AlertDialogManager(this);
+        dialogManager = new AlertDialogManager(this);
         ProgressDialogManager progressDialogManager = new ProgressDialogManager(this);
         progressBar = progressDialogManager.getProgressBar(getString(R.string.wait), getString(R.string.processing_request));
 
@@ -121,6 +124,11 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, View
                 drawerLayout.closeDrawer(GravityCompat.START);
                 loadDashboardData();
                 break;
+
+            case R.id.menu_drawer_add_user:
+                drawerLayout.closeDrawer(GravityCompat.START);
+                FragmentUtil.displayFragment(fragmentManager, R.id.main_activity_frame_layout, new SignUpUserFragment(), Boolean.FALSE);
+                break;
         }
 
         return true;
@@ -141,7 +149,7 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, View
             @Override
             public void error(String message) {
                 progressBar.dismiss();
-                alertDialogManager.dialog(AlertType.ERROR, "Ocorreu um erro ao processar os dados. Por favor tente novamente", null);
+                dialogManager.dialog(AlertType.ERROR, "Ocorreu um erro ao processar os dados. Por favor tente novamente", null);
                 Log.e("DASHBOARD", message);
             }
         });
@@ -155,5 +163,37 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, View
     @Override
     public SalesDTO getSales() {
         return sales;
+    }
+
+    @Override
+    public void signUpNext(UserDTO userDTO) {
+        progressBar.show();
+
+        userDTO.getGroceryUserDTO().setGroceryDTO(userService.getGroceryDTO());
+
+        userService.addSaler(userDTO, new ResponseListner<UserDTO>() {
+            @Override
+            public void success(UserDTO response) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.welcome_saler) + " " + response.getEmail(), new AlertListner() {
+                    @Override
+                    public void perform() {
+                        FragmentUtil.displayFragment(fragmentManager, R.id.main_activity_frame_layout, new MainMenuFragment(), Boolean.FALSE);
+                    }
+                });
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_on_sign_up), new AlertListner() {
+                    @Override
+                    public void perform() {
+                        FragmentUtil.displayFragment(fragmentManager, R.id.main_activity_frame_layout, new MainMenuFragment(), Boolean.FALSE);
+                    }
+                });
+                Log.e("ADD_SALER", message);
+            }
+        });
     }
 }

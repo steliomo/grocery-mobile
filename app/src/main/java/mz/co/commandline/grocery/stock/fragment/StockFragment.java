@@ -8,6 +8,7 @@ import mz.co.commandline.grocery.listner.ClickListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.fragment.BaseFragment;
 import mz.co.commandline.grocery.stock.adapter.StockAdapter;
+import mz.co.commandline.grocery.stock.delegate.ProductsAndStocksDelegate;
 import mz.co.commandline.grocery.stock.delegate.StockDelegate;
 import mz.co.commandline.grocery.stock.dto.StockDTO;
 
