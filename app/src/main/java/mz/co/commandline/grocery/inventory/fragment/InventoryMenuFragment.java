@@ -6,7 +6,7 @@ import android.widget.Button;
 import butterknife.BindView;
 import butterknife.OnClick;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.fragment.BaseFragment;
+import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.inventory.delegate.InventoryDelegate;
 import mz.co.commandline.grocery.user.dto.UserRole;
 

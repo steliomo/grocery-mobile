@@ -1,12 +1,14 @@
 package mz.co.commandline.grocery.sale.holder;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
-import mz.co.commandline.grocery.listner.ClickListner;
+import mz.co.commandline.grocery.generics.listner.ClickListner;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.holder.BaseViewHolder;
+import mz.co.commandline.grocery.generics.holder.BaseViewHolder;
+import mz.co.commandline.grocery.item.dto.ItemType;
 import mz.co.commandline.grocery.sale.dto.SaleItemDTO;
 import mz.co.commandline.grocery.util.FormatterUtil;
 
@@ -24,6 +26,9 @@ public class SaleItemViewHolder extends BaseViewHolder<SaleItemDTO> {
     @BindView(R.id.sale_item_discount)
     TextView itemDiscount;
 
+    @BindView(R.id.sale_item_icon)
+    ImageView saleItemIcon;
+
     private ClickListner listner;
 
     private SaleItemDTO saleItem;
@@ -36,10 +41,14 @@ public class SaleItemViewHolder extends BaseViewHolder<SaleItemDTO> {
     public void bind(SaleItemDTO saleItem) {
         this.saleItem = saleItem;
 
-        itemName.setText(saleItem.getStockDTO().getProductDescriptionDTO().getName());
+        itemName.setText(saleItem.getSaleableItemDTO().getName());
         itemQuantity.setText(saleItem.getQuantity().toString());
         itemValue.setText(FormatterUtil.mtFormat(saleItem.getTotal()));
         itemDiscount.setText(FormatterUtil.mtFormat(saleItem.getDiscount()));
+
+        if (ItemType.SERVICE.equals(saleItem.getSaleableItemDTO().getSalableItemType())) {
+            saleItemIcon.setImageResource(R.mipmap.ic_services);
+        }
     }
 
     @Override

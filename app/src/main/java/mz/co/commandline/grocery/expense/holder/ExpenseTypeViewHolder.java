@@ -6,8 +6,8 @@ import android.widget.TextView;
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.expense.dto.ExpenseTypeDTO;
-import mz.co.commandline.grocery.holder.BaseViewHolder;
-import mz.co.commandline.grocery.listner.ClickListner;
+import mz.co.commandline.grocery.generics.holder.BaseViewHolder;
+import mz.co.commandline.grocery.generics.listner.ClickListner;
 
 public class ExpenseTypeViewHolder extends BaseViewHolder<ExpenseTypeDTO> {
 

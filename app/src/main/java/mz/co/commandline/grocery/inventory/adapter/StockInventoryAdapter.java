@@ -12,7 +12,7 @@ import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.adapter.BaseAdapter;
 import mz.co.commandline.grocery.inventory.dto.StockInventoryDTO;
 import mz.co.commandline.grocery.inventory.holder.StockInventoryViewHolder;
-import mz.co.commandline.grocery.listner.ClickListner;
+import mz.co.commandline.grocery.generics.listner.ClickListner;
 
 public class StockInventoryAdapter extends BaseAdapter<StockInventoryViewHolder> {
 

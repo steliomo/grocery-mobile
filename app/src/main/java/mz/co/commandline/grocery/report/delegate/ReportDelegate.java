@@ -3,7 +3,7 @@ package mz.co.commandline.grocery.report.delegate;
 import java.util.List;
 
 import mz.co.commandline.grocery.sale.dto.SalesDTO;
-import mz.co.commandline.grocery.stock.dto.StockDTO;
+import mz.co.commandline.grocery.saleable.dto.StockDTO;
 
 public interface ReportDelegate {
 

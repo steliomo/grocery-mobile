@@ -2,7 +2,10 @@ package mz.co.commandline.grocery.sale.dto;
 
 import java.math.BigDecimal;
 
-import mz.co.commandline.grocery.stock.dto.StockDTO;
+import mz.co.commandline.grocery.saleable.dto.SaleableItemDTO;
+import mz.co.commandline.grocery.item.dto.ItemType;
+import mz.co.commandline.grocery.saleable.dto.ServiceItemDTO;
+import mz.co.commandline.grocery.saleable.dto.StockDTO;
 
 public class SaleItemDTO {
 
@@ -14,15 +17,21 @@ public class SaleItemDTO {
 
     private BigDecimal discount;
 
-    public SaleItemDTO(StockDTO stockDTO, BigDecimal quantity, BigDecimal saleItemValue, BigDecimal discount) {
-        this.stockDTO = stockDTO;
+    private ServiceItemDTO serviceItemDTO;
+
+    public SaleItemDTO(SaleableItemDTO saleableItemDTO, BigDecimal quantity, BigDecimal saleItemValue, BigDecimal discount) {
+
+        if (ItemType.PRODUCT.equals(saleableItemDTO.getSalableItemType())) {
+            this.stockDTO = (StockDTO) saleableItemDTO;
+        }
+
+        if (ItemType.SERVICE.equals(saleableItemDTO.getSalableItemType())) {
+            serviceItemDTO = (ServiceItemDTO) saleableItemDTO;
+        }
+
         this.quantity = quantity;
         this.saleItemValue = saleItemValue;
         this.discount = discount;
-    }
-
-    public StockDTO getStockDTO() {
-        return stockDTO;
     }
 
     public BigDecimal getQuantity() {
@@ -35,5 +44,9 @@ public class SaleItemDTO {
 
     public BigDecimal getTotal() {
         return saleItemValue.subtract(discount);
+    }
+
+    public SaleableItemDTO getSaleableItemDTO() {
+        return stockDTO != null ? stockDTO : serviceItemDTO;
     }
 }

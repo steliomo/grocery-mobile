@@ -9,12 +9,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.fragment.BaseFragment;
+import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.inventory.delegate.InventoryDelegate;
 import mz.co.commandline.grocery.inventory.dto.StockInventoryDTO;
-import mz.co.commandline.grocery.stock.delegate.ProductsAndStocksDelegate;
-import mz.co.commandline.grocery.stock.delegate.StockDelegate;
-import mz.co.commandline.grocery.stock.dto.StockDTO;
+import mz.co.commandline.grocery.saleable.dto.StockDTO;
 import mz.co.commandline.grocery.validator.DefaultValidator;
 import mz.co.commandline.grocery.validator.Validator;
 
@@ -40,10 +38,9 @@ public class AddInventoryItemFragment extends BaseFragment {
 
     @Override
     public void onCreateView() {
-        StockDelegate stockDelegate = (StockDelegate) getActivity();
         inventoryDelegate = (InventoryDelegate) getActivity();
 
-        stockDTO = stockDelegate.getStock();
+        stockDTO = (StockDTO) inventoryDelegate.getSaleableItem();
         productName.setText(stockDTO.getProductDescriptionDTO().getName());
         validators = new ArrayList<>();
 

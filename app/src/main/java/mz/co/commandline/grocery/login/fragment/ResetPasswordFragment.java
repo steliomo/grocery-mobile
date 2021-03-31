@@ -5,7 +5,7 @@ import android.support.design.widget.TextInputLayout;
 import butterknife.BindView;
 import butterknife.OnClick;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.fragment.BaseFragment;
+import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.login.delegate.LoginDelegate;
 import mz.co.commandline.grocery.util.TextInputLayoutUtil;
 import mz.co.commandline.grocery.validator.DefaultValidator;

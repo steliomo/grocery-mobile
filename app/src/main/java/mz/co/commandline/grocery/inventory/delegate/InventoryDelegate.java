@@ -2,9 +2,9 @@ package mz.co.commandline.grocery.inventory.delegate;
 
 import mz.co.commandline.grocery.inventory.dto.InventoryDTO;
 import mz.co.commandline.grocery.inventory.dto.StockInventoryDTO;
-import mz.co.commandline.grocery.product.delegate.ProductDelegate;
+import mz.co.commandline.grocery.saleable.delegate.SaleableItemDelegate;
 
-public interface InventoryDelegate extends ProductDelegate {
+public interface InventoryDelegate extends SaleableItemDelegate {
 
     void displayPerformInventoryFragment();
 

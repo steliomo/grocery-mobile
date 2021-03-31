@@ -9,14 +9,13 @@ import android.widget.Filter;
 import android.widget.Filterable;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import mz.co.commandline.grocery.listner.ClickListner;
+import mz.co.commandline.grocery.generics.listner.ClickListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.adapter.BaseAdapter;
 import mz.co.commandline.grocery.report.holder.StockReportViewHolder;
-import mz.co.commandline.grocery.stock.dto.StockDTO;
+import mz.co.commandline.grocery.saleable.dto.StockDTO;
 
 public class StockReportAdapter extends BaseAdapter<StockReportViewHolder> implements Filterable {
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".stock.fragment.ProductsAndStocksFragment">
+    tools:context=".saleable.fragment.ProductsAndStocksFragment">
 
     <Button
         android:id="@+id/fragment_products_and_stocks_add_new_products_btn"
@@ -29,7 +29,7 @@
         android:layout_marginTop="16dp"
         android:background="#017a84"
         android:padding="8dp"
-        android:text="@string/update_stocks_and_prices"
+        android:text="@string/update_stocks_and_services"
         android:textAllCaps="false"
         android:textColor="#fff"
         app:layout_constraintEnd_toEndOf="@+id/fragment_products_and_stocks_add_new_products_btn"

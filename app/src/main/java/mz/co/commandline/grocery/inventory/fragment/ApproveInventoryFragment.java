@@ -1,15 +1,13 @@
 package mz.co.commandline.grocery.inventory.fragment;
 
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
-import butterknife.BindBitmap;
 import butterknife.BindView;
 import butterknife.OnClick;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.fragment.BaseFragment;
+import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.inventory.adapter.StockInventoryAdapter;
 import mz.co.commandline.grocery.inventory.delegate.InventoryDelegate;
 import mz.co.commandline.grocery.inventory.dto.InventoryDTO;

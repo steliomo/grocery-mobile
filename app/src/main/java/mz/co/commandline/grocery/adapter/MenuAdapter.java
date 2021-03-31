@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import mz.co.commandline.grocery.listner.ClickListner;
+import mz.co.commandline.grocery.generics.listner.ClickListner;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.holder.MenuViewHolder;
+import mz.co.commandline.grocery.generics.holder.MenuViewHolder;
 import mz.co.commandline.grocery.menu.MenuItem;
 
 public class MenuAdapter extends BaseAdapter<MenuViewHolder> {

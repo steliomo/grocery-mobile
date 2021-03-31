@@ -1,6 +1,6 @@
 package mz.co.commandline.grocery.expense.dto;
 
-import mz.co.commandline.grocery.dto.GenericDTO;
+import mz.co.commandline.grocery.generics.dto.GenericDTO;
 
 public class ExpenseTypeDTO extends GenericDTO {
 

@@ -8,8 +8,8 @@ import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.expense.adapter.ExpenseTypeAdapter;
 import mz.co.commandline.grocery.expense.delegate.ExpenseDelegate;
 import mz.co.commandline.grocery.expense.dto.ExpenseTypeDTO;
-import mz.co.commandline.grocery.fragment.BaseFragment;
-import mz.co.commandline.grocery.listner.ClickListner;
+import mz.co.commandline.grocery.generics.fragment.BaseFragment;
+import mz.co.commandline.grocery.generics.listner.ClickListner;
 
 public class ExpenseTypeFragment extends BaseFragment implements ClickListner<ExpenseTypeDTO> {
 

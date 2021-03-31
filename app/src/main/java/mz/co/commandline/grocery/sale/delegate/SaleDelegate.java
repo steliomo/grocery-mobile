@@ -12,4 +12,6 @@ public interface SaleDelegate {
     void registSale();
 
     void cancel();
+
+    void selectItem();
 }

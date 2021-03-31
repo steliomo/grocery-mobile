@@ -1,13 +1,11 @@
 package mz.co.commandline.grocery.expense.service;
 
-import java.io.IOException;
-
 import javax.inject.Inject;
 
 import mz.co.commandline.grocery.expense.dto.ExpensesDTO;
-import mz.co.commandline.grocery.listner.ResponseListner;
-import mz.co.commandline.grocery.service.AbstractService;
-import mz.co.commandline.grocery.service.RetrofitService;
+import mz.co.commandline.grocery.generics.listner.ResponseListner;
+import mz.co.commandline.grocery.generics.service.AbstractService;
+import mz.co.commandline.grocery.generics.service.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,7 +39,8 @@ public class ExpenseTypeServiceImpl extends AbstractService implements ExpenseTy
         });
     }
 
-    private ExpenseTypeResource getResource() {
+    @Override
+    public ExpenseTypeResource getResource() {
         return retrofitService.getResource(ExpenseTypeResource.class);
     }
 }

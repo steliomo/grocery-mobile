@@ -1,7 +1,6 @@
 package mz.co.commandline.grocery.login.fragment;
 
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.FragmentActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.fragment.BaseFragment;
+import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.login.delegate.LoginDelegate;
 import mz.co.commandline.grocery.validator.DefaultValidator;
 import mz.co.commandline.grocery.validator.Validator;

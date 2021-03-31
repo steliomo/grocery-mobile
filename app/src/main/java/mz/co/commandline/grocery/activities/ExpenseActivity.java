@@ -2,7 +2,6 @@ package mz.co.commandline.grocery.activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +14,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.dialog.ProgressDialogManager;
+import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
 import mz.co.commandline.grocery.expense.delegate.ExpenseDelegate;
 import mz.co.commandline.grocery.expense.dto.ExpenseDTO;
 import mz.co.commandline.grocery.expense.dto.ExpenseTypeDTO;
@@ -25,16 +24,12 @@ import mz.co.commandline.grocery.expense.fragment.ExpenseTypeFragment;
 import mz.co.commandline.grocery.expense.fragment.RegistExpenseFragment;
 import mz.co.commandline.grocery.expense.service.ExpenseService;
 import mz.co.commandline.grocery.expense.service.ExpenseTypeService;
-import mz.co.commandline.grocery.listner.ResponseListner;
+import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.user.service.UserService;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
-
-import static mz.co.commandline.grocery.util.FragmentUtil.displayFragment;
-import static mz.co.commandline.grocery.util.FragmentUtil.popBackStack;
-import static mz.co.commandline.grocery.util.FragmentUtil.resetFragment;
 
 public class ExpenseActivity extends BaseAuthActivity implements View.OnClickListener, ExpenseDelegate {
 
@@ -49,8 +44,6 @@ public class ExpenseActivity extends BaseAuthActivity implements View.OnClickLis
 
     @Inject
     UserService userService;
-
-    private FragmentManager fragmentManager;
 
     private ProgressDialog progressBar;
 
@@ -73,13 +66,13 @@ public class ExpenseActivity extends BaseAuthActivity implements View.OnClickLis
         GroceryComponent component = application.getComponent();
         component.inject(this);
 
-        fragmentManager = getSupportFragmentManager();
+
         ProgressDialogManager progressDialogManager = new ProgressDialogManager(this);
         progressBar = progressDialogManager.getProgressBar(getString(R.string.wait), getString(R.string.processing_request));
 
         dialogManager = new AlertDialogManager(this);
 
-        displayFragment(fragmentManager, R.id.expense_activity_framelayout, new RegistExpenseFragment(), Boolean.FALSE);
+        showFragment(new RegistExpenseFragment(), Boolean.FALSE);
 
         expensesDTO = new ExpensesDTO();
     }
@@ -87,7 +80,7 @@ public class ExpenseActivity extends BaseAuthActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        popBackStack(fragmentManager, this);
+        popBackStack();
     }
 
     @Override
@@ -99,7 +92,7 @@ public class ExpenseActivity extends BaseAuthActivity implements View.OnClickLis
             public void success(ExpensesDTO response) {
                 progressBar.dismiss();
                 expenseTypeDTOS = new ArrayList<>(response.getExpenseTypeDTOs());
-                displayFragment(fragmentManager, R.id.expense_activity_framelayout, new ExpenseTypeFragment(), Boolean.TRUE);
+                showFragment(new ExpenseTypeFragment(), Boolean.TRUE);
             }
 
             @Override
@@ -121,7 +114,7 @@ public class ExpenseActivity extends BaseAuthActivity implements View.OnClickLis
         this.expenseDTO = new ExpenseDTO();
         this.expenseDTO.setGroceryDTO(userService.getGroceryDTO());
         this.expenseDTO.setExpenseTypeDTO(expenseTypeDTO);
-        displayFragment(fragmentManager, R.id.expense_activity_framelayout, new AddExpenseFragment(), Boolean.TRUE);
+        showFragment(new AddExpenseFragment(), Boolean.TRUE);
     }
 
     @Override
@@ -132,8 +125,8 @@ public class ExpenseActivity extends BaseAuthActivity implements View.OnClickLis
     @Override
     public void addExpense(ExpenseDTO expenseDTO) {
         expensesDTO.addExpense(expenseDTO);
-        resetFragment(fragmentManager);
-        displayFragment(fragmentManager, R.id.expense_activity_framelayout, new RegistExpenseFragment(), Boolean.FALSE);
+        resetFragment();
+        showFragment(new RegistExpenseFragment(), Boolean.FALSE);
     }
 
     @Override
@@ -170,11 +163,15 @@ public class ExpenseActivity extends BaseAuthActivity implements View.OnClickLis
                 Log.e("EXPENSES", message);
             }
         });
-
     }
 
     @Override
     public void cancel() {
-        resetFragment(fragmentManager);
+        resetFragment();
+    }
+
+    @Override
+    public int getActivityFrameLayoutId() {
+        return R.id.expense_activity_framelayout;
     }
 }

@@ -4,14 +4,18 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.dialog.ProgressDialogManager;
+import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
+import mz.co.commandline.grocery.generics.dto.EnumDTO;
+import mz.co.commandline.grocery.generics.dto.EnumsDTO;
 import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
-import mz.co.commandline.grocery.listner.ResponseListner;
+import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.login.delegate.LoginDelegate;
 import mz.co.commandline.grocery.login.fragment.LoginFragment;
 import mz.co.commandline.grocery.login.fragment.ResetPasswordFragment;
@@ -20,25 +24,24 @@ import mz.co.commandline.grocery.login.fragment.SignUpUserFragment;
 import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.user.dto.UserDTO;
 import mz.co.commandline.grocery.user.service.UserService;
-import mz.co.commandline.grocery.util.FragmentUtil;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
-
-import static mz.co.commandline.grocery.util.FragmentUtil.displayFragment;
 
 public class LoginActivity extends BaseActivity implements LoginDelegate {
 
     @Inject
     UserService userService;
 
-    private FragmentManager fragmentManager;
-
     private ProgressDialog progressBar;
 
     private AlertDialogManager dialogManager;
 
     private UserDTO user;
+
+    private List<EnumDTO> unitTypes;
+
+    private EnumDTO uniType;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,13 +51,21 @@ public class LoginActivity extends BaseActivity implements LoginDelegate {
         GroceryComponent component = application.getComponent();
         component.inject(this);
 
-        fragmentManager = getSupportFragmentManager();
         ProgressDialogManager progressDialogManager = new ProgressDialogManager(this);
         progressBar = progressDialogManager.getProgressBar(getString(R.string.wait), getString(R.string.processing_request));
 
         dialogManager = new AlertDialogManager(this);
 
-        displayFragment(fragmentManager, R.id.login_activity_frame_layout, new LoginFragment(), Boolean.FALSE);
+        showFragment(new LoginFragment(), Boolean.FALSE);
+
+        uniType = new EnumDTO(null, getString(R.string.unit_type));
+        unitTypes = new ArrayList<>();
+        unitTypes.add(uniType);
+    }
+
+    @Override
+    public int getActivityFrameLayoutId() {
+        return R.id.login_activity_frame_layout;
     }
 
     @Override
@@ -75,12 +86,11 @@ public class LoginActivity extends BaseActivity implements LoginDelegate {
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.bad_credentials), null);
             }
         });
-
     }
 
     @Override
     public void resetPasswordPage() {
-        displayFragment(fragmentManager, R.id.login_activity_frame_layout, new ResetPasswordFragment(), Boolean.TRUE);
+        showFragment(new ResetPasswordFragment(), Boolean.TRUE);
     }
 
     @Override
@@ -95,7 +105,7 @@ public class LoginActivity extends BaseActivity implements LoginDelegate {
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.password_was_reseted) + " " + response.getEmail(), new AlertListner() {
                     @Override
                     public void perform() {
-                        FragmentUtil.popBackStack(fragmentManager, LoginActivity.this);
+                        popBackStack();
                     }
                 });
             }
@@ -106,7 +116,7 @@ public class LoginActivity extends BaseActivity implements LoginDelegate {
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.username_not_exist), new AlertListner() {
                     @Override
                     public void perform() {
-                        FragmentUtil.popBackStack(fragmentManager, LoginActivity.this);
+                        popBackStack();
                     }
                 });
             }
@@ -115,19 +125,40 @@ public class LoginActivity extends BaseActivity implements LoginDelegate {
 
     @Override
     public void signUp() {
-        displayFragment(fragmentManager, R.id.login_activity_frame_layout, new SignUpUserFragment(), Boolean.TRUE);
+        showFragment(new SignUpUserFragment(), Boolean.TRUE);
     }
 
     @Override
     public void signUpNext(UserDTO user) {
         this.user = user;
-        displayFragment(fragmentManager, R.id.login_activity_frame_layout, new SignUpGroceryFragment(), Boolean.TRUE);
+        progressBar.show();
+
+        userService.getUnitTypes(new ResponseListner<EnumsDTO>() {
+            @Override
+            public void success(EnumsDTO response) {
+                progressBar.dismiss();
+                unitTypes.addAll(response.getValues());
+                showFragment(new SignUpGroceryFragment(), Boolean.TRUE);
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_on_sign_up), null);
+            }
+        });
+    }
+
+    @Override
+    public void setUnitType(EnumDTO unitType) {
+        uniType = unitType;
     }
 
     @Override
     public void signUp(GroceryDTO grocery) {
         this.user.getGroceryUserDTO().setGroceryDTO(grocery);
         progressBar.show();
+
         userService.signUp(user, new ResponseListner<UserDTO>() {
             @Override
             public void success(UserDTO userDTO) {
@@ -155,6 +186,18 @@ public class LoginActivity extends BaseActivity implements LoginDelegate {
 
     @Override
     public void cancel() {
-        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        popBackStack();
+        unitTypes = new ArrayList<>();
+        unitTypes.add(uniType);
+    }
+
+    @Override
+    public List<EnumDTO> getUnitTypes() {
+        return unitTypes;
+    }
+
+    @Override
+    public EnumDTO getUnitType() {
+        return uniType;
     }
 }

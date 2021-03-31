@@ -9,11 +9,11 @@ import android.view.inputmethod.EditorInfo;
 
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.fragment.BaseFragment;
-import mz.co.commandline.grocery.listner.ClickListner;
+import mz.co.commandline.grocery.generics.fragment.BaseFragment;
+import mz.co.commandline.grocery.generics.listner.ClickListner;
 import mz.co.commandline.grocery.report.adapter.StockReportAdapter;
 import mz.co.commandline.grocery.report.delegate.ReportDelegate;
-import mz.co.commandline.grocery.stock.dto.StockDTO;
+import mz.co.commandline.grocery.saleable.dto.StockDTO;
 
 public class StockReportFragment extends BaseFragment implements ClickListner<StockDTO>, SearchView.OnQueryTextListener {
 
@@ -50,7 +50,7 @@ public class StockReportFragment extends BaseFragment implements ClickListner<St
 
     @Override
     public String getTitle() {
-        return getString(R.string.products_and_stocks);
+        return getString(R.string.products_and_services);
     }
 
     @Override

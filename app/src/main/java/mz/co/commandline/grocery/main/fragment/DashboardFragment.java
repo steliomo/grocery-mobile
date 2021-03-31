@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.fragment.BaseFragment;
+import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.main.delegate.MainDelegate;
 import mz.co.commandline.grocery.sale.dto.SalesDTO;
 

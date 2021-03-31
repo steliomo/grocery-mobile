@@ -47,7 +47,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/courgette"
-        android:text="Dados da Mercearia"
+        android:text="Dados do Estabelecimento"
         android:textColor="#fff"
         android:textSize="10pt"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_sign_up_grocery_imageView"
@@ -60,16 +60,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_sign_up_grocery_view_main"
-        app:layout_constraintStart_toStartOf="@+id/fragment_sign_up_grocery_view_main"
-        app:layout_constraintTop_toTopOf="@+id/fragment_sign_up_grocery_view_main">
+        app:layout_constraintEnd_toEndOf="@+id/fragment_sign_up_grocery_spinner"
+        app:layout_constraintStart_toStartOf="@+id/fragment_sign_up_grocery_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_grocery_spinner">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_user"
             android:drawableLeft="@drawable/ic_user"
-            android:hint=" Nome da mercearia"
+            android:hint=" Nome do estabelecimento"
             android:inputType="text" />
 
     </android.support.design.widget.TextInputLayout>
@@ -132,6 +132,14 @@
             android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 
+
+    <Spinner
+        android:id="@+id/fragment_sign_up_grocery_spinner"
+        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_sign_up_grocery_view_main"
+        app:layout_constraintTop_toTopOf="@+id/fragment_sign_up_grocery_view_main" />
 
     <Button
         android:id="@+id/fragment_sign_up_grocery_cancel_btn"

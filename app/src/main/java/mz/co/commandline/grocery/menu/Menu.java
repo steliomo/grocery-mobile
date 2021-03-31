@@ -17,7 +17,7 @@ public class Menu {
         menuItems.add(new MenuItem(R.string.sales, MenuItemType.SALE, R.mipmap.ic_sale));
 
         if (UserRole.OPERATOR != userRole) {
-            menuItems.add(new MenuItem(R.string.products_and_stocks, MenuItemType.STOCK, R.mipmap.ic_stock));
+            menuItems.add(new MenuItem(R.string.products_and_services, MenuItemType.STOCK, R.mipmap.ic_stock));
             menuItems.add(new MenuItem(R.string.expenses, MenuItemType.EXPENSE, R.mipmap.ic_expense));
         }
 

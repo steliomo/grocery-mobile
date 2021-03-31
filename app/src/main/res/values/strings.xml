@@ -2,7 +2,7 @@
     <string name="app_name">Mercearias</string>
     <string name="sales">Vendas</string>
     <string name="reports">Relatórios</string>
-    <string name="products_and_stocks">Produtos e Stocks</string>
+    <string name="products_and_services">Produtos e Serviços</string>
     <string name="sale_regist">Registar Vendas</string>
 
     <string name="discount">Desconto:</string>
@@ -85,13 +85,27 @@
     <string name="welcome">Seja muito bem-vindo ao Mercearias Online. Um email com as credências foi enviado para</string>
     <string name="welcome_saler">Um email com as credências foi enviado ao novo utilizador para</string>
     <string name="error_on_sign_up">Ocorreu um erro ao registar o utilizador. por favor tente mais tarde.</string>
-    <string name="add_new_products">Adicionar Novos Produtos</string>
-    <string name="update_stocks_and_prices">Actualizar Stocks e Preços</string>
+    <string name="add_new_products">Adicionar Produtos ou Serviços</string>
+    <string name="update_stocks_and_services">Actualizar Stocks ou Serviços</string>
     <string name="update">Actualizar</string>
     <string name="select_product">Seleccionar o producto</string>
     <string name="add">Adicionar</string>
     <string name="grocery_without_products">Mercearia sem productos por actualizar. Por favor adicione.</string>
     <string name="new_products_added_with_success">Novo(s) producto(s) adicionado(s) com sucesso!</string>
     <string name="error_on_adding_products">Ocorreu um erro ao adicionar produto(s). Por favor tente mais tarde.</string>
+    <string name="select_item">Seleccionar o Item</string>
+    <string name="services">Serviços</string>
+    <string name="service_details">Detalhe do Serviço</string>
+    <string name="error_selecting_item">Ocorreu um erro ao seleccionar o item</string>
+    <string name="saleable_items_created">Item(s) adicionado(s) com sucesso!</string>
+    <string name="saleable_items_creation_error">Ocorreu um erro ao adicionar item(s)</string>
+    <string name="saleable_without_items_not_allowed">Pelo menos um item dever ser seleccionado!</string>
+    <string name="saleable_items_updated">Item(s) actualizado(s) com sucesso!</string>
+    <string name="saleable_items_update_error">Ocorreu um erro ao actualizar item(s)</string>
+    <string name="no_items_available">Nenhum item disponível para selecção!</string>
+    <string name="update_stocks">Actualizar productos</string>
+    <string name="add_service">Adicionar serviço</string>
+    <string name="update_service">Actualizar serviço</string>
+    <string name="unit_type">Tipo de Estabelecimento</string>
 
 </resources>

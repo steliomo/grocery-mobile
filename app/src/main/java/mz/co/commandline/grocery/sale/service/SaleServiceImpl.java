@@ -2,11 +2,11 @@ package mz.co.commandline.grocery.sale.service;
 
 import javax.inject.Inject;
 
-import mz.co.commandline.grocery.listner.ResponseListner;
+import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
 import mz.co.commandline.grocery.sale.dto.SalesDTO;
-import mz.co.commandline.grocery.service.AbstractService;
-import mz.co.commandline.grocery.service.RetrofitService;
+import mz.co.commandline.grocery.generics.service.AbstractService;
+import mz.co.commandline.grocery.generics.service.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,9 +20,6 @@ public class SaleServiceImpl extends AbstractService implements SaleService {
     public SaleServiceImpl() {
     }
 
-    private SaleResource getResource() {
-        return retrofitService.getResource(SaleResource.class);
-    }
 
     @Override
     public void registSale(SaleDTO sale, final ResponseListner<SaleDTO> responseListner) {
@@ -82,5 +79,10 @@ public class SaleServiceImpl extends AbstractService implements SaleService {
                 responseListner.error(t.getMessage());
             }
         });
+    }
+
+    @Override
+    public SaleResource getResource() {
+        return retrofitService.getResource(SaleResource.class);
     }
 }

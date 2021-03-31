@@ -12,12 +12,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.fragment.BaseFragment;
+import mz.co.commandline.grocery.generics.fragment.BaseFragment;
+import mz.co.commandline.grocery.saleable.dto.SaleableItemDTO;
 import mz.co.commandline.grocery.sale.delegate.SaleDelegate;
 import mz.co.commandline.grocery.sale.dto.SaleItemDTO;
-import mz.co.commandline.grocery.stock.delegate.ProductsAndStocksDelegate;
-import mz.co.commandline.grocery.stock.delegate.StockDelegate;
-import mz.co.commandline.grocery.stock.dto.StockDTO;
+import mz.co.commandline.grocery.saleable.delegate.SaleableItemDelegate;
 import mz.co.commandline.grocery.validator.DefaultValidator;
 import mz.co.commandline.grocery.validator.Validator;
 
@@ -39,7 +38,7 @@ public class AddSaleItemFragment extends BaseFragment {
 
     private List<Validator> validators;
 
-    private StockDTO stockDTO;
+    private SaleableItemDTO saleableItemDTO;
 
     @Override
     public int getResourceId() {
@@ -49,10 +48,10 @@ public class AddSaleItemFragment extends BaseFragment {
     @Override
     public void onCreateView() {
         saleDelegate = (SaleDelegate) getActivity();
-        StockDelegate stockDelegate = (StockDelegate) getActivity();
+        SaleableItemDelegate saleableItemDelegate = (SaleableItemDelegate) getActivity();
 
-        stockDTO = stockDelegate.getStock();
-        productName.setText(stockDTO.getProductDescriptionDTO().getName());
+        saleableItemDTO = saleableItemDelegate.getSaleableItem();
+        productName.setText(saleableItemDTO.getName());
         validators = new ArrayList<>();
 
         configureQuantityInput();
@@ -79,7 +78,7 @@ public class AddSaleItemFragment extends BaseFragment {
                         return;
                     }
 
-                    BigDecimal total = new BigDecimal(stockDTO.getSalePrice()).multiply(new BigDecimal(value));
+                    BigDecimal total = new BigDecimal(saleableItemDTO.getSalePrice()).multiply(new BigDecimal(value));
                     itemValue.getEditText().setText(total.toString());
                     itemValue.setEnabled(false);
                     validator.isValid();
@@ -106,7 +105,7 @@ public class AddSaleItemFragment extends BaseFragment {
                     }
 
                     BigDecimal saleItemValue = new BigDecimal(value);
-                    saleItemValue = saleItemValue.divide(new BigDecimal(stockDTO.getSalePrice()), 2, RoundingMode.HALF_UP);
+                    saleItemValue = saleItemValue.divide(new BigDecimal(saleableItemDTO.getSalePrice()), 2, RoundingMode.HALF_UP);
                     quantity.getEditText().setText(saleItemValue.toString());
                     quantity.setEnabled(false);
                     validator.isValid();
@@ -124,7 +123,7 @@ public class AddSaleItemFragment extends BaseFragment {
             }
         }
 
-        SaleItemDTO saleItem = new SaleItemDTO(stockDTO,
+        SaleItemDTO saleItem = new SaleItemDTO(saleableItemDTO,
                 new BigDecimal(quantity.getEditText().getText().toString()),
                 new BigDecimal(itemValue.getEditText().getText().toString()),
                 new BigDecimal(discount.getEditText().getText().toString()));

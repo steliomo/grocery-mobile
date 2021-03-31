@@ -2,9 +2,6 @@ package mz.co.commandline.grocery.activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -16,31 +13,34 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.dialog.ProgressDialogManager;
-import mz.co.commandline.grocery.listner.ResponseListner;
+import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
+import mz.co.commandline.grocery.item.delegate.ItemDelegate;
+import mz.co.commandline.grocery.item.dto.ItemDTO;
+import mz.co.commandline.grocery.saleable.dto.SaleableItemDTO;
+import mz.co.commandline.grocery.item.service.ItemService;
+import mz.co.commandline.grocery.saleable.service.SaleableItemService;
+import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.module.GroceryComponent;
-import mz.co.commandline.grocery.product.delegate.ProductDelegate;
-import mz.co.commandline.grocery.product.dto.ProductDTO;
-import mz.co.commandline.grocery.product.fragment.ProductFragment;
-import mz.co.commandline.grocery.product.service.ProductService;
+import mz.co.commandline.grocery.item.dto.ItemType;
+import mz.co.commandline.grocery.item.fragment.ProductFragment;
+import mz.co.commandline.grocery.item.service.ProductService;
 import mz.co.commandline.grocery.sale.delegate.SaleDelegate;
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
 import mz.co.commandline.grocery.sale.dto.SaleItemDTO;
 import mz.co.commandline.grocery.sale.fragment.AddSaleItemFragment;
+import mz.co.commandline.grocery.sale.fragment.ItemTypeFragment;
 import mz.co.commandline.grocery.sale.fragment.SaleRegistFragment;
 import mz.co.commandline.grocery.sale.service.SaleService;
-import mz.co.commandline.grocery.stock.delegate.ProductsAndStocksDelegate;
-import mz.co.commandline.grocery.stock.delegate.StockDelegate;
-import mz.co.commandline.grocery.stock.dto.StockDTO;
-import mz.co.commandline.grocery.stock.fragment.StockFragment;
-import mz.co.commandline.grocery.stock.service.StockService;
+import mz.co.commandline.grocery.saleable.delegate.SaleableItemDelegate;
+import mz.co.commandline.grocery.saleable.fragment.StockFragment;
+import mz.co.commandline.grocery.saleable.service.StockService;
 import mz.co.commandline.grocery.user.service.UserService;
 import mz.co.commandline.grocery.util.KeyboardUtil;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
 
-public class SaleActivity extends BaseAuthActivity implements SaleDelegate, ProductDelegate, StockDelegate, View.OnClickListener {
+public class SaleActivity extends BaseAuthActivity implements SaleDelegate, SaleableItemDelegate, View.OnClickListener, ItemDelegate {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -57,19 +57,25 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Prod
     @Inject
     UserService userService;
 
-    private FragmentManager fragmentManager;
+    @Inject
+    ItemService itemService;
+
+    @Inject
+    SaleableItemService saleableItemService;
 
     private ProgressDialog progressBar;
 
-    private List<ProductDTO> productsDTO;
+    private List<SaleableItemDTO> saleableItems;
 
-    private List<StockDTO> stocksDTO;
-
-    private StockDTO stockDTO;
+    private SaleableItemDTO saleableItemDTO;
 
     private SaleDTO sale;
 
     private AlertDialogManager dialogManager;
+
+    private ItemType itemType;
+
+    private List<ItemDTO> itemsDTO;
 
     @Override
     public void onGroceryCreate(Bundle bundle) {
@@ -82,8 +88,6 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Prod
         GroceryComponent component = application.getComponent();
         component.inject(this);
 
-        fragmentManager = getSupportFragmentManager();
-
         sale = new SaleDTO();
 
         ProgressDialogManager progressDialogManager = new ProgressDialogManager(this);
@@ -94,97 +98,10 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Prod
         showFragment(new SaleRegistFragment(), Boolean.FALSE);
     }
 
-    private void showFragment(Fragment fragment, boolean onStack) {
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.sale_activity_frame_layout, fragment);
-
-        if (onStack) {
-            transaction.addToBackStack(null);
-        }
-
-        transaction.commit();
-    }
-
-    @Override
-    public void selectProduct() {
-        progressBar.show();
-
-        productService.findProductsByGrocery(userService.getGroceryDTO(), new ResponseListner<List<ProductDTO>>() {
-            @Override
-            public void success(List<ProductDTO> response) {
-                progressBar.dismiss();
-                productsDTO = response;
-                showFragment(new ProductFragment(), Boolean.TRUE);
-            }
-
-            @Override
-            public void error(String message) {
-                dialogManager.dialog(AlertType.ERROR, getString(R.string.sale_error_on_add_item), null);
-                progressBar.dismiss();
-                Log.e("PRODUCTS", message);
-            }
-        });
-
-    }
-
-    @Override
-    public List<ProductDTO> getProductsDTO() {
-        return productsDTO;
-    }
-
-    @Override
-    public void selectedProduct(ProductDTO productDTO) {
-
-        KeyboardUtil.hideKeyboard(this, toolbar);
-        progressBar.show();
-
-        stockService.findProductStocksByGroceryAndProduct(userService.getGroceryDTO(), productDTO, new ResponseListner<List<StockDTO>>() {
-            @Override
-            public void success(List<StockDTO> response) {
-                progressBar.dismiss();
-
-                if (response.isEmpty()) {
-                    dialogManager.dialog(AlertType.ERROR, getString(R.string.sale_no_stock_for_the_product_selected), null);
-                    return;
-                }
-
-                stocksDTO = response;
-                showFragment(new StockFragment(), Boolean.TRUE);
-            }
-
-            @Override
-            public void error(String message) {
-                progressBar.dismiss();
-                dialogManager.dialog(AlertType.ERROR, getString(R.string.sale_error_on_selecting_product), null);
-                Log.e("STOCKS", message);
-            }
-        });
-    }
-
-    @Override
-    public List<StockDTO> getStocks() {
-        return Collections.unmodifiableList(stocksDTO);
-    }
-
-    @Override
-    public void selectedStock(StockDTO stockDTO) {
-        this.stockDTO = stockDTO;
-        showFragment(new AddSaleItemFragment(), Boolean.TRUE);
-    }
-
-    @Override
-    public StockDTO getStock() {
-        return stockDTO;
-    }
-
     @Override
     public void addSaleItem(SaleItemDTO saleItem) {
         sale.addSaleItem(saleItem);
         resetFragment();
-    }
-
-    private void resetFragment() {
-        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         showFragment(new SaleRegistFragment(), Boolean.FALSE);
     }
 
@@ -196,6 +113,12 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Prod
     @Override
     public void cancel() {
         resetFragment();
+        showFragment(new SaleRegistFragment(), Boolean.FALSE);
+    }
+
+    @Override
+    public void selectItem() {
+        showFragment(new ItemTypeFragment(), Boolean.TRUE);
     }
 
     @Override
@@ -232,11 +155,88 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Prod
 
     @Override
     public void onClick(View view) {
-        if (fragmentManager.getBackStackEntryCount() > 0) {
-            fragmentManager.popBackStack();
-            return;
-        }
+        popBackStack();
+    }
 
-        finish();
+    @Override
+    public void selectItemType(ItemType itemType) {
+        this.itemType = itemType;
+        progressBar.show();
+
+        itemService.findItemByUnit(itemType, userService.getGroceryDTO(), new ResponseListner<List<ItemDTO>>() {
+            @Override
+            public void success(List<ItemDTO> response) {
+                progressBar.dismiss();
+                itemsDTO = response;
+                showFragment(new ProductFragment(), Boolean.TRUE);
+            }
+
+            @Override
+            public void error(String message) {
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.sale_error_on_add_item), null);
+                progressBar.dismiss();
+                Log.e("ITEMS", message);
+            }
+        });
+    }
+
+    @Override
+    public List<ItemDTO> getItemsDTO() {
+        return itemsDTO;
+    }
+
+    @Override
+    public void selectedItem(ItemDTO itemDTO) {
+
+        KeyboardUtil.hideKeyboard(this, toolbar);
+        progressBar.show();
+
+        saleableItemService.findSalebleItemByItemAndUnit(itemDTO, userService.getGroceryDTO(), new ResponseListner<List<SaleableItemDTO>>() {
+            @Override
+            public void success(List<SaleableItemDTO> response) {
+                progressBar.dismiss();
+
+                if (response.isEmpty()) {
+                    dialogManager.dialog(AlertType.ERROR, getString(R.string.sale_no_stock_for_the_product_selected), null);
+                    return;
+                }
+
+                saleableItems = response;
+                showFragment(new StockFragment(), Boolean.TRUE);
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.sale_error_on_selecting_product), null);
+                Log.e("SALABLE_ITEM", message);
+            }
+        });
+    }
+
+    @Override
+    public ItemType getItemType() {
+        return itemType;
+    }
+
+    @Override
+    public List<SaleableItemDTO> getSaleableItems() {
+        return Collections.unmodifiableList(saleableItems);
+    }
+
+    @Override
+    public void selectedSaleableItem(SaleableItemDTO saleableItemDTO) {
+        this.saleableItemDTO = saleableItemDTO;
+        showFragment(new AddSaleItemFragment(), Boolean.TRUE);
+    }
+
+    @Override
+    public SaleableItemDTO getSaleableItem() {
+        return saleableItemDTO;
+    }
+
+    @Override
+    public int getActivityFrameLayoutId() {
+        return R.id.sale_activity_frame_layout;
     }
 }

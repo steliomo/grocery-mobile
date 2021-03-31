@@ -16,8 +16,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.dialog.ProgressDialogManager;
-import mz.co.commandline.grocery.listner.ResponseListner;
+import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
+import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.report.ReportType;
 import mz.co.commandline.grocery.report.delegate.ReportDelegate;
@@ -27,12 +27,11 @@ import mz.co.commandline.grocery.report.fragment.SaleReportFragment;
 import mz.co.commandline.grocery.report.fragment.StockReportFragment;
 import mz.co.commandline.grocery.sale.dto.SalesDTO;
 import mz.co.commandline.grocery.sale.service.SaleService;
-import mz.co.commandline.grocery.stock.dto.StockDTO;
-import mz.co.commandline.grocery.stock.service.StockService;
+import mz.co.commandline.grocery.saleable.dto.StockDTO;
+import mz.co.commandline.grocery.saleable.service.StockService;
 import mz.co.commandline.grocery.user.service.UserService;
 import mz.co.commandline.grocery.util.DateUtil;
 import mz.co.commandline.grocery.util.FormatterUtil;
-import mz.co.commandline.grocery.util.FragmentUtil;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertType;
 
@@ -73,19 +72,17 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
         GroceryComponent component = application.getComponent();
         component.inject(this);
 
-        fragmentManager = getSupportFragmentManager();
-
         alertDialogManager = new AlertDialogManager(this);
 
         ProgressDialogManager progressDialogManager = new ProgressDialogManager(this);
         progressBar = progressDialogManager.getProgressBar(getString(R.string.wait), getString(R.string.processing_request));
 
-        FragmentUtil.displayFragment(fragmentManager, R.id.report_activity_framelayout, new ReportMenuFragment(), Boolean.FALSE);
+        showFragment(new ReportMenuFragment(), Boolean.FALSE);
     }
 
     @Override
     public void onClick(View view) {
-        FragmentUtil.popBackStack(fragmentManager, this);
+        popBackStack();
     }
 
     @Override
@@ -101,7 +98,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     @Override
     public void displaySalesReport() {
         reportType = ReportType.SALES_REPORT;
-        FragmentUtil.displayFragment(fragmentManager, R.id.report_activity_framelayout, new PeriodSelectionFragment(), Boolean.TRUE);
+        showFragment(new PeriodSelectionFragment(), Boolean.TRUE);
     }
 
     @Override
@@ -119,7 +116,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
                 }
 
                 stocks = response;
-                FragmentUtil.displayFragment(fragmentManager, R.id.report_activity_framelayout, new StockReportFragment(), Boolean.TRUE);
+                showFragment(new StockReportFragment(), Boolean.TRUE);
             }
 
             @Override
@@ -146,7 +143,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
                 }
 
                 stocks = response;
-                FragmentUtil.displayFragment(fragmentManager, R.id.report_activity_framelayout, new StockReportFragment(), Boolean.TRUE);
+                showFragment(new StockReportFragment(), Boolean.TRUE);
             }
 
             @Override
@@ -182,7 +179,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
                 }
 
                 sales = response;
-                FragmentUtil.displayFragment(fragmentManager, R.id.report_activity_framelayout, new SaleReportFragment(), Boolean.TRUE);
+                showFragment(new SaleReportFragment(), Boolean.TRUE);
             }
 
             @Override
@@ -222,5 +219,10 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
                 dialog.dismiss();
             }
         });
+    }
+
+    @Override
+    public int getActivityFrameLayoutId() {
+        return R.id.report_activity_framelayout;
     }
 }

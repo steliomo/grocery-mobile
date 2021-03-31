@@ -2,15 +2,14 @@ package mz.co.commandline.grocery.user.service;
 
 import android.util.Base64;
 
-import java.io.IOException;
-
 import javax.inject.Inject;
 
+import mz.co.commandline.grocery.generics.dto.EnumsDTO;
 import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.infra.SharedPreferencesManager;
-import mz.co.commandline.grocery.listner.ResponseListner;
-import mz.co.commandline.grocery.service.AbstractService;
-import mz.co.commandline.grocery.service.RetrofitService;
+import mz.co.commandline.grocery.generics.listner.ResponseListner;
+import mz.co.commandline.grocery.generics.service.AbstractService;
+import mz.co.commandline.grocery.generics.service.RetrofitService;
 import mz.co.commandline.grocery.user.dto.GroceryUserDTO;
 import mz.co.commandline.grocery.user.dto.UserDTO;
 import mz.co.commandline.grocery.user.dto.UserRole;
@@ -35,7 +34,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
     public UserServiceImpl() {
     }
 
-    private UserResource getResource() {
+    @Override
+    public UserResource getResource() {
         return retrofitService.getResource(UserResource.class);
     }
 
@@ -176,6 +176,26 @@ public class UserServiceImpl extends AbstractService implements UserService {
 
             @Override
             public void onFailure(Call<UserDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void getUnitTypes(final ResponseListner<EnumsDTO> responseListner) {
+        getResource().getUnitTypes().enqueue(new Callback<EnumsDTO>() {
+            @Override
+            public void onResponse(Call<EnumsDTO> call, Response<EnumsDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<EnumsDTO> call, Throwable t) {
                 responseListner.error(t.getMessage());
             }
         });

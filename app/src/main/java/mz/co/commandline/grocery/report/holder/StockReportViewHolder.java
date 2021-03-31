@@ -6,9 +6,9 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.holder.BaseViewHolder;
-import mz.co.commandline.grocery.listner.ClickListner;
-import mz.co.commandline.grocery.stock.dto.StockDTO;
+import mz.co.commandline.grocery.generics.holder.BaseViewHolder;
+import mz.co.commandline.grocery.generics.listner.ClickListner;
+import mz.co.commandline.grocery.saleable.dto.StockDTO;
 
 public class StockReportViewHolder extends BaseViewHolder<StockDTO> {
 

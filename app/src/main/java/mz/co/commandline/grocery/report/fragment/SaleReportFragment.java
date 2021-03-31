@@ -5,11 +5,9 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
-import java.math.BigDecimal;
-
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.fragment.BaseFragment;
+import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.report.adapter.SaleReportAdapter;
 import mz.co.commandline.grocery.report.delegate.ReportDelegate;
 import mz.co.commandline.grocery.sale.dto.SalesDTO;

@@ -5,9 +5,9 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.math.BigDecimal;
 
-import mz.co.commandline.grocery.dto.GenericDTO;
+import mz.co.commandline.grocery.generics.dto.GenericDTO;
 
-import mz.co.commandline.grocery.stock.dto.StockDTO;
+import mz.co.commandline.grocery.saleable.dto.StockDTO;
 
 public class StockInventoryDTO extends GenericDTO {
 

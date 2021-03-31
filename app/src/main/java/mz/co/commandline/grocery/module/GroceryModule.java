@@ -13,17 +13,26 @@ import mz.co.commandline.grocery.expense.service.ExpenseTypeServiceImpl;
 import mz.co.commandline.grocery.infra.SharedPreferencesManager;
 import mz.co.commandline.grocery.inventory.service.InventoryService;
 import mz.co.commandline.grocery.inventory.service.InventoryServiceImpl;
-import mz.co.commandline.grocery.product.service.ProductService;
-import mz.co.commandline.grocery.product.service.ProductServiceImpl;
+import mz.co.commandline.grocery.item.service.ItemService;
+import mz.co.commandline.grocery.item.service.ItemServiceImpl;
+import mz.co.commandline.grocery.saleable.service.SaleableItemService;
+import mz.co.commandline.grocery.saleable.service.SaleableItemServiceImpl;
+import mz.co.commandline.grocery.item.service.ProductService;
+import mz.co.commandline.grocery.item.service.ProductServiceImpl;
+import mz.co.commandline.grocery.item.service.ServiceService;
+import mz.co.commandline.grocery.item.service.ServiceServiceImpl;
 import mz.co.commandline.grocery.sale.service.SaleService;
 import mz.co.commandline.grocery.sale.service.SaleServiceImpl;
-import mz.co.commandline.grocery.service.RetrofitService;
-import mz.co.commandline.grocery.service.RetrofitServiceImpl;
-import mz.co.commandline.grocery.stock.service.StockService;
-import mz.co.commandline.grocery.stock.service.StockServiceImpl;
+import mz.co.commandline.grocery.saleable.service.SaleableService;
+import mz.co.commandline.grocery.saleable.service.SaleableServiceImpl;
+import mz.co.commandline.grocery.generics.service.RetrofitService;
+import mz.co.commandline.grocery.generics.service.RetrofitServiceImpl;
+import mz.co.commandline.grocery.saleable.service.ServiceItemService;
+import mz.co.commandline.grocery.saleable.service.ServiceItemServiceImpl;
+import mz.co.commandline.grocery.saleable.service.StockService;
+import mz.co.commandline.grocery.saleable.service.StockServiceImpl;
 import mz.co.commandline.grocery.user.service.UserService;
 import mz.co.commandline.grocery.user.service.UserServiceImpl;
-import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 
 @Module
 public class GroceryModule {
@@ -79,5 +88,30 @@ public class GroceryModule {
     @Provides
     public ExpenseService provideExpenseService(ExpenseServiceImpl expenseService) {
         return expenseService;
+    }
+
+    @Provides
+    public ItemService provideItemService(ItemServiceImpl itemService) {
+        return itemService;
+    }
+
+    @Provides
+    public SaleableItemService provideSalableItemService(SaleableItemServiceImpl salableItemService) {
+        return salableItemService;
+    }
+
+    @Provides
+    public ServiceService provideServiceService(ServiceServiceImpl serviceService) {
+        return serviceService;
+    }
+
+    @Provides
+    public ServiceItemService provideServiceItemService(ServiceItemServiceImpl serviceItemService) {
+        return serviceItemService;
+    }
+
+    @Provides
+    public SaleableService provideSaleableService(SaleableServiceImpl saleableService) {
+        return saleableService;
     }
 }

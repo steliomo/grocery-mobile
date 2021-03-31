@@ -44,6 +44,8 @@ captures/
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
+.idea/compiler.xml
+.idea/jarRepositories.xml
 
 #IDE
 .DS_Store

@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
-import mz.co.commandline.grocery.dto.GenericDTO;
+import mz.co.commandline.grocery.generics.dto.GenericDTO;
 import mz.co.commandline.grocery.util.DateUtil;
 
 public class SaleDTO extends GenericDTO {

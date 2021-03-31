@@ -4,9 +4,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import butterknife.BindView;
-import mz.co.commandline.grocery.listner.ClickListner;
+import mz.co.commandline.grocery.generics.listner.ClickListner;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.holder.BaseViewHolder;
+import mz.co.commandline.grocery.generics.holder.BaseViewHolder;
 import mz.co.commandline.grocery.sale.dto.SaleReport;
 import mz.co.commandline.grocery.util.FormatterUtil;
 

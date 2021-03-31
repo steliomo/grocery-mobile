@@ -7,11 +7,12 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.fragment.BaseFragment;
+import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.inventory.adapter.StockInventoryAdapter;
 import mz.co.commandline.grocery.inventory.delegate.InventoryDelegate;
 import mz.co.commandline.grocery.inventory.dto.InventoryDTO;
-import mz.co.commandline.grocery.product.delegate.ProductDelegate;
+import mz.co.commandline.grocery.item.delegate.ItemDelegate;
+import mz.co.commandline.grocery.item.dto.ItemType;
 
 
 public class PerformInventoryFragment extends BaseFragment {
@@ -25,7 +26,7 @@ public class PerformInventoryFragment extends BaseFragment {
     @BindView(R.id.fragment_perform_inventory_recycler_view)
     RecyclerView recyclerView;
 
-    private ProductDelegate productDelegate;
+    private ItemDelegate itemDelegate;
 
     private InventoryDelegate inventoryDelegate;
 
@@ -37,7 +38,7 @@ public class PerformInventoryFragment extends BaseFragment {
 
     @Override
     public void onCreateView() {
-        productDelegate = (ProductDelegate) getActivity();
+        itemDelegate = (ItemDelegate) getActivity();
         inventoryDelegate = (InventoryDelegate) getActivity();
 
         InventoryDTO inventory = inventoryDelegate.getInventoryDTO();
@@ -51,7 +52,7 @@ public class PerformInventoryFragment extends BaseFragment {
 
     @OnClick(R.id.fragment_perform_inventory_add_item)
     public void onClickAddItem() {
-        productDelegate.selectProduct();
+        itemDelegate.selectItemType(ItemType.PRODUCT);
     }
 
     @OnClick(R.id.fragment_perform_inventory_perform_inventory)

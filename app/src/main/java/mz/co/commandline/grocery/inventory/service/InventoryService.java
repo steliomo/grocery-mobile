@@ -3,7 +3,7 @@ package mz.co.commandline.grocery.inventory.service;
 import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.inventory.dto.InventoryDTO;
 import mz.co.commandline.grocery.inventory.dto.InventoryStatus;
-import mz.co.commandline.grocery.listner.ResponseListner;
+import mz.co.commandline.grocery.generics.listner.ResponseListner;
 
 public interface InventoryService {
 

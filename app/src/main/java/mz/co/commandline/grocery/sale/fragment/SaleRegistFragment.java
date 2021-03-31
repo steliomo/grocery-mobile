@@ -9,10 +9,9 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.product.delegate.ProductDelegate;
 import mz.co.commandline.grocery.sale.adapter.SaleItemAdapter;
 import mz.co.commandline.grocery.sale.delegate.SaleDelegate;
-import mz.co.commandline.grocery.fragment.BaseFragment;
+import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
 import mz.co.commandline.grocery.util.FormatterUtil;
 
@@ -29,9 +28,6 @@ public class SaleRegistFragment extends BaseFragment {
 
     private SaleDelegate saleDelegate;
 
-    private ProductDelegate productDelegate;
-
-
     @Override
     public int getResourceId() {
         return R.layout.fragment_sale_regist;
@@ -40,8 +36,6 @@ public class SaleRegistFragment extends BaseFragment {
     @Override
     public void onCreateView() {
         saleDelegate = (SaleDelegate) getActivity();
-        productDelegate = (ProductDelegate) getActivity();
-
         SaleDTO sale = saleDelegate.getSale();
 
         totalSale.setText(FormatterUtil.mtFormat(sale.getTotalSale()));
@@ -52,7 +46,7 @@ public class SaleRegistFragment extends BaseFragment {
 
     @OnClick(R.id.fragment_sale_regist_add_item)
     public void onClickAddItem() {
-        productDelegate.selectProduct();
+        saleDelegate.selectItem();
     }
 
     @OnClick(R.id.fragment_sale_regist_regist_sale)

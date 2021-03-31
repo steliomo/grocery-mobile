@@ -3,7 +3,7 @@ package mz.co.commandline.grocery.expense.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import mz.co.commandline.grocery.dto.GenericDTO;
+import mz.co.commandline.grocery.generics.dto.GenericDTO;
 
 public class ExpensesDTO extends GenericDTO {
 

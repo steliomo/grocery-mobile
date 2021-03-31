@@ -9,7 +9,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.fragment.BaseFragment;
+import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.login.delegate.SignUpDelegate;
 import mz.co.commandline.grocery.user.dto.UserDTO;
 import mz.co.commandline.grocery.util.TextInputLayoutUtil;

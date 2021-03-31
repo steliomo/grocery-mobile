@@ -5,11 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,8 +17,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.dialog.ProgressDialogManager;
-import mz.co.commandline.grocery.listner.ResponseListner;
+import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
+import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.login.delegate.SignUpDelegate;
 import mz.co.commandline.grocery.login.fragment.SignUpUserFragment;
 import mz.co.commandline.grocery.main.delegate.MainDelegate;
@@ -31,7 +31,6 @@ import mz.co.commandline.grocery.user.dto.UserDTO;
 import mz.co.commandline.grocery.user.dto.UserRole;
 import mz.co.commandline.grocery.user.service.UserService;
 import mz.co.commandline.grocery.util.DateUtil;
-import mz.co.commandline.grocery.util.FragmentUtil;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
@@ -53,8 +52,6 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
     @Inject
     SaleService saleService;
 
-    private FragmentManager fragmentManager;
-
     private AlertDialogManager dialogManager;
 
     private ProgressDialog progressBar;
@@ -72,8 +69,6 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
             return;
         }
 
-        fragmentManager = getSupportFragmentManager();
-
         dialogManager = new AlertDialogManager(this);
         ProgressDialogManager progressDialogManager = new ProgressDialogManager(this);
         progressBar = progressDialogManager.getProgressBar(getString(R.string.wait), getString(R.string.processing_request));
@@ -82,7 +77,16 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
 
         toolbar.setNavigationOnClickListener(this);
         navigationView.setNavigationItemSelectedListener(this);
+
+        hideAddUserMenuItem();
         displayUsername();
+    }
+
+    private void hideAddUserMenuItem() {
+        if (UserRole.OPERATOR.equals(userService.getGroceryUser().getUserRole())) {
+            MenuItem userItem = navigationView.getMenu().findItem(R.id.menu_drawer_add_user);
+            userItem.setVisible(Boolean.FALSE);
+        }
     }
 
     private void displayUsername() {
@@ -116,7 +120,7 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
                 break;
 
             case R.id.menu_drawer_main_menu:
-                FragmentUtil.displayFragment(fragmentManager, R.id.main_activity_frame_layout, new MainMenuFragment(), Boolean.FALSE);
+                showFragment(new MainMenuFragment(), Boolean.FALSE);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
 
@@ -127,7 +131,7 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
 
             case R.id.menu_drawer_add_user:
                 drawerLayout.closeDrawer(GravityCompat.START);
-                FragmentUtil.displayFragment(fragmentManager, R.id.main_activity_frame_layout, new SignUpUserFragment(), Boolean.FALSE);
+                showFragment(new SignUpUserFragment(), Boolean.FALSE);
                 break;
         }
 
@@ -143,7 +147,7 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
                 progressBar.dismiss();
 
                 sales = response;
-                FragmentUtil.displayFragment(fragmentManager, R.id.main_activity_frame_layout, new DashboardFragment(), Boolean.FALSE);
+                showFragment(new DashboardFragment(), Boolean.FALSE);
             }
 
             @Override
@@ -178,7 +182,7 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.welcome_saler) + " " + response.getEmail(), new AlertListner() {
                     @Override
                     public void perform() {
-                        FragmentUtil.displayFragment(fragmentManager, R.id.main_activity_frame_layout, new MainMenuFragment(), Boolean.FALSE);
+                        showFragment(new MainMenuFragment(), Boolean.FALSE);
                     }
                 });
             }
@@ -189,11 +193,16 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.error_on_sign_up), new AlertListner() {
                     @Override
                     public void perform() {
-                        FragmentUtil.displayFragment(fragmentManager, R.id.main_activity_frame_layout, new MainMenuFragment(), Boolean.FALSE);
+                        showFragment(new MainMenuFragment(), Boolean.FALSE);
                     }
                 });
                 Log.e("ADD_SALER", message);
             }
         });
+    }
+
+    @Override
+    public int getActivityFrameLayoutId() {
+        return R.id.main_activity_frame_layout;
     }
 }

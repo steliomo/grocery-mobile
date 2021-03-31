@@ -8,7 +8,7 @@ import butterknife.OnClick;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.expense.adapter.ExpenseAdapter;
 import mz.co.commandline.grocery.expense.delegate.ExpenseDelegate;
-import mz.co.commandline.grocery.fragment.BaseFragment;
+import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 
 public class RegistExpenseFragment extends BaseFragment {
 

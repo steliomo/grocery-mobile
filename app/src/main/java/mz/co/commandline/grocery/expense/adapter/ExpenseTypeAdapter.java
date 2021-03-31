@@ -12,7 +12,7 @@ import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.adapter.BaseAdapter;
 import mz.co.commandline.grocery.expense.dto.ExpenseTypeDTO;
 import mz.co.commandline.grocery.expense.holder.ExpenseTypeViewHolder;
-import mz.co.commandline.grocery.listner.ClickListner;
+import mz.co.commandline.grocery.generics.listner.ClickListner;
 
 public class ExpenseTypeAdapter extends BaseAdapter<ExpenseTypeViewHolder> {
 

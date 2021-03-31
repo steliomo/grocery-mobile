@@ -1,6 +1,6 @@
 package mz.co.commandline.grocery.grocery.dto;
 
-import mz.co.commandline.grocery.dto.GenericDTO;
+import mz.co.commandline.grocery.generics.dto.GenericDTO;
 
 public class GroceryDTO extends GenericDTO {
 
@@ -11,6 +11,8 @@ public class GroceryDTO extends GenericDTO {
     private String phoneNumber;
 
     private String email;
+
+    private String unitType;
 
     public GroceryDTO() {
     }
@@ -36,6 +38,14 @@ public class GroceryDTO extends GenericDTO {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getUnitType() {
+        return unitType;
+    }
+
+    public void setUnitType(String unitType) {
+        this.unitType = unitType;
     }
 
     @Override
