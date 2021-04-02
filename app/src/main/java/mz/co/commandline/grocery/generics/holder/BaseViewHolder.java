@@ -1,6 +1,6 @@
 package mz.co.commandline.grocery.generics.holder;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import butterknife.ButterKnife;

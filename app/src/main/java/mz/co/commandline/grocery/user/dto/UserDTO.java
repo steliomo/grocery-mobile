@@ -1,6 +1,6 @@
 package mz.co.commandline.grocery.user.dto;
 
-import android.support.v4.view.GravityCompat;
+import androidx.core.view.GravityCompat;
 
 public class UserDTO {
 

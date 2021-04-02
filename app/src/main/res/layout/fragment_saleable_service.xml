@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -47,7 +47,7 @@
             app:layout_constraintTop_toTopOf="@+id/fragment_saleable_service_imageview"
             tools:text="Arroz Mariana 1.00 KG" />
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/fragment_saleable_service_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -56,14 +56,14 @@
             app:layout_constraintStart_toStartOf="@+id/fragment_saleable_service_view"
             app:layout_constraintTop_toBottomOf="@+id/fragment_saleable_service_view">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_money"
                 android:drawableLeft="@drawable/ic_money"
                 android:hint="Preço de Venda"
                 android:inputType="numberDecimal" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/fragment_saleable_service_add"
@@ -97,5 +97,5 @@
             app:layout_constraintStart_toEndOf="@+id/fragment_saleable_service_add"
             app:layout_constraintTop_toTopOf="@+id/fragment_saleable_service_add" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -1,6 +1,6 @@
 package mz.co.commandline.grocery.validator;
 
-import android.support.design.widget.TextInputLayout;
+import com.google.android.material.textfield.TextInputLayout;
 import android.widget.EditText;
 
 import mz.co.commandline.grocery.R;

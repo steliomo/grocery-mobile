@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="@+id/fragment_add_inventory_item_image_view"
         tools:text="Arroz Mariana 1.00 KG" />
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fragment_add_inventory_item_quantity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -55,14 +55,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_add_inventory_item_view">
 
-        <android.support.design.widget.TextInputEditText
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_quantity"
             android:drawableStart="@drawable/ic_quantity"
             android:hint="Quantidade"
             android:inputType="numberDecimal" />
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/fragment_add_inventory_item_add"
@@ -96,4 +96,4 @@
         app:layout_constraintStart_toEndOf="@+id/fragment_add_inventory_item_add"
         app:layout_constraintTop_toTopOf="@+id/fragment_add_inventory_item_add" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

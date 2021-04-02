@@ -1,6 +1,6 @@
 package mz.co.commandline.grocery.sale.fragment;
 
-import android.support.design.widget.TextInputLayout;
+import com.google.android.material.textfield.TextInputLayout;
 import android.view.View;
 import android.widget.TextView;
 

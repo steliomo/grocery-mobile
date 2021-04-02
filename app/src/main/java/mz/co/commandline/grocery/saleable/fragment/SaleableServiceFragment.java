@@ -1,7 +1,7 @@
 package mz.co.commandline.grocery.saleable.fragment;
 
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.widget.Toolbar;
 import android.widget.TextView;
 
 import butterknife.BindView;

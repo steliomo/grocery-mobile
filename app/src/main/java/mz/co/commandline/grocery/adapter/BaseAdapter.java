@@ -1,6 +1,6 @@
 package mz.co.commandline.grocery.adapter;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import mz.co.commandline.grocery.generics.listner.ClickListner;
 

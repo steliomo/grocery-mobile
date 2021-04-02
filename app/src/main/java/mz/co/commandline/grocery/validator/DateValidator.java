@@ -1,7 +1,7 @@
 package mz.co.commandline.grocery.validator;
 
 import android.content.Context;
-import android.support.design.widget.TextInputLayout;
+import com.google.android.material.textfield.TextInputLayout;
 import android.view.View;
 
 import static mz.co.commandline.grocery.util.DatePickerUtil.setDate;

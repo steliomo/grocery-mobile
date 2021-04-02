@@ -1,8 +1,8 @@
 package mz.co.commandline.grocery.saleable.fragment;
 
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 
 import butterknife.BindView;
 import mz.co.commandline.grocery.saleable.dto.SaleableItemDTO;

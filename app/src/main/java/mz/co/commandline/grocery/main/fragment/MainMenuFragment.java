@@ -1,7 +1,7 @@
 package mz.co.commandline.grocery.main.fragment;
 
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;

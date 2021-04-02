@@ -1,6 +1,6 @@
 package mz.co.commandline.grocery.login.fragment;
 
-import android.support.design.widget.TextInputLayout;
+import com.google.android.material.textfield.TextInputLayout;
 
 import butterknife.BindView;
 import butterknife.OnClick;
