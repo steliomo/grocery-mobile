@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Mercearias</string>
+    <string name="app_name">Negócio na Mão</string>
+    <string name="app_version">© 2021 © v2.0.0</string>
     <string name="sales">Vendas</string>
     <string name="reports">Relatórios</string>
     <string name="products_and_services">Produtos e Serviços</string>
@@ -21,7 +22,7 @@
     <string name="sale_error_on_regist">Ocorreu um erro ao registar a venda. por favor tente novamente!</string>
     <string name="sale_error_on_selecting_product">Erro ao seleccionar o producto. Por favor tente novamente</string>
     <string name="sale_no_stock_for_the_product_selected">Não existe stock para o producto seleccinado</string>
-    <string name="toolbar_title">Mercearias Online</string>
+    <string name="toolbar_title">Negócio na Mão</string>
     <string name="stocks_and_prices">Stocks e Preços</string>
     <string name="purchase_price">Compra:</string>
     <string name="sale_price">Venda:</string>
@@ -34,7 +35,7 @@
     <string name="date">Data</string>
     <string name="profit">Lucro</string>
     <string name="sale_value">Valor da venda</string>
-    <string name="inventory">Inventário</string>
+    <string name="inventory">Inventários</string>
     <string name="title_activity_inventory">InventoryActivity</string>
     <string name="approve_inventory">Aprovar Inventário</string>
     <string name="perform_inventory">Realizar Inventário</string>

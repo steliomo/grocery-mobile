@@ -4,7 +4,7 @@ import mz.co.commandline.grocery.activities.ExpenseActivity;
 import mz.co.commandline.grocery.activities.InventoryActivity;
 import mz.co.commandline.grocery.activities.ReportActivity;
 import mz.co.commandline.grocery.activities.SaleActivity;
-import mz.co.commandline.grocery.activities.ProductsAndStocksActivity;
+import mz.co.commandline.grocery.activities.SaleableActivity;
 
 public enum MenuItemType {
 
@@ -12,7 +12,7 @@ public enum MenuItemType {
 
     REPORT(ReportActivity.class),
 
-    STOCK(ProductsAndStocksActivity.class),
+    STOCK(SaleableActivity.class),
 
     INVENTORY(InventoryActivity.class),
 

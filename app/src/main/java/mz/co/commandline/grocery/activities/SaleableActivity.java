@@ -39,7 +39,7 @@ import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
 
-public class ProductsAndStocksActivity extends BaseAuthActivity implements View.OnClickListener, SaleableItemActionDelegate, ItemDelegate {
+public class SaleableActivity extends BaseAuthActivity implements View.OnClickListener, SaleableItemActionDelegate, ItemDelegate {
 
     @Inject
     ProductService productService;

@@ -39,10 +39,10 @@ public class RetrofitServiceImpl implements RetrofitService {
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
-                        if (chain.request().url().toString().contains("users/login")
-                                || chain.request().url().toString().contains("users/reset-password")
-                                || chain.request().url().toString().contains("users/signup")
-                                || chain.request().url().toString().contains("groceries/unit-types")
+                        if (chain.request().url().toString().contains(LOGIN)
+                                || chain.request().url().toString().contains(RESET_PASSWORD)
+                                || chain.request().url().toString().contains(SIGN_UP)
+                                || chain.request().url().toString().contains(UNIT_TYPES)
                         ) {
                             return chain.proceed(chain.request());
                         }

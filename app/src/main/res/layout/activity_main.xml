@@ -51,7 +51,7 @@
             android:background="#CFD8DC"
             android:fontFamily="@font/courgette"
             android:padding="10dp"
-            android:text="© 2020 © v1.3.0"
+            android:text="@string/app_version"
             android:textAlignment="center"
             android:textColor="#000" />
 

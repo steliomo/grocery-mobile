@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 
 import mz.co.commandline.grocery.sale.dto.SaleItemDTO;
+import mz.co.commandline.grocery.saleable.dto.StockDTO;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,9 +14,9 @@ public class SaleItemTest {
     @Test
     public void shouldCalculateTotalSaleItem() {
 
-        Stock stock = new Stock();
-        stock.setSalePrice(new BigDecimal("10"));
-        SaleItemDTO saleItem = new SaleItemDTO(stock, new BigDecimal("2"), new BigDecimal(0), new BigDecimal(2));
+        StockDTO stock = new StockDTO();
+        stock.setSalePrice("10");
+        SaleItemDTO saleItem = new SaleItemDTO(stock, new BigDecimal("2"), new BigDecimal(20), new BigDecimal(2));
 
         assertEquals(new BigDecimal("18"), saleItem.getTotal());
     }
