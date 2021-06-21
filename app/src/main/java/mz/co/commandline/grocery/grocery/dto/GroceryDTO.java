@@ -1,5 +1,7 @@
 package mz.co.commandline.grocery.grocery.dto;
 
+import java.math.BigDecimal;
+
 import mz.co.commandline.grocery.generics.dto.GenericDTO;
 
 public class GroceryDTO extends GenericDTO {
@@ -13,6 +15,8 @@ public class GroceryDTO extends GenericDTO {
     private String email;
 
     private String unitType;
+
+    private BigDecimal balance;
 
     public GroceryDTO() {
     }
@@ -46,6 +50,10 @@ public class GroceryDTO extends GenericDTO {
 
     public void setUnitType(String unitType) {
         this.unitType = unitType;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
     }
 
     @Override

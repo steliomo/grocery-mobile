@@ -1,6 +1,7 @@
 package mz.co.commandline.grocery.activities;
 
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -51,7 +52,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         transaction.replace(getActivityFrameLayoutId(), fragment);
 
         if (onStack) {
-            transaction.addToBackStack(null);
+            transaction.addToBackStack(fragment.getClass().getName());
         }
 
         transaction.commit();

@@ -33,7 +33,7 @@ public class RetrofitServiceImpl implements RetrofitService {
         return new OkHttpClient
                 .Builder()
                 .addInterceptor(interceptor)
-                .connectTimeout(1, TimeUnit.MINUTES)
+                .connectTimeout(2, TimeUnit.MINUTES)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .addInterceptor(new Interceptor() {

@@ -83,7 +83,7 @@
     <string name="next">Prosseguir</string>
     <string name="email">Email</string>
     <string name="fullname">Nome completo</string>
-    <string name="welcome">Seja muito bem-vindo ao Mercearias Online. Um email com as credências foi enviado para</string>
+    <string name="welcome">Seja muito bem-vindo ao Negócio Na Mão. Um email com as credências foi enviado para</string>
     <string name="welcome_saler">Um email com as credências foi enviado ao novo utilizador para</string>
     <string name="error_on_sign_up">Ocorreu um erro ao registar o utilizador. por favor tente mais tarde.</string>
     <string name="add_new_products">Adicionar Produtos ou Serviços</string>
@@ -108,5 +108,17 @@
     <string name="add_service">Adicionar serviço</string>
     <string name="update_service">Actualizar serviço</string>
     <string name="unit_type">Tipo de Estabelecimento</string>
+    <string name="accout_payment">Pagamentos</string>
+    <string name="account_manager">Gestor da conta:</string>
+    <string name="number_of_users">Nr. de utilizadores:</string>
+    <string name="payment_methods">Formas de pagamento:</string>
+    <string name="payments">Pagamentos</string>
+    <string name="mpesa_number">Número Mpesa</string>
+    <string name="mpesa_payment">Pagamento por Mpesa</string>
+    <string name="payment_confirmation">Confirmação de pagamento</string>
+    <string name="mpesa_fee_advice">*O valor total não inclui taxa de transacção do M-pesa</string>
+    <string name="confirm">Confirmar</string>
+    <string name="voucher_types">Tipo de Recarga</string>
+    <string name="phone_number_cannot_be_less_than_9_digits">O número do telefone deve 9 dígitos!</string>
 
 </resources>

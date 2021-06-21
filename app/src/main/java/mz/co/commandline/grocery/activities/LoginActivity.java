@@ -166,7 +166,8 @@ public class LoginActivity extends BaseActivity implements LoginDelegate {
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.welcome) + " " + userDTO.getEmail(), new AlertListner() {
                     @Override
                     public void perform() {
-                        cancel();
+                        resetFragment();
+                        showFragment(new LoginFragment(), Boolean.FALSE);
                     }
                 });
             }

@@ -1,12 +1,14 @@
 package mz.co.commandline.grocery.user.service;
 
 import mz.co.commandline.grocery.generics.dto.EnumsDTO;
+import mz.co.commandline.grocery.user.dto.UnitDetail;
 import mz.co.commandline.grocery.user.dto.UserDTO;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface UserResource {
 
@@ -24,4 +26,7 @@ public interface UserResource {
 
     @GET("groceries/unit-types")
     Call<EnumsDTO> getUnitTypes();
+
+    @GET("grocery-users/unit-detail/{unitUuid}")
+    Call<UnitDetail> getUnitDetail(@Path("unitUuid") String unitUuid);
 }

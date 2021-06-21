@@ -11,6 +11,7 @@ import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.generics.service.AbstractService;
 import mz.co.commandline.grocery.generics.service.RetrofitService;
 import mz.co.commandline.grocery.user.dto.GroceryUserDTO;
+import mz.co.commandline.grocery.user.dto.UnitDetail;
 import mz.co.commandline.grocery.user.dto.UserDTO;
 import mz.co.commandline.grocery.user.dto.UserRole;
 import retrofit2.Call;
@@ -158,7 +159,6 @@ public class UserServiceImpl extends AbstractService implements UserService {
                 responseListner.error(t.getMessage());
             }
         });
-
     }
 
     @Override
@@ -196,6 +196,26 @@ public class UserServiceImpl extends AbstractService implements UserService {
 
             @Override
             public void onFailure(Call<EnumsDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void getUnitDetails(String unitUuid, final ResponseListner<UnitDetail> responseListner) {
+        getResource().getUnitDetail(unitUuid).enqueue(new Callback<UnitDetail>() {
+            @Override
+            public void onResponse(Call<UnitDetail> call, Response<UnitDetail> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<UnitDetail> call, Throwable t) {
                 responseListner.error(t.getMessage());
             }
         });

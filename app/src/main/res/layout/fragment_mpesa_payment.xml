@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".payment.fragment.MpesaPaymentFragment">
+
+    <View
+        android:id="@+id/fragment_mpesa_payment_view"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="#ccc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fragment_mpesa_payment_manager_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="5px"
+        android:text="@string/account_manager"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/fragment_mpesa_payment_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_mpesa_payment_view" />
+
+    <TextView
+        android:id="@+id/fragment_mpesa_payment_manager_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:padding="5px"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_mpesa_payment_manager_name_label"
+        app:layout_constraintStart_toEndOf="@+id/fragment_mpesa_payment_manager_name_label"
+        app:layout_constraintTop_toTopOf="@+id/fragment_mpesa_payment_manager_name_label"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Stélio Moiane" />
+
+    <TextView
+        android:id="@+id/fragment_mpesa_payment_number_of_users_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5px"
+        android:text="@string/number_of_users"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/fragment_mpesa_payment_manager_name_label"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_mpesa_payment_manager_name_label" />
+
+    <TextView
+        android:id="@+id/fragment_mpesa_payment_number_of_users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5px"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintStart_toStartOf="@+id/fragment_mpesa_payment_manager_name"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_mpesa_payment_manager_name"
+        tools:text="10" />
+
+    <TextView
+        android:id="@+id/fragment_mpesa_payment_balance_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5px"
+        android:text="Saldo:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_mpesa_payment_balance"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_mpesa_payment_balance"
+        app:layout_constraintTop_toTopOf="@+id/fragment_mpesa_payment_balance" />
+
+    <TextView
+        android:id="@+id/fragment_mpesa_payment_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="5px"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_mpesa_payment_view"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_mpesa_payment_view"
+        tools:text="5.000,00 MT" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fragment_mpesa_payment_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_mpesa_payment_view"
+        app:layout_constraintStart_toStartOf="@+id/fragment_mpesa_payment_view"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_mpesa_payment_view">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_phone"
+            android:drawableLeft="@drawable/ic_phone"
+            android:hint="@string/mpesa_number"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/fragment_mpesa_voucher_spinner"
+        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_mpesa_payment_number"
+        app:layout_constraintStart_toStartOf="@+id/fragment_mpesa_payment_number"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_mpesa_payment_number" />
+
+    <Button
+        android:id="@+id/fragment_payment_confirmation_mpesa_payment_next_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:background="#017a84"
+        android:padding="8dp"
+        android:text="@string/next"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_mpesa_payment_number"
+        app:layout_constraintStart_toStartOf="@+id/fragment_mpesa_payment_number"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_mpesa_voucher_spinner" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

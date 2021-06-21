@@ -15,6 +15,8 @@ import mz.co.commandline.grocery.inventory.service.InventoryService;
 import mz.co.commandline.grocery.inventory.service.InventoryServiceImpl;
 import mz.co.commandline.grocery.item.service.ItemService;
 import mz.co.commandline.grocery.item.service.ItemServiceImpl;
+import mz.co.commandline.grocery.payment.service.PaymentService;
+import mz.co.commandline.grocery.payment.service.PaymentServiceImpl;
 import mz.co.commandline.grocery.saleable.service.SaleableItemService;
 import mz.co.commandline.grocery.saleable.service.SaleableItemServiceImpl;
 import mz.co.commandline.grocery.item.service.ProductService;
@@ -113,5 +115,10 @@ public class GroceryModule {
     @Provides
     public SaleableService provideSaleableService(SaleableServiceImpl saleableService) {
         return saleableService;
+    }
+
+    @Provides
+    public PaymentService providePaymentService(PaymentServiceImpl paymentService) {
+        return paymentService;
     }
 }

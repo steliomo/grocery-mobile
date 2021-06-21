@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".payment.fragment.PaymentConfirmationFragment">
+
+    <View
+        android:id="@+id/fragment_payment_confirmation_view"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="#ccc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fragment_payment_confirmation_manager_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="5px"
+        android:text="@string/account_manager"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/fragment_payment_confirmation_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_payment_confirmation_view" />
+
+    <TextView
+        android:id="@+id/fragment_payment_confirmation_manager_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:padding="5px"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_payment_confirmation_manager_name_label"
+        app:layout_constraintStart_toEndOf="@+id/fragment_payment_confirmation_manager_name_label"
+        app:layout_constraintTop_toTopOf="@+id/fragment_payment_confirmation_manager_name_label"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Stélio Moiane" />
+
+    <TextView
+        android:id="@+id/fragment_payment_confirmation_number_of_users_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5px"
+        android:text="@string/number_of_users"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/fragment_payment_confirmation_manager_name_label"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_payment_confirmation_manager_name_label" />
+
+    <TextView
+        android:id="@+id/fragment_payment_confirmation_number_of_users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5px"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintStart_toStartOf="@+id/fragment_payment_confirmation_manager_name"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_payment_confirmation_manager_name"
+        tools:text="10" />
+
+    <TextView
+        android:id="@+id/fragment_payment_confirmation_balance_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5px"
+        android:text="Saldo:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_payment_confirmation_balance"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_payment_confirmation_balance"
+        app:layout_constraintTop_toTopOf="@+id/fragment_payment_confirmation_balance" />
+
+    <TextView
+        android:id="@+id/fragment_payment_confirmation_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="5px"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_payment_confirmation_view"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_payment_confirmation_view"
+        tools:text="5.000,00 MT" />
+
+    <View
+        android:id="@+id/fragment_payment_confirmation_details_view"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/fragment_payment_confirmation_view"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_payment_confirmation_view" />
+
+    <TextView
+        android:id="@+id/fragment_payment_confirmation_mpesa_number_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:padding="5px"
+        android:text="Número M-pesa:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/fragment_payment_confirmation_details_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_payment_confirmation_details_view" />
+
+    <TextView
+        android:id="@+id/fragment_payment_confirmation_voucher_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="5px"
+        android:text="Valor da recarga:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/fragment_payment_confirmation_mpesa_number_label"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_payment_confirmation_mpesa_number_label" />
+
+    <TextView
+        android:id="@+id/fragment_payment_confirmation_discount_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="5px"
+        android:text="Desconto:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/fragment_payment_confirmation_voucher_label"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_payment_confirmation_voucher_label" />
+
+    <TextView
+        android:id="@+id/fragment_payment_confirmation_total_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="5px"
+        android:text="Total:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/fragment_payment_confirmation_discount_label"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_payment_confirmation_discount_label" />
+
+    <TextView
+        android:id="@+id/fragment_payment_confirmation_mpesa_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:padding="5px"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_payment_confirmation_mpesa_number_label"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_payment_confirmation_details_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_payment_confirmation_mpesa_number_label"
+        tools:text="258840546824" />
+
+    <TextView
+        android:id="@+id/fragment_payment_confirmation_voucher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5px"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_payment_confirmation_voucher_label"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_payment_confirmation_mpesa_number"
+        app:layout_constraintTop_toTopOf="@+id/fragment_payment_confirmation_voucher_label"
+        tools:text="5.000,00 MT" />
+
+    <TextView
+        android:id="@+id/fragment_payment_confirmation_discount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5px"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_payment_confirmation_discount_label"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_payment_confirmation_voucher"
+        app:layout_constraintTop_toTopOf="@+id/fragment_payment_confirmation_discount_label"
+        tools:text="250,00 MT" />
+
+    <TextView
+        android:id="@+id/fragment_payment_confirmation_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5px"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_payment_confirmation_total_label"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_payment_confirmation_discount"
+        app:layout_constraintTop_toTopOf="@+id/fragment_payment_confirmation_total_label"
+        tools:text="4.750,00 MT" />
+
+    <TextView
+        android:id="@+id/fragment_payment_confirmation_advice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:padding="5px"
+        android:text="@string/mpesa_fee_advice"
+        android:textColor="#ff0000"
+        android:textSize="5pt"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_payment_confirmation_total"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_payment_confirmation_total" />
+
+    <Button
+        android:id="@+id/fragment_payment_confirmation_mpesa_confirm_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="#017a84"
+        android:padding="8dp"
+        android:text="@string/confirm"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_payment_confirmation_details_view"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_payment_confirmation_details_view"
+        app:layout_constraintStart_toStartOf="@+id/fragment_payment_confirmation_details_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

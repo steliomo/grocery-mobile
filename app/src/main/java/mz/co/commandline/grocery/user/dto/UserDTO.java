@@ -1,7 +1,5 @@
 package mz.co.commandline.grocery.user.dto;
 
-import androidx.core.view.GravityCompat;
-
 public class UserDTO {
 
     private String username;
@@ -13,6 +11,10 @@ public class UserDTO {
     private GroceryUserDTO groceryUserDTO;
 
     private String email;
+
+    private String expiryDate;
+
+    private int numberOfUsers;
 
     public UserDTO() {
     }
@@ -48,5 +50,21 @@ public class UserDTO {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public int getNumberOfUsers() {
+        return numberOfUsers;
+    }
+
+    public void setNumberOfUsers(int numberOfUsers) {
+        this.numberOfUsers = numberOfUsers;
     }
 }
