@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".rent.fragment.RentPaymentFragment">
+
+    <View
+        android:id="@+id/rentPaymentView"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#80CBC4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/rentPaymentDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="3dp"
+        android:text="Data do Aluguer:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/rentPaymentDate"
+        app:layout_constraintTop_toTopOf="@+id/rentPaymentView" />
+
+    <TextView
+        android:id="@+id/rentPaymentDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:padding="3dp"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/rentPaymentDateLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rentPaymentDateLabel"
+        tools:text="01-09-2021" />
+
+    <TextView
+        android:id="@+id/rentPaymentCustomerLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="3dp"
+        android:text="Cliente:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/rentPaymentView"
+        app:layout_constraintTop_toBottomOf="@+id/rentPaymentDateLabel" />
+
+    <TextView
+        android:id="@+id/rentPaymentCustomer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/rentPaymentCustomerLabel"
+        app:layout_constraintEnd_toEndOf="@+id/rentPaymentDate"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/rentPaymentCustomerLabel"
+        app:layout_constraintTop_toTopOf="@+id/rentPaymentCustomerLabel"
+        tools:text="Stélio Moiane" />
+
+    <TextView
+        android:id="@+id/rentPaymentItemsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="Itens alugados:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/rentPaymentCustomerLabel"
+        app:layout_constraintTop_toBottomOf="@+id/rentPaymentCustomerLabel" />
+
+    <TextView
+        android:id="@+id/rentPaymentItems"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/rentPaymentItemsLabel"
+        app:layout_constraintEnd_toEndOf="@+id/rentPaymentCustomer"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/rentPaymentItemsLabel"
+        app:layout_constraintTop_toTopOf="@+id/rentPaymentItemsLabel"
+        tools:text="10" />
+
+    <TextView
+        android:id="@+id/rentPaymentPaidLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="Total Pago:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/rentPaymentItems"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/rentPaymentItemsLabel"
+        app:layout_constraintTop_toBottomOf="@+id/rentPaymentItemsLabel" />
+
+    <TextView
+        android:id="@+id/rentPaymentPaid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/rentPaymentPaidLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/rentPaymentPaidLabel"
+        app:layout_constraintTop_toTopOf="@+id/rentPaymentPaidLabel"
+        tools:text="100,00 MT" />
+
+    <TextView
+        android:id="@+id/rentPaymentToPayLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="Total a pagar:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/rentPaymentPaidLabel"
+        app:layout_constraintStart_toStartOf="@+id/rentPaymentPaidLabel"
+        app:layout_constraintTop_toBottomOf="@+id/rentPaymentPaidLabel" />
+
+    <TextView
+        android:id="@+id/rentPaymentToPay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/rentPaymentToPayLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/rentPaymentToPayLabel"
+        app:layout_constraintTop_toBottomOf="@+id/rentPaymentPaidLabel"
+        tools:text="500,00 MT" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/rentPaymentValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/rentPaymentItems"
+        app:layout_constraintStart_toStartOf="@+id/rentPaymentItemsLabel"
+        app:layout_constraintTop_toBottomOf="@+id/rentPaymentView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_money"
+            android:drawableLeft="@drawable/ic_money"
+            android:hint="Valor a pagar"
+            android:inputType="numberDecimal" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/rentPaymentPayBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="#DD2C00"
+        android:padding="8dp"
+        android:text="Registar o pagamento"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

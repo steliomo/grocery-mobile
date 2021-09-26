@@ -1,6 +1,8 @@
 package mz.co.commandline.grocery.generics.holder;
 
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewbinding.ViewBinding;
+
 import android.view.View;
 
 import butterknife.ButterKnife;
@@ -14,6 +16,13 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder implemen
 
         view.setOnClickListener(this);
         view.setOnLongClickListener(this);
+    }
+
+    public BaseViewHolder(ViewBinding binding) {
+        super(binding.getRoot());
+
+        binding.getRoot().setOnClickListener(this);
+        binding.getRoot().setOnLongClickListener(this);
     }
 
     public abstract void bind(T t);

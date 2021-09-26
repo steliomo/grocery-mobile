@@ -1,6 +1,8 @@
 package mz.co.commandline.grocery.main.fragment;
 
 import android.content.Intent;
+
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.BindView;
@@ -9,40 +11,39 @@ import mz.co.commandline.grocery.adapter.MenuAdapter;
 import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.generics.listner.ClickListner;
 import mz.co.commandline.grocery.main.delegate.MainDelegate;
+import mz.co.commandline.grocery.main.delegate.MenuDelegate;
 import mz.co.commandline.grocery.menu.Menu;
 import mz.co.commandline.grocery.menu.MenuItem;
 
 
-public class MainMenuFragment extends BaseFragment implements ClickListner<MenuItem> {
+public class MenuFragment extends BaseFragment implements ClickListner<MenuItem> {
 
-    @BindView(R.id.fragment_main_menu_recycleview)
+    @BindView(R.id.fragment_menu_recycleview)
     RecyclerView recyclerView;
+
+    private MenuDelegate delegate;
 
     @Override
     public int getResourceId() {
-        return R.layout.fragment_main_menu;
+        return R.layout.fragment_menu;
     }
 
     @Override
     public void onCreateView() {
 
-        MainDelegate delegate = (MainDelegate) getActivity();
+        delegate = (MenuDelegate) getActivity();
 
-        Menu menu = new Menu(delegate.getUserRole());
+        Toolbar toolBar = getToolBar();
+        toolBar.setTitle(delegate.getFragmentTitle());
 
-        MenuAdapter adapter = new MenuAdapter(getActivity(), menu.getMenuItems());
+        MenuAdapter adapter = new MenuAdapter(getActivity(), delegate.getMenuItems());
         adapter.setItemClickListner(this);
 
         recyclerView.setAdapter(adapter);
     }
 
     @Override
-    public String getTitle() {
-        return getString(R.string.main_menu);
-    }
-
-    @Override
     public void onClickListner(MenuItem menuItem) {
-        startActivity(new Intent(getActivity(), menuItem.getMenuItemType().getClazz()));
+        delegate.onClickMenuItem(menuItem);
     }
 }

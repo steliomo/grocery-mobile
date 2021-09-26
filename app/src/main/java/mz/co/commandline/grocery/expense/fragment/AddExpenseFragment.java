@@ -3,6 +3,7 @@ package mz.co.commandline.grocery.expense.fragment;
 import static mz.co.commandline.grocery.util.TextInputLayoutUtil.getInpuText;
 
 import com.google.android.material.textfield.TextInputLayout;
+
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class AddExpenseFragment extends BaseFragment {
 
         validators = new ArrayList<>();
 
-        validators.add(new DateValidator(getActivity(), performendDate));
+        validators.add(new DateValidator(getActivity(), performendDate, Boolean.TRUE, Boolean.FALSE));
         validators.add(new DefaultValidator(expenseValue));
         validators.add(new DefaultValidator(description));
     }

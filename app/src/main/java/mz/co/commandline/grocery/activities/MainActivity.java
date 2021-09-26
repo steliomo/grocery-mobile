@@ -3,18 +3,16 @@ package mz.co.commandline.grocery.activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.widget.Toolbar;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,14 +28,17 @@ import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.login.delegate.SignUpDelegate;
 import mz.co.commandline.grocery.login.fragment.SignUpUserFragment;
 import mz.co.commandline.grocery.main.delegate.MainDelegate;
+import mz.co.commandline.grocery.main.fragment.DashboardFragment;
+import mz.co.commandline.grocery.main.fragment.MenuFragment;
+import mz.co.commandline.grocery.menu.Menu;
+import mz.co.commandline.grocery.menu.MenuItem;
+import mz.co.commandline.grocery.menu.MenuItemType;
+import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.payment.delegate.PaymentDelegate;
 import mz.co.commandline.grocery.payment.dto.PaymentDTO;
-import mz.co.commandline.grocery.main.fragment.DashboardFragment;
-import mz.co.commandline.grocery.main.fragment.MainMenuFragment;
 import mz.co.commandline.grocery.payment.fragment.MpesaPaymentFragment;
 import mz.co.commandline.grocery.payment.fragment.PaymentConfirmationFragment;
 import mz.co.commandline.grocery.payment.fragment.PaymentFragment;
-import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.payment.service.PaymentService;
 import mz.co.commandline.grocery.sale.dto.SalesDTO;
 import mz.co.commandline.grocery.sale.service.SaleService;
@@ -82,6 +83,8 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
 
     private UnitDetail unitDetail;
 
+    private Menu menu;
+
     @Override
     public void onGroceryCreate(Bundle bundle) {
         setContentView(R.layout.activity_main);
@@ -99,14 +102,30 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
 
         loadDashboardData();
 
+        loadMainMenu();
+
         toolbar.setNavigationOnClickListener(this);
         navigationView.setNavigationItemSelectedListener(this);
 
-        hideAddUserMenuItem();
+        hideOperatorUserMenuItems();
         displayUsername();
     }
 
-    private void hideAddUserMenuItem() {
+    private void loadMainMenu() {
+        menu = new Menu();
+        menu.addMenuItem(new MenuItem(R.string.sales, MenuItemType.SALE, R.mipmap.ic_sale));
+        menu.addMenuItem(new MenuItem(R.string.rents, MenuItemType.RENT, R.mipmap.ic_rents));
+
+        if (!UserRole.OPERATOR.equals(userService.getGroceryUser().getUserRole())) {
+            menu.addMenuItem(new MenuItem(R.string.products_and_services, MenuItemType.STOCK, R.mipmap.ic_stock));
+        }
+
+        menu.addMenuItem(new MenuItem(R.string.expenses, MenuItemType.EXPENSE, R.mipmap.ic_expense));
+        menu.addMenuItem(new MenuItem(R.string.inventory, MenuItemType.INVENTORY, R.mipmap.ic_inventory));
+        menu.addMenuItem(new MenuItem(R.string.reports, MenuItemType.REPORT, R.mipmap.ic_report));
+    }
+
+    private void hideOperatorUserMenuItems() {
         if (UserRole.OPERATOR.equals(userService.getGroceryUser().getUserRole())) {
             navigationView.getMenu().findItem(R.id.menu_drawer_add_user).setVisible(Boolean.FALSE);
             navigationView.getMenu().findItem(R.id.menu_drawer_payments).setVisible(Boolean.FALSE);
@@ -144,7 +163,7 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
                 break;
 
             case R.id.menu_drawer_main_menu:
-                showFragment(new MainMenuFragment(), Boolean.FALSE);
+                showFragment(new MenuFragment(), Boolean.FALSE);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
 
@@ -205,11 +224,6 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
                 Log.e("DASHBOARD", message);
             }
         });
-    }
-
-    @Override
-    public UserRole getUserRole() {
-        return userService.getGroceryUser().getUserRole();
     }
 
     @Override
@@ -307,6 +321,21 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
     }
 
     @Override
+    public String getFragmentTitle() {
+        return getString(R.string.main_menu);
+    }
+
+    @Override
+    public List<MenuItem> getMenuItems() {
+        return menu.getMenuItems();
+    }
+
+    @Override
+    public void onClickMenuItem(MenuItem menuItem) {
+        startActivity(new Intent(this, menuItem.getMenuItemType().getClazz()));
+    }
+
+    @Override
     public void signUpNext(UserDTO userDTO) {
         progressBar.show();
 
@@ -319,7 +348,7 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.welcome_saler) + " " + response.getEmail(), new AlertListner() {
                     @Override
                     public void perform() {
-                        showFragment(new MainMenuFragment(), Boolean.FALSE);
+                        showFragment(new MenuFragment(), Boolean.FALSE);
                     }
                 });
             }
@@ -330,7 +359,7 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.error_on_sign_up), new AlertListner() {
                     @Override
                     public void perform() {
-                        showFragment(new MainMenuFragment(), Boolean.FALSE);
+                        showFragment(new MenuFragment(), Boolean.FALSE);
                     }
                 });
                 Log.e("ADD_SALER", message);

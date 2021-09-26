@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".rent.fragment.ReturnItemFragment">
+
+    <View
+        android:id="@+id/devolutionItemView"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#80CBC4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/devolutionItemImageView"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:src="@mipmap/ic_product"
+        app:layout_constraintBottom_toBottomOf="@+id/devolutionItemView"
+        app:layout_constraintStart_toStartOf="@+id/devolutionItemView"
+        app:layout_constraintTop_toBottomOf="@+id/devolutionItemName" />
+
+    <TextView
+        android:id="@+id/devolutionItemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/devolutionItemView"
+        app:layout_constraintStart_toStartOf="@+id/devolutionItemView"
+        app:layout_constraintTop_toTopOf="@+id/devolutionItemView"
+        tools:text="Prumos Médios 0.00G" />
+
+    <TextView
+        android:id="@+id/devolutionItemRentedLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="Alugados:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/devolutionItemToReturnLabel"
+        app:layout_constraintStart_toEndOf="@+id/devolutionItemImageView"
+        app:layout_constraintTop_toTopOf="@+id/devolutionItemImageView" />
+
+    <TextView
+        android:id="@+id/devolutionItemRented"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/devolutionItemRentedLabel"
+        app:layout_constraintStart_toEndOf="@+id/devolutionItemRentedLabel"
+        app:layout_constraintTop_toTopOf="@+id/devolutionItemRentedLabel"
+        tools:text="1700" />
+
+    <TextView
+        android:id="@+id/devolutionItemReturned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="@+id/devolutionItemView"
+        app:layout_constraintTop_toTopOf="@+id/devolutionItemRented"
+        tools:text="100" />
+
+    <TextView
+        android:id="@+id/devolutionItemReturnedLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="Devolvidos:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/devolutionItemReturned"
+        app:layout_constraintEnd_toStartOf="@+id/devolutionItemReturned"
+        app:layout_constraintTop_toTopOf="@+id/devolutionItemReturned" />
+
+    <TextView
+        android:id="@+id/devolutionItemToReturnLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="Por devolver:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/devolutionItemImageView"
+        app:layout_constraintTop_toBottomOf="@+id/devolutionItemRentedLabel" />
+
+    <TextView
+        android:id="@+id/devolutionItemToReturn"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/devolutionItemToReturnLabel"
+        app:layout_constraintStart_toEndOf="@+id/devolutionItemToReturnLabel"
+        app:layout_constraintTop_toTopOf="@+id/devolutionItemToReturnLabel"
+        tools:text="10" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/devolutionItemQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/devolutionItemView"
+        app:layout_constraintStart_toStartOf="@+id/devolutionItemView"
+        app:layout_constraintTop_toBottomOf="@+id/devolutionItemView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_quantity"
+            android:drawableLeft="@drawable/ic_quantity"
+            android:hint="Quantidade"
+            android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/devolutionItemDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/devolutionItemQuantity"
+        app:layout_constraintTop_toBottomOf="@+id/devolutionItemQuantity">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_calendar"
+            android:hint="Data de devolução"
+            android:inputType="date" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/addReturnItemBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="#017a84"
+        android:padding="8dp"
+        android:text="Adicionar"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

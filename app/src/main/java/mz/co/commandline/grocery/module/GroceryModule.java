@@ -6,6 +6,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import mz.co.commandline.grocery.customer.service.CustomerService;
+import mz.co.commandline.grocery.customer.service.CustomerServiceImpl;
 import mz.co.commandline.grocery.expense.service.ExpenseService;
 import mz.co.commandline.grocery.expense.service.ExpenseServiceImpl;
 import mz.co.commandline.grocery.expense.service.ExpenseTypeService;
@@ -17,6 +19,8 @@ import mz.co.commandline.grocery.item.service.ItemService;
 import mz.co.commandline.grocery.item.service.ItemServiceImpl;
 import mz.co.commandline.grocery.payment.service.PaymentService;
 import mz.co.commandline.grocery.payment.service.PaymentServiceImpl;
+import mz.co.commandline.grocery.rent.service.RentService;
+import mz.co.commandline.grocery.rent.service.RentServiceImpl;
 import mz.co.commandline.grocery.saleable.service.SaleableItemService;
 import mz.co.commandline.grocery.saleable.service.SaleableItemServiceImpl;
 import mz.co.commandline.grocery.item.service.ProductService;
@@ -120,5 +124,15 @@ public class GroceryModule {
     @Provides
     public PaymentService providePaymentService(PaymentServiceImpl paymentService) {
         return paymentService;
+    }
+
+    @Provides
+    public CustomerService provideCustomerService(CustomerServiceImpl customerService) {
+        return customerService;
+    }
+
+    @Provides
+    public RentService provideRentService(RentServiceImpl rentService) {
+        return rentService;
     }
 }

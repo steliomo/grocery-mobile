@@ -11,7 +11,7 @@ import java.util.Calendar;
 
 public class DatePickerUtil {
 
-    public static void setDate(final Context context, final EditText editText) {
+    public static void setDate(final Context context, final EditText editText, Boolean disableFuture, Boolean disablePast) {
         Calendar instance = Calendar.getInstance();
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
@@ -27,7 +27,13 @@ public class DatePickerUtil {
             }
         }, instance.get(Calendar.YEAR), instance.get(Calendar.MONTH), instance.get(Calendar.DAY_OF_MONTH));
 
-        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        if (disableFuture) {
+            datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        }
+
+        if (disablePast) {
+            datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+        }
 
         datePickerDialog.show();
     }

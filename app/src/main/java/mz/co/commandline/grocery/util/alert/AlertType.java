@@ -4,5 +4,7 @@ public enum AlertType {
 
     SUCCESS,
 
-    ERROR;
+    ERROR,
+
+    INFO;
 }

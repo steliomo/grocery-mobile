@@ -36,8 +36,8 @@ public class PeriodSelectionFragment extends BaseFragment {
         delegate = (ReportDelegate) getActivity();
         validators = new ArrayList<>();
 
-        validators.add(new DateValidator(getActivity(), startDate));
-        validators.add(new DateValidator(getActivity(), endDate));
+        validators.add(new DateValidator(getActivity(), startDate, Boolean.TRUE, Boolean.FALSE));
+        validators.add(new DateValidator(getActivity(), endDate, Boolean.TRUE, Boolean.FALSE));
     }
 
     @OnClick(R.id.fragment_period_selection_submit_btn)

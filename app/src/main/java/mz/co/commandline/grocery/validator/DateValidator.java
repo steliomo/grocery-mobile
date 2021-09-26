@@ -1,7 +1,9 @@
 package mz.co.commandline.grocery.validator;
 
 import android.content.Context;
+
 import com.google.android.material.textfield.TextInputLayout;
+
 import android.view.View;
 
 import static mz.co.commandline.grocery.util.DatePickerUtil.setDate;
@@ -13,9 +15,15 @@ public class DateValidator implements Validator, View.OnClickListener {
 
     private TextInputLayout textInputLayout;
 
-    public DateValidator(final Context context, TextInputLayout textInputLayout) {
+    private final Boolean disableFuture;
+
+    private final Boolean disablePast;
+
+    public DateValidator(final Context context, TextInputLayout textInputLayout, Boolean disableFuture, Boolean disablePast) {
         this.context = context;
         this.textInputLayout = textInputLayout;
+        this.disableFuture = disableFuture;
+        this.disablePast = disablePast;
         this.textInputLayout.getEditText().setOnClickListener(this);
     }
 
@@ -28,6 +36,6 @@ public class DateValidator implements Validator, View.OnClickListener {
     @Override
     public void onClick(View view) {
         hideKeyboard(context, view);
-        setDate(context, textInputLayout.getEditText());
+        setDate(context, textInputLayout.getEditText(), disableFuture, disablePast);
     }
 }

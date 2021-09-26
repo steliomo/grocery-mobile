@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="2dp">
+
+    <TextView
+        android:id="@+id/customer_icon"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/circle"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#fff"
+        android:textSize="10pt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="S" />
+
+    <TextView
+        android:id="@+id/customer_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:padding="2dp"
+        android:text=""
+        android:textSize="6pt"
+        android:textStyle="italic|bold"
+        app:layout_constraintBottom_toBottomOf="@+id/customer_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/customer_icon"
+        app:layout_constraintTop_toTopOf="@+id/customer_icon"
+        app:layout_constraintVertical_bias="0.08"
+        tools:text="Stélio Moiane" />
+
+    <TextView
+        android:id="@+id/customer_phone_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:text=""
+        android:textAlignment="textEnd"
+        android:textSize="5pt"
+        android:textStyle="italic|bold"
+        app:layout_constraintEnd_toEndOf="@+id/customer_name"
+        app:layout_constraintStart_toStartOf="@+id/customer_name"
+        app:layout_constraintTop_toBottomOf="@+id/customer_name"
+        tools:text="+(258) 84 054 6824" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

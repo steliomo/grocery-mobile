@@ -14,6 +14,11 @@ public class MenuItem {
         this.iconId = iconId;
     }
 
+    public MenuItem(int title, int iconId) {
+        this.title = title;
+        this.iconId = iconId;
+    }
+
     public int getTitle() {
         return title;
     }
@@ -21,7 +26,6 @@ public class MenuItem {
     public MenuItemType getMenuItemType() {
         return menuItemType;
     }
-
 
     public int getIconId() {
         return iconId;

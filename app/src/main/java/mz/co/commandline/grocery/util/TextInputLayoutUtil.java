@@ -5,6 +5,13 @@ import com.google.android.material.textfield.TextInputLayout;
 public class TextInputLayoutUtil {
 
     public static String getInpuText(TextInputLayout textInputLayout) {
-        return textInputLayout.getEditText().getText().toString();
+
+        String input = textInputLayout.getEditText().getText().toString();
+
+        if (input.isEmpty()) {
+            return null;
+        }
+
+        return input;
     }
 }

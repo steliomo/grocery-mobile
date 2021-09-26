@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class DateUtil {
 
@@ -80,5 +81,20 @@ public class DateUtil {
         instance.set(Calendar.DAY_OF_MONTH, 31);
 
         return format(instance.getTime(), NORMAL_PATTERN);
+    }
+
+    public static long daysBetween(String startDate, String enDate) {
+
+        Date startDateParsed = DateUtil.parse(startDate, NORMAL_PATTERN);
+        Date endDateParsed = DateUtil.parse(enDate, NORMAL_PATTERN);
+
+        if (startDateParsed.after(endDateParsed)) {
+            throw new IllegalArgumentException("The start date cannot be after the end date!");
+        }
+
+        long diffmillies = Math.abs(endDateParsed.getTime() - startDateParsed.getTime());
+        long days = TimeUnit.DAYS.convert(diffmillies, TimeUnit.MILLISECONDS);
+
+        return days;
     }
 }

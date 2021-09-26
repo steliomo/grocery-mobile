@@ -1,5 +1,6 @@
 package mz.co.commandline.grocery.activities;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -11,7 +12,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import butterknife.ButterKnife;
 import mz.co.commandline.grocery.R;
+import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
 import mz.co.commandline.grocery.infra.GroceryApplication;
+import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -21,12 +24,21 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager;
 
+    protected ProgressDialog progressBar;
+
+    protected AlertDialogManager dialogManager;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         application = (GroceryApplication) getApplication();
 
         fragmentManager = getSupportFragmentManager();
+
+        ProgressDialogManager progressDialogManager = new ProgressDialogManager(this);
+        progressBar = progressDialogManager.getProgressBar(getString(R.string.wait), getString(R.string.processing_request));
+
+        dialogManager = new AlertDialogManager(this);
     }
 
     @Override

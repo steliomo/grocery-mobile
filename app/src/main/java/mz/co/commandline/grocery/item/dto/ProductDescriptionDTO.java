@@ -8,6 +8,8 @@ public class ProductDescriptionDTO extends GenericDTO {
 
     private String description;
 
+    private ProductUnitDTO productUnitDTO;
+
     private String name;
 
     public void setProductDTO(ProductDTO productDTO) {

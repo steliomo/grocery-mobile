@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".rent.fragment.RegistRentFragment">
+
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="#017a84"
+        android:elevation="2dp"
+        android:padding="8dp"
+        android:text="Detalhes do aluger"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/fragment_regist_rent_view"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:background="#B2DFDB"
+        app:layout_constraintEnd_toEndOf="@id/fragment_regist_rent_details"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_regist_rent_details" />
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="Data:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_regist_rent_date"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/fragment_regist_rent_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_regist_rent_view" />
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:padding="3dp"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_regist_rent_date_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragment_regist_rent_date_label"
+        app:layout_constraintTop_toTopOf="@+id/fragment_regist_rent_date_label"
+        tools:text="20-01-2021" />
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_items_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:padding="3dp"
+        android:text="Total de Items:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_regist_rent_items"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/fragment_regist_rent_view"
+        app:layout_constraintStart_toStartOf="@+id/fragment_regist_rent_view"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_regist_rent_date_label" />
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_items"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_regist_rent_items_label"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_regist_rent_view"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragment_regist_rent_items_label"
+        app:layout_constraintTop_toTopOf="@+id/fragment_regist_rent_items_label"
+        tools:text="2" />
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_total_discount_label"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="Valor total do desconto:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_regist_rent_total_discount"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/fragment_regist_rent_view"
+        app:layout_constraintStart_toStartOf="@+id/fragment_regist_rent_items_label"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_regist_rent_items_label" />
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_total_discount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:padding="3dp"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_regist_rent_total_discount_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragment_regist_rent_total_discount_label"
+        app:layout_constraintTop_toTopOf="@+id/fragment_regist_rent_total_discount_label"
+        tools:text="100,00MT" />
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_total_label"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:padding="3dp"
+        android:text="Valor total do aluguer:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_regist_rent_view"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_regist_rent_total"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/fragment_regist_rent_view"
+        app:layout_constraintStart_toStartOf="@+id/fragment_regist_rent_total_discount_label"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_regist_rent_total_discount_label"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_total"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:padding="3dp"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_regist_rent_total_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragment_regist_rent_total_label"
+        app:layout_constraintTop_toTopOf="@+id/fragment_regist_rent_total_label"
+        tools:text="1.000,00MT" />
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_client_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#017a84"
+        android:elevation="2dp"
+        android:padding="8dp"
+        android:text="Detalhes do cliente"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_regist_rent_view"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_regist_rent_view" />
+
+    <View
+        android:id="@+id/fragment_regist_rent_client_view"
+        android:layout_width="0dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="4dp"
+        android:background="#B2DFDB"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_regist_rent_view"
+        app:layout_constraintStart_toStartOf="@+id/fragment_regist_rent_view"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_regist_rent_client_details" />
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_client_name_label"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="3dp"
+        android:text="Nome:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_regist_rent_client_name"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/fragment_regist_rent_client_view"
+        app:layout_constraintTop_toTopOf="@+id/fragment_regist_rent_client_view" />
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_client_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_regist_rent_client_name_label"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_regist_rent_client_view"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragment_regist_rent_client_name_label"
+        app:layout_constraintTop_toTopOf="@+id/fragment_regist_rent_client_name_label"
+        tools:text="Stélio Moiane" />
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_client_address_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="Endereço:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_regist_rent_client_name_label"
+        app:layout_constraintStart_toStartOf="@+id/fragment_regist_rent_client_name_label"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_regist_rent_client_name_label" />
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_client_address"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_regist_rent_client_address_label"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_regist_rent_client_name"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/fragment_regist_rent_client_address_label"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_regist_rent_client_name_label"
+        tools:text="Bairro Djuba, Matola-Rio, Maputo" />
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_client_contact_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:padding="3dp"
+        android:text="Contacto:"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_regist_rent_client_view"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_regist_rent_client_address_label"
+        app:layout_constraintStart_toStartOf="@+id/fragment_regist_rent_client_address_label"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_regist_rent_client_address_label"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/fragment_regist_rent_client_contact"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text=""
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_regist_rent_client_contact_label"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_regist_rent_client_address"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/fragment_regist_rent_client_address_label"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_regist_rent_client_address_label"
+        tools:text="840546824" />
+
+    <Button
+        android:id="@+id/fragment_regist_rent_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="#DD2C00"
+        android:padding="8dp"
+        android:text="Registar o aluguer"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

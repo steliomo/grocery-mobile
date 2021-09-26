@@ -1,7 +1,9 @@
 package mz.co.commandline.grocery.util.alert;
 
 import android.content.Context;
+
 import androidx.appcompat.app.AlertDialog;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,10 +28,20 @@ public class AlertDialogManager {
 
         TextView textview = dialog.findViewById(R.id.alert_dialog_textview);
         Button button = dialog.findViewById(R.id.alert_dialog_btn);
+        ImageView imageview = dialog.findViewById(R.id.alert_dialog_imageview);
 
-        if (AlertType.ERROR == type) {
-            ImageView imageview = dialog.findViewById(R.id.alert_dialog_imageview);
-            imageview.setImageResource(R.mipmap.ic_error);
+        switch (type) {
+            case SUCCESS:
+                imageview.setImageResource(R.mipmap.ic_success);
+                break;
+
+            case ERROR:
+                imageview.setImageResource(R.mipmap.ic_error);
+                break;
+
+            case INFO:
+                imageview.setImageResource(R.mipmap.ic_information);
+                break;
         }
 
         textview.setText(message);

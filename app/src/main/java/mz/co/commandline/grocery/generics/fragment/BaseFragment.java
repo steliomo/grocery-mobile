@@ -1,10 +1,12 @@
 package mz.co.commandline.grocery.generics.fragment;
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +24,7 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(getResourceId(), container, false);
+        View view = getView(inflater, container);
 
         ButterKnife.bind(this, view);
 
@@ -52,5 +54,9 @@ public abstract class BaseFragment extends Fragment {
 
     public String getTitle() {
         return "Base Fragment";
+    }
+
+    public View getView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return inflater.inflate(getResourceId(), container, false);
     }
 }
