@@ -1,5 +1,6 @@
 package mz.co.commandline.grocery.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ import mz.co.commandline.grocery.customer.fragment.RegistCustomerFragment;
 import mz.co.commandline.grocery.customer.model.CustomerDTO;
 import mz.co.commandline.grocery.customer.model.CustomersDTO;
 import mz.co.commandline.grocery.customer.service.CustomerService;
+import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.item.delegate.ItemDelegate;
 import mz.co.commandline.grocery.item.dto.ItemDTO;
@@ -298,6 +301,13 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.error_on_registing_rent), null);
                 Log.e("REGIST_RENT", message);
             }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("REGIST_RENT_B", errorMessage.getDeveloperMessage());
+            }
         });
     }
 
@@ -342,6 +352,13 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
                 progressBar.dismiss();
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.payment_error), null);
                 Log.e("RENT_PAYMENT", message);
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("RENT_PAYMENT_B", errorMessage.getDeveloperMessage());
             }
         });
     }
@@ -607,11 +624,14 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
         FileUtil fileUtil = new FileUtil(RentActivity.this);
         File file = fileUtil.save(body.byteStream(), response.getName());
 
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(file), "application/pdf");
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        Intent target = new Intent(Intent.ACTION_VIEW);
+        Uri uriForFile = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".provider", file);
+        target.setDataAndType(uriForFile, "application/pdf");
+        target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
-        startActivity(intent);
+        Intent chooser = Intent.createChooser(target, getString(R.string.open_with));
+
+        startActivity(chooser);
     }
 
     @Override

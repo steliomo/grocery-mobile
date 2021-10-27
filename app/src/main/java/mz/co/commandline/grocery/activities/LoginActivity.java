@@ -3,6 +3,8 @@ package mz.co.commandline.grocery.activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
 import mz.co.commandline.grocery.generics.dto.EnumDTO;
 import mz.co.commandline.grocery.generics.dto.EnumsDTO;
+import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.login.delegate.LoginDelegate;
@@ -85,6 +88,13 @@ public class LoginActivity extends BaseActivity implements LoginDelegate {
                 progressBar.dismiss();
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.bad_credentials), null);
             }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("LOGIN_B", errorMessage.getDeveloperMessage());
+            }
         });
     }
 
@@ -120,6 +130,13 @@ public class LoginActivity extends BaseActivity implements LoginDelegate {
                     }
                 });
             }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("RESET_PASSWORD_B", errorMessage.getDeveloperMessage());
+            }
         });
     }
 
@@ -145,6 +162,13 @@ public class LoginActivity extends BaseActivity implements LoginDelegate {
             public void error(String message) {
                 progressBar.dismiss();
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.error_on_sign_up), null);
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("SIGN_UP_NEXT_B", errorMessage.getDeveloperMessage());
             }
         });
     }
@@ -181,6 +205,13 @@ public class LoginActivity extends BaseActivity implements LoginDelegate {
                         cancel();
                     }
                 });
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("SIGN_UP_B", errorMessage.getDeveloperMessage());
             }
         });
     }

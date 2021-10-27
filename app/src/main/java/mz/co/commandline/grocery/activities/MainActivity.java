@@ -24,15 +24,16 @@ import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
 import mz.co.commandline.grocery.generics.dto.EnumDTO;
 import mz.co.commandline.grocery.generics.dto.EnumsDTO;
+import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.login.delegate.SignUpDelegate;
 import mz.co.commandline.grocery.login.fragment.SignUpUserFragment;
 import mz.co.commandline.grocery.main.delegate.MainDelegate;
 import mz.co.commandline.grocery.main.fragment.DashboardFragment;
 import mz.co.commandline.grocery.main.fragment.MenuFragment;
+import mz.co.commandline.grocery.menu.MainMenuBuilder;
 import mz.co.commandline.grocery.menu.Menu;
 import mz.co.commandline.grocery.menu.MenuItem;
-import mz.co.commandline.grocery.menu.MenuItemType;
 import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.payment.delegate.PaymentDelegate;
 import mz.co.commandline.grocery.payment.dto.PaymentDTO;
@@ -112,17 +113,8 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
     }
 
     private void loadMainMenu() {
-        menu = new Menu();
-        menu.addMenuItem(new MenuItem(R.string.sales, MenuItemType.SALE, R.mipmap.ic_sale));
-        menu.addMenuItem(new MenuItem(R.string.rents, MenuItemType.RENT, R.mipmap.ic_rents));
-
-        if (!UserRole.OPERATOR.equals(userService.getGroceryUser().getUserRole())) {
-            menu.addMenuItem(new MenuItem(R.string.products_and_services, MenuItemType.STOCK, R.mipmap.ic_stock));
-        }
-
-        menu.addMenuItem(new MenuItem(R.string.expenses, MenuItemType.EXPENSE, R.mipmap.ic_expense));
-        menu.addMenuItem(new MenuItem(R.string.inventory, MenuItemType.INVENTORY, R.mipmap.ic_inventory));
-        menu.addMenuItem(new MenuItem(R.string.reports, MenuItemType.REPORT, R.mipmap.ic_report));
+        MainMenuBuilder mainMenuBuilder = new MainMenuBuilder();
+        menu = mainMenuBuilder.build(userService.getGroceryUser().getUserRole());
     }
 
     private void hideOperatorUserMenuItems() {
@@ -301,6 +293,13 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
                 progressBar.dismiss();
                 dialogManager.dialog(AlertType.ERROR, "Ocorreu um erro ao realizar o pagamento. por favor tente mais tarde", null);
                 Log.e("PAYMENTS", message);
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("PAYMENTS_B", errorMessage.getDeveloperMessage());
             }
         });
     }

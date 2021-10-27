@@ -18,8 +18,7 @@ class DevolutionsFragment : BaseFragment(), ClickListner<RentItemDTO>, View.OnCl
     private var _binding: FragmentDevolutionsBinding? = null
     private val binding get() = _binding!!
 
-    private var _delegate: RentDelegate? = null
-    private val delegate get() = _delegate!!
+    private var delegate: RentDelegate? = null
 
 
     override fun getResourceId(): Int {
@@ -27,11 +26,11 @@ class DevolutionsFragment : BaseFragment(), ClickListner<RentItemDTO>, View.OnCl
     }
 
     override fun onCreateView() {
-        _delegate = activity as RentDelegate
+        delegate = activity as RentDelegate
 
         val devolutionsRecyclerView = binding.devolutionsRecyclerView
 
-        val adapter = DevolutionItemAdapter(activity, delegate.rent.rentItemsDTO);
+        val adapter = DevolutionItemAdapter(activity, delegate!!.rent.rentItemsDTO);
         adapter.setItemClickListner(this)
 
         devolutionsRecyclerView.adapter = adapter
@@ -55,10 +54,10 @@ class DevolutionsFragment : BaseFragment(), ClickListner<RentItemDTO>, View.OnCl
     }
 
     override fun onClickListner(rentItemDTO: RentItemDTO) {
-        delegate.selectedRentItem(rentItemDTO)
+        delegate!!.selectedRentItem(rentItemDTO)
     }
 
     override fun onClick(view: View?) {
-        delegate.returnItems();
+        delegate!!.returnItems();
     }
 }

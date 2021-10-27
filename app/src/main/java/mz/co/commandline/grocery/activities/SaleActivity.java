@@ -2,7 +2,9 @@ package mz.co.commandline.grocery.activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+
 import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.View;
 
@@ -14,6 +16,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
+import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 import mz.co.commandline.grocery.item.delegate.ItemDelegate;
 import mz.co.commandline.grocery.item.dto.ItemDTO;
 import mz.co.commandline.grocery.saleable.dto.SaleableItemDTO;
@@ -123,15 +126,10 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
     @Override
     public void registSale() {
-
-        if (sale.getItems().isEmpty()) {
-            dialogManager.dialog(AlertType.ERROR, getString(R.string.sale_without_item_not_allowed), null);
-            return;
-        }
+        sale.setGrocery(userService.getGroceryDTO());
 
         progressBar.show();
 
-        sale.setGrocery(userService.getGroceryDTO());
         saleService.registSale(sale, new ResponseListner<SaleDTO>() {
             @Override
             public void success(SaleDTO response) {
@@ -149,6 +147,13 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
                 progressBar.dismiss();
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.sale_error_on_regist), null);
                 Log.e("SALE", message);
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("SALE_B", errorMessage.getDeveloperMessage());
             }
         });
     }

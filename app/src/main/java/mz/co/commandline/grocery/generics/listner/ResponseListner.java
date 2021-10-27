@@ -1,7 +1,14 @@
 package mz.co.commandline.grocery.generics.listner;
 
-public interface ResponseListner<T> {
-    void success(T response);
+import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 
-    void error(String message);
+public abstract class ResponseListner<T> {
+
+    public abstract void success(T response);
+
+    public abstract void error(String message);
+
+    public void businessError(ErrorMessage errorMessage) {
+        throw new RuntimeException("No response implemented...");
+    }
 }

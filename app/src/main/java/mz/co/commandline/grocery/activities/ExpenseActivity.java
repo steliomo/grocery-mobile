@@ -2,7 +2,9 @@ package mz.co.commandline.grocery.activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+
 import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.View;
 
@@ -24,6 +26,7 @@ import mz.co.commandline.grocery.expense.fragment.ExpenseTypeFragment;
 import mz.co.commandline.grocery.expense.fragment.RegistExpenseFragment;
 import mz.co.commandline.grocery.expense.service.ExpenseService;
 import mz.co.commandline.grocery.expense.service.ExpenseTypeService;
+import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.user.service.UserService;
@@ -153,14 +156,15 @@ public class ExpenseActivity extends BaseAuthActivity implements View.OnClickLis
             @Override
             public void error(String message) {
                 progressBar.dismiss();
-
-                if (message.contains("Please add at least one expense to be registed!")) {
-                    dialogManager.dialog(AlertType.ERROR, getString(R.string.no_expenses_to_be_registered), null);
-                    return;
-                }
-
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.expense_regist_error), null);
                 Log.e("EXPENSES", message);
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("EXPENSES_B", errorMessage.getDeveloperMessage());
             }
         });
     }

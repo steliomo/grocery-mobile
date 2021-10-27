@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".report.fragment.CostsFragment">
+
+    <View
+        android:id="@+id/costView"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#017a84"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/periodLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:padding="4dp"
+        android:text="Período:"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/costView"
+        app:layout_constraintStart_toStartOf="@+id/costView"
+        app:layout_constraintTop_toTopOf="@+id/costView" />
+
+    <TextView
+        android:id="@+id/costStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:padding="4dp"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="@+id/periodLabel"
+        app:layout_constraintStart_toEndOf="@+id/periodLabel"
+        app:layout_constraintTop_toTopOf="@+id/periodLabel"
+        tools:text="21-10-2021" />
+
+    <TextView
+        android:id="@+id/costSeparatorLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:padding="4dp"
+        android:text="à"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="@+id/costStartDate"
+        app:layout_constraintStart_toEndOf="@+id/costStartDate"
+        app:layout_constraintTop_toTopOf="@+id/costStartDate" />
+
+    <TextView
+        android:id="@+id/costEndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:padding="4dp"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="@+id/costSeparatorLabel"
+        app:layout_constraintStart_toEndOf="@+id/costSeparatorLabel"
+        app:layout_constraintTop_toTopOf="@+id/costSeparatorLabel"
+        tools:text="30-12-2021" />
+
+    <TextView
+        android:id="@+id/costNameLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="2dp"
+        android:background="#ccc"
+        android:padding="5dp"
+        android:text="Despesas"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/costValueLabel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toStartOf="@+id/costView"
+        app:layout_constraintTop_toBottomOf="@+id/costView" />
+
+    <TextView
+        android:id="@+id/costValueLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:background="#ccc"
+        android:padding="5dp"
+        android:text="Valor"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/costNameLabel"
+        app:layout_constraintEnd_toEndOf="@+id/costView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/costNameLabel"
+        app:layout_constraintTop_toTopOf="@+id/costNameLabel" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/costRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/costGrandTotalLabel"
+        app:layout_constraintEnd_toEndOf="@+id/costValueLabel"
+        app:layout_constraintStart_toStartOf="@+id/costNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/costNameLabel"
+        tools:listitem="@layout/cost_item" />
+
+    <TextView
+        android:id="@+id/costGrandTotalLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="16dp"
+        android:background="#ccc"
+        android:padding="5dp"
+        android:text="Grand Total"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/costGrandTotal"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toStartOf="@+id/costRecyclerView" />
+
+    <TextView
+        android:id="@+id/costGrandTotal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:background="#ccc"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/costGrandTotalLabel"
+        app:layout_constraintEnd_toEndOf="@+id/costRecyclerView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/costGrandTotalLabel"
+        app:layout_constraintTop_toTopOf="@+id/costGrandTotalLabel"
+        tools:text="10.000.000,00 MT" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

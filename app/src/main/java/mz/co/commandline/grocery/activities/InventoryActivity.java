@@ -2,7 +2,9 @@ package mz.co.commandline.grocery.activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+
 import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.View;
 
@@ -15,6 +17,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
+import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 import mz.co.commandline.grocery.inventory.delegate.InventoryDelegate;
 import mz.co.commandline.grocery.inventory.dto.InventoryDTO;
 import mz.co.commandline.grocery.inventory.dto.InventoryStatus;
@@ -111,14 +114,14 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
             @Override
             public void error(String message) {
                 progressBar.dismiss();
-
-                if (message.contains(getString(R.string.inventory_not_found))) {
-                    inventory = new InventoryDTO(userService.getGroceryDTO(), DateUtil.format(new Date(), DateUtil.NORMAL_PATTERN), InventoryStatus.PENDING);
-                    showFragment(new PerformInventoryFragment(), Boolean.TRUE);
-                    return;
-                }
-
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.error_on_performing_inventory), null);
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                inventory = new InventoryDTO(userService.getGroceryDTO(), DateUtil.format(new Date(), DateUtil.NORMAL_PATTERN), InventoryStatus.PENDING);
+                showFragment(new PerformInventoryFragment(), Boolean.TRUE);
             }
         });
     }
@@ -138,13 +141,13 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
             @Override
             public void error(String message) {
                 progressBar.dismiss();
-
-                if (message.contains(getString(R.string.inventory_not_found))) {
-                    dialogManager.dialog(AlertType.ERROR, getString(R.string.no_inventory_to_approve), null);
-                    return;
-                }
-
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.error_on_performing_inventory), null);
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.no_inventory_to_approve), null);
             }
         });
     }
@@ -187,14 +190,15 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
             @Override
             public void error(String message) {
                 progressBar.dismiss();
-
-                if (message.contains("Cannot perform inventory without stock items...")) {
-                    dialogManager.dialog(AlertType.ERROR, getString(R.string.cannot_perform_inventory_without_items), null);
-                    return;
-                }
-
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.error_on_performing_inventory), null);
                 Log.e("INVENTORY", message);
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("INVENTORY_B", errorMessage.getDeveloperMessage());
             }
         });
     }
@@ -221,6 +225,14 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
                 progressBar.dismiss();
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.error_on_approving_inventory), null);
                 Log.e("INVENTORY", message);
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("INVENTORY_B", errorMessage.getDeveloperMessage());
+
             }
         });
     }

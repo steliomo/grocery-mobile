@@ -1,19 +1,18 @@
 package mz.co.commandline.grocery.inventory.service;
 
-import java.io.IOException;
-
 import javax.inject.Inject;
 
+import mz.co.commandline.grocery.generics.listner.ResponseListner;
+import mz.co.commandline.grocery.generics.service.AbstractService;
+import mz.co.commandline.grocery.generics.service.RetrofitService;
 import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.inventory.dto.InventoryDTO;
 import mz.co.commandline.grocery.inventory.dto.InventoryStatus;
-import mz.co.commandline.grocery.generics.listner.ResponseListner;
-import mz.co.commandline.grocery.generics.service.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InventoryServiceImpl implements InventoryService {
+public class InventoryServiceImpl extends AbstractService implements InventoryService {
 
     @Inject
     RetrofitService retrofitService;
@@ -32,7 +31,7 @@ public class InventoryServiceImpl implements InventoryService {
                     return;
                 }
 
-                setErrorBody(response, responseListner);
+                setBodyError(response, responseListner);
             }
 
             @Override
@@ -52,7 +51,7 @@ public class InventoryServiceImpl implements InventoryService {
                     return;
                 }
 
-                setErrorBody(response, responseListner);
+                setBodyError(response, responseListner);
             }
 
             @Override
@@ -71,7 +70,8 @@ public class InventoryServiceImpl implements InventoryService {
                     responseListner.success(response.body());
                     return;
                 }
-                setErrorBody(response, responseListner);
+
+                setBodyError(response, responseListner);
             }
 
             @Override
@@ -81,15 +81,8 @@ public class InventoryServiceImpl implements InventoryService {
         });
     }
 
-    private void setErrorBody(Response<InventoryDTO> response, ResponseListner<InventoryDTO> responseListner) {
-        try {
-            responseListner.error(response.errorBody().string());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private InventoryResource getResource() {
+    @Override
+    public InventoryResource getResource() {
         return retrofitService.getResource(InventoryResource.class);
     }
 }

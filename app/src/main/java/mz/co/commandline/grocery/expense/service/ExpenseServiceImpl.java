@@ -40,6 +40,26 @@ public class ExpenseServiceImpl extends AbstractService implements ExpenseServic
     }
 
     @Override
+    public void findExpensesByUnitAndPeriod(String unitUuid, String startDate, String endDate, final ResponseListner<ExpensesDTO> expensesDTOResponseListner) {
+        getResource().findExpensesByUnitAndPeriod(unitUuid, startDate, endDate).enqueue(new Callback<ExpensesDTO>() {
+            @Override
+            public void onResponse(Call<ExpensesDTO> call, Response<ExpensesDTO> response) {
+                if (response.isSuccessful()) {
+                    expensesDTOResponseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, expensesDTOResponseListner);
+            }
+
+            @Override
+            public void onFailure(Call<ExpensesDTO> call, Throwable t) {
+                expensesDTOResponseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
     public ExpenseResource getResource() {
         return retrofitService.getResource(ExpenseResource.class);
     }

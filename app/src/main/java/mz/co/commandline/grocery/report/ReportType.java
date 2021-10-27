@@ -4,7 +4,5 @@ public enum ReportType {
 
     SALES_REPORT,
 
-    STOCKS_REPORT,
-
-    LOW_STOCK_REPORT;
+    COSTS_REPORT;
 }
