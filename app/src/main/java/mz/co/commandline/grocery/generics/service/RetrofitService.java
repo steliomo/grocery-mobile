@@ -2,7 +2,7 @@ package mz.co.commandline.grocery.generics.service;
 
 public interface RetrofitService {
 
-    String BASE_URL = "https://mercearias.rnds.co.mz/services/";
+    String BASE_URL = "https://negocios.mowinner.co.mz/services/";
 
     String AUTH_HEADER = "Authorization";
 
