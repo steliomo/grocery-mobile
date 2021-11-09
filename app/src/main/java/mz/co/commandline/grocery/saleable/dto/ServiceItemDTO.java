@@ -41,4 +41,8 @@ public class ServiceItemDTO extends SaleableItemDTO {
     public void setUnitDTO(GroceryDTO unitDTO) {
         this.unitDTO = unitDTO;
     }
+
+    public GroceryDTO getUnitDTO() {
+        return unitDTO;
+    }
 }

@@ -5,6 +5,7 @@ import android.view.View;
 import java.math.BigDecimal;
 
 import mz.co.commandline.grocery.generics.dto.GenericDTO;
+import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.item.dto.ItemType;
 import mz.co.commandline.grocery.saleable.dto.SaleableItemDTO;
 import mz.co.commandline.grocery.saleable.dto.ServiceItemDTO;
@@ -155,5 +156,9 @@ public class RentItemDTO extends GenericDTO {
 
     public Boolean getReturnable() {
         return returnable;
+    }
+
+    public GroceryDTO getUnit() {
+        return stockDTO != null ? stockDTO.getGroceryDTO() : serviceItemDTO.getUnitDTO();
     }
 }

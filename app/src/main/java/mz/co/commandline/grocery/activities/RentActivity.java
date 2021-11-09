@@ -260,7 +260,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
             return;
         }
 
-        rent.setUnitDTO(rentItemDTO.getStockDTO().getGroceryDTO());
+        rent.setUnitDTO(rentItemDTO.getUnit());
         showFragment(new QuotationFragment(), Boolean.TRUE);
     }
 
