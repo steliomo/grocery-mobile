@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Negócio na Mão</string>
-    <string name="app_version">© 2021 © v2.1.1</string>
+    <string name="app_version">© 2021 © v2.1.2</string>
     <string name="sales">Vendas</string>
     <string name="reports">Relatórios</string>
     <string name="products_and_services">Produtos e Serviços</string>
@@ -165,5 +165,6 @@
     <string name="bestsellers">Mais vendidos</string>
     <string name="stocks">Productos no stock</string>
     <string name="error_on_loading_expenses">Ocorreu um erro ao carregar as despesas! Tente novamente.</string>
+    <string name="error_payment_loading">"Erro ao carregar pagamentos! Tente novamente. "</string>
 
 </resources>

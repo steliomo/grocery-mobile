@@ -179,9 +179,12 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
     }
 
     private void paymentFragment() {
+        progressBar.show();
         userService.getUnitDetails(userService.getGroceryDTO().getUuid(), new ResponseListner<UnitDetail>() {
             @Override
             public void success(UnitDetail response) {
+                progressBar.dismiss();
+
                 payment = new PaymentDTO();
                 payment.setUnitUuid(userService.getGroceryDTO().getUuid());
 
@@ -192,6 +195,8 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
 
             @Override
             public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_payment_loading), null);
                 Log.e("PAYMENTS", message);
             }
         });
