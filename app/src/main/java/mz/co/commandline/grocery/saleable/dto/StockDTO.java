@@ -24,8 +24,15 @@ public class StockDTO extends SaleableItemDTO {
 
     private int position;
 
+    private String inventoryDate;
+
+    private String inventoryQuantity;
+
+    private String stockUpdateDate;
+
+    private String stockUpdateQuantity;
+
     public StockDTO() {
-        super();
     }
 
     public ProductDescriptionDTO getProductDescriptionDTO() {
@@ -105,5 +112,38 @@ public class StockDTO extends SaleableItemDTO {
     @Override
     public String getName() {
         return productDescriptionDTO.getName();
+    }
+
+    public BigDecimal discrepancy() {
+        return new BigDecimal(quantity).subtract(new BigDecimal(inventoryQuantity));
+    }
+
+    public BigDecimal cashDiscrepancy() {
+        return new BigDecimal(purchasePrice).multiply(discrepancy());
+    }
+
+    public String getInventoryDate() {
+        return inventoryDate;
+    }
+
+    public String getInventoryQuantity() {
+        return inventoryQuantity;
+    }
+
+    public String getStockUpdateDate() {
+        return stockUpdateDate;
+    }
+
+    public String getStockUpdateQuantity() {
+        return stockUpdateQuantity;
+    }
+
+    public BigDecimal sales() {
+
+        if (stockUpdateQuantity == null) {
+            return BigDecimal.ZERO;
+        }
+
+        return new BigDecimal(stockUpdateQuantity).subtract(new BigDecimal(quantity));
     }
 }

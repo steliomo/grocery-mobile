@@ -1,4 +1,4 @@
-package mz.co.commandline.grocery.rent.model;
+package mz.co.commandline.grocery.rent.dto;
 
 import android.view.View;
 
@@ -39,6 +39,8 @@ public class RentItemDTO extends GenericDTO {
     private boolean selected;
 
     private Boolean returnable;
+
+    private String description;
 
     public RentItemDTO(SaleableItemDTO saleableItemDTO) {
         this.saleableItemDTO = saleableItemDTO;
@@ -160,5 +162,13 @@ public class RentItemDTO extends GenericDTO {
 
     public GroceryDTO getUnit() {
         return stockDTO != null ? stockDTO.getGroceryDTO() : serviceItemDTO.getUnitDTO();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

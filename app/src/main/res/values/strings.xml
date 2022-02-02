@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Negócio na Mão</string>
-    <string name="app_version">© 2021 © v2.1.2</string>
+    <string name="app_version">© 2022 © v2.2.0</string>
     <string name="sales">Vendas</string>
     <string name="reports">Relatórios</string>
     <string name="products_and_services">Produtos e Serviços</string>
@@ -14,7 +14,6 @@
     <string name="processing_request">A processar o pedido.</string>
     <string name="products">Productos</string>
     <string name="required_field">*Campo obrigatório</string>
-
 
     <string name="sale_error_on_add_item">Ocorreu um erro ao adicionar o item. Por favor tente novamente!</string>
     <string name="sale_without_item_not_allowed">Não é permitido o registo da venda de sem pelo menos um item adicionado!</string>
@@ -166,5 +165,42 @@
     <string name="stocks">Productos no stock</string>
     <string name="error_on_loading_expenses">Ocorreu um erro ao carregar as despesas! Tente novamente.</string>
     <string name="error_payment_loading">"Erro ao carregar pagamentos! Tente novamente. "</string>
-
+    <string name="rent_item_description">Descrição</string>
+    <string name="contracts">Contractos(v.Beta)</string>
+    <string name="contract">Contracto</string>
+    <string name="celebrate_contract">Celebrar Contracto</string>
+    <string name="contract_type">Tipo de contracto:</string>
+    <string name="contract_description">Descrição:</string>
+    <string name="contract_duration">Duração(dias):</string>
+    <string name="contract_value">Valor (Mensal):</string>
+    <string name="customer">Cliente</string>
+    <string name="customer_name_lbl">Nome:</string>
+    <string name="customer_address_lbl">Endereço:</string>
+    <string name="customer_phone_number_lbl">Telefone:</string>
+    <string name="contract_confirmation">Confirmação do registo</string>
+    <string name="contract_registered">O conctracto foi registado com sucesso!</string>
+    <string name="contract_registered_error">Ocorreu um erro ao registar o contracto. Tente novamente.</string>
+    <string name="contracts_type_load_error">Ocorreu um erro ao carregar os tipos de contracto. Tente novamente.</string>
+    <string name="end_date">Data de Término:</string>
+    <string name="monthy_payment">Pagamento Mensal:</string>
+    <string name="total_paid">Total Pago:</string>
+    <string name="error_loading_contracts">O correu um erro ao carregar os contractos! Tente novamente</string>
+    <string name="no_pending_customers_for_payment">Nenhum cliente com pagamentos pendentes foi encontrado!</string>
+    <string name="item_track">Productos em análise</string>
+    <string name="product">Producto</string>
+    <string name="discrepancy">Discrepância</string>
+    <string name="total_in_cash">Total em dinheiro</string>
+    <string name="total_missing">Total de productos em falta</string>
+    <string name="unit_without_stocks_in_analysis">Unidade sem productos em análise!</string>
+    <string name="error_loading_stock_in_analysis">Ocorreu um erro ao carregar os productos em análise!</string>
+    <string name="purchase_value_lbl">Valor de compra:</string>
+    <string name="sale_value_lbl">Valor da venda:</string>
+    <string name="quantity_lbl">Quantidade:</string>
+    <string name="minim_stock_lbl">Stock mínimo:</string>
+    <string name="last_inventory_date_lbl">Data do último inventário:</string>
+    <string name="last_inventory_quantity">Quantidade física:</string>
+    <string name="difference_lbl">Diferença:</string>
+    <string name="last_stock_update_date_lbl">Actualiz. do último stock:</string>
+    <string name="last_stock_quantity">Quantidade do último stock:</string>
+    <string name="sold_quantity_lbl">Quantidade vendida:</string>
 </resources>

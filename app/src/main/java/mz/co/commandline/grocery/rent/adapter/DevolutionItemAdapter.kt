@@ -7,7 +7,7 @@ import mz.co.commandline.grocery.adapter.BaseAdapter
 import mz.co.commandline.grocery.databinding.ReturnItemBinding
 import mz.co.commandline.grocery.generics.listner.ClickListner
 import mz.co.commandline.grocery.rent.holder.DevolutionViewHolder
-import mz.co.commandline.grocery.rent.model.RentItemDTO
+import mz.co.commandline.grocery.rent.dto.RentItemDTO
 
 class DevolutionItemAdapter(private val context: Context?, private val rentItems: List<RentItemDTO>) : BaseAdapter<DevolutionViewHolder>() {
 

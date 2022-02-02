@@ -1,7 +1,9 @@
 package mz.co.commandline.grocery.inventory.adapter;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +22,12 @@ public class StockInventoryAdapter extends BaseAdapter<StockInventoryViewHolder>
 
     private List<StockInventoryDTO> stockInventories;
 
-    public StockInventoryAdapter(Context context, List<StockInventoryDTO> stockInventories) {
+    private Boolean perform;
+
+    public StockInventoryAdapter(Context context, List<StockInventoryDTO> stockInventories, Boolean perform) {
         this.context = context;
         this.stockInventories = stockInventories;
+        this.perform = perform;
     }
 
     @Override
@@ -33,8 +38,8 @@ public class StockInventoryAdapter extends BaseAdapter<StockInventoryViewHolder>
     @NonNull
     @Override
     public StockInventoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.inventory_item, parent, false);
-        StockInventoryViewHolder holder = new StockInventoryViewHolder(view);
+        View view = LayoutInflater.from(context).inflate(perform ? R.layout.inventory_item_perform : R.layout.inventory_item, parent, false);
+        StockInventoryViewHolder holder = new StockInventoryViewHolder(view, perform);
         return holder;
     }
 

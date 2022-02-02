@@ -15,8 +15,6 @@ public class CustomerDTO extends GenericDTO {
 
     private String email;
 
-    private String vehicleNumberPlate;
-
     public CustomerDTO() {
     }
 
@@ -58,13 +56,5 @@ public class CustomerDTO extends GenericDTO {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getVehicleNumberPlate() {
-        return vehicleNumberPlate;
-    }
-
-    public void setVehicleNumberPlate(String vehicleNumberPlate) {
-        this.vehicleNumberPlate = vehicleNumberPlate;
     }
 }

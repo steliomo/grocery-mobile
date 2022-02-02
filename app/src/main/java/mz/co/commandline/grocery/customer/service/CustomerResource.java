@@ -22,4 +22,7 @@ public interface CustomerResource {
 
     @GET("customers/pending-devolutions-by-unit/{unitUuid}")
     Call<CustomersDTO> findCustomersWithPendingDevolutionsByUnit(@Path("unitUuid") String unitUuid, @Query("currentPage") int currentPage, @Query("maxResult") int maxResult);
+
+    @GET("customers/pending-contract-payment-by-unit/{unitUuid}")
+    Call<CustomersDTO> findCustomersWithContractPendingPaymentByUnit(@Path("unitUuid") String unitUuid, @Query("currentPage") int currentPage, @Query("maxResult") int maxResult, @Query("currentDate") String currentDate);
 }

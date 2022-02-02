@@ -17,19 +17,28 @@ public class StockInventoryViewHolder extends BaseViewHolder<StockInventoryDTO> 
     @BindView(R.id.inventory_item_quantity)
     TextView quantity;
 
-    @BindView(R.id.inventory_item_difference)
     TextView difference;
 
+    private Boolean perform;
 
-    public StockInventoryViewHolder(View view) {
+
+    public StockInventoryViewHolder(View view, Boolean perform) {
         super(view);
+        this.perform = perform;
+
+        if (!perform) {
+            difference = view.findViewById(R.id.inventory_item_difference);
+        }
     }
 
     @Override
     public void bind(StockInventoryDTO stockInventory) {
         itemName.setText(stockInventory.getStockDTO().getProductDescriptionDTO().getName());
         quantity.setText(stockInventory.getFisicalInventory());
-        difference.setText(stockInventory.getDiffence());
+
+        if (!perform) {
+            difference.setText(stockInventory.getDiffence());
+        }
     }
 
     @Override

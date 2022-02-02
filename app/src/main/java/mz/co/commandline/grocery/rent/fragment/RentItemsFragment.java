@@ -11,7 +11,7 @@ import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.rent.adapter.RentItemAdapter;
 import mz.co.commandline.grocery.rent.delegate.RentDelegate;
-import mz.co.commandline.grocery.rent.model.RentDTO;
+import mz.co.commandline.grocery.rent.dto.RentDTO;
 import mz.co.commandline.grocery.util.FormatterUtil;
 
 

@@ -4,7 +4,7 @@ import android.view.View
 import mz.co.commandline.grocery.databinding.RentBinding
 import mz.co.commandline.grocery.generics.holder.BaseViewHolder
 import mz.co.commandline.grocery.generics.listner.ClickListner
-import mz.co.commandline.grocery.rent.model.RentDTO
+import mz.co.commandline.grocery.rent.dto.RentDTO
 import mz.co.commandline.grocery.util.FormatterUtil
 
 class RentViewHolder(private val binding: RentBinding) : BaseViewHolder<RentDTO>(binding) {

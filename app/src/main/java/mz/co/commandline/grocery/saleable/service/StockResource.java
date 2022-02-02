@@ -30,4 +30,7 @@ public interface StockResource {
 
     @POST("stocks/add-stock-products")
     Call<Void> addStockProducts(@Body List<StockDTO> stocks);
+
+    @GET("stocks/in-analysis")
+    Call<List<StockDTO>> findStocksInAnalysis(@Query("unitUuid") String unitUuid);
 }

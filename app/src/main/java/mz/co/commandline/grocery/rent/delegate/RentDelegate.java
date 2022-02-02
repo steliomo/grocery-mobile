@@ -3,10 +3,10 @@ package mz.co.commandline.grocery.rent.delegate;
 import java.util.List;
 
 import mz.co.commandline.grocery.main.delegate.MenuDelegate;
-import mz.co.commandline.grocery.rent.model.RentDTO;
-import mz.co.commandline.grocery.rent.model.RentItemDTO;
-import mz.co.commandline.grocery.rent.model.RentPaymentDTO;
-import mz.co.commandline.grocery.rent.model.ReturnItemDTO;
+import mz.co.commandline.grocery.rent.dto.RentDTO;
+import mz.co.commandline.grocery.rent.dto.RentItemDTO;
+import mz.co.commandline.grocery.rent.dto.RentPaymentDTO;
+import mz.co.commandline.grocery.rent.dto.ReturnItemDTO;
 import mz.co.commandline.grocery.saleable.delegate.SaleableItemDelegate;
 
 public interface RentDelegate extends MenuDelegate, SaleableItemDelegate {

@@ -1,6 +1,5 @@
 package mz.co.commandline.grocery.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -44,13 +43,13 @@ import mz.co.commandline.grocery.rent.fragment.RegistRentFragment;
 import mz.co.commandline.grocery.rent.fragment.RentItemsFragment;
 import mz.co.commandline.grocery.rent.fragment.RentPaymentFragment;
 import mz.co.commandline.grocery.rent.fragment.ReturnItemFragment;
-import mz.co.commandline.grocery.rent.model.RentDTO;
-import mz.co.commandline.grocery.rent.model.RentItemDTO;
-import mz.co.commandline.grocery.rent.model.RentPaymentDTO;
-import mz.co.commandline.grocery.rent.model.RentReport;
-import mz.co.commandline.grocery.rent.model.RentType;
-import mz.co.commandline.grocery.rent.model.RentsDTO;
-import mz.co.commandline.grocery.rent.model.ReturnItemDTO;
+import mz.co.commandline.grocery.rent.dto.RentDTO;
+import mz.co.commandline.grocery.rent.dto.RentItemDTO;
+import mz.co.commandline.grocery.rent.dto.RentPaymentDTO;
+import mz.co.commandline.grocery.rent.dto.RentReport;
+import mz.co.commandline.grocery.rent.dto.RentType;
+import mz.co.commandline.grocery.rent.dto.RentsDTO;
+import mz.co.commandline.grocery.rent.dto.ReturnItemDTO;
 import mz.co.commandline.grocery.rent.service.RentService;
 import mz.co.commandline.grocery.sale.fragment.ItemTypeFragment;
 import mz.co.commandline.grocery.saleable.dto.SaleableItemDTO;
@@ -436,7 +435,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
             public void error(String message) {
                 progressBar.dismiss();
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_customers), null);
-                Log.e("CUSTOMES", message);
+                Log.e("CUSTOMERS", message);
             }
         });
     }

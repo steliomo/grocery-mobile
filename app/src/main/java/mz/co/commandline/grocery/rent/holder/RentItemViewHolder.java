@@ -4,14 +4,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.viewbinding.ViewBinding;
-
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.databinding.RentBinding;
 import mz.co.commandline.grocery.generics.holder.BaseViewHolder;
 import mz.co.commandline.grocery.generics.listner.ClickListner;
-import mz.co.commandline.grocery.rent.model.RentItemDTO;
+import mz.co.commandline.grocery.rent.dto.RentItemDTO;
 import mz.co.commandline.grocery.util.FormatterUtil;
 
 public class RentItemViewHolder extends BaseViewHolder<RentItemDTO> {

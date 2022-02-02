@@ -1,4 +1,4 @@
-package mz.co.commandline.grocery.rent.model
+package mz.co.commandline.grocery.rent.dto
 
 import mz.co.commandline.grocery.generics.dto.GenericDTO
 import java.math.BigDecimal

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/contractDetailView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="#ccc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/contractType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:padding="3dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/contractDetailView"
+        tools:text="Aluger de imóvel" />
+
+    <TextView
+        android:id="@+id/contractStartDateLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="@string/start_date"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/contractStartDate"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/contractType"
+        app:layout_constraintStart_toStartOf="@id/contractType"
+        app:layout_constraintTop_toBottomOf="@+id/contractType" />
+
+    <TextView
+        android:id="@+id/contractStartDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/contractStartDateLbl"
+        app:layout_constraintEnd_toStartOf="@+id/contractEndDateLbl"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/contractStartDateLbl"
+        app:layout_constraintTop_toTopOf="@+id/contractStartDateLbl"
+        tools:text="12-12-2021" />
+
+    <TextView
+        android:id="@+id/contractEndDateLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="@string/end_date"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/contractStartDate"
+        app:layout_constraintEnd_toStartOf="@+id/contractEndDate"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/contractStartDate"
+        app:layout_constraintTop_toTopOf="@+id/contractStartDate" />
+
+    <TextView
+        android:id="@+id/contractEndDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/contractEndDateLbl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/contractEndDateLbl"
+        app:layout_constraintTop_toTopOf="@+id/contractEndDateLbl"
+        tools:text="12-12-2022" />
+
+    <TextView
+        android:id="@+id/contractMonthlyPaymentLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="@string/monthy_payment"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/contractDetailView"
+        app:layout_constraintEnd_toStartOf="@+id/contractMonthlyPayment"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/contractStartDateLbl"
+        app:layout_constraintTop_toBottomOf="@+id/contractStartDateLbl" />
+
+    <TextView
+        android:id="@+id/contractMonthlyPayment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/contractMonthlyPaymentLbl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/contractMonthlyPaymentLbl"
+        app:layout_constraintTop_toTopOf="@+id/contractMonthlyPaymentLbl"
+        tools:text="5.000,00MT" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

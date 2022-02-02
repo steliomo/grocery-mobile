@@ -10,7 +10,7 @@ import mz.co.commandline.grocery.generics.fragment.BaseFragment
 import mz.co.commandline.grocery.generics.listner.ClickListner
 import mz.co.commandline.grocery.rent.adapter.RentAdapter
 import mz.co.commandline.grocery.rent.delegate.RentDelegate
-import mz.co.commandline.grocery.rent.model.RentDTO
+import mz.co.commandline.grocery.rent.dto.RentDTO
 
 class PendingRentsFragment : BaseFragment(), ClickListner<RentDTO> {
 

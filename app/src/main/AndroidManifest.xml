@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.RentActivity"></activity>
+        <activity android:name=".activities.ContractActivity"></activity>
+        <activity android:name=".activities.RentActivity" />
         <activity
             android:name=".activities.ExpenseActivity"
             android:screenOrientation="portrait" />

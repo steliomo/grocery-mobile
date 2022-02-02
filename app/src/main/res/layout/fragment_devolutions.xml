@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".rent.fragment.DevolutionsFragment">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/devolutionsRecyclerView"
         android:layout_width="0dp"

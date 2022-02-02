@@ -6,6 +6,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import mz.co.commandline.grocery.contract.service.ContractService;
+import mz.co.commandline.grocery.contract.service.ContractServiceImpl;
 import mz.co.commandline.grocery.customer.service.CustomerService;
 import mz.co.commandline.grocery.customer.service.CustomerServiceImpl;
 import mz.co.commandline.grocery.expense.service.ExpenseService;
@@ -134,5 +136,10 @@ public class GroceryModule {
     @Provides
     public RentService provideRentService(RentServiceImpl rentService) {
         return rentService;
+    }
+
+    @Provides
+    public ContractService provideContractService(ContractServiceImpl contractService) {
+        return contractService;
     }
 }

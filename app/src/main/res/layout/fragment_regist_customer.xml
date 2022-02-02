@@ -81,21 +81,6 @@
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fragment_regist_customer_vehicle_number_plate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_regist_customer_email"
-            app:layout_constraintStart_toStartOf="@+id/fragment_regist_customer_email"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_regist_customer_email">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_car"
-                android:hint="@string/customer_vehicle_number_plate" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/fragment_regist_customer_regist_btn"
@@ -111,10 +96,9 @@
             android:textAllCaps="false"
             android:textColor="#fff"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_regist_customer_vehicle_number_plate"
-            app:layout_constraintStart_toStartOf="@+id/fragment_regist_customer_vehicle_number_plate"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_regist_customer_vehicle_number_plate"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintEnd_toEndOf="@+id/fragment_regist_customer_email"
+            app:layout_constraintStart_toStartOf="@+id/fragment_regist_customer_email"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_regist_customer_email" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -10,7 +10,7 @@ import mz.co.commandline.grocery.generics.fragment.BaseFragment
 import mz.co.commandline.grocery.generics.listner.ClickListner
 import mz.co.commandline.grocery.rent.adapter.DevolutionItemAdapter
 import mz.co.commandline.grocery.rent.delegate.RentDelegate
-import mz.co.commandline.grocery.rent.model.RentItemDTO
+import mz.co.commandline.grocery.rent.dto.RentItemDTO
 
 
 class DevolutionsFragment : BaseFragment(), ClickListner<RentItemDTO>, View.OnClickListener {

@@ -107,4 +107,24 @@ public class StockServiceImpl extends AbstractService implements StockService {
             }
         });
     }
+
+    @Override
+    public void findStocksInAnalysis(String unitUuid, final ResponseListner<List<StockDTO>> responseListner) {
+        getResource().findStocksInAnalysis(unitUuid).enqueue(new Callback<List<StockDTO>>() {
+            @Override
+            public void onResponse(Call<List<StockDTO>> call, Response<List<StockDTO>> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<List<StockDTO>> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
 }

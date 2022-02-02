@@ -4,12 +4,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.fragment.app.FragmentActivity;
-
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +15,7 @@ import butterknife.OnClick;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.rent.delegate.RentDelegate;
-import mz.co.commandline.grocery.rent.model.RentItemDTO;
-import mz.co.commandline.grocery.util.DateUtil;
+import mz.co.commandline.grocery.rent.dto.RentItemDTO;
 import mz.co.commandline.grocery.util.TextInputLayoutUtil;
 import mz.co.commandline.grocery.validator.DateValidator;
 import mz.co.commandline.grocery.validator.DefaultValidator;
@@ -46,11 +42,14 @@ public class AddRentItemFragment extends BaseFragment {
     @BindView(R.id.fragment_add_rent_item_days)
     TextInputLayout days;
 
-    @BindView(R.id.fragment_add_rent_item_value)
+    @BindView(R.id.celebrateContractMonthyValue)
     TextInputLayout value;
 
     @BindView(R.id.fragment_add_rent_item_discount)
     TextInputLayout discount;
+
+    @BindView(R.id.fragment_add_rent_item_description)
+    TextInputLayout description;
 
     private List<Validator> validadors;
 
@@ -166,7 +165,7 @@ public class AddRentItemFragment extends BaseFragment {
         return getString(R.string.add_item);
     }
 
-    @OnClick(R.id.fragment_add_rent_item_add)
+    @OnClick(R.id.celebrateContractBtn)
     public void onClickAddRentItem() {
 
         for (Validator validator : validadors) {
@@ -181,6 +180,7 @@ public class AddRentItemFragment extends BaseFragment {
         }
         rentItem.setQuantity(new BigDecimal(TextInputLayoutUtil.getInpuText(quantity)));
         rentItem.setDiscount(new BigDecimal(TextInputLayoutUtil.getInpuText(discount)));
+        rentItem.setDescription(TextInputLayoutUtil.getInpuText(description));
         rentItem.calculateValue();
 
         delegte.addRentItem(rentItem);

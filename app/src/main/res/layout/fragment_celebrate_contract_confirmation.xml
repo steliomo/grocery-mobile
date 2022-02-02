@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".contract.fragment.CelebrateContractConfirmationFragment">
+
+    <TextView
+        android:id="@+id/contractConfirmationLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="#017a84"
+        android:elevation="2dp"
+        android:padding="8dp"
+        android:text="@string/contract"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/contractConfirmationView"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:background="#B2DFDB"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationLbl"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contractConfirmationLbl" />
+
+    <TextView
+        android:id="@+id/contractConfirmationTypeLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="3dp"
+        android:text="@string/contract_type"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/contractConfirmationView"
+        app:layout_constraintTop_toTopOf="@+id/contractConfirmationView" />
+
+    <TextView
+        android:id="@+id/contractConfirmationType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="8dp"
+        android:padding="3dp"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/contractConfirmationTypeLbl"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/contractConfirmationTypeLbl"
+        app:layout_constraintTop_toTopOf="@+id/contractConfirmationTypeLbl"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Arrendamento de imóvel" />
+
+    <TextView
+        android:id="@+id/contractConfirmationDescriptionLbl"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="4dp"
+        android:padding="3dp"
+        android:text="@string/contract_description"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationTypeLbl"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/contractConfirmationTypeLbl"
+        app:layout_constraintTop_toBottomOf="@+id/contractConfirmationTypeLbl" />
+
+    <TextView
+        android:id="@+id/contractConfirmationDescription"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:justificationMode="inter_word"
+        android:padding="3dp"
+        android:textAlignment="gravity"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/contractConfirmationDescriptionLbl"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationType"
+        app:layout_constraintStart_toStartOf="@+id/contractConfirmationType"
+        app:layout_constraintTop_toTopOf="@+id/contractConfirmationDescriptionLbl"
+        tools:text="Bairro Central, xxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxx primeiro andar, T-3, mobilada com material moderno" />
+
+    <TextView
+        android:id="@+id/contractConfirmationDurationLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:padding="3dp"
+        android:text="@string/contract_duration"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationDescriptionLbl"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/contractConfirmationDescriptionLbl"
+        app:layout_constraintTop_toBottomOf="@+id/contractConfirmationDescriptionLbl" />
+
+    <TextView
+        android:id="@+id/contractConfirmationDuration"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/contractConfirmationDurationLbl"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationDescription"
+        app:layout_constraintStart_toStartOf="@+id/contractConfirmationDescription"
+        app:layout_constraintTop_toTopOf="@+id/contractConfirmationDurationLbl"
+        tools:text="180" />
+
+    <TextView
+        android:id="@+id/contractConfirmationValueLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:padding="3dp"
+        android:text="@string/contract_value"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/contractConfirmationView"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationDurationLbl"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/contractConfirmationDurationLbl"
+        app:layout_constraintTop_toBottomOf="@+id/contractConfirmationDurationLbl"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/contractConfirmationValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/contractConfirmationValueLbl"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationDuration"
+        app:layout_constraintStart_toStartOf="@+id/contractConfirmationDuration"
+        app:layout_constraintTop_toTopOf="@+id/contractConfirmationValueLbl"
+        tools:text="50.000,00 MT" />
+
+    <TextView
+        android:id="@+id/contractConfirmationCustomerLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#017a84"
+        android:elevation="2dp"
+        android:padding="8dp"
+        android:text="@string/customer"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationView"
+        app:layout_constraintStart_toStartOf="@+id/contractConfirmationLbl"
+        app:layout_constraintTop_toBottomOf="@+id/contractConfirmationView" />
+
+    <View
+        android:id="@+id/contractConfirmationCustomerView"
+        android:layout_width="0dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="4dp"
+        android:background="#B2DFDB"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationCustomerLbl"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/contractConfirmationView"
+        app:layout_constraintTop_toBottomOf="@+id/contractConfirmationCustomerLbl" />
+
+    <TextView
+        android:id="@+id/contractConfirmationCustomerNameLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="3dp"
+        android:text="@string/customer_name_lbl"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationValueLbl"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/contractConfirmationCustomerView"
+        app:layout_constraintTop_toTopOf="@+id/contractConfirmationCustomerView" />
+
+    <TextView
+        android:id="@+id/contractConfirmationCustomerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="8dp"
+        android:padding="3dp"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/contractConfirmationCustomerNameLbl"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationCustomerView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/contractConfirmationCustomerNameLbl"
+        app:layout_constraintTop_toTopOf="@+id/contractConfirmationCustomerNameLbl"
+        tools:text="Stélio Moiane" />
+
+    <TextView
+        android:id="@+id/contractConfirmationCustomerAddressLbl"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="4dp"
+        android:padding="3dp"
+        android:text="@string/customer_address_lbl"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationCustomerNameLbl"
+        app:layout_constraintStart_toStartOf="@+id/contractConfirmationCustomerNameLbl"
+        app:layout_constraintTop_toBottomOf="@+id/contractConfirmationCustomerNameLbl" />
+
+    <TextView
+        android:id="@+id/contractConfirmationCustomerAddress"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:justificationMode="inter_word"
+        android:padding="3dp"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/contractConfirmationCustomerAddressLbl"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationCustomerName"
+        app:layout_constraintStart_toStartOf="@+id/contractConfirmationCustomerName"
+        app:layout_constraintTop_toTopOf="@+id/contractConfirmationCustomerAddressLbl"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Bairro Djuba, casa Nr. 375, Q-2, Matola-Rio xxxxxxxxxxxxxxxxxxxxxxxxxxxx" />
+
+    <TextView
+        android:id="@+id/contractConfirmationCustomerPhoneLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:padding="3dp"
+        android:text="@string/customer_phone_number_lbl"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationCustomerAddressLbl"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/contractConfirmationCustomerAddressLbl"
+        app:layout_constraintTop_toBottomOf="@+id/contractConfirmationCustomerAddressLbl" />
+
+    <TextView
+        android:id="@+id/contractConfirmationCustomerPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/contractConfirmationCustomerPhoneLbl"
+        app:layout_constraintEnd_toEndOf="@+id/contractConfirmationCustomerAddress"
+        app:layout_constraintStart_toEndOf="@+id/contractConfirmationCustomerPhoneLbl"
+        app:layout_constraintTop_toTopOf="@+id/contractConfirmationCustomerPhoneLbl"
+        tools:text="+(258) 84 0546-824" />
+
+    <Button
+        android:id="@+id/contractConfirmationBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="#DD2C00"
+        android:padding="8dp"
+        android:text="@string/regist"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

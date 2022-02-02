@@ -24,11 +24,16 @@ import mz.co.commandline.grocery.inventory.dto.InventoryStatus;
 import mz.co.commandline.grocery.inventory.dto.StockInventoryDTO;
 import mz.co.commandline.grocery.inventory.fragment.AddInventoryItemFragment;
 import mz.co.commandline.grocery.inventory.fragment.ApproveInventoryFragment;
-import mz.co.commandline.grocery.inventory.fragment.InventoryMenuFragment;
 import mz.co.commandline.grocery.inventory.fragment.PerformInventoryFragment;
+import mz.co.commandline.grocery.inventory.fragment.StockAnalysisDetailFragment;
+import mz.co.commandline.grocery.inventory.fragment.StockAnalysisFragment;
 import mz.co.commandline.grocery.inventory.service.InventoryService;
 import mz.co.commandline.grocery.item.delegate.ItemDelegate;
 import mz.co.commandline.grocery.item.dto.ItemDTO;
+import mz.co.commandline.grocery.main.delegate.MenuDelegate;
+import mz.co.commandline.grocery.main.fragment.MenuFragment;
+import mz.co.commandline.grocery.menu.Menu;
+import mz.co.commandline.grocery.menu.MenuItem;
 import mz.co.commandline.grocery.saleable.dto.SaleableItemDTO;
 import mz.co.commandline.grocery.item.service.ItemService;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
@@ -39,6 +44,7 @@ import mz.co.commandline.grocery.item.fragment.ProductFragment;
 import mz.co.commandline.grocery.saleable.dto.StockDTO;
 import mz.co.commandline.grocery.saleable.fragment.StockFragment;
 import mz.co.commandline.grocery.saleable.service.StockService;
+import mz.co.commandline.grocery.user.dto.UserRole;
 import mz.co.commandline.grocery.user.service.UserService;
 import mz.co.commandline.grocery.util.DateUtil;
 import mz.co.commandline.grocery.util.KeyboardUtil;
@@ -46,7 +52,7 @@ import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
 
-public class InventoryActivity extends BaseAuthActivity implements View.OnClickListener, InventoryDelegate, ItemDelegate {
+public class InventoryActivity extends BaseAuthActivity implements View.OnClickListener, InventoryDelegate, ItemDelegate, MenuDelegate {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -75,6 +81,8 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
 
     private InventoryDTO inventory;
 
+    private Menu menu;
+
     @Override
     public void onGroceryCreate(Bundle bundle) {
         setContentView(R.layout.activity_inventory);
@@ -91,7 +99,15 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
 
         dialogManager = new AlertDialogManager(this);
 
-        showFragment(new InventoryMenuFragment(), Boolean.FALSE);
+        menu = new Menu();
+        menu.addMenuItem(new MenuItem(R.string.perform_inventory, R.mipmap.ic_perform_inventory));
+
+        if (!UserRole.OPERATOR.equals(userService.getGroceryUser().getUserRole())) {
+            menu.addMenuItem(new MenuItem(R.string.approve_inventory, R.mipmap.ic_approved_stock));
+            menu.addMenuItem(new MenuItem(R.string.item_track, R.mipmap.ic_item_track));
+        }
+
+        showFragment(new MenuFragment(), Boolean.FALSE);
     }
 
     @Override
@@ -99,7 +115,6 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
         popBackStack();
     }
 
-    @Override
     public void displayPerformInventoryFragment() {
         progressBar.show();
 
@@ -126,7 +141,6 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
         });
     }
 
-    @Override
     public void displayApproveInventoryFragment() {
         progressBar.show();
 
@@ -181,8 +195,8 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.inventory_was_performed_with_success), new AlertListner() {
                     @Override
                     public void perform() {
-                        popBackStack();
-                        showFragment(new InventoryMenuFragment(), Boolean.FALSE);
+                        resetFragment();
+                        showFragment(new MenuFragment(), Boolean.FALSE);
                     }
                 });
             }
@@ -214,8 +228,8 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.inventory_approved_with_success), new AlertListner() {
                     @Override
                     public void perform() {
-                        popBackStack();
-                        showFragment(new InventoryMenuFragment(), Boolean.FALSE);
+                        resetFragment();
+                        showFragment(new MenuFragment(), Boolean.FALSE);
                     }
                 });
             }
@@ -235,6 +249,17 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
 
             }
         });
+    }
+
+    @Override
+    public List<StockDTO> getStocksDTO() {
+        return stocksDTO;
+    }
+
+    @Override
+    public void stockAnalysisDtails(StockDTO stockDTO) {
+        this.stock = stockDTO;
+        showFragment(new StockAnalysisDetailFragment(), Boolean.TRUE);
     }
 
     @Override
@@ -317,5 +342,64 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
     @Override
     public int getActivityFrameLayoutId() {
         return R.id.inventory_activity_framelayout;
+    }
+
+    @Override
+    public List<MenuItem> getMenuItems() {
+        return menu.getMenuItems();
+    }
+
+    @Override
+    public void onClickMenuItem(MenuItem menuItem) {
+        switch (menuItem.getIconId()) {
+            case R.mipmap.ic_perform_inventory:
+                displayPerformInventoryFragment();
+                break;
+
+            case R.mipmap.ic_approved_stock:
+                displayApproveInventoryFragment();
+                break;
+
+            case R.mipmap.ic_item_track:
+
+                stockInAnalysisDisplay();
+                break;
+        }
+    }
+
+    private void stockInAnalysisDisplay() {
+        progressBar.show();
+        stockService.findStocksInAnalysis(userService.getGroceryDTO().getUuid(), new ResponseListner<List<StockDTO>>() {
+            @Override
+            public void success(List<StockDTO> response) {
+                progressBar.dismiss();
+                if (response.isEmpty()) {
+                    dialogManager.dialog(AlertType.INFO, getString(R.string.unit_without_stocks_in_analysis), null);
+                    return;
+                }
+
+                stocksDTO = response;
+                showFragment(new StockAnalysisFragment(), Boolean.TRUE);
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("STOCKS_ANALYSIS_B", errorMessage.getDeveloperMessage());
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_stock_in_analysis), null);
+                Log.e("STOCKS_ANALYSIS", message);
+            }
+        });
+    }
+
+    @Override
+    public String getFragmentTitle() {
+        return getString(R.string.inventory);
     }
 }

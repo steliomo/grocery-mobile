@@ -1,6 +1,7 @@
 package mz.co.commandline.grocery.sale.fragment;
 
 import com.google.android.material.textfield.TextInputLayout;
+
 import android.view.View;
 import android.widget.TextView;
 
@@ -57,8 +58,8 @@ public class AddSaleItemFragment extends BaseFragment {
         configureQuantityInput();
         configureItemValueInput();
 
+        discount.getEditText().setText(String.valueOf(BigDecimal.ZERO));
         validators.add(new DefaultValidator(discount));
-
     }
 
     private void configureQuantityInput() {

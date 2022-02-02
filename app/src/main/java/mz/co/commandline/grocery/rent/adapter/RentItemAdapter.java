@@ -13,7 +13,7 @@ import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.adapter.BaseAdapter;
 import mz.co.commandline.grocery.generics.listner.ClickListner;
 import mz.co.commandline.grocery.rent.holder.RentItemViewHolder;
-import mz.co.commandline.grocery.rent.model.RentItemDTO;
+import mz.co.commandline.grocery.rent.dto.RentItemDTO;
 
 public class RentItemAdapter extends BaseAdapter<RentItemViewHolder> {
 

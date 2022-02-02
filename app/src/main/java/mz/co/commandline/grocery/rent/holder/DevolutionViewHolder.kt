@@ -4,7 +4,7 @@ import android.view.View
 import mz.co.commandline.grocery.databinding.ReturnItemBinding
 import mz.co.commandline.grocery.generics.holder.BaseViewHolder
 import mz.co.commandline.grocery.generics.listner.ClickListner
-import mz.co.commandline.grocery.rent.model.RentItemDTO
+import mz.co.commandline.grocery.rent.dto.RentItemDTO
 
 class DevolutionViewHolder(private val binding: ReturnItemBinding) : BaseViewHolder<RentItemDTO>(binding) {
 

@@ -16,4 +16,6 @@ public interface StockService {
     void findLowStocksByGroceryAndSalePeriod(GroceryDTO groceryDTO, String startDate, String endDate, ResponseListner<List<StockDTO>> responseListner);
 
     void findProductStocksNotInThisGroceryByProduct(GroceryDTO grocery, ProductDTO productDTO, ResponseListner<List<StockDTO>> responseListner);
+
+    void findStocksInAnalysis(String unitUuid, ResponseListner<List<StockDTO>> responseListner);
 }

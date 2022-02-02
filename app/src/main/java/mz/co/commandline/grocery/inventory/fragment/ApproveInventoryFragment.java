@@ -2,6 +2,7 @@ package mz.co.commandline.grocery.inventory.fragment;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -40,7 +41,7 @@ public class ApproveInventoryFragment extends BaseFragment {
         startDate.setText(inventoryDTO.getInventoryDate());
         inventoryStatus.setText(getString(inventoryDTO.getInventoryStatus().getValue()));
 
-        StockInventoryAdapter adapter = new StockInventoryAdapter(getActivity(), inventoryDTO.getStockInventoriesDTO());
+        StockInventoryAdapter adapter = new StockInventoryAdapter(getActivity(), inventoryDTO.getStockInventoriesDTO(), Boolean.FALSE);
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
     }

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".inventory.fragment.StockAnalysisDetailFragment">
+
+    <View
+        android:id="@+id/stockAnalysisDetailViewHead"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#ccc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/stockAnalysisDetailProductImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:src="@mipmap/ic_product"
+        app:layout_constraintBottom_toBottomOf="@+id/stockAnalysisDetailViewHead"
+        app:layout_constraintStart_toStartOf="@+id/stockAnalysisDetailViewHead"
+        app:layout_constraintTop_toTopOf="@+id/stockAnalysisDetailViewHead" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailProductName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:padding="5dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/stockAnalysisDetailProductImageView"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailViewHead"
+        app:layout_constraintStart_toEndOf="@+id/stockAnalysisDetailProductImageView"
+        app:layout_constraintTop_toTopOf="@+id/stockAnalysisDetailProductImageView"
+        tools:text="Açucar" />
+
+    <View
+        android:id="@+id/stockAnalysisDetailView"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="16dp"
+        android:background="#B2DFDB"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailViewHead"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/stockAnalysisDetailViewHead"
+        app:layout_constraintTop_toBottomOf="@+id/stockAnalysisDetailViewHead" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailPurchaseLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="3dp"
+        android:text="@string/purchase_value_lbl"
+        android:textColor="#000"
+        app:layout_constraintEnd_toStartOf="@+id/stockAnalysisDetailPurchase"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/stockAnalysisDetailView"
+        app:layout_constraintStart_toStartOf="@+id/stockAnalysisDetailView"
+        app:layout_constraintTop_toTopOf="@+id/stockAnalysisDetailView" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailPurchase"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:padding="3dp"
+        android:textAlignment="textEnd"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/stockAnalysisDetailPurchaseLbl"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/stockAnalysisDetailPurchaseLbl"
+        app:layout_constraintTop_toTopOf="@+id/stockAnalysisDetailPurchaseLbl"
+        tools:text="10,00MT" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailSaleLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="@string/sale_value_lbl"
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailPurchaseLbl"
+        app:layout_constraintStart_toStartOf="@+id/stockAnalysisDetailPurchaseLbl"
+        app:layout_constraintTop_toBottomOf="@+id/stockAnalysisDetailPurchaseLbl" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailSale"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textAlignment="textEnd"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/stockAnalysisDetailSaleLbl"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailPurchase"
+        app:layout_constraintStart_toEndOf="@+id/stockAnalysisDetailSaleLbl"
+        app:layout_constraintTop_toTopOf="@+id/stockAnalysisDetailSaleLbl"
+        tools:text="20,00MT" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailQuantityLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="@string/quantity_lbl"
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailSaleLbl"
+        app:layout_constraintStart_toStartOf="@+id/stockAnalysisDetailSaleLbl"
+        app:layout_constraintTop_toBottomOf="@+id/stockAnalysisDetailSaleLbl" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textAlignment="textEnd"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/stockAnalysisDetailQuantityLbl"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailSale"
+        app:layout_constraintStart_toEndOf="@+id/stockAnalysisDetailQuantityLbl"
+        app:layout_constraintTop_toTopOf="@+id/stockAnalysisDetailQuantityLbl"
+        tools:text="100" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailMinStockLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="@string/minim_stock_lbl"
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailQuantityLbl"
+        app:layout_constraintStart_toStartOf="@+id/stockAnalysisDetailQuantityLbl"
+        app:layout_constraintTop_toBottomOf="@+id/stockAnalysisDetailQuantityLbl" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailMinStock"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textAlignment="textEnd"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/stockAnalysisDetailMinStockLbl"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailQuantity"
+        app:layout_constraintStart_toEndOf="@+id/stockAnalysisDetailMinStockLbl"
+        app:layout_constraintTop_toTopOf="@+id/stockAnalysisDetailMinStockLbl"
+        tools:text="10" />
+
+    <ImageView
+        android:id="@+id/stockAnalysisDetailImageView1"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="8dp"
+        android:layerType="software"
+        android:src="@drawable/dotted"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailMinStock"
+        app:layout_constraintStart_toStartOf="@+id/stockAnalysisDetailMinStockLbl"
+        app:layout_constraintTop_toBottomOf="@+id/stockAnalysisDetailMinStockLbl" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailLastInventoryDateLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="@string/last_inventory_date_lbl"
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailMinStockLbl"
+        app:layout_constraintStart_toStartOf="@+id/stockAnalysisDetailImageView1"
+        app:layout_constraintTop_toBottomOf="@+id/stockAnalysisDetailImageView1" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailLastInventoryDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textAlignment="textEnd"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/stockAnalysisDetailLastInventoryDateLbl"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailImageView1"
+        app:layout_constraintStart_toEndOf="@+id/stockAnalysisDetailLastInventoryDateLbl"
+        app:layout_constraintTop_toTopOf="@+id/stockAnalysisDetailLastInventoryDateLbl"
+        tools:text="27-01-2022" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailLastInventoryQuantityLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="@string/last_inventory_quantity"
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailLastInventoryDateLbl"
+        app:layout_constraintStart_toStartOf="@+id/stockAnalysisDetailLastInventoryDateLbl"
+        app:layout_constraintTop_toBottomOf="@+id/stockAnalysisDetailLastInventoryDateLbl" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailLastInventoryQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textAlignment="textEnd"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/stockAnalysisDetailLastInventoryQuantityLbl"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailLastInventoryDate"
+        app:layout_constraintStart_toEndOf="@+id/stockAnalysisDetailLastInventoryQuantityLbl"
+        app:layout_constraintTop_toTopOf="@+id/stockAnalysisDetailLastInventoryQuantityLbl"
+        tools:text="95" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailLastInventoryDiscrepancyLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="@string/difference_lbl"
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailLastInventoryQuantityLbl"
+        app:layout_constraintStart_toStartOf="@+id/stockAnalysisDetailLastInventoryQuantityLbl"
+        app:layout_constraintTop_toBottomOf="@+id/stockAnalysisDetailLastInventoryQuantityLbl" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailLastInventoryDiscrepancy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textAlignment="textEnd"
+        android:textColor="#D50000"
+        app:layout_constraintBottom_toBottomOf="@+id/stockAnalysisDetailLastInventoryDiscrepancyLbl"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailLastInventoryQuantity"
+        app:layout_constraintStart_toEndOf="@+id/stockAnalysisDetailLastInventoryDiscrepancyLbl"
+        app:layout_constraintTop_toTopOf="@+id/stockAnalysisDetailLastInventoryDiscrepancyLbl"
+        tools:text="5" />
+
+    <ImageView
+        android:id="@+id/stockAnalysisDetailImageView2"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/dotted"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailLastInventoryDiscrepancy"
+        app:layout_constraintStart_toStartOf="@+id/stockAnalysisDetailLastInventoryDiscrepancyLbl"
+        app:layout_constraintTop_toBottomOf="@+id/stockAnalysisDetailLastInventoryDiscrepancyLbl" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailLastStockUpdateDateLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="@string/last_stock_update_date_lbl"
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailLastInventoryDiscrepancyLbl"
+        app:layout_constraintStart_toStartOf="@+id/stockAnalysisDetailImageView2"
+        app:layout_constraintTop_toBottomOf="@+id/stockAnalysisDetailImageView2" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailLastStockUpdateDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textAlignment="textEnd"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/stockAnalysisDetailLastStockUpdateDateLbl"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailImageView2"
+        app:layout_constraintStart_toEndOf="@+id/stockAnalysisDetailLastStockUpdateDateLbl"
+        app:layout_constraintTop_toTopOf="@+id/stockAnalysisDetailLastStockUpdateDateLbl"
+        tools:text="27-01-2022" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailLastStockUpdateQuantityLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="@string/last_stock_quantity"
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailLastStockUpdateDateLbl"
+        app:layout_constraintStart_toStartOf="@+id/stockAnalysisDetailLastStockUpdateDateLbl"
+        app:layout_constraintTop_toBottomOf="@+id/stockAnalysisDetailLastStockUpdateDateLbl" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailLastStockUpdateQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textAlignment="textEnd"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/stockAnalysisDetailLastStockUpdateQuantityLbl"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailLastStockUpdateDate"
+        app:layout_constraintStart_toEndOf="@+id/stockAnalysisDetailLastStockUpdateQuantityLbl"
+        app:layout_constraintTop_toTopOf="@+id/stockAnalysisDetailLastStockUpdateQuantityLbl"
+        tools:text="120" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailLastStockUpdateSalesLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="@string/sold_quantity_lbl"
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailLastStockUpdateQuantityLbl"
+        app:layout_constraintStart_toStartOf="@+id/stockAnalysisDetailLastStockUpdateQuantityLbl"
+        app:layout_constraintTop_toBottomOf="@+id/stockAnalysisDetailLastStockUpdateQuantityLbl" />
+
+    <TextView
+        android:id="@+id/stockAnalysisDetailLastStockUpdateSales"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:textAlignment="textEnd"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="@+id/stockAnalysisDetailLastStockUpdateSalesLbl"
+        app:layout_constraintEnd_toEndOf="@+id/stockAnalysisDetailLastStockUpdateQuantity"
+        app:layout_constraintStart_toEndOf="@+id/stockAnalysisDetailLastStockUpdateSalesLbl"
+        app:layout_constraintTop_toTopOf="@+id/stockAnalysisDetailLastStockUpdateSalesLbl"
+        tools:text="20" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

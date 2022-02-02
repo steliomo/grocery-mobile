@@ -7,11 +7,10 @@ import mz.co.commandline.grocery.R
 import mz.co.commandline.grocery.databinding.FragmentReturnItemBinding
 import mz.co.commandline.grocery.generics.fragment.BaseFragment
 import mz.co.commandline.grocery.rent.delegate.RentDelegate
-import mz.co.commandline.grocery.rent.model.RentItemDTO
-import mz.co.commandline.grocery.rent.model.ReturnItemDTO
+import mz.co.commandline.grocery.rent.dto.RentItemDTO
+import mz.co.commandline.grocery.rent.dto.ReturnItemDTO
 import mz.co.commandline.grocery.util.TextInputLayoutUtil
 import mz.co.commandline.grocery.validator.DateValidator
-import mz.co.commandline.grocery.validator.DefaultValidator
 import mz.co.commandline.grocery.validator.UnexpectedValuesValidator
 import mz.co.commandline.grocery.validator.Validator
 import java.math.BigDecimal

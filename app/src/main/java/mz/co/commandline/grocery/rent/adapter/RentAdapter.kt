@@ -7,7 +7,7 @@ import mz.co.commandline.grocery.adapter.BaseAdapter
 import mz.co.commandline.grocery.databinding.RentBinding
 import mz.co.commandline.grocery.generics.listner.ClickListner
 import mz.co.commandline.grocery.rent.holder.RentViewHolder
-import mz.co.commandline.grocery.rent.model.RentDTO
+import mz.co.commandline.grocery.rent.dto.RentDTO
 
 class RentAdapter(private val context: Context?, private val rents: List<RentDTO>) : BaseAdapter<RentViewHolder>() {
 

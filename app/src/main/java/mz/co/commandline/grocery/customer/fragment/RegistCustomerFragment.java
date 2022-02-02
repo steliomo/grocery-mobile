@@ -35,9 +35,6 @@ public class RegistCustomerFragment extends BaseFragment {
     @BindView(R.id.fragment_regist_customer_email)
     TextInputLayout email;
 
-    @BindView(R.id.fragment_regist_customer_vehicle_number_plate)
-    TextInputLayout vehicleNumberPlate;
-
     private CustomerDelegate delegate;
 
     private List<Validator> validators;
@@ -76,7 +73,6 @@ public class RegistCustomerFragment extends BaseFragment {
         customerDTO.setAddress(TextInputLayoutUtil.getInpuText(address));
         customerDTO.setContact(TextInputLayoutUtil.getInpuText(contact));
         customerDTO.setEmail(TextInputLayoutUtil.getInpuText(email));
-        customerDTO.setVehicleNumberPlate(TextInputLayoutUtil.getInpuText(vehicleNumberPlate));
 
         delegate.registCustomer(customerDTO);
     }
