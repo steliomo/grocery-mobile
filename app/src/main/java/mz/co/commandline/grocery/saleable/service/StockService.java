@@ -18,4 +18,6 @@ public interface StockService {
     void findProductStocksNotInThisGroceryByProduct(GroceryDTO grocery, ProductDTO productDTO, ResponseListner<List<StockDTO>> responseListner);
 
     void findStocksInAnalysis(String unitUuid, ResponseListner<List<StockDTO>> responseListner);
+
+    void regularizeStock(StockDTO stockDTO, ResponseListner<StockDTO> responseListner);
 }

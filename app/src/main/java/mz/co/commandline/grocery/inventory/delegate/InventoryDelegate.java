@@ -2,6 +2,8 @@ package mz.co.commandline.grocery.inventory.delegate;
 
 import androidx.annotation.Nullable;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 import mz.co.commandline.grocery.inventory.dto.InventoryDTO;
@@ -24,4 +26,6 @@ public interface InventoryDelegate extends SaleableItemDelegate {
     List<StockDTO> getStocksDTO();
 
     void stockAnalysisDtails(@Nullable StockDTO stockDTO);
+
+    void regularizeStock(@NotNull StockDTO stockDTO);
 }

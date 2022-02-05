@@ -38,6 +38,8 @@ class StockAnalysisDetailFragment : BaseFragment() {
         binding.stockAnalysisDetailLastStockUpdateDate.text = if (stockDTO.stockUpdateDate != null) DateUtil.format(stockDTO.stockUpdateDate) else "NA"
         binding.stockAnalysisDetailLastStockUpdateQuantity.text = if (stockDTO.stockUpdateQuantity != null) stockDTO.stockUpdateQuantity else "NA"
         binding.stockAnalysisDetailLastStockUpdateSales.text = if (stockDTO.sales() != null) stockDTO.sales().toString() else "NA"
+
+        binding.regularizeStockBtn.setOnClickListener { delegate.regularizeStock(stockDTO) }
     }
 
     override fun getView(inflater: LayoutInflater, container: ViewGroup?): View {

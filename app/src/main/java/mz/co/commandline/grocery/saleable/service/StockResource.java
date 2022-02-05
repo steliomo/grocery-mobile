@@ -33,4 +33,7 @@ public interface StockResource {
 
     @GET("stocks/in-analysis")
     Call<List<StockDTO>> findStocksInAnalysis(@Query("unitUuid") String unitUuid);
+
+    @POST("stocks/regularize")
+    Call<StockDTO> regularizeStock(@Body StockDTO stockDTO);
 }

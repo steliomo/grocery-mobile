@@ -127,4 +127,24 @@ public class StockServiceImpl extends AbstractService implements StockService {
             }
         });
     }
+
+    @Override
+    public void regularizeStock(StockDTO stockDTO, final ResponseListner<StockDTO> responseListner) {
+        getResource().regularizeStock(stockDTO).enqueue(new Callback<StockDTO>() {
+            @Override
+            public void onResponse(Call<StockDTO> call, Response<StockDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<StockDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
 }

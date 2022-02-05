@@ -203,4 +203,7 @@
     <string name="last_stock_update_date_lbl">Actualiz. do último stock:</string>
     <string name="last_stock_quantity">Quantidade do último stock:</string>
     <string name="sold_quantity_lbl">Quantidade vendida:</string>
+    <string name="stock_regularize_lbl">Regularizar o stock</string>
+    <string name="stock_analysis_reguralized_success">O stock foi regularizado com sucesso!</string>
+    <string name="error_regularizing_stock">Ocorreu um erro ao regularizar o stock! Tente novamente.</string>
 </resources>

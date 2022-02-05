@@ -8,6 +8,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -260,6 +262,39 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
     public void stockAnalysisDtails(StockDTO stockDTO) {
         this.stock = stockDTO;
         showFragment(new StockAnalysisDetailFragment(), Boolean.TRUE);
+    }
+
+    @Override
+    public void regularizeStock(@NotNull StockDTO stockDTO) {
+        progressBar.show();
+
+        stockService.regularizeStock(stockDTO, new ResponseListner<StockDTO>() {
+            @Override
+            public void success(StockDTO response) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.stock_analysis_reguralized_success), new AlertListner() {
+                    @Override
+                    public void perform() {
+                        resetFragment();
+                        showFragment(new MenuFragment(), Boolean.FALSE);
+                    }
+                });
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("REGULARIZE_B", errorMessage.getDeveloperMessage());
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_regularizing_stock), null);
+                Log.e("REGULARIZE_B", message);
+            }
+        });
     }
 
     @Override
