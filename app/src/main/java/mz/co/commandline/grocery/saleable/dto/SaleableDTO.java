@@ -24,8 +24,7 @@ public class SaleableDTO {
             stock.setUuid(null);
             stock.setGroceryDTO(unit);
 
-            stocks.add(stock);
-            saleableItems.add(stock);
+            addStock(stock);
             return;
         }
 
@@ -34,8 +33,7 @@ public class SaleableDTO {
         serviceItem.setUuid(null);
         serviceItem.setUnitDTO(unit);
 
-        serviceItems.add(serviceItem);
-        saleableItems.add(serviceItem);
+        addService(serviceItem);
     }
 
     public List<SaleableItemDTO> getSaleableItems() {
@@ -54,14 +52,45 @@ public class SaleableDTO {
 
         if (ItemType.PRODUCT.equals(saleableItem.getSalableItemType())) {
             StockDTO stock = (StockDTO) saleableItem;
-            stocks.add(stock);
-            saleableItems.add(stock);
+            addStock(stock);
             return;
         }
 
         ServiceItemDTO serviceItem = (ServiceItemDTO) saleableItem;
+        addService(serviceItem);
+    }
 
-        serviceItems.add(serviceItem);
-        saleableItems.add(serviceItem);
+    private void addStock(StockDTO stockDTO) {
+
+        for (StockDTO stock : stocks) {
+            if (stock.getName().equals(stockDTO.getName())) {
+                stocks.remove(stock);
+                stocks.add(stockDTO);
+
+                saleableItems.remove(stock);
+                saleableItems.add(stockDTO);
+                return;
+            }
+        }
+
+        stocks.add(stockDTO);
+        saleableItems.add(stockDTO);
+    }
+
+    private void addService(ServiceItemDTO serviceItemDTO) {
+
+        for (ServiceItemDTO serviceItem : serviceItems) {
+            if (serviceItem.getName().equals(serviceItemDTO.getName())) {
+                serviceItems.remove(serviceItem);
+                serviceItems.add(serviceItemDTO);
+
+                saleableItems.remove(serviceItem);
+                saleableItems.add(serviceItemDTO);
+                return;
+            }
+        }
+
+        serviceItems.add(serviceItemDTO);
+        saleableItems.add(serviceItemDTO);
     }
 }

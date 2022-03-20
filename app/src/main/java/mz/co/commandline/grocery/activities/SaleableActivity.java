@@ -3,7 +3,9 @@ package mz.co.commandline.grocery.activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+
 import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.View;
 
@@ -15,6 +17,7 @@ import javax.inject.Inject;
 
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
+import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 import mz.co.commandline.grocery.item.delegate.ItemDelegate;
 import mz.co.commandline.grocery.item.dto.ItemDTO;
 import mz.co.commandline.grocery.saleable.dto.SaleableItemDTO;
@@ -216,6 +219,13 @@ public class SaleableActivity extends BaseAuthActivity implements View.OnClickLi
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.saleable_items_update_error), null);
                 Log.e("SALEABLE ", message);
             }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("SALEABLE_B ", errorMessage.getDeveloperMessage());
+            }
         });
     }
 
@@ -248,7 +258,7 @@ public class SaleableActivity extends BaseAuthActivity implements View.OnClickLi
                     items = response;
 
                     if (items.isEmpty()) {
-                        dialogManager.dialog(AlertType.ERROR, getString(R.string.no_items_available), null);
+                        dialogManager.dialog(AlertType.INFO, getString(R.string.no_items_available), null);
                         return;
                     }
 
@@ -271,6 +281,12 @@ public class SaleableActivity extends BaseAuthActivity implements View.OnClickLi
             public void success(List<ItemDTO> response) {
                 progressBar.dismiss();
                 items = response;
+
+                if (items.isEmpty()) {
+                    dialogManager.dialog(AlertType.INFO, getString(R.string.no_items_available), null);
+                    return;
+                }
+
                 showFragment(new ProductFragment(), Boolean.TRUE);
             }
 
