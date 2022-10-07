@@ -1,11 +1,16 @@
 package mz.co.commandline.grocery.item.fragment;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;

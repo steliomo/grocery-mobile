@@ -173,6 +173,12 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
             public void success(List<ItemDTO> response) {
                 progressBar.dismiss();
                 itemsDTO = response;
+
+                if(itemsDTO.isEmpty()){
+                    dialogManager.dialog(AlertType.INFO, getString(R.string.no_items_available), null);
+                    return;
+                }
+
                 showFragment(new ProductFragment(), Boolean.TRUE);
             }
 

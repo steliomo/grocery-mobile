@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_phone"
             android:drawableLeft="@drawable/ic_phone"
-            android:hint="@string/user"
+            android:hint="@string/user_phone"
             android:inputType="number" />
 
     </com.google.android.material.textfield.TextInputLayout>

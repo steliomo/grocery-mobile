@@ -450,6 +450,12 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
             public void success(List<ItemDTO> response) {
                 progressBar.dismiss();
                 items = response;
+
+                if (items.isEmpty()) {
+                    dialogManager.dialog(AlertType.INFO, getString(R.string.no_items_available), null);
+                    return;
+                }
+
                 showFragment(new ProductFragment(), Boolean.TRUE);
             }
 
