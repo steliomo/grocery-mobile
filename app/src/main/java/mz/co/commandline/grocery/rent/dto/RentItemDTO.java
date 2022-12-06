@@ -113,7 +113,7 @@ public class RentItemDTO extends GenericDTO {
     }
 
     public void calculateValue() {
-        value = new BigDecimal(saleableItemDTO.getSalePrice()).multiply(quantity).multiply(BigDecimal.valueOf(days)).subtract(discount);
+        value = new BigDecimal(saleableItemDTO.getRentPrice()).multiply(quantity).multiply(BigDecimal.valueOf(days)).subtract(discount);
     }
 
     public String getName() {

@@ -11,6 +11,8 @@ public abstract class SaleableItemDTO extends GenericDTO {
     public abstract String getName();
 
     public abstract String getSalePrice();
+
+    public abstract String getRentPrice();
 }
 
 

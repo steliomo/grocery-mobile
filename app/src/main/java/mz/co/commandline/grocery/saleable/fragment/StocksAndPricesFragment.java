@@ -1,7 +1,8 @@
 package mz.co.commandline.grocery.saleable.fragment;
 
-import com.google.android.material.textfield.TextInputLayout;
 import android.widget.TextView;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,9 @@ public class StocksAndPricesFragment extends BaseFragment {
 
     @BindView(R.id.fragment_stocks_and_prices_sale_price)
     TextInputLayout salePrice;
+
+    @BindView(R.id.fragment_stocks_and_prices_rent_price)
+    TextInputLayout rentPrice;
 
     @BindView(R.id.fragment_stocks_and_prices_quantity)
     TextInputLayout quantity;
@@ -56,10 +60,11 @@ public class StocksAndPricesFragment extends BaseFragment {
         validateFields();
 
         if (ActionType.UPDATE.equals(delegate.getActionType())) {
-            purchasePrice.getEditText().setText(stockDTO.getPurchasePrice().toString());
-            salePrice.getEditText().setText(stockDTO.getSalePrice().toString());
-            quantity.getEditText().setText(stockDTO.getQuantity().toString());
-            minimumStock.getEditText().setText(stockDTO.getMinimumStock().toString());
+            purchasePrice.getEditText().setText(stockDTO.getPurchasePrice());
+            salePrice.getEditText().setText(stockDTO.getSalePrice());
+            rentPrice.getEditText().setText(stockDTO.getRentPrice());
+            quantity.getEditText().setText(stockDTO.getQuantity());
+            minimumStock.getEditText().setText(stockDTO.getMinimumStock());
         }
     }
 
@@ -67,6 +72,7 @@ public class StocksAndPricesFragment extends BaseFragment {
         validators = new ArrayList<>();
         validators.add(new DefaultValidator(purchasePrice));
         validators.add(new DefaultValidator(salePrice));
+        validators.add(new DefaultValidator(rentPrice));
         validators.add(new DefaultValidator(quantity));
         validators.add(new DefaultValidator(minimumStock));
     }
@@ -87,6 +93,7 @@ public class StocksAndPricesFragment extends BaseFragment {
 
         stockDTO.setPurchasePrice(purchasePrice.getEditText().getText().toString());
         stockDTO.setSalePrice(salePrice.getEditText().getText().toString());
+        stockDTO.setRentPrice(rentPrice.getEditText().getText().toString());
         stockDTO.setQuantity(quantity.getEditText().getText().toString());
         stockDTO.setMinimumStock(minimumStock.getEditText().getText().toString());
 

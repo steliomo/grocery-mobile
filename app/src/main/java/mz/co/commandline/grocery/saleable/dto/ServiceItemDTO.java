@@ -1,5 +1,7 @@
 package mz.co.commandline.grocery.saleable.dto;
 
+import java.math.BigDecimal;
+
 import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.item.dto.ItemType;
 import mz.co.commandline.grocery.item.dto.ServiceDescriptionDTO;
@@ -32,6 +34,11 @@ public class ServiceItemDTO extends SaleableItemDTO {
     @Override
     public String getSalePrice() {
         return salePrice;
+    }
+
+    @Override
+    public String getRentPrice() {
+        return BigDecimal.ZERO.toString();
     }
 
     public void setSalePrice(String salePrice) {
