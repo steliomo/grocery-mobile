@@ -8,6 +8,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -15,10 +17,23 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
+import mz.co.commandline.grocery.customer.delegate.CustomerDelegate;
+import mz.co.commandline.grocery.customer.fragment.CustomersFragment;
+import mz.co.commandline.grocery.customer.fragment.RegistCustomerFragment;
+import mz.co.commandline.grocery.customer.model.CustomerDTO;
+import mz.co.commandline.grocery.customer.model.CustomersDTO;
+import mz.co.commandline.grocery.customer.service.CustomerService;
 import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
 import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 import mz.co.commandline.grocery.item.delegate.ItemDelegate;
 import mz.co.commandline.grocery.item.dto.ItemDTO;
+import mz.co.commandline.grocery.main.delegate.MenuDelegate;
+import mz.co.commandline.grocery.main.fragment.MenuFragment;
+import mz.co.commandline.grocery.menu.Menu;
+import mz.co.commandline.grocery.menu.MenuItem;
+import mz.co.commandline.grocery.sale.dto.SaleType;
+import mz.co.commandline.grocery.sale.fragment.PaymentDetailsFragment;
+import mz.co.commandline.grocery.sale.fragment.SalePaymentFragment;
 import mz.co.commandline.grocery.saleable.dto.SaleableItemDTO;
 import mz.co.commandline.grocery.item.service.ItemService;
 import mz.co.commandline.grocery.saleable.service.SaleableItemService;
@@ -42,8 +57,11 @@ import mz.co.commandline.grocery.util.KeyboardUtil;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
+import mz.co.commandline.grocery.util.alert.DialogListner;
+import mz.co.commandline.grocery.util.alert.DialogManager;
+import mz.co.commandline.grocery.util.alert.SaleTypeDialog;
 
-public class SaleActivity extends BaseAuthActivity implements SaleDelegate, SaleableItemDelegate, View.OnClickListener, ItemDelegate {
+public class SaleActivity extends BaseAuthActivity implements SaleDelegate, SaleableItemDelegate, View.OnClickListener, ItemDelegate, CustomerDelegate, MenuDelegate {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -66,6 +84,9 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
     @Inject
     SaleableItemService saleableItemService;
 
+    @Inject
+    CustomerService customerService;
+
     private ProgressDialog progressBar;
 
     private List<SaleableItemDTO> saleableItems;
@@ -74,31 +95,42 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
     private SaleDTO sale;
 
-    private AlertDialogManager dialogManager;
+    private DialogManager dialogManager;
 
     private ItemType itemType;
 
     private List<ItemDTO> itemsDTO;
 
+    private SaleTypeDialog saleTypeDialog;
+
+    private CustomersDTO customersDTO;
+
+    private Menu menu;
+
+    private int selectecMenu;
+
     @Override
     public void onGroceryCreate(Bundle bundle) {
         setContentView(R.layout.activity_sale);
 
-        toolbar.setTitle(R.string.sale_regist);
+        toolbar.setTitle(R.string.sales);
         toolbar.setNavigationIcon(R.drawable.ic_back);
         toolbar.setNavigationOnClickListener(this);
 
         GroceryComponent component = application.getComponent();
         component.inject(this);
 
-        sale = new SaleDTO();
-
         ProgressDialogManager progressDialogManager = new ProgressDialogManager(this);
         progressBar = progressDialogManager.getProgressBar(getString(R.string.wait), getString(R.string.processing_request));
 
         dialogManager = new AlertDialogManager(this);
+        saleTypeDialog = new SaleTypeDialog(this);
 
-        showFragment(new SaleRegistFragment(), Boolean.FALSE);
+        menu = new Menu();
+        menu.addMenuItem(new MenuItem(R.string.sale_regist, R.mipmap.ic_sale));
+        menu.addMenuItem(new MenuItem(R.string.payment, R.mipmap.ic_payment));
+
+        showFragment(new MenuFragment(), Boolean.FALSE);
     }
 
     @Override
@@ -125,11 +157,54 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
     }
 
     @Override
+    public void registInstallmentSale(SaleDTO saleDTO) {
+    }
+
+    @Override
     public void registSale() {
+        if (sale.getItems().isEmpty()) {
+            dialogManager.dialog(AlertType.INFO, getString((R.string.no_item_added)), null);
+            return;
+        }
+
         sale.setGrocery(userService.getGroceryDTO());
 
-        progressBar.show();
+        saleTypeDialog.dialog(new DialogListner<SaleType>() {
+            @Override
+            public void perform(SaleType saleType) {
+                switch (saleType) {
+                    case PART:
+                        loadCustomers();
+                        break;
+                    case DIRECT:
+                        directSale();
+                        break;
+                }
+            }
+        });
+    }
 
+    private void loadCustomers() {
+        progressBar.show();
+        customerService.findCustomersByUnit(userService.getGroceryDTO().getUuid(), 0, 100, new ResponseListner<CustomersDTO>() {
+            @Override
+            public void success(CustomersDTO response) {
+                progressBar.dismiss();
+                customersDTO = response;
+                showFragment(new CustomersFragment(), Boolean.TRUE);
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_customers), null);
+                Log.e("CUSTOMERS", message);
+            }
+        });
+    }
+
+    private void directSale() {
+        progressBar.show();
         saleService.registSale(sale, new ResponseListner<SaleDTO>() {
             @Override
             public void success(SaleDTO response) {
@@ -137,7 +212,8 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.sale_registed_with_success), new AlertListner() {
                     @Override
                     public void perform() {
-                        finish();
+                        resetFragment();
+                        showFragment(new MenuFragment(), Boolean.FALSE);
                     }
                 });
             }
@@ -174,7 +250,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
                 progressBar.dismiss();
                 itemsDTO = response;
 
-                if(itemsDTO.isEmpty()){
+                if (itemsDTO.isEmpty()) {
                     dialogManager.dialog(AlertType.INFO, getString(R.string.no_items_available), null);
                     return;
                 }
@@ -249,5 +325,90 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
     @Override
     public int getActivityFrameLayoutId() {
         return R.id.sale_activity_frame_layout;
+    }
+
+    @Override
+    public void addCustomer() {
+        showFragment(new RegistCustomerFragment(), Boolean.TRUE);
+    }
+
+    @Override
+    public void registCustomer(CustomerDTO customerDTO) {
+        progressBar.show();
+
+        customerDTO.setUnit(userService.getGroceryDTO());
+        customerService.registCustomer(customerDTO, new ResponseListner<CustomerDTO>() {
+            @Override
+            public void success(CustomerDTO response) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.user_was_successfully_registed), new AlertListner() {
+                    @Override
+                    public void perform() {
+                        popBackStack();
+                        popBackStack();
+                        loadCustomers();
+                    }
+                });
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.there_was_an_error_registing_customer), null);
+                Log.e("CUSTOMER", message);
+            }
+        });
+    }
+
+    @Override
+    public CustomersDTO getCustomersDTO() {
+        return customersDTO;
+    }
+
+    @Override
+    public void selectedCustomer(CustomerDTO customerDTO) {
+
+        if (R.mipmap.ic_payment == selectecMenu) {
+            showFragment(new SalePaymentFragment(), Boolean.TRUE);
+            return;
+        }
+
+        sale.setCustomerDTO(customerDTO);
+        showFragment(new PaymentDetailsFragment(), Boolean.TRUE);
+    }
+
+    @Override
+    public int addBtnVisibility() {
+        if (R.mipmap.ic_payment == selectecMenu) {
+            return View.GONE;
+        }
+
+        return View.VISIBLE;
+    }
+
+    @Override
+    public List<MenuItem> getMenuItems() {
+        return menu.getMenuItems();
+    }
+
+    @Override
+    public void onClickMenuItem(MenuItem menuItem) {
+        switch (menuItem.getIconId()) {
+            case R.mipmap.ic_sale:
+                selectecMenu = R.mipmap.ic_sale;
+                sale = new SaleDTO();
+                showFragment(new SaleRegistFragment(), Boolean.TRUE);
+                break;
+            case R.mipmap.ic_payment:
+                selectecMenu = R.mipmap.ic_payment;
+                loadCustomers();
+                break;
+        }
+
+    }
+
+    @Override
+    public String getFragmentTitle() {
+        return getString(R.string.sales);
     }
 }

@@ -14,4 +14,6 @@ public interface SaleDelegate {
     void cancel();
 
     void selectItem();
+
+    void registInstallmentSale(SaleDTO saleDTO);
 }

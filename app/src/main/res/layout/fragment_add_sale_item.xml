@@ -9,9 +9,9 @@
         android:id="@+id/fragment_report_menu_view"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="#ccc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,9 +21,9 @@
         android:id="@+id/fragment_add_sale_item_imageview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:src="@mipmap/ic_product"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_report_menu_view"
         app:layout_constraintStart_toStartOf="@+id/fragment_report_menu_view"
@@ -33,8 +33,8 @@
         android:id="@+id/fragment_add_sale_item_product_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:textColor="#000"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_add_sale_item_imageview"
@@ -47,9 +47,9 @@
         android:id="@+id/fragment_stocks_and_prices_quantity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_report_menu_view">
@@ -57,8 +57,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_quantity"
             android:drawableStart="@drawable/ic_quantity"
+            android:drawableLeft="@drawable/ic_quantity"
             android:hint="Quantidade"
             android:inputType="numberDecimal" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -67,9 +67,9 @@
         android:id="@+id/fragment_add_sale_item_value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
         android:layout_marginStart="0dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="0dp"
         app:layout_constraintEnd_toEndOf="@+id/fragment_stocks_and_prices_quantity"
         app:layout_constraintStart_toStartOf="@+id/fragment_stocks_and_prices_quantity"
         app:layout_constraintTop_toBottomOf="@+id/fragment_stocks_and_prices_quantity">
@@ -77,8 +77,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_money"
             android:drawableStart="@drawable/ic_money"
+            android:drawableLeft="@drawable/ic_money"
             android:hint="Valor"
             android:inputType="numberDecimal" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -95,43 +95,46 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_money"
             android:drawableStart="@drawable/ic_money"
+            android:drawableLeft="@drawable/ic_money"
             android:hint="Desconto"
             android:inputType="numberDecimal" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/fragment_add_sale_item_add"
+        android:id="@+id/fragment_add_sale_item_cancel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="4dp"
         android:background="#017a84"
-        android:text="Adicionar"
+        android:text="Cancelar"
         android:textAllCaps="false"
         android:textColor="#fff"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_add_sale_item_cancel"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_add_sale_item_add"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_add_sale_item_discount" />
 
     <Button
-        android:id="@+id/fragment_add_sale_item_cancel"
+        android:id="@+id/fragment_add_sale_item_add"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="4dp"
+        android:layout_marginEnd="8dp"
         android:background="#017a84"
-        android:text="Cancelar"
+        android:text="Adicionar"
         android:textAllCaps="false"
         android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_add_sale_item_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/fragment_add_sale_item_add"
-        app:layout_constraintTop_toTopOf="@+id/fragment_add_sale_item_add" />
+        app:layout_constraintStart_toEndOf="@+id/fragment_add_sale_item_cancel"
+        app:layout_constraintTop_toTopOf="@+id/fragment_add_sale_item_cancel"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

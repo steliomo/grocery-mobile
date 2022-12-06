@@ -1,27 +1,24 @@
 package mz.co.commandline.grocery.util.alert;
 
 import android.content.Context;
-
-import androidx.appcompat.app.AlertDialog;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+
 import mz.co.commandline.grocery.R;
 
-public class AlertDialogManager {
-
-    private Context context;
+public class AlertDialogManager extends DialogManager {
 
     public AlertDialogManager(Context context) {
-        this.context = context;
+        super(context);
     }
 
     public void dialog(AlertType type, String message, final AlertListner listner) {
 
-        final AlertDialog dialog = new AlertDialog.Builder(context).setView(R.layout.alert_dialog)
+        dialog = new AlertDialog.Builder(getContext()).setView(R.layout.alert_dialog)
                 .setCancelable(Boolean.FALSE).create();
 
         dialog.show();

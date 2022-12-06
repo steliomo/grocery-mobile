@@ -207,4 +207,12 @@
     <string name="stock_analysis_reguralized_success">O stock foi regularizado com sucesso!</string>
     <string name="error_regularizing_stock">Ocorreu um erro ao regularizar o stock! Tente novamente.</string>
     <string name="user_phone">Utilizador(Nr. do telemóvel)</string>
+    <string name="no_item_added">Nenhum Item foi adicionado a venda!</string>
+    <string name="payment_details">Detalhes de pagamento</string>
+    <string name="payment_date">Data de pagamento</string>
+    <string name="installment_value">Valor da parcela</string>
+    <string name="due_date">Data de Vencimento</string>
+    <string name="installment_value_not_allowed">O valor da parcela esta acima do valor total</string>
+    <string name="pay">Pagar</string>
+    <string name="installment_payment">Pagamento de parcela</string>
 </resources>

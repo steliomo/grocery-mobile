@@ -1,5 +1,6 @@
 package mz.co.commandline.grocery.customer.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomersDTO {
@@ -9,6 +10,10 @@ public class CustomersDTO {
     private Long totalCustomers;
 
     public List<CustomerDTO> getCustomerDTOs() {
+
+        if (customerDTOs == null) {
+            return new ArrayList<>();
+        }
         return this.customerDTOs;
     }
 
