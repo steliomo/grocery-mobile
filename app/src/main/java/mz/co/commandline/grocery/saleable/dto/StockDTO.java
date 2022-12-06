@@ -32,6 +32,8 @@ public class StockDTO extends SaleableItemDTO {
 
     private String stockUpdateQuantity;
 
+    private String rentPrice;
+
     public StockDTO() {
     }
 
@@ -56,8 +58,17 @@ public class StockDTO extends SaleableItemDTO {
         return salePrice;
     }
 
+    @Override
+    public String getRentPrice() {
+        return rentPrice;
+    }
+
     public void setSalePrice(String salePrice) {
         this.salePrice = salePrice;
+    }
+
+    public void setRentPrice(String rentPrice) {
+        this.rentPrice = rentPrice;
     }
 
     public String getQuantity() {
