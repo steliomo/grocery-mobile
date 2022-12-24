@@ -15,6 +15,8 @@ public class SalesDTO {
 
     private BigDecimal profit;
 
+    private List<SaleDTO> salesDTO;
+
     public List<SaleReport> getSalesReport() {
         return salesReport;
     }
@@ -33,5 +35,9 @@ public class SalesDTO {
 
     public BigDecimal getProfit() {
         return profit;
+    }
+
+    public List<SaleDTO> getSalesDTO() {
+        return salesDTO;
     }
 }

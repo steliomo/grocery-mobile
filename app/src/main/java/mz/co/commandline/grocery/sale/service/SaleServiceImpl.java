@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
+import mz.co.commandline.grocery.sale.dto.SalePaymentDTO;
 import mz.co.commandline.grocery.sale.dto.SalesDTO;
 import mz.co.commandline.grocery.generics.service.AbstractService;
 import mz.co.commandline.grocery.generics.service.RetrofitService;
@@ -76,6 +77,46 @@ public class SaleServiceImpl extends AbstractService implements SaleService {
 
             @Override
             public void onFailure(Call<SalesDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void findPendingOrIncompleteSalesByCustomer(String customerUuid, final ResponseListner<SalesDTO> responseListner) {
+        getResource().findPendingOrIncompleteSalesByCustomer(customerUuid).enqueue(new Callback<SalesDTO>() {
+            @Override
+            public void onResponse(Call<SalesDTO> call, Response<SalesDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<SalesDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void salePayment(SalePaymentDTO salePaymentDTO, final ResponseListner<SalePaymentDTO> responseListner) {
+        getResource().salePayment(salePaymentDTO).enqueue(new Callback<SalePaymentDTO>() {
+            @Override
+            public void onResponse(Call<SalePaymentDTO> call, Response<SalePaymentDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<SalePaymentDTO> call, Throwable t) {
                 responseListner.error(t.getMessage());
             }
         });

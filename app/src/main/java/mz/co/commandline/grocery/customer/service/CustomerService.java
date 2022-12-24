@@ -15,4 +15,6 @@ public interface CustomerService {
     void findCustomersWithPendingDevlutionsByUnit(String unitUuid, int currentPage, int maxResult, ResponseListner<CustomersDTO> responseListner);
 
     void findCustomersWithContractPendingPaymentByUnit(String unitUuid, int currentPage, int maxResult, String currentDate, ResponseListner<CustomersDTO> responseListner);
+
+    void findCustomersSaleWithPendindOrIncompletePaymentByUnit(String unitUuid, ResponseListner<CustomersDTO> responseListner);
 }

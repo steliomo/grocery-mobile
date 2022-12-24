@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Negócio na Mão</string>
-    <string name="app_version">© 2022 © v2.2.5</string>
+    <string name="app_version">© 2022 © v2.3.0</string>
     <string name="sales">Vendas</string>
     <string name="reports">Relatórios</string>
     <string name="products_and_services">Produtos e Serviços</string>
@@ -212,7 +212,10 @@
     <string name="payment_date">Data de pagamento</string>
     <string name="installment_value">Valor da parcela</string>
     <string name="due_date">Data de Vencimento</string>
-    <string name="installment_value_not_allowed">O valor da parcela esta acima do valor total</string>
+    <string name="installment_value_not_allowed">O valor da parcela esta acima do valor a pagar</string>
     <string name="pay">Pagar</string>
     <string name="installment_payment">Pagamento de parcela</string>
+    <string name="sale_date">Data da venda</string>
+    <string name="payment_status">Estado de pagamento</string>
+    <string name="error_loading_pending_or_incomplete_sales">Ocorreu um erro ao carregar as vendas com pagamentos incompletos ou pendenntes. Tente novamente</string>
 </resources>

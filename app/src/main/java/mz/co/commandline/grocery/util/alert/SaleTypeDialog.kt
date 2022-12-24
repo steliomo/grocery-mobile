@@ -15,18 +15,18 @@ class SaleTypeDialog(context: Context) : DialogManager<SaleType>(context) {
         dialog = builder.create()
         dialog.show()
 
-        var saleType: SaleType = SaleType.DIRECT
+        var saleType: SaleType = SaleType.CASH
 
         binding.saleTypeDirect.setOnClickListener {
             binding.saleTypeDirect.setTextColor(Color.WHITE)
             binding.saleTypePart.setTextColor(Color.BLACK)
-            saleType = SaleType.DIRECT
+            saleType = SaleType.CASH
         }
 
         binding.saleTypePart.setOnClickListener {
             binding.saleTypePart.setTextColor(Color.WHITE)
             binding.saleTypeDirect.setTextColor(Color.BLACK)
-            saleType = SaleType.PART
+            saleType = SaleType.INSTALLMENT
         }
 
         binding.saleDialogCancelBtn.setOnClickListener { dialog.dismiss() }

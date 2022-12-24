@@ -35,9 +35,9 @@ class PaymentDetailsFragment : BaseFragment(), View.OnClickListener {
         binding.salePaymentDetailsTotalAmountValue.text = FormatterUtil.mtFormat(sale?.totalSale)
         binding.salePaymentDetailsCustomerName.text = sale?.customerDTO?.name
 
-        validators = listOf(DateValidator(activity, binding.salePaymentDetailsDueDate, false, false))
+        validators = listOf(DateValidator(activity, binding.salePaymentDetailsDueDate, false, true))
 
-        binding.salePaymentDetailsRegistBtn.setOnClickListener(this)
+        binding.salePaymentDetailsPayBtn.setOnClickListener(this)
 
     }
 
@@ -61,6 +61,8 @@ class PaymentDetailsFragment : BaseFragment(), View.OnClickListener {
                 return
             }
         }
+
+        sale?.dueDate = TextInputLayoutUtil.getInpuText(binding.salePaymentDetailsDueDate)
 
         delegate?.registInstallmentSale(sale)
     }

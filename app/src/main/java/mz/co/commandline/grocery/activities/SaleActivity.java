@@ -8,8 +8,6 @@ import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -31,9 +29,12 @@ import mz.co.commandline.grocery.main.delegate.MenuDelegate;
 import mz.co.commandline.grocery.main.fragment.MenuFragment;
 import mz.co.commandline.grocery.menu.Menu;
 import mz.co.commandline.grocery.menu.MenuItem;
+import mz.co.commandline.grocery.sale.dto.SalePaymentDTO;
 import mz.co.commandline.grocery.sale.dto.SaleType;
+import mz.co.commandline.grocery.sale.dto.SalesDTO;
 import mz.co.commandline.grocery.sale.fragment.PaymentDetailsFragment;
 import mz.co.commandline.grocery.sale.fragment.SalePaymentFragment;
+import mz.co.commandline.grocery.sale.fragment.SalesPaymentFragment;
 import mz.co.commandline.grocery.saleable.dto.SaleableItemDTO;
 import mz.co.commandline.grocery.item.service.ItemService;
 import mz.co.commandline.grocery.saleable.service.SaleableItemService;
@@ -109,6 +110,10 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
     private int selectecMenu;
 
+    private List<SaleDTO> salesDTO;
+
+    private CustomerDTO customerDTO;
+
     @Override
     public void onGroceryCreate(Bundle bundle) {
         setContentView(R.layout.activity_sale);
@@ -158,6 +163,81 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
     @Override
     public void registInstallmentSale(SaleDTO saleDTO) {
+        progressBar.show();
+
+        saleService.registSale(saleDTO, new ResponseListner<SaleDTO>() {
+            @Override
+            public void success(SaleDTO response) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.sale_registed_with_success), new AlertListner() {
+                    @Override
+                    public void perform() {
+                        resetFragment();
+                        showFragment(new MenuFragment(), Boolean.FALSE);
+                    }
+                });
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.sale_error_on_regist), null);
+                Log.e("SALE", message);
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("SALE_B", errorMessage.getDeveloperMessage());
+            }
+        });
+
+    }
+
+    @Override
+    public void selectedSale(SaleDTO saleDTO) {
+        saleDTO.setCustomerDTO(customerDTO);
+        this.sale = saleDTO;
+        showFragment(new SalePaymentFragment(), Boolean.TRUE);
+    }
+
+    @Override
+    public List<SaleDTO> getPendingOrIncompleteSales() {
+        return salesDTO;
+    }
+
+    @Override
+    public void payInstallment(SalePaymentDTO salePayment) {
+        progressBar.show();
+
+        saleService.salePayment(salePayment, new ResponseListner<SalePaymentDTO>() {
+            @Override
+            public void success(SalePaymentDTO response) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.payment_success), new AlertListner() {
+                    @Override
+                    public void perform() {
+                        resetFragment();
+                        showFragment(new MenuFragment(), Boolean.FALSE);
+                    }
+                });
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.payment_error), null);
+                Log.e("SALE_PAYMENT", message);
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("SALE_PAYMENT_B", errorMessage.getDeveloperMessage());
+            }
+        });
     }
 
     @Override
@@ -173,11 +253,14 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
             @Override
             public void perform(SaleType saleType) {
                 switch (saleType) {
-                    case PART:
+                    case INSTALLMENT:
+                        sale.setSaleType(SaleType.INSTALLMENT);
                         loadCustomers();
                         break;
-                    case DIRECT:
-                        directSale();
+
+                    case CASH:
+                        sale.setSaleType(SaleType.CASH);
+                        cashSale();
                         break;
                 }
             }
@@ -203,7 +286,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
         });
     }
 
-    private void directSale() {
+    private void cashSale() {
         progressBar.show();
         saleService.registSale(sale, new ResponseListner<SaleDTO>() {
             @Override
@@ -369,12 +452,31 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
     public void selectedCustomer(CustomerDTO customerDTO) {
 
         if (R.mipmap.ic_payment == selectecMenu) {
-            showFragment(new SalePaymentFragment(), Boolean.TRUE);
+            this.customerDTO = customerDTO;
+            loadPendingOrIncompletePaymentSales(customerDTO);
             return;
         }
 
         sale.setCustomerDTO(customerDTO);
         showFragment(new PaymentDetailsFragment(), Boolean.TRUE);
+    }
+
+    private void loadPendingOrIncompletePaymentSales(CustomerDTO customerDTO) {
+        progressBar.show();
+        saleService.findPendingOrIncompleteSalesByCustomer(customerDTO.getUuid(), new ResponseListner<SalesDTO>() {
+            @Override
+            public void success(SalesDTO response) {
+                progressBar.dismiss();
+                salesDTO = response.getSalesDTO();
+                showFragment(new SalesPaymentFragment(), Boolean.TRUE);
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_pending_or_incomplete_sales), null);
+            }
+        });
     }
 
     @Override
@@ -401,10 +503,34 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
                 break;
             case R.mipmap.ic_payment:
                 selectecMenu = R.mipmap.ic_payment;
-                loadCustomers();
+                loadCustomersWithPendingOrIncompleteSalesPayment();
                 break;
         }
+    }
 
+    private void loadCustomersWithPendingOrIncompleteSalesPayment() {
+        progressBar.show();
+        customerService.findCustomersSaleWithPendindOrIncompletePaymentByUnit(userService.getGroceryDTO().getUuid(), new ResponseListner<CustomersDTO>() {
+            @Override
+            public void success(CustomersDTO response) {
+                progressBar.dismiss();
+
+                if (response.getCustomerDTOs().isEmpty()) {
+                    dialogManager.dialog(AlertType.INFO, getString(R.string.no_pending_customers_for_payment), null);
+                    return;
+                }
+
+                customersDTO = response;
+                showFragment(new CustomersFragment(), Boolean.TRUE);
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_customers), null);
+                Log.e("CUSTOMERS_SALE", message);
+            }
+        });
     }
 
     @Override

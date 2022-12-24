@@ -25,4 +25,7 @@ public interface CustomerResource {
 
     @GET("customers/pending-contract-payment-by-unit/{unitUuid}")
     Call<CustomersDTO> findCustomersWithContractPendingPaymentByUnit(@Path("unitUuid") String unitUuid, @Query("currentPage") int currentPage, @Query("maxResult") int maxResult, @Query("currentDate") String currentDate);
+
+    @GET("customers/find-customers-sale-with-pendind-or-incomplete-payment-by-unit/{unitUuid}")
+    Call<CustomersDTO> findCustomersSaleWithPendindOrIncompletePaymentByUnit(@Path("unitUuid") String unitUuid);
 }
