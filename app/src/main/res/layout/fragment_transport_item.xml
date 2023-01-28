@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".rent.fragment.TransportItemFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/transportItemView"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/textview_borders"
+            app:layout_constraintEnd_toEndOf="@+id/transportItemImageView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/transportItemImageView" />
+
+        <ImageView
+            android:id="@+id/transportItemImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@mipmap/ic_product"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/transportItemName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#017a84"
+            android:padding="7dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/transportItemView"
+            app:layout_constraintStart_toStartOf="@+id/transportItemView"
+            app:layout_constraintTop_toTopOf="@+id/transportItemView"
+            tools:text="Prumo metálico" />
+
+        <TextView
+            android:id="@+id/transportItemEstimatedQuantityLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Unidades Estimadas"
+            app:layout_constraintEnd_toStartOf="@+id/transportItemEstimatedQuantity"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toStartOf="@+id/transportItemView"
+            app:layout_constraintTop_toBottomOf="@+id/transportItemName" />
+
+        <TextView
+            android:id="@+id/transportItemEstimatedQuantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/transportItemEstimatedQuantityLabel"
+            app:layout_constraintEnd_toEndOf="@+id/transportItemView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/transportItemEstimatedQuantityLabel"
+            app:layout_constraintTop_toTopOf="@+id/transportItemEstimatedQuantityLabel"
+            tools:text="100" />
+
+        <TextView
+            android:id="@+id/transportItemEstimatedDaysLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Nr. de dias Estimados"
+            app:layout_constraintEnd_toEndOf="@+id/transportItemEstimatedQuantityLabel"
+            app:layout_constraintStart_toStartOf="@+id/transportItemEstimatedQuantityLabel"
+            app:layout_constraintTop_toBottomOf="@+id/transportItemEstimatedQuantityLabel" />
+
+        <TextView
+            android:id="@+id/transportItemEstimatedDays"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/transportItemEstimatedDaysLabel"
+            app:layout_constraintEnd_toEndOf="@+id/transportItemEstimatedQuantity"
+            app:layout_constraintStart_toEndOf="@+id/transportItemEstimatedQuantityLabel"
+            app:layout_constraintTop_toTopOf="@+id/transportItemEstimatedDaysLabel"
+            tools:text="25" />
+
+        <TextView
+            android:id="@+id/transportItemLoadedLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Unidades Transportadas"
+            app:layout_constraintEnd_toEndOf="@+id/transportItemEstimatedDaysLabel"
+            app:layout_constraintStart_toStartOf="@+id/transportItemEstimatedDaysLabel"
+            app:layout_constraintTop_toBottomOf="@+id/transportItemEstimatedDaysLabel" />
+
+        <TextView
+            android:id="@+id/transportItemLoaded"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/transportItemLoadedLabel"
+            app:layout_constraintEnd_toEndOf="@+id/transportItemEstimatedDays"
+            app:layout_constraintStart_toEndOf="@+id/transportItemEstimatedDaysLabel"
+            app:layout_constraintTop_toTopOf="@+id/transportItemLoadedLabel"
+            tools:text="70" />
+
+        <TextView
+            android:id="@+id/transportItemToLoadLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Unidades por Transportar"
+            app:layout_constraintEnd_toEndOf="@+id/transportItemLoadedLabel"
+            app:layout_constraintStart_toStartOf="@+id/transportItemLoadedLabel"
+            app:layout_constraintTop_toBottomOf="@+id/transportItemLoadedLabel" />
+
+        <TextView
+            android:id="@+id/transportItemToLoad"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/transportItemToLoadLabel"
+            app:layout_constraintEnd_toEndOf="@+id/transportItemLoaded"
+            app:layout_constraintStart_toEndOf="@+id/transportItemLoadedLabel"
+            app:layout_constraintTop_toTopOf="@+id/transportItemToLoadLabel"
+            tools:text="30" />
+
+        <TextView
+            android:id="@+id/transportItemLastLoadDateLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Data do último transporte"
+            app:layout_constraintEnd_toEndOf="@+id/transportItemToLoadLabel"
+            app:layout_constraintStart_toStartOf="@+id/transportItemToLoadLabel"
+            app:layout_constraintTop_toBottomOf="@+id/transportItemToLoadLabel" />
+
+        <TextView
+            android:id="@+id/transportItemLastLoadDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/transportItemLastLoadDateLabel"
+            app:layout_constraintEnd_toEndOf="@+id/transportItemToLoad"
+            app:layout_constraintStart_toEndOf="@+id/transportItemToLoadLabel"
+            app:layout_constraintTop_toTopOf="@+id/transportItemLastLoadDateLabel"
+            tools:text="23-01-2023" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/transportItemQuantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/transportItemView"
+            app:layout_constraintStart_toStartOf="@+id/transportItemView"
+            app:layout_constraintTop_toBottomOf="@+id/transportItemView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_quantity"
+                android:drawableLeft="@drawable/ic_quantity"
+                android:hint="Quantidade"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/transportItemAddBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:background="#017a84"
+            android:padding="8dp"
+            android:text="@string/add"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/transportItemQuantity" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

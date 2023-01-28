@@ -13,5 +13,7 @@ public enum ProductUnitType {
 
     W,
 
-    MG;
+    MG,
+
+    NA;
 }

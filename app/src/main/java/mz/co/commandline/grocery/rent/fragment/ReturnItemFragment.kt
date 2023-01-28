@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import mz.co.commandline.grocery.R
+import mz.co.commandline.grocery.activities.RentActivity
 import mz.co.commandline.grocery.databinding.FragmentReturnItemBinding
 import mz.co.commandline.grocery.generics.fragment.BaseFragment
 import mz.co.commandline.grocery.rent.delegate.RentDelegate
@@ -26,7 +27,7 @@ class ReturnItemFragment : BaseFragment(), View.OnClickListener {
 
     private var rentItemDTO: RentItemDTO? = null
 
-    private var validators: List<Validator>? = null
+    private var validator: Validator? = null
 
     override fun getResourceId(): Int {
         return R.layout.fragment_return_item
@@ -36,18 +37,21 @@ class ReturnItemFragment : BaseFragment(), View.OnClickListener {
         _delegate = activity as RentDelegate
         rentItemDTO = delegate.rentItemDTO
 
-        binding.devolutionItemName.text = rentItemDTO?.name
-        binding.devolutionItemRented.text = rentItemDTO?.quantity.toString()
-        binding.devolutionItemReturned.text = rentItemDTO?.returned.toString()
-        binding.devolutionItemToReturn.text = rentItemDTO?.toReturn.toString()
+        binding.returnItemName.text = rentItemDTO?.name
+        binding.returnItemEstimatedQuantity.text = rentItemDTO?.plannedQuantity.toString()
+        binding.returnItemEstimatedDays.text = rentItemDTO?.plannedDays.toString()
+        binding.returnItemLoaded.text = rentItemDTO?.loadedQuantity.toString()
+        binding.returnedItems.text = rentItemDTO?.returnedQuantity.toString()
+        binding.returnItemToReturn.text = rentItemDTO?.quantityToReturn.toString()
+        binding.returnItemLastReturnDate.text = rentItemDTO?.returnDate
 
-        validators = listOf(UnexpectedValuesValidator(binding.devolutionItemQuantity, BigDecimal(rentItemDTO?.toReturn.toString()), getString(R.string.return_quantity_unexpected)), DateValidator(activity, binding.devolutionItemDate, true, false))
+        validator = UnexpectedValuesValidator(binding.returnItemQuantity, rentItemDTO?.quantityToReturn!!, getString(R.string.return_quantity_unexpected))
 
-        binding.addReturnItemBtn.setOnClickListener(this)
+        binding.returnItemAddBtn.setOnClickListener(this)
     }
 
     override fun getTitle(): String {
-        return getString(R.string.return_item_details)
+        return getString(R.string.item_details)
     }
 
     override fun getView(inflater: LayoutInflater, container: ViewGroup?): View {
@@ -62,13 +66,23 @@ class ReturnItemFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-        validators?.forEach { validator ->
-            if (!validator.isValid) {
-                return
-            }
+        if (!validator!!.isValid) {
+            return
         }
 
-        rentItemDTO?.setSelected(true)
-        delegate.addReturnItemDTO(ReturnItemDTO(rentItemDTO as RentItemDTO, BigDecimal(TextInputLayoutUtil.getInpuText(binding.devolutionItemQuantity)), TextInputLayoutUtil.getInpuText(binding.devolutionItemDate)))
+        var quantity = BigDecimal(TextInputLayoutUtil.getInpuText(binding.returnItemQuantity))
+        val rentActivity = activity as RentActivity
+
+        if (quantity.compareTo(BigDecimal.ZERO) == 0) {
+            rentItemDTO?.isSelected = false
+            rentItemDTO?.quantity = quantity
+
+            rentActivity.popBackStack()
+            return
+        }
+
+        rentItemDTO?.isSelected = true
+        rentItemDTO?.quantity = quantity
+        rentActivity.popBackStack()
     }
 }

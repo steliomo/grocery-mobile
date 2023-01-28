@@ -39,10 +39,10 @@ public class RentItemViewHolder extends BaseViewHolder<RentItemDTO> {
     public void bind(RentItemDTO rentItemDTO) {
         imageView.setImageResource(rentItemDTO.getSaleableItemDTO().getSalableItemType().getIconId());
         itemName.setText(rentItemDTO.getSaleableItemDTO().getName());
-        days.setText(String.valueOf(rentItemDTO.getDays()));
+        quantity.setText(String.valueOf(rentItemDTO.getPlannedQuantity()));
+        days.setText(String.valueOf(rentItemDTO.getPlannedDays()));
+        value.setText(FormatterUtil.mtFormat(rentItemDTO.calculatePlannedValue()));
         discount.setText(FormatterUtil.mtFormat(rentItemDTO.getDiscount()));
-        value.setText(FormatterUtil.mtFormat(rentItemDTO.getValue()));
-        quantity.setText(String.valueOf(rentItemDTO.getQuantity()));
     }
 
     @Override

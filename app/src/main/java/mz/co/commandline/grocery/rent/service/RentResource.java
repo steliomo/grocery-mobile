@@ -3,6 +3,7 @@ package mz.co.commandline.grocery.rent.service;
 
 import java.util.List;
 
+import mz.co.commandline.grocery.rent.dto.GuideDTO;
 import mz.co.commandline.grocery.rent.dto.RentDTO;
 import mz.co.commandline.grocery.rent.dto.RentPaymentDTO;
 import mz.co.commandline.grocery.rent.dto.RentReport;
@@ -20,21 +21,24 @@ public interface RentResource {
     @POST("rents")
     Call<RentDTO> registRent(@Body RentDTO rentDTO);
 
-    @GET("rents/pending-payments-by-customer{customerUuid}")
+    @GET("rents/pending-payments-by-customer/{customerUuid}")
     Call<RentsDTO> findPendingPaymentsRentsByCustomer(@Path("customerUuid") String customerUuid);
 
     @POST("rents/payments")
     Call<RentPaymentDTO> makePayment(@Body RentPaymentDTO rentPaymentDTO);
 
-    @GET("rents/pending-devolutions-by-customer{customerUuid}")
-    Call<RentsDTO> fetchPendingDevolutionsRentsByCustomer(@Path("customerUuid") String customerUuid);
+    @GET("rents/fetch-rents-with-pending-or-incomplete-rent-item-to-load-by-customer/{customerUuid}")
+    Call<RentsDTO> fetchRentsWithPendingOrIncompleteRentItemToLoadByCustomer(@Path("customerUuid") String customerUuid);
 
-    @POST("rents/return-items")
-    Call<List<ReturnItemDTO>> returnItems(@Body List<ReturnItemDTO> returnItemsDTO);
+    @GET("rents/fetch-rents-with-pending-or-incomplete-rent-item-to-return-by-customer/{customerUuid}")
+    Call<RentsDTO> fetchRentsWithPendingOrIncompleteRentItemToReturnByCustomer(@Path("customerUuid") String customerUuid);
 
-    @GET("rents/quotation/{fileName}")
-    Call<ResponseBody> getQuotationFile(@Path("fileName") String fileName);
+    @POST("rents/issue-quotation")
+    Call<RentReport> issueQuotation(@Body RentDTO rentDTO);
 
-    @POST("rents/process-quotation")
-    Call<RentReport> processtQuotation(@Body RentDTO rentDTO);
+    @POST("rents/issue-transport-guide")
+    Call<GuideDTO> issueTransportGuide(@Body GuideDTO guideDTO);
+
+    @POST("rents/issue-return-guide")
+    Call<GuideDTO> issueReturnGuide(@Body GuideDTO guideDTO);
 }

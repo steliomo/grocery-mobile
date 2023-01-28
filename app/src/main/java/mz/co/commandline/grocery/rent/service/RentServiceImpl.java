@@ -7,12 +7,12 @@ import javax.inject.Inject;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.generics.service.AbstractService;
 import mz.co.commandline.grocery.generics.service.RetrofitService;
+import mz.co.commandline.grocery.rent.dto.GuideDTO;
 import mz.co.commandline.grocery.rent.dto.RentDTO;
 import mz.co.commandline.grocery.rent.dto.RentPaymentDTO;
 import mz.co.commandline.grocery.rent.dto.RentReport;
 import mz.co.commandline.grocery.rent.dto.RentsDTO;
 import mz.co.commandline.grocery.rent.dto.ReturnItemDTO;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -92,8 +92,8 @@ public class RentServiceImpl extends AbstractService implements RentService {
     }
 
     @Override
-    public void fetchPendingDevolutionsRentsByCustomer(String customerUuid, final ResponseListner<RentsDTO> responseListner) {
-        getResource().fetchPendingDevolutionsRentsByCustomer(customerUuid).enqueue(new Callback<RentsDTO>() {
+    public void fetchRentsWithPendingOrIncompleteRentItemToLoadByCustomer(String customerUuid, final ResponseListner<RentsDTO> responseListner) {
+        getResource().fetchRentsWithPendingOrIncompleteRentItemToLoadByCustomer(customerUuid).enqueue(new Callback<RentsDTO>() {
             @Override
             public void onResponse(Call<RentsDTO> call, Response<RentsDTO> response) {
                 if (response.isSuccessful()) {
@@ -112,10 +112,10 @@ public class RentServiceImpl extends AbstractService implements RentService {
     }
 
     @Override
-    public void returnItems(List<ReturnItemDTO> returnItemsDTO, final ResponseListner<List<ReturnItemDTO>> responseListner) {
-        getResource().returnItems(returnItemsDTO).enqueue(new Callback<List<ReturnItemDTO>>() {
+    public void fetchRentsWithPendingOrIncompleteRentItemToReturnByCustomer(String customerUuid, ResponseListner<RentsDTO> responseListner) {
+        getResource().fetchRentsWithPendingOrIncompleteRentItemToReturnByCustomer(customerUuid).enqueue(new Callback<RentsDTO>() {
             @Override
-            public void onResponse(Call<List<ReturnItemDTO>> call, Response<List<ReturnItemDTO>> response) {
+            public void onResponse(Call<RentsDTO> call, Response<RentsDTO> response) {
                 if (response.isSuccessful()) {
                     responseListner.success(response.body());
                     return;
@@ -125,35 +125,15 @@ public class RentServiceImpl extends AbstractService implements RentService {
             }
 
             @Override
-            public void onFailure(Call<List<ReturnItemDTO>> call, Throwable t) {
+            public void onFailure(Call<RentsDTO> call, Throwable t) {
                 responseListner.error(t.getMessage());
             }
         });
     }
 
     @Override
-    public void getQuotationFile(String fileName, final ResponseListner<ResponseBody> responseListner) {
-        getResource().getQuotationFile(fileName).enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    responseListner.success(response.body());
-                    return;
-                }
-
-                setBodyError(response, responseListner);
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                responseListner.error(t.getMessage());
-            }
-        });
-    }
-
-    @Override
-    public void processtQuotation(final RentDTO rentDTO, final ResponseListner<RentReport> responseListner) {
-        getResource().processtQuotation(rentDTO).enqueue(new Callback<RentReport>() {
+    public void issueQuotation(final RentDTO rentDTO, final ResponseListner<RentReport> responseListner) {
+        getResource().issueQuotation(rentDTO).enqueue(new Callback<RentReport>() {
             @Override
             public void onResponse(Call<RentReport> call, Response<RentReport> response) {
                 if (response.isSuccessful()) {
@@ -166,6 +146,46 @@ public class RentServiceImpl extends AbstractService implements RentService {
 
             @Override
             public void onFailure(Call<RentReport> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void issueTransportGuide(GuideDTO guideDTO, ResponseListner<GuideDTO> responseListner) {
+        getResource().issueTransportGuide(guideDTO).enqueue(new Callback<GuideDTO>() {
+            @Override
+            public void onResponse(Call<GuideDTO> call, Response<GuideDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<GuideDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void issueReturnGuide(GuideDTO guideDTO, ResponseListner<GuideDTO> responseListner) {
+        getResource().issueReturnGuide(guideDTO).enqueue(new Callback<GuideDTO>() {
+            @Override
+            public void onResponse(Call<GuideDTO> call, Response<GuideDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<GuideDTO> call, Throwable t) {
                 responseListner.error(t.getMessage());
             }
         });

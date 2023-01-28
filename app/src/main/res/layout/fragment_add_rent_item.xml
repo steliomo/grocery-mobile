@@ -52,7 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/fragment_add_rent_item_view"
@@ -69,7 +69,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fragment_add_rent_item_start_date"
+            android:id="@+id/fragment_add_rent_item_days"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -81,49 +81,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_calendar"
-                android:hint="Data Início"
-                android:inputType="date" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fragment_add_rent_item_end_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_add_rent_item_start_date"
-            app:layout_constraintStart_toStartOf="@+id/fragment_add_rent_item_start_date"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_add_rent_item_start_date">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_calendar"
-                android:hint="Data Fim"
-                android:inputType="date" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fragment_add_rent_item_days"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_add_rent_item_end_date"
-            app:layout_constraintStart_toStartOf="@+id/fragment_add_rent_item_end_date"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_add_rent_item_end_date">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_calendar"
                 android:hint="Dias"
                 android:inputType="date" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/celebrateContractMonthyValue"
+            android:id="@+id/fragment_add_rent_item_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -146,9 +110,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/celebrateContractMonthyValue"
-            app:layout_constraintStart_toStartOf="@+id/celebrateContractMonthyValue"
-            app:layout_constraintTop_toBottomOf="@+id/celebrateContractMonthyValue">
+            app:layout_constraintEnd_toEndOf="@+id/fragment_add_rent_item_value"
+            app:layout_constraintStart_toStartOf="@+id/fragment_add_rent_item_value"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_add_rent_item_value">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -160,54 +124,37 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fragment_add_rent_item_description"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_add_rent_item_discount"
-            app:layout_constraintStart_toStartOf="@+id/fragment_add_rent_item_discount"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_add_rent_item_discount">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_description"
-                android:hint="@string/rent_item_description"
-                android:inputType="textMultiLine"
-                android:lines="3" />
-        </com.google.android.material.textfield.TextInputLayout>
-
         <Button
-            android:id="@+id/celebrateContractBtn"
+            android:id="@+id/fragment_rent_item_cancel_btn"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="4dp"
             android:background="#017a84"
-            android:text="Adicionar"
+            android:text="Cancelar"
             android:textAllCaps="false"
             android:textColor="#fff"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_add_rent_item_cancel"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_rent_item_add_btn"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_add_rent_item_description" />
+            app:layout_constraintTop_toBottomOf="@+id/fragment_add_rent_item_discount" />
 
         <Button
-            android:id="@+id/fragment_add_rent_item_cancel"
+            android:id="@+id/fragment_rent_item_add_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="8dp"
             android:background="#017a84"
-            android:text="Cancelar"
+            android:text="Adicionar"
             android:textAllCaps="false"
             android:textColor="#fff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/celebrateContractBtn"
-            app:layout_constraintTop_toTopOf="@+id/celebrateContractBtn" />
+            app:layout_constraintStart_toEndOf="@+id/fragment_rent_item_cancel_btn"
+            app:layout_constraintTop_toTopOf="@+id/fragment_rent_item_cancel_btn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

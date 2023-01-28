@@ -12,115 +12,185 @@
         android:layout_height="match_parent">
 
         <View
-            android:id="@+id/devolutionItemView"
+            android:id="@+id/returnItemView"
             android:layout_width="0dp"
-            android:layout_height="90dp"
+            android:layout_height="234dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="#80CBC4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            android:background="@drawable/textview_borders"
+            app:layout_constraintEnd_toEndOf="@+id/returnItemImageView"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/returnItemImageView" />
 
         <ImageView
-            android:id="@+id/devolutionItemImageView"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:id="@+id/returnItemImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:src="@mipmap/ic_product"
-            app:layout_constraintBottom_toBottomOf="@+id/devolutionItemView"
-            app:layout_constraintStart_toStartOf="@+id/devolutionItemView"
-            app:layout_constraintTop_toBottomOf="@+id/devolutionItemName" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/devolutionItemName"
+            android:id="@+id/returnItemName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:textAlignment="center"
-            android:textColor="#000"
+            android:background="#017a84"
+            android:padding="7dp"
+            android:textColor="@color/white"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/devolutionItemView"
-            app:layout_constraintStart_toStartOf="@+id/devolutionItemView"
-            app:layout_constraintTop_toTopOf="@+id/devolutionItemView"
-            tools:text="Prumos Médios 0.00G" />
+            app:layout_constraintEnd_toEndOf="@+id/returnItemView"
+            app:layout_constraintStart_toStartOf="@+id/returnItemView"
+            app:layout_constraintTop_toTopOf="@+id/returnItemView"
+            tools:text="Prumo metálico" />
 
         <TextView
-            android:id="@+id/devolutionItemRentedLabel"
+            android:id="@+id/returnItemEstimatedQuantityLabel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:text="Alugados:"
-            android:textColor="#000"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/devolutionItemToReturnLabel"
-            app:layout_constraintStart_toEndOf="@+id/devolutionItemImageView"
-            app:layout_constraintTop_toTopOf="@+id/devolutionItemImageView" />
+            android:padding="7dp"
+            android:text="Unidades Estimadas"
+            app:layout_constraintEnd_toStartOf="@+id/returnItemEstimatedQuantity"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toStartOf="@+id/returnItemView"
+            app:layout_constraintTop_toBottomOf="@+id/returnItemName" />
 
         <TextView
-            android:id="@+id/devolutionItemRented"
-            android:layout_width="wrap_content"
+            android:id="@+id/returnItemEstimatedQuantity"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:textColor="#000"
-            app:layout_constraintBottom_toBottomOf="@+id/devolutionItemRentedLabel"
-            app:layout_constraintStart_toEndOf="@+id/devolutionItemRentedLabel"
-            app:layout_constraintTop_toTopOf="@+id/devolutionItemRentedLabel"
-            tools:text="1700" />
-
-        <TextView
-            android:id="@+id/devolutionItemReturned"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:textColor="#000"
-            app:layout_constraintEnd_toEndOf="@+id/devolutionItemView"
-            app:layout_constraintTop_toTopOf="@+id/devolutionItemRented"
+            android:padding="7dp"
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/returnItemEstimatedQuantityLabel"
+            app:layout_constraintEnd_toEndOf="@+id/returnItemView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/returnItemEstimatedQuantityLabel"
+            app:layout_constraintTop_toTopOf="@+id/returnItemEstimatedQuantityLabel"
             tools:text="100" />
 
         <TextView
-            android:id="@+id/devolutionItemReturnedLabel"
-            android:layout_width="wrap_content"
+            android:id="@+id/returnItemEstimatedDaysLabel"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:text="Devolvidos:"
-            android:textColor="#000"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/devolutionItemReturned"
-            app:layout_constraintEnd_toStartOf="@+id/devolutionItemReturned"
-            app:layout_constraintTop_toTopOf="@+id/devolutionItemReturned" />
+            android:padding="7dp"
+            android:text="Nr. de dias Estimados"
+            app:layout_constraintEnd_toEndOf="@+id/returnItemEstimatedQuantityLabel"
+            app:layout_constraintStart_toStartOf="@+id/returnItemEstimatedQuantityLabel"
+            app:layout_constraintTop_toBottomOf="@+id/returnItemEstimatedQuantityLabel" />
 
         <TextView
-            android:id="@+id/devolutionItemToReturnLabel"
-            android:layout_width="wrap_content"
+            android:id="@+id/returnItemEstimatedDays"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:text="Por devolver:"
-            android:textColor="#000"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/devolutionItemImageView"
-            app:layout_constraintTop_toBottomOf="@+id/devolutionItemRentedLabel" />
+            android:padding="7dp"
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/returnItemEstimatedDaysLabel"
+            app:layout_constraintEnd_toEndOf="@+id/returnItemEstimatedQuantity"
+            app:layout_constraintStart_toEndOf="@+id/returnItemEstimatedQuantityLabel"
+            app:layout_constraintTop_toTopOf="@+id/returnItemEstimatedDaysLabel"
+            tools:text="25" />
 
         <TextView
-            android:id="@+id/devolutionItemToReturn"
-            android:layout_width="70dp"
+            android:id="@+id/returnItemLoadedLabel"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:textColor="#000"
-            app:layout_constraintBottom_toBottomOf="@+id/devolutionItemToReturnLabel"
-            app:layout_constraintStart_toEndOf="@+id/devolutionItemToReturnLabel"
-            app:layout_constraintTop_toTopOf="@+id/devolutionItemToReturnLabel"
-            tools:text="10" />
+            android:padding="7dp"
+            android:text="Unidades Transportadas"
+            app:layout_constraintEnd_toEndOf="@+id/returnItemEstimatedDaysLabel"
+            app:layout_constraintStart_toStartOf="@+id/returnItemEstimatedDaysLabel"
+            app:layout_constraintTop_toBottomOf="@+id/returnItemEstimatedDaysLabel" />
+
+        <TextView
+            android:id="@+id/returnItemLoaded"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/returnItemLoadedLabel"
+            app:layout_constraintEnd_toEndOf="@+id/returnItemEstimatedDays"
+            app:layout_constraintStart_toEndOf="@+id/returnItemEstimatedDaysLabel"
+            app:layout_constraintTop_toTopOf="@+id/returnItemLoadedLabel"
+            tools:text="70" />
+
+        <TextView
+            android:id="@+id/returnedItemsLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Unidades Devolvidas"
+            app:layout_constraintEnd_toEndOf="@+id/returnItemLoadedLabel"
+            app:layout_constraintStart_toStartOf="@+id/returnItemLoadedLabel"
+            app:layout_constraintTop_toBottomOf="@+id/returnItemLoadedLabel" />
+
+        <TextView
+            android:id="@+id/returnedItems"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/returnedItemsLabel"
+            app:layout_constraintEnd_toEndOf="@+id/returnItemLoaded"
+            app:layout_constraintStart_toEndOf="@+id/returnItemLoadedLabel"
+            app:layout_constraintTop_toTopOf="@+id/returnedItemsLabel"
+            tools:text="30" />
+
+        <TextView
+            android:id="@+id/returnItemToReturnLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Unidades por devolver"
+            app:layout_constraintEnd_toEndOf="@+id/returnedItemsLabel"
+            app:layout_constraintStart_toStartOf="@+id/returnedItemsLabel"
+            app:layout_constraintTop_toBottomOf="@+id/returnedItemsLabel" />
+
+        <TextView
+            android:id="@+id/returnItemToReturn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/returnItemToReturnLabel"
+            app:layout_constraintEnd_toEndOf="@+id/returnedItems"
+            app:layout_constraintStart_toEndOf="@+id/returnedItemsLabel"
+            app:layout_constraintTop_toTopOf="@+id/returnItemToReturnLabel"
+            tools:text="40" />
+
+        <TextView
+            android:id="@+id/returnItemLastReturnDateLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="Data da última devolução"
+            app:layout_constraintEnd_toEndOf="@+id/returnItemToReturnLabel"
+            app:layout_constraintStart_toStartOf="@+id/returnItemToReturnLabel"
+            app:layout_constraintTop_toBottomOf="@+id/returnItemToReturnLabel" />
+
+        <TextView
+            android:id="@+id/returnItemLastReturnDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:text="25-01-2023"
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/returnItemLastReturnDateLabel"
+            app:layout_constraintEnd_toEndOf="@+id/returnItemToReturn"
+            app:layout_constraintStart_toEndOf="@+id/returnItemToReturnLabel"
+            app:layout_constraintTop_toTopOf="@+id/returnItemLastReturnDateLabel" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/devolutionItemQuantity"
-            android:layout_width="match_parent"
+            android:id="@+id/returnItemQuantity"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="@+id/devolutionItemView"
-            app:layout_constraintStart_toStartOf="@+id/devolutionItemView"
-            app:layout_constraintTop_toBottomOf="@+id/devolutionItemView">
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/returnItemView"
+            app:layout_constraintStart_toStartOf="@+id/returnItemView"
+            app:layout_constraintTop_toBottomOf="@+id/returnItemView">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -131,26 +201,8 @@
                 android:inputType="numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/devolutionItemDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/devolutionItemQuantity"
-            app:layout_constraintTop_toBottomOf="@+id/devolutionItemQuantity">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_calendar"
-                android:hint="Data de devolução"
-                android:inputType="date" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
         <Button
-            android:id="@+id/addReturnItemBtn"
+            android:id="@+id/returnItemAddBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -159,14 +211,13 @@
             android:layout_marginBottom="32dp"
             android:background="#017a84"
             android:padding="8dp"
-            android:text="Adicionar"
+            android:text="@string/add"
             android:textAllCaps="false"
             android:textColor="#fff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/devolutionItemDate"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/returnItemQuantity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

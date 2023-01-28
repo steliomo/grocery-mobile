@@ -12,9 +12,11 @@ public interface CustomerService {
 
     void findCustomersWithPendingPaymentsByUnit(String unitUuid, int currentPage, int maxResult, ResponseListner<CustomersDTO> responseListner);
 
-    void findCustomersWithPendingDevlutionsByUnit(String unitUuid, int currentPage, int maxResult, ResponseListner<CustomersDTO> responseListner);
+    void findCustomersWithPendingOrIncompleteRentItemsToReturnByUnit(String unitUuid, int currentPage, int maxResult, ResponseListner<CustomersDTO> responseListner);
 
     void findCustomersWithContractPendingPaymentByUnit(String unitUuid, int currentPage, int maxResult, String currentDate, ResponseListner<CustomersDTO> responseListner);
 
     void findCustomersSaleWithPendindOrIncompletePaymentByUnit(String unitUuid, ResponseListner<CustomersDTO> responseListner);
+
+    void findCustomersWithPendingOrInCompleteRentItemsToLoadByUnit(String unitUuid, ResponseListner<CustomersDTO> responseListner);
 }

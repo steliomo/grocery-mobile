@@ -3,6 +3,7 @@ package mz.co.commandline.grocery.rent.service;
 import java.util.List;
 
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
+import mz.co.commandline.grocery.rent.dto.GuideDTO;
 import mz.co.commandline.grocery.rent.dto.RentDTO;
 import mz.co.commandline.grocery.rent.dto.RentPaymentDTO;
 import mz.co.commandline.grocery.rent.dto.RentReport;
@@ -18,11 +19,13 @@ public interface RentService {
 
     void makePayment(RentPaymentDTO rentPaymentDTO, ResponseListner<RentPaymentDTO> responseListner);
 
-    void fetchPendingDevolutionsRentsByCustomer(String customerUuid, ResponseListner<RentsDTO> responseListner);
+    void fetchRentsWithPendingOrIncompleteRentItemToLoadByCustomer(String customerUuid, ResponseListner<RentsDTO> responseListner);
 
-    void returnItems(List<ReturnItemDTO> returnItemsDTO, ResponseListner<List<ReturnItemDTO>> responseListner);
+    void fetchRentsWithPendingOrIncompleteRentItemToReturnByCustomer(String customerUuid, ResponseListner<RentsDTO> responseListner);
 
-    void getQuotationFile(String fileName, ResponseListner<ResponseBody> responseListner);
+    void issueQuotation(RentDTO rentDTO, ResponseListner<RentReport> responseListner);
 
-    void processtQuotation(RentDTO rentDTO, ResponseListner<RentReport> responseListner);
+    void issueTransportGuide(GuideDTO guideDTO, ResponseListner<GuideDTO> responseListner);
+
+    void issueReturnGuide(GuideDTO guideDTO, ResponseListner<GuideDTO> responseListner);
 }

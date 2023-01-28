@@ -28,8 +28,8 @@ class RentViewHolder(private val binding: RentBinding) : BaseViewHolder<RentDTO>
     override fun bind(rentDTO: RentDTO) {
         this.rentDTO = rentDTO
         binding.rentDate.text = rentDTO.rentDate
-        binding.rentItems.text = rentDTO.totalItems.toString()
         binding.rentTotalPaid.text = FormatterUtil.mtFormat(rentDTO.totalPaid)
         binding.rentTotaToPay.text = FormatterUtil.mtFormat(rentDTO.totalToPay)
+        binding.rentPaymentStatus.text = rentDTO.paymentStatus.label
     }
 }

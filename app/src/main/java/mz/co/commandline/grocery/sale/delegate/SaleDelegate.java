@@ -1,8 +1,5 @@
 package mz.co.commandline.grocery.sale.delegate;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.List;
 
 import mz.co.commandline.grocery.sale.dto.SaleDTO;

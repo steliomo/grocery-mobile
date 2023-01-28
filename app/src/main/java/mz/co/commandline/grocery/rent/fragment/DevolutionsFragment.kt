@@ -30,7 +30,7 @@ class DevolutionsFragment : BaseFragment(), ClickListner<RentItemDTO>, View.OnCl
 
         val devolutionsRecyclerView = binding.devolutionsRecyclerView
 
-        val adapter = DevolutionItemAdapter(activity, delegate!!.rent.rentItemsDTO);
+        val adapter = DevolutionItemAdapter(activity, delegate!!.rent.rentItemsDTO)
         adapter.setItemClickListner(this)
 
         devolutionsRecyclerView.adapter = adapter
@@ -50,7 +50,7 @@ class DevolutionsFragment : BaseFragment(), ClickListner<RentItemDTO>, View.OnCl
     }
 
     override fun getTitle(): String {
-        return getString(R.string.devolutions)
+        return getString(R.string.devolution_guide)
     }
 
     override fun onClickListner(rentItemDTO: RentItemDTO) {
@@ -58,6 +58,6 @@ class DevolutionsFragment : BaseFragment(), ClickListner<RentItemDTO>, View.OnCl
     }
 
     override fun onClick(view: View?) {
-        delegate!!.returnItems();
+        delegate?.issueReturnGuide()
     }
 }

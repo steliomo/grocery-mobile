@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import mz.co.commandline.grocery.customer.model.CustomerDTO;
+import mz.co.commandline.grocery.generics.dto.EnumDTO;
 import mz.co.commandline.grocery.generics.dto.GenericDTO;
 import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.util.DateUtil;
@@ -31,6 +32,8 @@ public class RentDTO extends GenericDTO {
 
     private int totalItems;
 
+    private EnumDTO paymentStatus;
+
     public RentDTO(GroceryDTO unit) {
         this.unitDTO = unit;
         rentItemsDTO = new ArrayList<>();
@@ -46,7 +49,7 @@ public class RentDTO extends GenericDTO {
         BigDecimal total = BigDecimal.ZERO;
 
         for (RentItemDTO rentItem : rentItemsDTO) {
-            total = total.add(rentItem.getValue());
+            total = total.add(rentItem.calculatePlannedValue());
         }
         return total;
     }
@@ -102,5 +105,9 @@ public class RentDTO extends GenericDTO {
 
     public String getFileName() {
         return fileName;
+    }
+
+    public EnumDTO getPaymentStatus() {
+        return paymentStatus;
     }
 }

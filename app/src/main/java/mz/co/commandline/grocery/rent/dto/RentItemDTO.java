@@ -20,27 +20,23 @@ public class RentItemDTO extends GenericDTO {
 
     private ServiceItemDTO serviceItemDTO;
 
-    private BigDecimal quantity;
+    private BigDecimal plannedQuantity;
 
-    private String startDate;
-
-    private String endDate;
-
-    private Long days;
-
-    private BigDecimal value;
+    private BigDecimal plannedDays;
 
     private BigDecimal discount;
 
-    private BigDecimal returned;
+    private BigDecimal quantity;
 
-    private BigDecimal toReturn;
+    private BigDecimal loadedQuantity;
+
+    private String loadingDate;
 
     private boolean selected;
 
-    private Boolean returnable;
+    private BigDecimal returnedQuantity;
 
-    private String description;
+    private String returnDate;
 
     public RentItemDTO(SaleableItemDTO saleableItemDTO) {
         this.saleableItemDTO = saleableItemDTO;
@@ -64,44 +60,20 @@ public class RentItemDTO extends GenericDTO {
         return serviceItemDTO;
     }
 
-    public BigDecimal getQuantity() {
-        return quantity;
+    public BigDecimal getPlannedQuantity() {
+        return plannedQuantity;
     }
 
-    public void setQuantity(BigDecimal quantity) {
-        this.quantity = quantity;
+    public void setPlannedQuantity(BigDecimal plannedQuantity) {
+        this.plannedQuantity = plannedQuantity;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public BigDecimal getPlannedDays() {
+        return plannedDays;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
-    public Long getDays() {
-        return days;
-    }
-
-    public void setDays() {
-        this.days = DateUtil.daysBetween(startDate, endDate);
-    }
-
-    public BigDecimal getValue() {
-        return value;
-    }
-
-    public void setValue(BigDecimal value) {
-        this.value = value;
+    public void setPlannedDays(BigDecimal plannedDays) {
+        this.plannedDays = plannedDays;
     }
 
     public BigDecimal getDiscount() {
@@ -112,8 +84,8 @@ public class RentItemDTO extends GenericDTO {
         this.discount = discount;
     }
 
-    public void calculateValue() {
-        value = new BigDecimal(saleableItemDTO.getRentPrice()).multiply(quantity).multiply(BigDecimal.valueOf(days)).subtract(discount);
+    public BigDecimal calculatePlannedValue() {
+        return new BigDecimal(saleableItemDTO.getRentPrice()).multiply(plannedQuantity).multiply(plannedDays).subtract(discount);
     }
 
     public String getName() {
@@ -123,28 +95,12 @@ public class RentItemDTO extends GenericDTO {
         return saleableItemDTO.getName();
     }
 
-    public Boolean isEndDateValid() {
-        try {
-            long daysBetween = DateUtil.daysBetween(startDate, endDate);
-            if (daysBetween == BigDecimal.ZERO.longValue()) {
-                return Boolean.FALSE;
-            }
-        } catch (IllegalArgumentException e) {
-            return Boolean.FALSE;
-        }
-        return Boolean.TRUE;
-    }
-
-    public BigDecimal getReturned() {
-        return returned;
-    }
-
-    public BigDecimal getToReturn() {
-        return toReturn;
-    }
-
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+
+    public boolean isSelected() {
+        return selected;
     }
 
     public int getVisiblity() {
@@ -156,19 +112,39 @@ public class RentItemDTO extends GenericDTO {
         return View.GONE;
     }
 
-    public Boolean getReturnable() {
-        return returnable;
-    }
-
     public GroceryDTO getUnit() {
         return stockDTO != null ? stockDTO.getGroceryDTO() : serviceItemDTO.getUnitDTO();
     }
 
-    public String getDescription() {
-        return description;
+    public BigDecimal getQuantity() {
+        return quantity == null ? BigDecimal.ZERO : quantity;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getLoadingDate() {
+        return loadingDate == null ? "" : loadingDate;
+    }
+
+    public BigDecimal getLoadedQuantity() {
+        return loadedQuantity == null ? BigDecimal.ZERO : loadedQuantity;
+    }
+
+    public BigDecimal getQuantityToLoad() {
+        return plannedQuantity.subtract(getLoadedQuantity());
+    }
+
+    public String getReturnDate() {
+        return returnDate == null ? "" : returnDate;
+    }
+
+    public BigDecimal getReturnedQuantity() {
+        return returnedQuantity == null ? BigDecimal.ZERO : returnedQuantity;
+    }
+
+    public BigDecimal getQuantityToReturn() {
+        return loadedQuantity.subtract(getReturnedQuantity());
     }
 }

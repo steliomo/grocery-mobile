@@ -82,8 +82,8 @@ public class CustomerServiceImpl extends AbstractService implements CustomerServ
     }
 
     @Override
-    public void findCustomersWithPendingDevlutionsByUnit(String unitUuid, int currentPage, int maxResult, final ResponseListner<CustomersDTO> responseListner) {
-        getResource().findCustomersWithPendingDevolutionsByUnit(unitUuid, currentPage, maxResult).enqueue(new Callback<CustomersDTO>() {
+    public void findCustomersWithPendingOrIncompleteRentItemsToReturnByUnit(String unitUuid, int currentPage, int maxResult, final ResponseListner<CustomersDTO> responseListner) {
+        getResource().findCustomersWithPendingOrIncompleteRentItemsToReturnByUnit(unitUuid, currentPage, maxResult).enqueue(new Callback<CustomersDTO>() {
             @Override
             public void onResponse(Call<CustomersDTO> call, Response<CustomersDTO> response) {
                 if (response.isSuccessful()) {
@@ -124,6 +124,26 @@ public class CustomerServiceImpl extends AbstractService implements CustomerServ
     @Override
     public void findCustomersSaleWithPendindOrIncompletePaymentByUnit(String unitUuid, final ResponseListner<CustomersDTO> responseListner) {
         getResource().findCustomersSaleWithPendindOrIncompletePaymentByUnit(unitUuid).enqueue(new Callback<CustomersDTO>() {
+            @Override
+            public void onResponse(Call<CustomersDTO> call, Response<CustomersDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<CustomersDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void findCustomersWithPendingOrInCompleteRentItemsToLoadByUnit(String unitUuid, ResponseListner<CustomersDTO> responseListner) {
+        getResource().findCustomersWithPendingOrInCompleteRentItemsToLoadByUnit(unitUuid).enqueue(new Callback<CustomersDTO>() {
             @Override
             public void onResponse(Call<CustomersDTO> call, Response<CustomersDTO> response) {
                 if (response.isSuccessful()) {

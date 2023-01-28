@@ -4,45 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".rent.fragment.DevolutionsFragment">
-
+    tools:context=".rent.fragment.TransportFragment">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/transportImageView"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:src="@mipmap/ic_return"
+        android:src="@mipmap/ic_transport"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/devolutionsRecyclerView"
+        android:id="@+id/transportRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/devolutionsBtn"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintBottom_toTopOf="@+id/processBtn"
+        app:layout_constraintEnd_toEndOf="@+id/transportImageView"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        tools:listitem="@layout/return_item" />
+        app:layout_constraintTop_toBottomOf="@+id/transportImageView"
+        app:layout_constraintVertical_bias="0.50"
+        tools:listitem="@layout/transport_item" />
 
     <Button
-        android:id="@+id/devolutionsBtn"
+        android:id="@+id/processBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:background="#017a84"
         android:padding="8dp"
-        android:text="Devolver"
+        android:text="Processar"
         android:textAllCaps="false"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/devolutionsRecyclerView"
-        app:layout_constraintStart_toStartOf="@+id/devolutionsRecyclerView" />
+        app:layout_constraintEnd_toEndOf="@+id/transportRecyclerView"
+        app:layout_constraintStart_toStartOf="@+id/transportRecyclerView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <View
-        android:id="@+id/returnView"
+        android:id="@+id/transportView"
         android:layout_width="0dp"
         android:layout_height="95dp"
         android:layout_marginTop="6dp"
@@ -18,81 +18,81 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/returnProductIcon"
+        android:id="@+id/transportProductIcon"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/returnView"
-        app:layout_constraintStart_toStartOf="@+id/returnView"
-        app:layout_constraintTop_toBottomOf="@+id/retunrItemName"
+        app:layout_constraintBottom_toBottomOf="@+id/transportView"
+        app:layout_constraintStart_toStartOf="@+id/transportView"
+        app:layout_constraintTop_toBottomOf="@+id/transportItemName"
         app:srcCompat="@mipmap/ic_product" />
 
     <TextView
-        android:id="@+id/retunrItemName"
+        android:id="@+id/transportItemName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#017a84"
         android:padding="7dp"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/returnView"
-        app:layout_constraintStart_toStartOf="@+id/returnView"
-        app:layout_constraintTop_toTopOf="@+id/returnView"
+        app:layout_constraintEnd_toEndOf="@+id/transportView"
+        app:layout_constraintStart_toStartOf="@+id/transportView"
+        app:layout_constraintTop_toTopOf="@+id/transportView"
         tools:text="Prumos Médios 0.00G" />
 
     <TextView
-        android:id="@+id/returnLoadedLabel"
+        android:id="@+id/transportEstimatedLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="3dp"
-        android:text="Unidades Transportadas"
-        app:layout_constraintEnd_toStartOf="@+id/returnLoaded"
+        android:text="Unidades Estimadas"
+        app:layout_constraintEnd_toStartOf="@+id/transportEstimated"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintHorizontal_weight="2"
-        app:layout_constraintStart_toEndOf="@+id/returnProductIcon"
-        app:layout_constraintTop_toTopOf="@+id/returnProductIcon" />
+        app:layout_constraintStart_toEndOf="@+id/transportProductIcon"
+        app:layout_constraintTop_toTopOf="@+id/transportProductIcon" />
 
     <TextView
-        android:id="@+id/returnLoaded"
+        android:id="@+id/transportEstimated"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="3dp"
         android:paddingEnd="7dp"
         android:textAlignment="viewEnd"
-        app:layout_constraintBottom_toBottomOf="@+id/returnLoadedLabel"
-        app:layout_constraintEnd_toStartOf="@+id/returnSelectedImageView"
+        app:layout_constraintBottom_toBottomOf="@+id/transportEstimatedLabel"
+        app:layout_constraintEnd_toStartOf="@+id/transportSelectedImageView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@+id/returnLoadedLabel"
-        app:layout_constraintTop_toTopOf="@+id/returnLoadedLabel"
+        app:layout_constraintStart_toEndOf="@+id/transportEstimatedLabel"
+        app:layout_constraintTop_toTopOf="@+id/transportEstimatedLabel"
         tools:text="100" />
 
     <TextView
-        android:id="@+id/toRetunLabel"
+        android:id="@+id/transportToLoadLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="3dp"
-        android:text="Unidades a Devolver"
-        app:layout_constraintEnd_toEndOf="@+id/returnLoadedLabel"
-        app:layout_constraintStart_toStartOf="@+id/returnLoadedLabel"
-        app:layout_constraintTop_toBottomOf="@+id/returnLoadedLabel" />
+        android:text="Unidades a Transportar"
+        app:layout_constraintEnd_toEndOf="@+id/transportEstimatedLabel"
+        app:layout_constraintStart_toStartOf="@+id/transportEstimatedLabel"
+        app:layout_constraintTop_toBottomOf="@+id/transportEstimatedLabel" />
 
     <TextView
-        android:id="@+id/toReturn"
+        android:id="@+id/transportToLoad"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="3dp"
         android:paddingEnd="7dp"
         android:textAlignment="viewEnd"
-        app:layout_constraintBottom_toBottomOf="@+id/toRetunLabel"
-        app:layout_constraintEnd_toEndOf="@+id/returnLoaded"
-        app:layout_constraintStart_toEndOf="@+id/returnLoadedLabel"
-        app:layout_constraintTop_toBottomOf="@+id/returnLoaded"
+        app:layout_constraintBottom_toBottomOf="@+id/transportToLoadLabel"
+        app:layout_constraintEnd_toEndOf="@+id/transportEstimated"
+        app:layout_constraintStart_toEndOf="@+id/transportEstimatedLabel"
+        app:layout_constraintTop_toBottomOf="@+id/transportEstimated"
         tools:text="100" />
 
     <ImageView
-        android:id="@+id/returnSelectedImageView"
+        android:id="@+id/transportSelectedImageView"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="8dp"
@@ -100,8 +100,8 @@
         android:elevation="4dp"
         android:src="@drawable/ic_selected"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/returnProductIcon"
-        app:layout_constraintEnd_toEndOf="@+id/retunrItemName"
-        app:layout_constraintTop_toTopOf="@+id/returnProductIcon" />
+        app:layout_constraintBottom_toBottomOf="@+id/transportProductIcon"
+        app:layout_constraintEnd_toEndOf="@+id/transportItemName"
+        app:layout_constraintTop_toTopOf="@+id/transportProductIcon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

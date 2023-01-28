@@ -8,8 +8,8 @@ android {
         applicationId "mz.co.commandline.grocery"
         minSdkVersion 19
         targetSdkVersion 31
-        versionCode 16
-        versionName "2.3.0"
+        versionCode 17
+        versionName "2.4.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
@@ -30,6 +30,11 @@ android {
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 

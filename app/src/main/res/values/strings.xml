@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Negócio na Mão</string>
-    <string name="app_version">© 2022 © v2.3.0</string>
+    <string name="app_version">© 2022 © v2.4.0</string>
     <string name="sales">Vendas</string>
     <string name="reports">Relatórios</string>
     <string name="products_and_services">Produtos e Serviços</string>
@@ -122,7 +122,7 @@
     <string name="rents">Alugueres</string>
     <string name="rent">Aluguer</string>
     <string name="payment">Pagamento</string>
-    <string name="devolution">Devolução</string>
+    <string name="devolution_guide">Guia de devolução</string>
     <string name="quotation">Cotação</string>
     <string name="days">Dia(s):</string>
     <string name="add_item">Adiconar Item</string>
@@ -146,13 +146,12 @@
     <string name="payment_success">Pagamento realizado com sucesso!</string>
     <string name="payment_error">Ocorreu um erro no pagamento do aluguer. Tente novamente!</string>
     <string name="unit_without_pending_payments">Unidade sem pagamentos pendentes!</string>
-    <string name="unit_without_pending_devolutions">Unidade sem devoluções pendentes!</string>
+    <string name="unit_without_pending_or_incomplete_devolutions">Unidade sem devoluções pendentes ou incompletas!</string>
     <string name="pending_rents">Alugueres pendentes</string>
-    <string name="devolutions">Devoluções</string>
-    <string name="return_item_details">Detalhes do item a devolver</string>
+    <string name="item_details">Detalhes do Item</string>
     <string name="select_items_to_return">Seleccione o(s) item(s) a devolverl</string>
-    <string name="return_items_successfully_performed">A devolução foi realizada com sucesso!</string>
-    <string name="error_returnig_items">Ocorreu um erro ao devolver items! Tente novamente.</string>
+    <string name="return_guide_was_successfully_issued">A guia de devolução foi emitida com sucesso!</string>
+    <string name="error_issuing_return_guide">Ocorreu um erro ao emitir a guia de devolução! Contacte o administrador.</string>
     <string name="return_quantity_unexpected">*Quantidade acima da esperada!</string>
     <string name="payment_value_unexpected">*Valor acima do esperado</string>
     <string name="error_loading_quotation">Ocorreu um erro ao carregar a cotação. Tente novamente</string>
@@ -218,4 +217,10 @@
     <string name="sale_date">Data da venda</string>
     <string name="payment_status">Estado de pagamento</string>
     <string name="error_loading_pending_or_incomplete_sales">Ocorreu um erro ao carregar as vendas com pagamentos incompletos ou pendenntes. Tente novamente</string>
+    <string name="transport_guide">Guia de transporte</string>
+    <string name="no_pending_or_incomplete_customers_with_rent_items_to_load">Nenhum cliente com carregamentos \'Pendentes\' ou \'Incompletos\' foi encontrado!</string>
+    <string name="no_item_selected">Nenhum Item foi seleccionado!</string>
+    <string name="transport_guide_successfuly_issued">A guia de transporte foi emitida com sucesso!</string>
+    <string name="error_issuing_guide">Ocorre um erro a emitir a guia! contacte o administrador.</string>
+    <string name="error_loading_file">Ocorreu um erro ao carregar o ficheiro!</string>
 </resources>
