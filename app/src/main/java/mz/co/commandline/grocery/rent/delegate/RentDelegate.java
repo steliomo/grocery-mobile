@@ -2,12 +2,11 @@ package mz.co.commandline.grocery.rent.delegate;
 
 import java.util.List;
 
-import mz.co.commandline.grocery.adapter.BaseAdapter;
 import mz.co.commandline.grocery.main.delegate.MenuDelegate;
+import mz.co.commandline.grocery.rent.dto.GuideDTO;
 import mz.co.commandline.grocery.rent.dto.RentDTO;
 import mz.co.commandline.grocery.rent.dto.RentItemDTO;
 import mz.co.commandline.grocery.rent.dto.RentPaymentDTO;
-import mz.co.commandline.grocery.rent.dto.ReturnItemDTO;
 import mz.co.commandline.grocery.saleable.delegate.SaleableItemDelegate;
 
 public interface RentDelegate extends MenuDelegate, SaleableItemDelegate {
@@ -24,7 +23,7 @@ public interface RentDelegate extends MenuDelegate, SaleableItemDelegate {
 
     List<RentDTO> getRentsDTO();
 
-    void selectedPendingRent(RentDTO rentDTO);
+    void selectedRent(RentDTO rentDTO);
 
     void makePayment(RentPaymentDTO rentPaymentDTO);
 
@@ -35,4 +34,12 @@ public interface RentDelegate extends MenuDelegate, SaleableItemDelegate {
     void issueTransportGuide();
 
     void issueReturnGuide();
+
+    void selectedGuide(GuideDTO guideDTO);
+
+    GuideDTO getGuideDTO();
+
+    void reIssueGuide();
+
+    void mainMenu();
 }

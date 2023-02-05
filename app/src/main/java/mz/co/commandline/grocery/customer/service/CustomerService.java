@@ -19,4 +19,8 @@ public interface CustomerService {
     void findCustomersSaleWithPendindOrIncompletePaymentByUnit(String unitUuid, ResponseListner<CustomersDTO> responseListner);
 
     void findCustomersWithPendingOrInCompleteRentItemsToLoadByUnit(String unitUuid, ResponseListner<CustomersDTO> responseListner);
+
+    void findCustomersWithIssuedGuidesByTypeAndUnit(String guideType, String unitUuid, ResponseListner<CustomersDTO> responseListner);
+
+    void findCustomersWithPaymentsByUnit(String unitUuid, ResponseListner<CustomersDTO> responseListner);
 }

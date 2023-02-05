@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/guideView"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/textview_borders"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/guideIssueDateLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="7dp"
+        android:text="Data de Emissão"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideIssueDate"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="@+id/guideView"
+        app:layout_constraintTop_toTopOf="@+id/guideView" />
+
+    <TextView
+        android:id="@+id/guideIssueDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="7dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/guideView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/guideIssueDateLabel"
+        app:layout_constraintTop_toTopOf="@+id/guideIssueDateLabel"
+        tools:text="04-02-2023" />
+
+    <TextView
+        android:id="@+id/guideCodeLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:text="Código da Guia"
+        app:layout_constraintEnd_toEndOf="@+id/guideIssueDateLabel"
+        app:layout_constraintStart_toStartOf="@+id/guideIssueDateLabel"
+        app:layout_constraintTop_toBottomOf="@+id/guideIssueDateLabel" />
+
+    <TextView
+        android:id="@+id/guideCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:textAlignment="viewEnd"
+        android:textColor="#D32F2F"
+        app:layout_constraintBottom_toBottomOf="@+id/guideCodeLabel"
+        app:layout_constraintEnd_toEndOf="@+id/guideIssueDate"
+        app:layout_constraintStart_toEndOf="@+id/guideIssueDateLabel"
+        app:layout_constraintTop_toTopOf="@+id/guideCodeLabel"
+        tools:text="00033" />
+
+    <TextView
+        android:id="@+id/guideTypeLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:text="Tipo de Guia"
+        app:layout_constraintEnd_toEndOf="@+id/guideCodeLabel"
+        app:layout_constraintStart_toStartOf="@+id/guideView"
+        app:layout_constraintTop_toBottomOf="@+id/guideCodeLabel" />
+
+    <TextView
+        android:id="@+id/guideType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/guideTypeLabel"
+        app:layout_constraintEnd_toEndOf="@+id/guideView"
+        app:layout_constraintStart_toEndOf="@+id/guideCodeLabel"
+        app:layout_constraintTop_toTopOf="@+id/guideTypeLabel"
+        tools:text="Transporte" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

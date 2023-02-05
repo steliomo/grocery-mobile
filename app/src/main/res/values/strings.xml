@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Negócio na Mão</string>
-    <string name="app_version">© 2022 © v2.4.0</string>
+    <string name="app_version">© 2022 © v2.5.0</string>
     <string name="sales">Vendas</string>
     <string name="reports">Relatórios</string>
     <string name="products_and_services">Produtos e Serviços</string>
@@ -141,13 +141,12 @@
     <string name="regist_rent">Registar o aluguer</string>
     <string name="rent_registed_with_success">O aluguer foi registado com sucesso!</string>
     <string name="error_on_registing_rent">Ocorreu um erro ao registar ao aluguer. Por favor tente novamente.</string>
-    <string name="error_loading_pending_rents">Ocorreu um erro ao carregar os alugueres pendentes. Tente novamente!</string>
+    <string name="error_loading_rents">Ocorreu um erro ao carregar alugueres. Tente novamente!</string>
     <string name="payment_regist">Registo de pagamentos</string>
     <string name="payment_success">Pagamento realizado com sucesso!</string>
     <string name="payment_error">Ocorreu um erro no pagamento do aluguer. Tente novamente!</string>
     <string name="unit_without_pending_payments">Unidade sem pagamentos pendentes!</string>
     <string name="unit_without_pending_or_incomplete_devolutions">Unidade sem devoluções pendentes ou incompletas!</string>
-    <string name="pending_rents">Alugueres pendentes</string>
     <string name="item_details">Detalhes do Item</string>
     <string name="select_items_to_return">Seleccione o(s) item(s) a devolverl</string>
     <string name="return_guide_was_successfully_issued">A guia de devolução foi emitida com sucesso!</string>
@@ -207,7 +206,7 @@
     <string name="error_regularizing_stock">Ocorreu um erro ao regularizar o stock! Tente novamente.</string>
     <string name="user_phone">Utilizador(Nr. do telemóvel)</string>
     <string name="no_item_added">Nenhum Item foi adicionado a venda!</string>
-    <string name="payment_details">Detalhes de pagamento</string>
+    <string name="payment_details">Detalhes de pagamentos</string>
     <string name="payment_date">Data de pagamento</string>
     <string name="installment_value">Valor da parcela</string>
     <string name="due_date">Data de Vencimento</string>
@@ -223,4 +222,11 @@
     <string name="transport_guide_successfuly_issued">A guia de transporte foi emitida com sucesso!</string>
     <string name="error_issuing_guide">Ocorre um erro a emitir a guia! contacte o administrador.</string>
     <string name="error_loading_file">Ocorreu um erro ao carregar o ficheiro!</string>
+    <string name="no_customers_found">Nenhum cliente foi encontrado!</string>
+    <string name="no_rent_was_found_for_this_customer">Nenhum aluger foi encontrado para o cliente seleccionado!</string>
+    <string name="guides">Guias</string>
+    <string name="re_issue_guide">Re-Emitir</string>
+    <string name="guide_details">Detalhes da guia</string>
+    <string name="guide_re_issued_success">A guia foi re-emitida com sucesso!</string>
+    <string name="error_re_issuing_guide">Ocorreu um erro ao re-emitir a guia. Tente novamente!</string>
 </resources>

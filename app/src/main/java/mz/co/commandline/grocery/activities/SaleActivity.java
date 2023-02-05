@@ -249,20 +249,17 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
         sale.setGrocery(userService.getGroceryDTO());
 
-        saleTypeDialog.dialog(new DialogListner<SaleType>() {
-            @Override
-            public void perform(SaleType saleType) {
-                switch (saleType) {
-                    case INSTALLMENT:
-                        sale.setSaleType(SaleType.INSTALLMENT);
-                        loadCustomers();
-                        break;
+        saleTypeDialog.dialog((saleType) -> {
+            switch (saleType) {
+                case INSTALLMENT:
+                    sale.setSaleType(SaleType.INSTALLMENT);
+                    loadCustomers();
+                    break;
 
-                    case CASH:
-                        sale.setSaleType(SaleType.CASH);
-                        cashSale();
-                        break;
-                }
+                case CASH:
+                    sale.setSaleType(SaleType.CASH);
+                    cashSale();
+                    break;
             }
         });
     }

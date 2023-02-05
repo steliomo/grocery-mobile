@@ -22,17 +22,25 @@ public class RentDTO extends GenericDTO {
 
     private List<RentItemDTO> rentItemsDTO;
 
-    private BigDecimal totalRent;
+    private BigDecimal totalEstimated;
+
+    private BigDecimal totalCalculated;
 
     private BigDecimal totalPaid;
 
     private BigDecimal totalToPay;
+
+    private BigDecimal totalToRefund;
 
     private String fileName;
 
     private int totalItems;
 
     private EnumDTO paymentStatus;
+
+    private List<GuideDTO> guidesDTO;
+
+    private List<RentPaymentDTO> rentPaymentsDTO;
 
     public RentDTO(GroceryDTO unit) {
         this.unitDTO = unit;
@@ -87,16 +95,24 @@ public class RentDTO extends GenericDTO {
         return discount;
     }
 
+    public BigDecimal getTotalEstimated() {
+        return totalEstimated;
+    }
+
+    public BigDecimal getTotalCalculated() {
+        return totalCalculated;
+    }
+
     public BigDecimal getTotalPaid() {
         return totalPaid;
     }
 
-    public BigDecimal getTotalRent() {
-        return totalRent;
-    }
-
     public BigDecimal getTotalToPay() {
         return totalToPay;
+    }
+
+    public BigDecimal getTotalToRefund() {
+        return totalToRefund;
     }
 
     public int getTotalItems() {
@@ -109,5 +125,21 @@ public class RentDTO extends GenericDTO {
 
     public EnumDTO getPaymentStatus() {
         return paymentStatus;
+    }
+
+    public List<GuideDTO> getGuidesDTO() {
+        return guidesDTO;
+    }
+
+    public void setGuidesDTO(List<GuideDTO> guidesDTO) {
+        this.guidesDTO = guidesDTO;
+    }
+
+    public void setRentItemsDTO(List<RentItemDTO> rentItemsDTO) {
+        this.rentItemsDTO = rentItemsDTO;
+    }
+
+    public List<RentPaymentDTO> getRentPaymentsDTO() {
+        return rentPaymentsDTO;
     }
 }

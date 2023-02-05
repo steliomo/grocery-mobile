@@ -38,9 +38,11 @@ class RentPaymentFragment() : BaseFragment(), View.OnClickListener {
 
         binding.rentPaymentDate.text = rent.rentDate
         binding.rentPaymentCustomer.text = rent.customerDTO.name
-        binding.rentPaymentItems.text = rent.totalItems.toString()
+        binding.rentPaymentEstimated.text = FormatterUtil.mtFormat(rent.totalEstimated)
+        binding.rentPaymentCalculated.text = FormatterUtil.mtFormat(rent.totalCalculated)
         binding.rentPaymentPaid.text = FormatterUtil.mtFormat(rent.totalPaid)
         binding.rentPaymentToPay.text = FormatterUtil.mtFormat(rent.totalToPay)
+        binding.rentPaymentRefund.text = FormatterUtil.mtFormat(rent.totalToRefund)
 
         validators.add(UnexpectedValuesValidator(binding.rentPaymentValue, rent.totalToPay, getString(R.string.payment_value_unexpected)))
 

@@ -9,11 +9,15 @@ public enum ProductUnitType {
 
     ML,
 
-    MT,
+    MT, // Moz Metical
 
-    W,
+    W,  // Watt
 
-    MG,
+    MG, // Milligram
 
-    NA;
+    CM, // Centimeters
+
+    M,  // Meters
+
+    NA; // Non applicable
 }

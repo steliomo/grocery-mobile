@@ -18,6 +18,10 @@ abstract class DialogManager<T>(private val context: Context) {
         Log.e("SALE_TYPE", "Sale Type Dialog to implement");
     }
 
+    open fun dialog(optionName: String, iconId: Int, listner: DialogListner<T>?) {
+        Log.e("SALE_TYPE", "Sale Type Dialog to implement");
+    }
+
     fun getContext(): Context {
         return context;
     }

@@ -190,4 +190,64 @@ public class RentServiceImpl extends AbstractService implements RentService {
             }
         });
     }
+
+    @Override
+    public void fetchRentsWithPaymentsByCustomer(String customerUuid, ResponseListner<RentsDTO> responseListner) {
+        getResource().fetchRentsWithPaymentsByCustomer(customerUuid).enqueue(new Callback<RentsDTO>() {
+            @Override
+            public void onResponse(Call<RentsDTO> call, Response<RentsDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<RentsDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void fetchRentsWithIssuedGuidesByTypeAndCustomer(String guideType, String customerUuid, ResponseListner<RentsDTO> responseListner) {
+        getResource().fetchRentsWithIssuedGuidesByTypeAndCustomer(guideType, customerUuid).enqueue(new Callback<RentsDTO>() {
+            @Override
+            public void onResponse(Call<RentsDTO> call, Response<RentsDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<RentsDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void issueGuidePDF(GuideDTO guideDTO, ResponseListner<GuideDTO> responseListner) {
+        getResource().issueGuidePDF(guideDTO).enqueue(new Callback<GuideDTO>() {
+            @Override
+            public void onResponse(Call<GuideDTO> call, Response<GuideDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<GuideDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
 }
