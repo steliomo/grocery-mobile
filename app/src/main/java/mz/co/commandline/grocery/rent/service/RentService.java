@@ -21,13 +21,7 @@ public interface RentService {
 
     void issueQuotation(RentDTO rentDTO, ResponseListner<RentReport> responseListner);
 
-    void issueTransportGuide(GuideDTO guideDTO, ResponseListner<GuideDTO> responseListner);
-
-    void issueReturnGuide(GuideDTO guideDTO, ResponseListner<GuideDTO> responseListner);
-
     void fetchRentsWithPaymentsByCustomer(String customerUuid, ResponseListner<RentsDTO> responseListner);
 
     void fetchRentsWithIssuedGuidesByTypeAndCustomer(String guideType, String customerUuid, ResponseListner<RentsDTO> responseListner);
-
-    void issueGuidePDF(GuideDTO guideDTO, ResponseListner<GuideDTO> responseListner);
 }

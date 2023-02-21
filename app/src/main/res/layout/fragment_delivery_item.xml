@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".sale.fragment.DeliveryItemFragment">
+
+    <View
+        android:id="@+id/deliveryItemView"
+        android:layout_width="0dp"
+        android:layout_height="135dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/textview_borders"
+        app:layout_constraintEnd_toEndOf="@+id/deliveryItemImageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deliveryItemImageView" />
+
+    <ImageView
+        android:id="@+id/deliveryItemImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@mipmap/ic_product"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/deliveryItemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="7dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/deliveryItemView"
+        app:layout_constraintStart_toStartOf="@+id/deliveryItemView"
+        app:layout_constraintTop_toTopOf="@+id/deliveryItemView"
+        tools:text="Prumo metálico" />
+
+    <TextView
+        android:id="@+id/deliveryItemRequestedQuantityLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:text="Unidades Requisitadas"
+        app:layout_constraintEnd_toStartOf="@+id/deliveryItemRequestedQuantity"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toStartOf="@+id/deliveryItemView"
+        app:layout_constraintTop_toBottomOf="@+id/deliveryItemName" />
+
+    <TextView
+        android:id="@+id/deliveryItemRequestedQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/deliveryItemRequestedQuantityLabel"
+        app:layout_constraintEnd_toEndOf="@+id/deliveryItemView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/deliveryItemRequestedQuantityLabel"
+        app:layout_constraintTop_toTopOf="@+id/deliveryItemRequestedQuantityLabel"
+        tools:text="100" />
+
+    <TextView
+        android:id="@+id/deliveryItemDeliveredQuantityLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:text="Quantidade Entregue"
+        app:layout_constraintEnd_toEndOf="@+id/deliveryItemRequestedQuantityLabel"
+        app:layout_constraintStart_toStartOf="@+id/deliveryItemRequestedQuantityLabel"
+        app:layout_constraintTop_toBottomOf="@+id/deliveryItemRequestedQuantityLabel" />
+
+    <TextView
+        android:id="@+id/deliveryItemDeliveredQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/deliveryItemDeliveredQuantityLabel"
+        app:layout_constraintEnd_toEndOf="@+id/deliveryItemRequestedQuantity"
+        app:layout_constraintStart_toEndOf="@+id/deliveryItemRequestedQuantityLabel"
+        app:layout_constraintTop_toTopOf="@+id/deliveryItemDeliveredQuantityLabel"
+        tools:text="25" />
+
+    <TextView
+        android:id="@+id/deliveryItemToDeliveryLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:text="Unidades por Entregar"
+        app:layout_constraintEnd_toEndOf="@+id/deliveryItemDeliveredQuantityLabel"
+        app:layout_constraintStart_toStartOf="@+id/deliveryItemDeliveredQuantityLabel"
+        app:layout_constraintTop_toBottomOf="@+id/deliveryItemDeliveredQuantityLabel" />
+
+    <TextView
+        android:id="@+id/deliveryItemToDelivery"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/deliveryItemToDeliveryLabel"
+        app:layout_constraintEnd_toEndOf="@+id/deliveryItemDeliveredQuantity"
+        app:layout_constraintStart_toEndOf="@+id/deliveryItemDeliveredQuantityLabel"
+        app:layout_constraintTop_toTopOf="@+id/deliveryItemToDeliveryLabel"
+        tools:text="70" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/deliveryItemQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/deliveryItemView"
+        app:layout_constraintStart_toStartOf="@+id/deliveryItemView"
+        app:layout_constraintTop_toBottomOf="@+id/deliveryItemView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_quantity"
+            android:drawableLeft="@drawable/ic_quantity"
+            android:hint="Quantidade"
+            android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/deliveryItemAddBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="#017a84"
+        android:padding="8dp"
+        android:text="@string/add"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deliveryItemQuantity"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

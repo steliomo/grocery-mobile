@@ -123,6 +123,46 @@ public class SaleServiceImpl extends AbstractService implements SaleService {
     }
 
     @Override
+    public void fetchSalesWithPendingOrIncompleteDeliveryStatusByCustomer(String customerUuid, ResponseListner<SalesDTO> responseListner) {
+        getResource().fetchSalesWithPendingOrIncompleteDeliveryStatusByCustomer(customerUuid).enqueue(new Callback<SalesDTO>() {
+            @Override
+            public void onResponse(Call<SalesDTO> call, Response<SalesDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<SalesDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void fetchSalesWithDeliveryGuidesByCustomer(String customerUuid, ResponseListner<SalesDTO> responseListner) {
+        getResource().fetchSalesWithDeliveryGuidesByCustomer(customerUuid).enqueue(new Callback<SalesDTO>() {
+            @Override
+            public void onResponse(Call<SalesDTO> call, Response<SalesDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<SalesDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
     public SaleResource getResource() {
         return retrofitService.getResource(SaleResource.class);
     }

@@ -35,10 +35,6 @@ public interface RentDelegate extends MenuDelegate, SaleableItemDelegate {
 
     void issueReturnGuide();
 
-    void selectedGuide(GuideDTO guideDTO);
-
-    GuideDTO getGuideDTO();
-
     void reIssueGuide();
 
     void mainMenu();

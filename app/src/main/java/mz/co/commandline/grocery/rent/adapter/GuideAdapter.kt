@@ -7,7 +7,7 @@ import mz.co.commandline.grocery.adapter.BaseAdapter
 import mz.co.commandline.grocery.databinding.GuideBinding
 import mz.co.commandline.grocery.generics.listner.ClickListner
 import mz.co.commandline.grocery.rent.dto.GuideDTO
-import mz.co.commandline.grocery.rent.holder.GuideViewHolder
+import mz.co.commandline.grocery.guide.holder.GuideViewHolder
 
 class GuideAdapter(private val context: Context?, private val guidesDTO: List<GuideDTO>) : BaseAdapter<GuideViewHolder>() {
 

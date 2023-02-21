@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_money"
                 android:drawableLeft="@drawable/ic_money"
-                android:hint="Preço de compra"
+                android:hint="Preço de compra/produção"
                 android:inputType="numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_quantity"
                 android:drawableLeft="@drawable/ic_quantity"
-                android:hint="Quantidade"
+                android:hint="Quantidade no stock"
                 android:inputType="numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -140,6 +140,24 @@
                 android:inputType="numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fragment_add_inventory_unit_per_m_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_add_inventory_minimum_stock"
+            app:layout_constraintStart_toStartOf="@+id/fragment_add_inventory_minimum_stock"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_add_inventory_minimum_stock">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_quantity"
+                android:drawableLeft="@drawable/ic_quantity"
+                android:hint="Unidades por m2"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/fragment_saleable_service_cancel"
             android:layout_width="0dp"
@@ -155,7 +173,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_add_inventory_minimum_stock" />
+            app:layout_constraintTop_toBottomOf="@+id/fragment_add_inventory_unit_per_m_2" />
 
         <Button
             android:id="@+id/fragment_saleable_service_add"

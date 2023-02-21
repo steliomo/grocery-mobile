@@ -16,4 +16,8 @@ public interface SaleService {
     void findPendingOrIncompleteSalesByCustomer(String customerUuid, ResponseListner<SalesDTO> responseListner);
 
     void salePayment(SalePaymentDTO salePaymentDTO, ResponseListner<SalePaymentDTO> responseListner);
+
+    void fetchSalesWithPendingOrIncompleteDeliveryStatusByCustomer(String customerUuid, ResponseListner<SalesDTO> responseListner);
+
+    void fetchSalesWithDeliveryGuidesByCustomer(String customerUuid, ResponseListner<SalesDTO> responseListner);
 }

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/saleView"
+        android:layout_width="0dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/textview_borders"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/saleDateLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="7dp"
+        android:text="@string/sale_date"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/saleDate"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/saleView"
+        app:layout_constraintTop_toTopOf="@+id/saleView" />
+
+    <TextView
+        android:id="@+id/saleDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="7dp"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/saleDateLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/saleDateLabel"
+        app:layout_constraintTop_toTopOf="@+id/saleDateLabel"
+        tools:text="18-02-2023" />
+
+    <TextView
+        android:id="@+id/saleTotalLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:text="@string/total_sale"
+        app:layout_constraintEnd_toEndOf="@+id/saleDateLabel"
+        app:layout_constraintStart_toStartOf="@+id/saleDateLabel"
+        app:layout_constraintTop_toBottomOf="@+id/saleDateLabel" />
+
+    <TextView
+        android:id="@+id/saleTotal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/saleTotalLabel"
+        app:layout_constraintEnd_toEndOf="@+id/saleView"
+        app:layout_constraintStart_toEndOf="@+id/saleTotalLabel"
+        app:layout_constraintTop_toBottomOf="@+id/saleDateLabel"
+        tools:text="1.000,00 MT" />
+
+    <TextView
+        android:id="@+id/saleStatusLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:text="@string/payment_status"
+        app:layout_constraintEnd_toEndOf="@+id/saleTotalLabel"
+        app:layout_constraintStart_toStartOf="@+id/saleTotalLabel"
+        app:layout_constraintTop_toBottomOf="@+id/saleTotalLabel" />
+
+    <TextView
+        android:id="@+id/saleStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:textAlignment="textEnd"
+        android:textColor="#CD104D"
+        app:layout_constraintBottom_toBottomOf="@+id/saleStatusLabel"
+        app:layout_constraintEnd_toEndOf="@+id/saleTotal"
+        app:layout_constraintStart_toEndOf="@+id/saleStatusLabel"
+        app:layout_constraintTop_toBottomOf="@+id/saleTotal"
+        tools:text="Pendente" />
+
+    <TextView
+        android:id="@+id/saleDeliveryStatusLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:text="@string/delivery_status"
+        app:layout_constraintEnd_toEndOf="@+id/saleStatusLabel"
+        app:layout_constraintStart_toStartOf="@+id/saleStatusLabel"
+        app:layout_constraintTop_toBottomOf="@+id/saleStatusLabel" />
+
+    <TextView
+        android:id="@+id/saleDeliveryStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/saleDeliveryStatusLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/saleStatusLabel"
+        app:layout_constraintTop_toTopOf="@+id/saleDeliveryStatusLabel"
+        tools:text="Não aplicavel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

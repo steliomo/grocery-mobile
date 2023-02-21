@@ -1,5 +1,7 @@
 package mz.co.commandline.grocery.sale.delegate;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
@@ -25,4 +27,10 @@ public interface SaleDelegate {
     List<SaleDTO> getPendingOrIncompleteSales();
 
     void payInstallment(SalePaymentDTO salePayment);
+
+    void selectedSaleItemDTO(SaleItemDTO saleItemDTO);
+
+    SaleItemDTO getSaleItemDTO();
+
+    void issueDeliveryGuide();
 }

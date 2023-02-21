@@ -26,6 +26,8 @@ import mz.co.commandline.grocery.customer.service.CustomerService;
 import mz.co.commandline.grocery.files.FileService;
 import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
+import mz.co.commandline.grocery.guide.delegate.GuideDelegate;
+import mz.co.commandline.grocery.guide.service.GuideService;
 import mz.co.commandline.grocery.item.delegate.ItemDelegate;
 import mz.co.commandline.grocery.item.dto.ItemDTO;
 import mz.co.commandline.grocery.item.dto.ItemType;
@@ -47,9 +49,9 @@ import mz.co.commandline.grocery.rent.dto.RentType;
 import mz.co.commandline.grocery.rent.dto.RentsDTO;
 import mz.co.commandline.grocery.rent.dto.ReturnItemDTO;
 import mz.co.commandline.grocery.rent.fragment.AddRentItemFragment;
-import mz.co.commandline.grocery.rent.fragment.DevolutionsFragment;
-import mz.co.commandline.grocery.rent.fragment.GuideItemsFragment;
-import mz.co.commandline.grocery.rent.fragment.GuidesFragment;
+import mz.co.commandline.grocery.rent.fragment.ReturnFragment;
+import mz.co.commandline.grocery.guide.fragment.GuideItemsFragment;
+import mz.co.commandline.grocery.guide.fragment.GuidesFragment;
 import mz.co.commandline.grocery.rent.fragment.RentPaymentDetailsFragment;
 import mz.co.commandline.grocery.rent.fragment.RentsFragment;
 import mz.co.commandline.grocery.rent.fragment.QuotationFragment;
@@ -73,7 +75,7 @@ import mz.co.commandline.grocery.util.alert.Option;
 import mz.co.commandline.grocery.util.alert.OptionDialog;
 import okhttp3.ResponseBody;
 
-public class RentActivity extends BaseAuthActivity implements View.OnClickListener, RentDelegate, ItemDelegate, CustomerDelegate {
+public class RentActivity extends BaseAuthActivity implements View.OnClickListener, RentDelegate, ItemDelegate, CustomerDelegate, GuideDelegate {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -95,6 +97,9 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     @Inject
     FileService fileService;
+
+    @Inject
+    GuideService guideService;
 
     private Menu menu;
 
@@ -486,7 +491,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
             case RETURN:
                 switch (option) {
                     case ISSUE:
-                        showFragment(new DevolutionsFragment(), Boolean.TRUE);
+                        showFragment(new ReturnFragment(), Boolean.TRUE);
                         break;
                     case VISUALIZE:
                         showFragment(new GuidesFragment(), Boolean.TRUE);
@@ -566,14 +571,14 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
         }
 
         progressBar.show();
-        rentService.issueTransportGuide(guideDTO, new ResponseListner<GuideDTO>() {
+        guideService.issueTransportGuide(guideDTO, new ResponseListner<GuideDTO>() {
             @Override
             public void success(GuideDTO response) {
                 progressBar.dismiss();
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.transport_guide_successfuly_issued), () -> {
                     resetFragment();
                     showFragment(new MenuFragment(), Boolean.FALSE);
-                    loadFile(response.getFileName());
+                    downLoadFile(fileService, response.getFileName());
                 });
             }
 
@@ -589,27 +594,6 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
                 progressBar.dismiss();
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.error_issuing_guide), null);
                 Log.e("TRANSPORT_GUIDE", message);
-            }
-        });
-    }
-
-    private void loadFile(String fileName) {
-        fileService.loadPdfFile(fileName, new ResponseListner<ResponseBody>() {
-            @Override
-            public void success(ResponseBody fileResponse) {
-                displayFile(fileResponse, fileName);
-            }
-
-            @Override
-            public void businessError(ErrorMessage errorMessage) {
-                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
-                Log.e("LOAD_FILE", errorMessage.getDeveloperMessage());
-            }
-
-            @Override
-            public void error(String message) {
-                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_file), null);
-                Log.e("LOAD_FILE", message);
             }
         });
     }
@@ -632,14 +616,14 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
         }
 
         progressBar.show();
-        rentService.issueReturnGuide(guideDTO, new ResponseListner<GuideDTO>() {
+        guideService.issueReturnGuide(guideDTO, new ResponseListner<GuideDTO>() {
             @Override
             public void success(GuideDTO response) {
                 progressBar.dismiss();
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.return_guide_was_successfully_issued), () -> {
                     resetFragment();
                     showFragment(new MenuFragment(), Boolean.FALSE);
-                    loadFile(response.getFileName());
+                    downLoadFile(fileService, response.getFileName());
                 });
             }
 
@@ -679,14 +663,14 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
         guideDTO.getRentDTO().setGuidesDTO(null);
         guideDTO.getRentDTO().setRentItemsDTO(null);
 
-        rentService.issueGuidePDF(guideDTO, new ResponseListner<GuideDTO>() {
+        guideService.issueGuidePDF(guideDTO, new ResponseListner<GuideDTO>() {
             @Override
             public void success(GuideDTO response) {
                 progressBar.dismiss();
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.guide_re_issued_success), () -> {
                     resetFragment();
                     showFragment(new MenuFragment(), Boolean.FALSE);
-                    loadFile(response.getFileName());
+                    downLoadFile(fileService, response.getFileName());
                 });
             }
 
@@ -1001,20 +985,6 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
         });
     }
 
-    private void displayFile(ResponseBody body, String fileName) {
-        FileUtil fileUtil = new FileUtil(RentActivity.this);
-        File file = fileUtil.save(body.byteStream(), fileName);
-
-        Intent target = new Intent(Intent.ACTION_VIEW);
-        Uri uriForFile = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".provider", file);
-        target.setDataAndType(uriForFile, "application/pdf");
-        target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-        Intent chooser = Intent.createChooser(target, getString(R.string.open_with));
-
-        startActivity(chooser);
-    }
-
     @Override
     public int addBtnVisibility() {
         if (RentType.RENT.equals(rentType) || RentType.QUOTATION.equals(rentType)) {
@@ -1069,5 +1039,10 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
                 Log.e("PENDING_PAYMENTS", message);
             }
         });
+    }
+
+    @Override
+    public List<GuideDTO> getGuidesDTO() {
+        return rent.getGuidesDTO();
     }
 }

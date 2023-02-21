@@ -37,18 +37,9 @@ public interface RentResource {
     @POST("rents/issue-quotation")
     Call<RentReport> issueQuotation(@Body RentDTO rentDTO);
 
-    @POST("rents/issue-transport-guide")
-    Call<GuideDTO> issueTransportGuide(@Body GuideDTO guideDTO);
-
-    @POST("rents/issue-return-guide")
-    Call<GuideDTO> issueReturnGuide(@Body GuideDTO guideDTO);
-
     @GET("rents/fetch-rents-with-payments-by-customer/{customerUuid}")
     Call<RentsDTO> fetchRentsWithPaymentsByCustomer(@Path("customerUuid") String customerUuid);
 
     @GET("rents/fetch-rents-with-issued-guides-by-type-and-customer")
     Call<RentsDTO> fetchRentsWithIssuedGuidesByTypeAndCustomer(@Query("guideType") String guideType, @Query("customerUuid") String customerUuid);
-
-    @POST("rents/issue-guide-pdf")
-    Call<GuideDTO> issueGuidePDF(@Body GuideDTO guideDTO);
 }

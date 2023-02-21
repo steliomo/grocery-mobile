@@ -1,4 +1,4 @@
-package mz.co.commandline.grocery.rent.holder
+package mz.co.commandline.grocery.guide.holder
 
 import android.view.View
 import mz.co.commandline.grocery.databinding.GuideBinding

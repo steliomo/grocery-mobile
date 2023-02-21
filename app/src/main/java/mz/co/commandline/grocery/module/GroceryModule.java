@@ -16,6 +16,8 @@ import mz.co.commandline.grocery.expense.service.ExpenseTypeService;
 import mz.co.commandline.grocery.expense.service.ExpenseTypeServiceImpl;
 import mz.co.commandline.grocery.files.FileService;
 import mz.co.commandline.grocery.files.FileServiceImpl;
+import mz.co.commandline.grocery.guide.service.GuideService;
+import mz.co.commandline.grocery.guide.service.GuideServiceImpl;
 import mz.co.commandline.grocery.infra.SharedPreferencesManager;
 import mz.co.commandline.grocery.inventory.service.InventoryService;
 import mz.co.commandline.grocery.inventory.service.InventoryServiceImpl;
@@ -148,5 +150,10 @@ public class GroceryModule {
     @Provides
     public FileService provideFileService(FileServiceImpl fileService) {
         return fileService;
+    }
+
+    @Provides
+    public GuideService provideGuideService(GuideServiceImpl guideService) {
+        return guideService;
     }
 }

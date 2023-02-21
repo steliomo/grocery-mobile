@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import mz.co.commandline.grocery.R
-import mz.co.commandline.grocery.databinding.FragmentDevolutionsBinding
+import mz.co.commandline.grocery.databinding.FragmentReturnBinding
 import mz.co.commandline.grocery.generics.fragment.BaseFragment
 import mz.co.commandline.grocery.generics.listner.ClickListner
 import mz.co.commandline.grocery.rent.adapter.DevolutionItemAdapter
@@ -13,16 +13,16 @@ import mz.co.commandline.grocery.rent.delegate.RentDelegate
 import mz.co.commandline.grocery.rent.dto.RentItemDTO
 
 
-class DevolutionsFragment : BaseFragment(), ClickListner<RentItemDTO>, View.OnClickListener {
+class ReturnFragment : BaseFragment(), ClickListner<RentItemDTO>, View.OnClickListener {
 
-    private var _binding: FragmentDevolutionsBinding? = null
+    private var _binding: FragmentReturnBinding? = null
     private val binding get() = _binding!!
 
     private var delegate: RentDelegate? = null
 
 
     override fun getResourceId(): Int {
-        return R.layout.fragment_devolutions
+        return R.layout.fragment_return
     }
 
     override fun onCreateView() {
@@ -40,7 +40,7 @@ class DevolutionsFragment : BaseFragment(), ClickListner<RentItemDTO>, View.OnCl
     }
 
     override fun getView(inflater: LayoutInflater, container: ViewGroup?): View {
-        _binding = FragmentDevolutionsBinding.inflate(inflater, container, false);
+        _binding = FragmentReturnBinding.inflate(inflater, container, false);
         return binding.root
     }
 

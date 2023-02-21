@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/loadView"
+        android:layout_width="0dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/textview_borders"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/loadProductIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/loadView"
+        app:layout_constraintStart_toStartOf="@+id/loadView"
+        app:layout_constraintTop_toBottomOf="@+id/loadItemName"
+        app:srcCompat="@mipmap/ic_product" />
+
+    <TextView
+        android:id="@+id/loadItemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="7dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/loadView"
+        app:layout_constraintStart_toStartOf="@+id/loadView"
+        app:layout_constraintTop_toTopOf="@+id/loadView"
+        tools:text="Prumos Médios 0.00G" />
+
+    <TextView
+        android:id="@+id/loadDeliveredLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="Unidades Entregues"
+        app:layout_constraintEnd_toStartOf="@+id/loadDelivered"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toEndOf="@+id/loadProductIcon"
+        app:layout_constraintTop_toTopOf="@+id/loadProductIcon" />
+
+    <TextView
+        android:id="@+id/loadDelivered"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:paddingEnd="7dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/loadDeliveredLabel"
+        app:layout_constraintEnd_toStartOf="@+id/loadSelectedImageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/loadDeliveredLabel"
+        app:layout_constraintTop_toTopOf="@+id/loadDeliveredLabel"
+        tools:text="100" />
+
+    <TextView
+        android:id="@+id/toDeliveryLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="Unidades a Entregar"
+        app:layout_constraintEnd_toEndOf="@+id/loadDeliveredLabel"
+        app:layout_constraintStart_toStartOf="@+id/loadDeliveredLabel"
+        app:layout_constraintTop_toBottomOf="@+id/loadDeliveredLabel" />
+
+    <TextView
+        android:id="@+id/toDelivery"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:paddingEnd="7dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/toDeliveryLabel"
+        app:layout_constraintEnd_toEndOf="@+id/loadDelivered"
+        app:layout_constraintStart_toEndOf="@+id/loadDeliveredLabel"
+        app:layout_constraintTop_toBottomOf="@+id/loadDelivered"
+        tools:text="100" />
+
+    <ImageView
+        android:id="@+id/loadSelectedImageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/select_view"
+        android:elevation="4dp"
+        android:src="@drawable/ic_selected"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/loadProductIcon"
+        app:layout_constraintEnd_toEndOf="@+id/loadItemName"
+        app:layout_constraintTop_toTopOf="@+id/loadProductIcon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

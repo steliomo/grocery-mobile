@@ -23,4 +23,8 @@ public interface CustomerService {
     void findCustomersWithIssuedGuidesByTypeAndUnit(String guideType, String unitUuid, ResponseListner<CustomersDTO> responseListner);
 
     void findCustomersWithPaymentsByUnit(String unitUuid, ResponseListner<CustomersDTO> responseListner);
+
+    void findCustomersWithPendingOrIncompleteDeliveryStatusSalesByUnit(String unitUuid, ResponseListner<CustomersDTO> responseListner);
+
+    void findCustomersWithDeliveredGuidesByUnit(String unitUuid, ResponseListner<CustomersDTO> responseListner);
 }

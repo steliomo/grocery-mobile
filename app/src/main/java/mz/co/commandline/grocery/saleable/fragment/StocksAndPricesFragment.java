@@ -37,6 +37,9 @@ public class StocksAndPricesFragment extends BaseFragment {
     @BindView(R.id.fragment_add_inventory_minimum_stock)
     TextInputLayout minimumStock;
 
+    @BindView(R.id.fragment_add_inventory_unit_per_m_2)
+    TextInputLayout unitPerM2;
+
     private StockDTO stockDTO;
 
     private List<Validator> validators;
@@ -65,6 +68,7 @@ public class StocksAndPricesFragment extends BaseFragment {
             rentPrice.getEditText().setText(stockDTO.getRentPrice());
             quantity.getEditText().setText(stockDTO.getQuantity());
             minimumStock.getEditText().setText(stockDTO.getMinimumStock());
+            unitPerM2.getEditText().setText(stockDTO.getUnitPerM2());
         }
     }
 
@@ -75,6 +79,7 @@ public class StocksAndPricesFragment extends BaseFragment {
         validators.add(new DefaultValidator(rentPrice));
         validators.add(new DefaultValidator(quantity));
         validators.add(new DefaultValidator(minimumStock));
+        validators.add(new DefaultValidator(unitPerM2));
     }
 
     @OnClick(R.id.fragment_saleable_service_cancel)
@@ -96,6 +101,7 @@ public class StocksAndPricesFragment extends BaseFragment {
         stockDTO.setRentPrice(rentPrice.getEditText().getText().toString());
         stockDTO.setQuantity(quantity.getEditText().getText().toString());
         stockDTO.setMinimumStock(minimumStock.getEditText().getText().toString());
+        stockDTO.setUnitPerM2(unitPerM2.getEditText().getText().toString());
 
         delegate.addSaleableItem(stockDTO);
     }

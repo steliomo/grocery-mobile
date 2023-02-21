@@ -27,4 +27,10 @@ public interface SaleResource {
 
     @POST("sales/sale-payment")
     Call<SalePaymentDTO> salePayment(@Body SalePaymentDTO salePayment);
+
+    @GET("sales/fetch-sales-with-pending-or-incomplete-delivery-status-by-customer/{customerUuid}")
+    Call<SalesDTO> fetchSalesWithPendingOrIncompleteDeliveryStatusByCustomer(@Path("customerUuid") String customerUuid);
+
+    @GET("sales/fetch-sales-with-delivery-guides-by-customer/{customerUuid}")
+    Call<SalesDTO> fetchSalesWithDeliveryGuidesByCustomer(@Path("customerUuid") String customerUuid);
 }

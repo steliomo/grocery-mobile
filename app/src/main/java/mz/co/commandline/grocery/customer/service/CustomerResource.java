@@ -37,4 +37,10 @@ public interface CustomerResource {
 
     @GET("customers/find-payments-by-unit/{unitUuid}")
     Call<CustomersDTO> findCustomersWithPaymentsByUnit(@Path("unitUuid") String unitUuid);
+
+    @GET("customers/find-customers-with-pending-or-incomplete-delivery-status-sales-by-unit/{unitUuid}")
+    Call<CustomersDTO> findCustomersWithPendingOrIncompleteDeliveryStatusSalesByUnit(@Path("unitUuid") String unitUuid);
+
+    @GET("customers/find-customers-with-delivered-guides-by-unit/{unitUuid}")
+    Call<CustomersDTO> findCustomersWithDeliveredGuidesByUnit(@Path("unitUuid") String unitUuid);
 }

@@ -1,4 +1,4 @@
-package mz.co.commandline.grocery.rent.fragment
+package mz.co.commandline.grocery.guide.fragment
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import mz.co.commandline.grocery.R
 import mz.co.commandline.grocery.databinding.FragmentGuideItemsBinding
 import mz.co.commandline.grocery.generics.fragment.BaseFragment
+import mz.co.commandline.grocery.guide.delegate.GuideDelegate
 import mz.co.commandline.grocery.rent.adapter.GuideItemAdapter
 import mz.co.commandline.grocery.rent.delegate.RentDelegate
 
@@ -16,14 +17,14 @@ class GuideItemsFragment : BaseFragment(), View.OnClickListener {
     private var _binding: FragmentGuideItemsBinding? = null
     private val binding get() = _binding!!
 
-    private var delegate: RentDelegate? = null
+    private var delegate: GuideDelegate? = null
 
     override fun getResourceId(): Int {
         return R.layout.fragment_guide_items
     }
 
     override fun onCreateView() {
-        delegate = activity as RentDelegate
+        delegate = activity as GuideDelegate
         val guideDTO = delegate?.guideDTO;
 
         binding.guideItemIssueDate.text = guideDTO?.issueDate

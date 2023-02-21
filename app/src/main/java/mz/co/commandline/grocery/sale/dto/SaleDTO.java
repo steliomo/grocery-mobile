@@ -1,7 +1,5 @@
 package mz.co.commandline.grocery.sale.dto;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,8 +8,9 @@ import java.util.List;
 
 import mz.co.commandline.grocery.customer.model.CustomerDTO;
 import mz.co.commandline.grocery.generics.dto.EnumDTO;
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 import mz.co.commandline.grocery.generics.dto.GenericDTO;
+import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.rent.dto.GuideDTO;
 import mz.co.commandline.grocery.util.DateUtil;
 
 public class SaleDTO extends GenericDTO {
@@ -37,6 +36,10 @@ public class SaleDTO extends GenericDTO {
     private BigDecimal total;
 
     private String lastPaymentDate;
+
+    private EnumDTO deliveryStatus;
+
+    private List<GuideDTO> guidesDTO;
 
     public SaleDTO() {
         this.saleItemsDTO = new ArrayList<>();
@@ -114,5 +117,17 @@ public class SaleDTO extends GenericDTO {
 
     public String getLastPaymentDate() {
         return lastPaymentDate;
+    }
+
+    public EnumDTO getDeliveryStatus() {
+        return deliveryStatus;
+    }
+
+    public List<GuideDTO> getGuidesDTO() {
+        return guidesDTO;
+    }
+
+    public void setGuidesDTO(List<GuideDTO> guidesDTO) {
+        this.guidesDTO = guidesDTO;
     }
 }

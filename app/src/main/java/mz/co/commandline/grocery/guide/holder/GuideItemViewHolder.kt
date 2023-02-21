@@ -1,4 +1,4 @@
-package mz.co.commandline.grocery.rent.holder
+package mz.co.commandline.grocery.guide.holder
 
 import android.view.View
 import mz.co.commandline.grocery.databinding.GuideItemBinding
@@ -22,7 +22,7 @@ class GuideItemViewHolder(private val binding: GuideItemBinding) : BaseViewHolde
 
     override fun bind(guideItemDTO: GuideItemDTO?) {
         this.guideItemDTO = guideItemDTO
-        binding.guideItemName.text = guideItemDTO?.rentItemDTO?.name
+        binding.guideItemName.text = guideItemDTO?.name
         binding.guideItemQuantity.text = guideItemDTO?.quantity?.toString()
     }
 }

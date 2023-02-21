@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Negócio na Mão</string>
-    <string name="app_version">© 2022 © v2.5.0</string>
+    <string name="app_version">© 2022 © v2.6.0</string>
     <string name="sales">Vendas</string>
     <string name="reports">Relatórios</string>
     <string name="products_and_services">Produtos e Serviços</string>
@@ -215,7 +215,7 @@
     <string name="installment_payment">Pagamento de parcela</string>
     <string name="sale_date">Data da venda</string>
     <string name="payment_status">Estado de pagamento</string>
-    <string name="error_loading_pending_or_incomplete_sales">Ocorreu um erro ao carregar as vendas com pagamentos incompletos ou pendenntes. Tente novamente</string>
+    <string name="error_loading_sales">Ocorreu um erro ao carregar as vendas. Tente novamente</string>
     <string name="transport_guide">Guia de transporte</string>
     <string name="no_pending_or_incomplete_customers_with_rent_items_to_load">Nenhum cliente com carregamentos \'Pendentes\' ou \'Incompletos\' foi encontrado!</string>
     <string name="no_item_selected">Nenhum Item foi seleccionado!</string>
@@ -229,4 +229,8 @@
     <string name="guide_details">Detalhes da guia</string>
     <string name="guide_re_issued_success">A guia foi re-emitida com sucesso!</string>
     <string name="error_re_issuing_guide">Ocorreu um erro ao re-emitir a guia. Tente novamente!</string>
+    <string name="delivery_guides">Guias de Remessa</string>
+    <string name="delivery_status">Estado da entrega</string>
+    <string name="delivery_guide">Guia de Remessa</string>
+    <string name="delivered_guide_successfuly_issued">A guia de remessa foi emitida com sucesso!</string>
 </resources>

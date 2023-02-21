@@ -34,6 +34,8 @@ public class StockDTO extends SaleableItemDTO {
 
     private String rentPrice;
 
+    private String unitPerM2;
+
     public StockDTO() {
     }
 
@@ -156,5 +158,13 @@ public class StockDTO extends SaleableItemDTO {
         }
 
         return new BigDecimal(stockUpdateQuantity).subtract(new BigDecimal(quantity));
+    }
+
+    public String getUnitPerM2() {
+        return unitPerM2;
+    }
+
+    public void setUnitPerM2(String unitPerM2) {
+        this.unitPerM2 = unitPerM2;
     }
 }
