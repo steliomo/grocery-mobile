@@ -10,7 +10,11 @@ import mz.co.commandline.grocery.generics.fragment.BaseFragment
 import mz.co.commandline.grocery.generics.listner.ClickListner
 import mz.co.commandline.grocery.rent.adapter.DevolutionItemAdapter
 import mz.co.commandline.grocery.rent.delegate.RentDelegate
+import mz.co.commandline.grocery.rent.dto.RentDTO
 import mz.co.commandline.grocery.rent.dto.RentItemDTO
+import mz.co.commandline.grocery.util.TextInputLayoutUtil
+import mz.co.commandline.grocery.validator.DateValidator
+import mz.co.commandline.grocery.validator.Validator
 
 
 class ReturnFragment : BaseFragment(), ClickListner<RentItemDTO>, View.OnClickListener {
@@ -20,6 +24,7 @@ class ReturnFragment : BaseFragment(), ClickListner<RentItemDTO>, View.OnClickLi
 
     private var delegate: RentDelegate? = null
 
+    private var validator: Validator? = null
 
     override fun getResourceId(): Int {
         return R.layout.fragment_return
@@ -37,6 +42,7 @@ class ReturnFragment : BaseFragment(), ClickListner<RentItemDTO>, View.OnClickLi
         devolutionsRecyclerView.addItemDecoration(DividerItemDecoration(devolutionsRecyclerView.context, DividerItemDecoration.VERTICAL))
 
         binding.devolutionsBtn.setOnClickListener(this)
+        validator = DateValidator(context, binding.devolutionsDate, true, false)
     }
 
     override fun getView(inflater: LayoutInflater, container: ViewGroup?): View {
@@ -58,6 +64,10 @@ class ReturnFragment : BaseFragment(), ClickListner<RentItemDTO>, View.OnClickLi
     }
 
     override fun onClick(view: View?) {
-        delegate?.issueReturnGuide()
+        if (!validator!!.isValid) {
+            return;
+        }
+
+        delegate?.issueReturnGuide(TextInputLayoutUtil.getInpuText(binding.devolutionsDate))
     }
 }

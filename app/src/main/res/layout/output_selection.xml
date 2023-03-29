@@ -1,6 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <View
+        android:id="@+id/outputSelectionView"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="#CFD8DC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/outputSelectionImageView"
+        android:layout_width="60dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/textview_borders"
+        android:padding="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/outputSelectionView"
+        app:layout_constraintEnd_toEndOf="@+id/outputSelectionView"
+        app:layout_constraintTop_toTopOf="@+id/outputSelectionView"
+        app:layout_constraintVertical_bias="0.5"
+        app:srcCompat="@mipmap/ic_printer" />
+
+    <TextView
+        android:id="@+id/outputSelectionTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Imprimir o recibo"
+        android:textColor="#000"
+        android:textSize="8pt"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/outputSelectionView"
+        app:layout_constraintEnd_toStartOf="@+id/outputSelectionImageView"
+        app:layout_constraintStart_toStartOf="@+id/outputSelectionView"
+        app:layout_constraintTop_toTopOf="@+id/outputSelectionView" />
+
+    <ImageView
+        android:id="@+id/outputSelectionPrinterImageView"
+        android:layout_width="90dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/textview_borders"
+        android:padding="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/outputSelectionPdfImageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outputSelectionView"
+        app:srcCompat="@mipmap/ic_receipt_printer" />
+
+    <ImageView
+        android:id="@+id/outputSelectionPdfImageView"
+        android:layout_width="90dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/textview_borders"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/outputSelectionPrinterImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/outputSelectionPrinterImageView"
+        app:layout_constraintTop_toTopOf="@+id/outputSelectionPrinterImageView"
+        app:srcCompat="@mipmap/ic_pdf" />
+
+
+    <ImageView
+        android:id="@+id/outputSelectionPrinterCheck"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/select_view"
+        android:elevation="4dp"
+        android:src="@drawable/ic_selected"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/outputSelectionPrinterImageView"
+        app:layout_constraintEnd_toEndOf="@+id/outputSelectionPrinterImageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/outputSelectionPrinterImageView"
+        app:layout_constraintTop_toTopOf="@+id/outputSelectionPrinterImageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/outputSelectionPdfCheck"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/select_view"
+        android:elevation="4dp"
+        android:src="@drawable/ic_selected"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/outputSelectionPdfImageView"
+        app:layout_constraintEnd_toEndOf="@+id/outputSelectionPdfImageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/outputSelectionPdfImageView"
+        app:layout_constraintTop_toTopOf="@+id/outputSelectionPdfImageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <Button
+        android:id="@+id/outputSelectionCancelBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="16dp"
+        android:background="#017a84"
+        android:text="Cancelar"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/outputSelectionOkBtn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/outputSelectionPrinterImageView"
+        app:layout_constraintTop_toBottomOf="@+id/outputSelectionPrinterImageView" />
+
+    <Button
+        android:id="@+id/outputSelectionOkBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="8dp"
+        android:background="#017a84"
+        android:text="Imprimir"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/outputSelectionCancelBtn"
+        app:layout_constraintEnd_toEndOf="@+id/outputSelectionImageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/outputSelectionCancelBtn"
+        app:layout_constraintTop_toTopOf="@+id/outputSelectionCancelBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

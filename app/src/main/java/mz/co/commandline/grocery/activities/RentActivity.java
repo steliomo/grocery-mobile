@@ -1,15 +1,12 @@
 package mz.co.commandline.grocery.activities;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.FileProvider;
 
-import java.io.File;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +24,8 @@ import mz.co.commandline.grocery.files.FileService;
 import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.guide.delegate.GuideDelegate;
+import mz.co.commandline.grocery.guide.fragment.GuideItemsFragment;
+import mz.co.commandline.grocery.guide.fragment.GuidesFragment;
 import mz.co.commandline.grocery.guide.service.GuideService;
 import mz.co.commandline.grocery.item.delegate.ItemDelegate;
 import mz.co.commandline.grocery.item.dto.ItemDTO;
@@ -49,15 +48,13 @@ import mz.co.commandline.grocery.rent.dto.RentType;
 import mz.co.commandline.grocery.rent.dto.RentsDTO;
 import mz.co.commandline.grocery.rent.dto.ReturnItemDTO;
 import mz.co.commandline.grocery.rent.fragment.AddRentItemFragment;
-import mz.co.commandline.grocery.rent.fragment.ReturnFragment;
-import mz.co.commandline.grocery.guide.fragment.GuideItemsFragment;
-import mz.co.commandline.grocery.guide.fragment.GuidesFragment;
-import mz.co.commandline.grocery.rent.fragment.RentPaymentDetailsFragment;
-import mz.co.commandline.grocery.rent.fragment.RentsFragment;
 import mz.co.commandline.grocery.rent.fragment.QuotationFragment;
 import mz.co.commandline.grocery.rent.fragment.RegistRentFragment;
 import mz.co.commandline.grocery.rent.fragment.RentItemsFragment;
+import mz.co.commandline.grocery.rent.fragment.RentPaymentDetailsFragment;
 import mz.co.commandline.grocery.rent.fragment.RentPaymentFragment;
+import mz.co.commandline.grocery.rent.fragment.RentsFragment;
+import mz.co.commandline.grocery.rent.fragment.ReturnFragment;
 import mz.co.commandline.grocery.rent.fragment.ReturnItemFragment;
 import mz.co.commandline.grocery.rent.fragment.TransportFragment;
 import mz.co.commandline.grocery.rent.fragment.TransportItemFragment;
@@ -67,7 +64,6 @@ import mz.co.commandline.grocery.saleable.dto.SaleableItemDTO;
 import mz.co.commandline.grocery.saleable.fragment.StockFragment;
 import mz.co.commandline.grocery.saleable.service.SaleableItemService;
 import mz.co.commandline.grocery.user.service.UserService;
-import mz.co.commandline.grocery.util.FileUtil;
 import mz.co.commandline.grocery.util.KeyboardUtil;
 import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
@@ -344,7 +340,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
                 customersDTO = response;
 
                 if (customersDTO.getCustomerDTOs().isEmpty()) {
-                    dialogManager.dialog(AlertType.ERROR, getString(R.string.unit_without_pending_or_incomplete_devolutions), null);
+                    dialogManager.dialog(AlertType.INFO, getString(R.string.unit_without_pending_or_incomplete_devolutions), null);
                     return;
                 }
 
@@ -599,10 +595,11 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
     }
 
     @Override
-    public void issueReturnGuide() {
+    public void issueReturnGuide(String issueDate) {
         rent.setUnitDTO(userService.getGroceryDTO());
         rent.setCustomerDTO(customerDTO);
         GuideDTO guideDTO = new GuideDTO(rent, GuideType.valueOf(rentType.toString()));
+        guideDTO.setIssueDate(issueDate);
 
         for (RentItemDTO rentItemDTO : rent.getRentItemsDTO()) {
             if (rentItemDTO.isSelected()) {
@@ -955,16 +952,17 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     private void processQuotation() {
         progressBar.show();
+        rent.setCreatedAt(LocalDateTime.now().toString());
         rentService.issueQuotation(rent, new ResponseListner<RentReport>() {
             @Override
             public void success(final RentReport response) {
-                fileService.loadPdfFile(response.getName(), new ResponseListner<ResponseBody>() {
+                fileService.loadPdfFile(response.getFileName(), new ResponseListner<ResponseBody>() {
                     @Override
                     public void success(final ResponseBody body) {
                         progressBar.dismiss();
                         dialogManager.dialog(AlertType.SUCCESS, getString(R.string.quotation_successfuly_processed), () -> {
                             popBackStack();
-                            displayFile(body, response.getName());
+                            displayFile(body, response.getFileName());
                         });
                     }
 

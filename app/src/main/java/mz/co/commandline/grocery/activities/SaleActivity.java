@@ -1,6 +1,7 @@
 package mz.co.commandline.grocery.activities;
 
 import android.app.ProgressDialog;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -64,12 +65,15 @@ import mz.co.commandline.grocery.saleable.service.SaleableItemService;
 import mz.co.commandline.grocery.saleable.service.StockService;
 import mz.co.commandline.grocery.user.service.UserService;
 import mz.co.commandline.grocery.util.KeyboardUtil;
+import mz.co.commandline.grocery.util.SalePrinter;
+import mz.co.commandline.grocery.util.SalePrinterImpl;
 import mz.co.commandline.grocery.util.alert.AlertDialogManager;
 import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
 import mz.co.commandline.grocery.util.alert.DialogManager;
 import mz.co.commandline.grocery.util.alert.Option;
 import mz.co.commandline.grocery.util.alert.OptionDialog;
+import mz.co.commandline.grocery.util.alert.PrinterDialog;
 import mz.co.commandline.grocery.util.alert.SaleTypeDialog;
 
 public class SaleActivity extends BaseAuthActivity implements SaleDelegate, SaleableItemDelegate, View.OnClickListener, ItemDelegate, CustomerDelegate, MenuDelegate, GuideDelegate {
@@ -140,6 +144,10 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
     private GuideDTO guideDTO;
 
+    private PrinterDialog printerDialog;
+
+    private SalePrinter salePrinter;
+
     @Override
     public void onGroceryCreate(Bundle bundle) {
         setContentView(R.layout.activity_sale);
@@ -163,6 +171,9 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
         menu.addMenuItem(new MenuItem(R.string.delivery_guides, R.mipmap.ic_delivery));
 
         optionDialog = new OptionDialog(this);
+        printerDialog = new PrinterDialog(this);
+
+        salePrinter = new SalePrinterImpl();
 
         showFragment(new MenuFragment(), Boolean.FALSE);
     }
@@ -394,6 +405,13 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
                     public void perform() {
                         resetFragment();
                         showFragment(new MenuFragment(), Boolean.FALSE);
+
+                        if (!salePrinter.hasDevice()) {
+                            return;
+                        }
+                        printerDialog.dialog(option -> {
+                            salePrinter.printReceipt(sale, BitmapFactory.decodeResource(getResources(), R.drawable.ic_logo));
+                        });
                     }
                 });
             }
@@ -803,5 +821,13 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
                 Log.e("RE_ISSUE_GUIDE", message);
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (salePrinter.hasDevice()) {
+            salePrinter.closeConnection();
+        }
     }
 }

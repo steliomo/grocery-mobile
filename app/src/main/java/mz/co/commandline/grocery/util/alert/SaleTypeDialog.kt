@@ -30,6 +30,7 @@ class SaleTypeDialog(context: Context) : DialogManager<SaleType>(context) {
         }
 
         binding.saleDialogCancelBtn.setOnClickListener { dialog.dismiss() }
+
         binding.saleDialogOkBtn.setOnClickListener {
             dialog.dismiss()
             listner?.perform(saleType)

@@ -104,6 +104,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
         GroceryDTO groceryDTO = new GroceryDTO();
         groceryDTO.setId(Long.valueOf(split[0]));
         groceryDTO.setUuid(split[1]);
+        groceryDTO.setName(split[2]);
+        groceryDTO.setPhoneNumber(split[3]);
 
         GroceryUserDTO groceryUserDTO = new GroceryUserDTO();
         String[] groceryUserSplit = groceryUserString.split("_");

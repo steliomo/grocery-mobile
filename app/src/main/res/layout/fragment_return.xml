@@ -24,11 +24,30 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/devolutionsBtn"
+        app:layout_constraintBottom_toTopOf="@+id/devolutionsDate"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
         tools:listitem="@layout/return_item" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/devolutionsDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/devolutionsBtn"
+        app:layout_constraintEnd_toEndOf="@+id/devolutionsRecyclerView"
+        app:layout_constraintStart_toStartOf="@+id/devolutionsRecyclerView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_calendar"
+            android:hint="@string/return_date"
+            android:inputType="date" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/devolutionsBtn"

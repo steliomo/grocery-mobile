@@ -56,8 +56,16 @@ public class GroceryDTO extends GenericDTO {
         return balance;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     @Override
     public String toString() {
-        return getId() + "_" + getUuid();
+        return getId() + "_" + getUuid() + "_" + name + "_" + phoneNumber;
     }
 }
