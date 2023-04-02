@@ -44,7 +44,7 @@ class RentPaymentFragment() : BaseFragment(), View.OnClickListener {
         binding.rentPaymentToPay.text = FormatterUtil.mtFormat(rent.totalToPay)
         binding.rentPaymentRefund.text = FormatterUtil.mtFormat(rent.totalToRefund)
 
-        validators.add(UnexpectedValuesValidator(binding.rentPaymentValue, rent.totalToPay, getString(R.string.payment_value_unexpected)))
+        validators.add(UnexpectedValuesValidator(binding.rentPaymentValue, if (rent.totalToPay < rent.totalToRefund) rent.totalToRefund else rent.totalToPay, getString(R.string.payment_value_unexpected)))
 
         binding.rentPaymentPayBtn.setOnClickListener(this)
     }
