@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import mz.co.commandline.grocery.adapter.BaseAdapter
 import mz.co.commandline.grocery.databinding.GuideItemBinding
 import mz.co.commandline.grocery.generics.listner.ClickListner
-import mz.co.commandline.grocery.rent.dto.GuideItemDTO
+import mz.co.commandline.grocery.guide.dto.GuideItemDTO
 import mz.co.commandline.grocery.guide.holder.GuideItemViewHolder
 
 class GuideItemAdapter(private val context: Context?, private val guideItemsDTO: List<GuideItemDTO>) : BaseAdapter<GuideItemViewHolder>() {

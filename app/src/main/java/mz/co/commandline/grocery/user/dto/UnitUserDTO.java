@@ -1,22 +1,22 @@
 package mz.co.commandline.grocery.user.dto;
 
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.generics.dto.GenericDTO;
 
-public class GroceryUserDTO extends GenericDTO {
+public class UnitUserDTO extends GenericDTO {
 
-    private GroceryDTO groceryDTO;
+    private UnitDTO unitDTO;
 
     private UserRole userRole;
 
     private String expiryDate;
 
-    public GroceryDTO getGroceryDTO() {
-        return groceryDTO;
+    public UnitDTO getUnitDTO() {
+        return unitDTO;
     }
 
-    public void setGroceryDTO(GroceryDTO groceryDTO) {
-        this.groceryDTO = groceryDTO;
+    public void setUnitDTO(UnitDTO unitDTO) {
+        this.unitDTO = unitDTO;
     }
 
     public UserRole getUserRole() {

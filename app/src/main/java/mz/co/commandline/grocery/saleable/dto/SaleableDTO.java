@@ -3,7 +3,7 @@ package mz.co.commandline.grocery.saleable.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.item.dto.ItemType;
 
 public class SaleableDTO {
@@ -14,7 +14,7 @@ public class SaleableDTO {
 
     private List<ServiceItemDTO> serviceItems = new ArrayList<>();
 
-    private GroceryDTO unit;
+    private UnitDTO unit;
 
     public void addNewSaleableItem(SaleableItemDTO saleableItem) {
 
@@ -22,7 +22,7 @@ public class SaleableDTO {
             StockDTO stock = (StockDTO) saleableItem;
             stock.setId(null);
             stock.setUuid(null);
-            stock.setGroceryDTO(unit);
+            stock.setUnitDTO(unit);
 
             addStock(stock);
             return;
@@ -40,11 +40,11 @@ public class SaleableDTO {
         return saleableItems;
     }
 
-    public void setUnit(GroceryDTO unit) {
+    public void setUnit(UnitDTO unit) {
         this.unit = unit;
     }
 
-    public GroceryDTO getUnit() {
+    public UnitDTO getUnit() {
         return unit;
     }
 

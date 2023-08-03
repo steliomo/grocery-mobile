@@ -112,7 +112,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/reIssueGuideBtn"
         app:layout_constraintEnd_toEndOf="@+id/guideItemView"
-        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideItemView"
         app:layout_constraintTop_toBottomOf="@+id/guideItemView"
         tools:listitem="@layout/guide_item" />

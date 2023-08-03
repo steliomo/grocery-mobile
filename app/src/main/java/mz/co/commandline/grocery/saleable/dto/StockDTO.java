@@ -2,13 +2,13 @@ package mz.co.commandline.grocery.saleable.dto;
 
 import java.math.BigDecimal;
 
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.item.dto.ItemType;
 import mz.co.commandline.grocery.item.dto.ProductDescriptionDTO;
 
 public class StockDTO extends SaleableItemDTO {
 
-    private GroceryDTO groceryDTO;
+    private UnitDTO unitDTO;
 
     private ProductDescriptionDTO productDescriptionDTO;
 
@@ -97,12 +97,12 @@ public class StockDTO extends SaleableItemDTO {
         return String.valueOf(position + 1);
     }
 
-    public GroceryDTO getGroceryDTO() {
-        return groceryDTO;
+    public UnitDTO getUnitDTO() {
+        return unitDTO;
     }
 
-    public void setGroceryDTO(GroceryDTO groceryDTO) {
-        this.groceryDTO = groceryDTO;
+    public void setUnitDTO(UnitDTO unitDTO) {
+        this.unitDTO = unitDTO;
     }
 
     public String getMinimumStock() {

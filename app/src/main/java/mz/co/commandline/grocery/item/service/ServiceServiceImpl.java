@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.item.dto.ServiceDTO;
 import mz.co.commandline.grocery.generics.service.AbstractService;
@@ -29,7 +29,7 @@ public class ServiceServiceImpl extends AbstractService implements ServiceServic
     }
 
     @Override
-    public void findServiceByUnit(GroceryDTO unit, final ResponseListner<List<ServiceDTO>> listResponseListner) {
+    public void findServiceByUnit(UnitDTO unit, final ResponseListner<List<ServiceDTO>> listResponseListner) {
 
         getResource().findServicesByUnit(unit.getUuid()).enqueue(new Callback<List<ServiceDTO>>() {
             @Override
@@ -50,7 +50,7 @@ public class ServiceServiceImpl extends AbstractService implements ServiceServic
     }
 
     @Override
-    public void findServicesNotInThisUnit(GroceryDTO unit, final ResponseListner<List<ServiceDTO>> listResponseListner) {
+    public void findServicesNotInThisUnit(UnitDTO unit, final ResponseListner<List<ServiceDTO>> listResponseListner) {
         getResource().findServicesNotInThisUnit(unit.getUuid()).enqueue(new Callback<List<ServiceDTO>>() {
             @Override
             public void onResponse(Call<List<ServiceDTO>> call, Response<List<ServiceDTO>> response) {

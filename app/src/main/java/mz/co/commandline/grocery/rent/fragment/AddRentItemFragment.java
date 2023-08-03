@@ -37,9 +37,6 @@ public class AddRentItemFragment extends BaseFragment {
     @BindView(R.id.fragment_add_rent_item_value)
     TextInputLayout value;
 
-    @BindView(R.id.fragment_add_rent_item_discount)
-    TextInputLayout discount;
-
     private List<Validator> validadors;
 
     private RentDelegate delegte;
@@ -60,12 +57,9 @@ public class AddRentItemFragment extends BaseFragment {
 
         itemName.setText(rentItem.getName());
 
-        discount.getEditText().setText(String.valueOf(rentItem.getDiscount()));
-
         validadors = new ArrayList<>();
         validadors.add(new DefaultValidator(quantity));
         validadors.add(new DefaultValidator(days));
-        validadors.add(new DefaultValidator(discount));
 
         onFocusChangeListner(quantity);
         onFocusChangeListner(days);
@@ -108,7 +102,6 @@ public class AddRentItemFragment extends BaseFragment {
 
         rentItem.setPlannedQuantity(new BigDecimal(TextInputLayoutUtil.getInpuText(quantity)));
         rentItem.setPlannedDays(new BigDecimal(TextInputLayoutUtil.getInpuText(days)));
-        rentItem.setDiscount(new BigDecimal(TextInputLayoutUtil.getInpuText(discount)));
 
         delegte.addRentItem(rentItem);
     }

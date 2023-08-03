@@ -5,12 +5,12 @@ import android.util.Base64;
 import javax.inject.Inject;
 
 import mz.co.commandline.grocery.generics.dto.EnumsDTO;
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.infra.SharedPreferencesManager;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.generics.service.AbstractService;
 import mz.co.commandline.grocery.generics.service.RetrofitService;
-import mz.co.commandline.grocery.user.dto.GroceryUserDTO;
+import mz.co.commandline.grocery.user.dto.UnitUserDTO;
 import mz.co.commandline.grocery.user.dto.UnitDetail;
 import mz.co.commandline.grocery.user.dto.UserDTO;
 import mz.co.commandline.grocery.user.dto.UserRole;
@@ -60,8 +60,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
                     String token = prepareToken(username, password);
 
                     preferencesManager.storeString(TOKEN, token);
-                    preferencesManager.storeString(GROCERY, userDTO.getGroceryUserDTO().getGroceryDTO().toString());
-                    preferencesManager.storeString(GROCERY_USER, userDTO.getGroceryUserDTO().toString());
+                    preferencesManager.storeString(GROCERY, userDTO.getUnitUserDTO().getUnitDTO().toString());
+                    preferencesManager.storeString(GROCERY_USER, userDTO.getUnitUserDTO().toString());
                     preferencesManager.storeString(FULL_NAME, userDTO.getFullName());
 
                     return;
@@ -90,26 +90,26 @@ public class UserServiceImpl extends AbstractService implements UserService {
     }
 
     @Override
-    public GroceryDTO getGroceryDTO() {
-        return getGroceryUser().getGroceryDTO();
+    public UnitDTO getUnitDTO() {
+        return getUnitUser().getUnitDTO();
     }
 
     @Override
-    public GroceryUserDTO getGroceryUser() {
+    public UnitUserDTO getUnitUser() {
 
         String groceryString = preferencesManager.getString(GROCERY);
         String groceryUserString = preferencesManager.getString(GROCERY_USER);
 
         String[] split = groceryString.split("_");
-        GroceryDTO groceryDTO = new GroceryDTO();
+        UnitDTO groceryDTO = new UnitDTO();
         groceryDTO.setId(Long.valueOf(split[0]));
         groceryDTO.setUuid(split[1]);
         groceryDTO.setName(split[2]);
         groceryDTO.setPhoneNumber(split[3]);
 
-        GroceryUserDTO groceryUserDTO = new GroceryUserDTO();
+        UnitUserDTO groceryUserDTO = new UnitUserDTO();
         String[] groceryUserSplit = groceryUserString.split("_");
-        groceryUserDTO.setGroceryDTO(groceryDTO);
+        groceryUserDTO.setUnitDTO(groceryDTO);
         groceryUserDTO.setUserRole(UserRole.valueOf(groceryUserSplit[0]));
         groceryUserDTO.setExpiryDate(groceryUserSplit[1]);
 

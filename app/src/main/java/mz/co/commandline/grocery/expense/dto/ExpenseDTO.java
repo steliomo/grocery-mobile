@@ -1,11 +1,11 @@
 package mz.co.commandline.grocery.expense.dto;
 
 import mz.co.commandline.grocery.generics.dto.GenericDTO;
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 
 public class ExpenseDTO extends GenericDTO {
 
-    private GroceryDTO groceryDTO;
+    private UnitDTO unitDTO;
 
     private ExpenseTypeDTO expenseTypeDTO;
 
@@ -15,12 +15,12 @@ public class ExpenseDTO extends GenericDTO {
 
     private String description;
 
-    public GroceryDTO getGroceryDTO() {
-        return groceryDTO;
+    public UnitDTO getUnitDTO() {
+        return unitDTO;
     }
 
-    public void setGroceryDTO(GroceryDTO groceryDTO) {
-        this.groceryDTO = groceryDTO;
+    public void setUnitDTO(UnitDTO unitDTO) {
+        this.unitDTO = unitDTO;
     }
 
     public ExpenseTypeDTO getExpenseTypeDTO() {

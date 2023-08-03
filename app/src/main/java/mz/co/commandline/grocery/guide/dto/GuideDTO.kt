@@ -1,13 +1,14 @@
-package mz.co.commandline.grocery.rent.dto
+package mz.co.commandline.grocery.guide.dto
 
 import mz.co.commandline.grocery.generics.dto.GenericDTO
+import mz.co.commandline.grocery.rent.dto.RentDTO
 import mz.co.commandline.grocery.sale.dto.SaleDTO
 
 class GuideDTO() : GenericDTO() {
 
     var guideItemsDTO = mutableListOf<GuideItemDTO>()
 
-    var fileName: String? = null
+    var filePath: String? = null
 
     var issueDate: String? = null
 

@@ -1,5 +1,6 @@
-package mz.co.commandline.grocery.rent.dto
+package mz.co.commandline.grocery.guide.dto
 
+import mz.co.commandline.grocery.rent.dto.RentItemDTO
 import mz.co.commandline.grocery.sale.dto.SaleItemDTO
 import java.math.BigDecimal
 

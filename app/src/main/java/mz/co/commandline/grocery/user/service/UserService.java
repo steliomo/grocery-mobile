@@ -1,9 +1,9 @@
 package mz.co.commandline.grocery.user.service;
 
 import mz.co.commandline.grocery.generics.dto.EnumsDTO;
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
-import mz.co.commandline.grocery.user.dto.GroceryUserDTO;
+import mz.co.commandline.grocery.user.dto.UnitUserDTO;
 import mz.co.commandline.grocery.user.dto.UnitDetail;
 import mz.co.commandline.grocery.user.dto.UserDTO;
 
@@ -15,9 +15,9 @@ public interface UserService {
 
     boolean isLoggedIn();
 
-    GroceryDTO getGroceryDTO();
+    UnitDTO getUnitDTO();
 
-    GroceryUserDTO getGroceryUser();
+    UnitUserDTO getUnitUser();
 
     String getFullName();
 

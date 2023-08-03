@@ -21,12 +21,12 @@ public interface UserResource {
     @POST("users/signup")
     Call<UserDTO> signUp(@Body UserDTO userDTO);
 
-    @POST("grocery-users/add-saler")
+    @POST("unit-users/add-saler")
     Call<UserDTO> addSaler(@Body UserDTO userDTO);
 
-    @GET("groceries/unit-types")
+    @GET("units/unit-types")
     Call<EnumsDTO> getUnitTypes();
 
-    @GET("grocery-users/unit-detail/{unitUuid}")
+    @GET("unit-users/unit-detail/{unitUuid}")
     Call<UnitDetail> getUnitDetail(@Path("unitUuid") String unitUuid);
 }

@@ -43,4 +43,7 @@ public interface CustomerResource {
 
     @GET("customers/find-customers-with-delivered-guides-by-unit/{unitUuid}")
     Call<CustomersDTO> findCustomersWithDeliveredGuidesByUnit(@Path("unitUuid") String unitUuid);
+
+    @GET("customers/find-customers-with-quotations-by-unit-and-type")
+    Call<CustomersDTO> findCustomersWithQuotationsByUnitAndType(@Query("unitUuid") String unitUuid, @Query("quotationType") String quotationType);
 }

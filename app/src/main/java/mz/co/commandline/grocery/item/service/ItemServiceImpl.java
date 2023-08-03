@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.item.dto.ItemDTO;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.item.dto.ItemType;
@@ -25,7 +25,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void findItemByUnit(ItemType itemType, GroceryDTO unit, final ResponseListner<List<ItemDTO>> responseListner) {
+    public void findItemByUnit(ItemType itemType, UnitDTO unit, final ResponseListner<List<ItemDTO>> responseListner) {
 
         if (ItemType.PRODUCT.equals(itemType)) {
             findProductsByUnit(unit, responseListner);
@@ -36,7 +36,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public void findItemsNotInThisUnit(ItemType itemType, GroceryDTO unit, final ResponseListner<List<ItemDTO>> responseListner) {
+    public void findItemsNotInThisUnit(ItemType itemType, UnitDTO unit, final ResponseListner<List<ItemDTO>> responseListner) {
         if (ItemType.PRODUCT.equals(itemType)) {
             findProductsNotInthisUnit(unit, responseListner);
             return;
@@ -45,7 +45,7 @@ public class ItemServiceImpl implements ItemService {
         findServicesNotInThisUnit(unit, responseListner);
     }
 
-    private void findServicesNotInThisUnit(GroceryDTO unit, final ResponseListner<List<ItemDTO>> responseListner) {
+    private void findServicesNotInThisUnit(UnitDTO unit, final ResponseListner<List<ItemDTO>> responseListner) {
         serviceService.findServicesNotInThisUnit(unit, new ResponseListner<List<ServiceDTO>>() {
             @Override
             public void success(List<ServiceDTO> response) {
@@ -59,7 +59,7 @@ public class ItemServiceImpl implements ItemService {
         });
     }
 
-    private void findProductsNotInthisUnit(GroceryDTO unit, final ResponseListner<List<ItemDTO>> responseListner) {
+    private void findProductsNotInthisUnit(UnitDTO unit, final ResponseListner<List<ItemDTO>> responseListner) {
         productService.findProductsNotInThisUnit(unit, new ResponseListner<List<ProductDTO>>() {
             @Override
             public void success(List<ProductDTO> response) {
@@ -73,7 +73,7 @@ public class ItemServiceImpl implements ItemService {
         });
     }
 
-    private void findServiceByUnit(GroceryDTO unit, final ResponseListner<List<ItemDTO>> responseListner) {
+    private void findServiceByUnit(UnitDTO unit, final ResponseListner<List<ItemDTO>> responseListner) {
         serviceService.findServiceByUnit(unit, new ResponseListner<List<ServiceDTO>>() {
             @Override
             public void success(List<ServiceDTO> response) {
@@ -87,7 +87,7 @@ public class ItemServiceImpl implements ItemService {
         });
     }
 
-    private void findProductsByUnit(GroceryDTO unit, final ResponseListner<List<ItemDTO>> responseListner) {
+    private void findProductsByUnit(UnitDTO unit, final ResponseListner<List<ItemDTO>> responseListner) {
         productService.findProductsByGrocery(unit, new ResponseListner<List<ProductDTO>>() {
             @Override
             public void success(List<ProductDTO> response) {

@@ -1,7 +1,6 @@
 package mz.co.commandline.grocery.rent.service;
 
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
-import mz.co.commandline.grocery.rent.dto.GuideDTO;
 import mz.co.commandline.grocery.rent.dto.RentDTO;
 import mz.co.commandline.grocery.rent.dto.RentPaymentDTO;
 import mz.co.commandline.grocery.rent.dto.RentReport;
@@ -18,8 +17,6 @@ public interface RentService {
     void fetchRentsWithPendingOrIncompleteRentItemToLoadByCustomer(String customerUuid, ResponseListner<RentsDTO> responseListner);
 
     void fetchRentsWithPendingOrIncompleteRentItemToReturnByCustomer(String customerUuid, ResponseListner<RentsDTO> responseListner);
-
-    void issueQuotation(RentDTO rentDTO, ResponseListner<RentReport> responseListner);
 
     void fetchRentsWithPaymentsByCustomer(String customerUuid, ResponseListner<RentsDTO> responseListner);
 

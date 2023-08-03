@@ -47,18 +47,18 @@ public abstract class BaseAuthActivity extends BaseActivity {
 
     public boolean hasRole(UserRole userRole) {
 
-        if (userRole.equals(userService.getGroceryUser().getUserRole())) {
+        if (userRole.equals(userService.getUnitUser().getUserRole())) {
             return true;
         }
 
         return false;
     }
 
-    public void downLoadFile(FileService fileService, String fileName) {
-        fileService.loadPdfFile(fileName, new ResponseListner<ResponseBody>() {
+    public void downLoadFile(FileService fileService, String filePath) {
+        fileService.loadPdfFile(filePath, new ResponseListner<ResponseBody>() {
             @Override
             public void success(ResponseBody fileResponse) {
-                displayFile(fileResponse, fileName);
+                displayFile(fileResponse, filePath);
             }
 
             @Override

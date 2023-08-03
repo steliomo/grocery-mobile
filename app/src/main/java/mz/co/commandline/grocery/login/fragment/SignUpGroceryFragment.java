@@ -16,7 +16,7 @@ import butterknife.OnClick;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.generics.dto.EnumDTO;
 import mz.co.commandline.grocery.generics.fragment.BaseFragment;
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.login.delegate.LoginDelegate;
 import mz.co.commandline.grocery.util.TextInputLayoutUtil;
 import mz.co.commandline.grocery.validator.DefaultValidator;
@@ -83,7 +83,7 @@ public class SignUpGroceryFragment extends BaseFragment implements AdapterView.O
             }
         }
 
-        GroceryDTO grocery = new GroceryDTO(TextInputLayoutUtil.getInpuText(name), TextInputLayoutUtil.getInpuText(address), TextInputLayoutUtil.getInpuText(phoneNumber), TextInputLayoutUtil.getInpuText(email));
+        UnitDTO grocery = new UnitDTO(TextInputLayoutUtil.getInpuText(name), TextInputLayoutUtil.getInpuText(address), TextInputLayoutUtil.getInpuText(phoneNumber), TextInputLayoutUtil.getInpuText(email));
         grocery.setUnitType(delegate.getUnitType().getValue());
         delegate.signUp(grocery);
     }

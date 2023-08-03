@@ -2,7 +2,7 @@ package mz.co.commandline.grocery.guide.delegate;
 
 import java.util.List;
 
-import mz.co.commandline.grocery.rent.dto.GuideDTO;
+import mz.co.commandline.grocery.guide.dto.GuideDTO;
 
 public interface GuideDelegate {
     List<GuideDTO> getGuidesDTO();

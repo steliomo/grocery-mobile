@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.item.dto.ProductDTO;
 import mz.co.commandline.grocery.generics.service.AbstractService;
@@ -27,7 +27,7 @@ public class ProductServiceImpl extends AbstractService implements ProductServic
     }
 
     @Override
-    public void findProductsByGrocery(GroceryDTO groceryDTO, final ResponseListner<List<ProductDTO>> listner) {
+    public void findProductsByGrocery(UnitDTO groceryDTO, final ResponseListner<List<ProductDTO>> listner) {
 
         getResource().findProductsByGrocery(groceryDTO.getUuid()).enqueue(new Callback<List<ProductDTO>>() {
 
@@ -49,7 +49,7 @@ public class ProductServiceImpl extends AbstractService implements ProductServic
     }
 
     @Override
-    public void findProductsNotInThisUnit(GroceryDTO groceryDTO, final ResponseListner<List<ProductDTO>> listner) {
+    public void findProductsNotInThisUnit(UnitDTO groceryDTO, final ResponseListner<List<ProductDTO>> listner) {
         getResource().findProductsNotInGrocery(groceryDTO.getUuid()).enqueue(new Callback<List<ProductDTO>>() {
             @Override
             public void onResponse(Call<List<ProductDTO>> call, Response<List<ProductDTO>> response) {

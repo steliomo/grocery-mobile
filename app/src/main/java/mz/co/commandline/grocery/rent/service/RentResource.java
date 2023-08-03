@@ -1,15 +1,10 @@
 package mz.co.commandline.grocery.rent.service;
 
 
-import java.util.List;
-
-import mz.co.commandline.grocery.rent.dto.GuideDTO;
 import mz.co.commandline.grocery.rent.dto.RentDTO;
 import mz.co.commandline.grocery.rent.dto.RentPaymentDTO;
 import mz.co.commandline.grocery.rent.dto.RentReport;
 import mz.co.commandline.grocery.rent.dto.RentsDTO;
-import mz.co.commandline.grocery.rent.dto.ReturnItemDTO;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -33,9 +28,6 @@ public interface RentResource {
 
     @GET("rents/fetch-rents-with-pending-or-incomplete-rent-item-to-return-by-customer/{customerUuid}")
     Call<RentsDTO> fetchRentsWithPendingOrIncompleteRentItemToReturnByCustomer(@Path("customerUuid") String customerUuid);
-
-    @POST("rents/issue-quotation")
-    Call<RentReport> issueQuotation(@Body RentDTO rentDTO);
 
     @GET("rents/fetch-rents-with-payments-by-customer/{customerUuid}")
     Call<RentsDTO> fetchRentsWithPaymentsByCustomer(@Path("customerUuid") String customerUuid);

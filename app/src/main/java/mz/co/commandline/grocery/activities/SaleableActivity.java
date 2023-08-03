@@ -232,7 +232,7 @@ public class SaleableActivity extends BaseAuthActivity implements View.OnClickLi
     @Override
     public void prepareSaleable() {
         saleable = new SaleableDTO();
-        saleable.setUnit(userService.getGroceryDTO());
+        saleable.setUnit(userService.getUnitDTO());
     }
 
     @Override
@@ -251,7 +251,7 @@ public class SaleableActivity extends BaseAuthActivity implements View.OnClickLi
         progressBar.show();
 
         if (ActionType.ADD.equals(actionType)) {
-            itemService.findItemsNotInThisUnit(itemType, userService.getGroceryDTO(), new ResponseListner<List<ItemDTO>>() {
+            itemService.findItemsNotInThisUnit(itemType, userService.getUnitDTO(), new ResponseListner<List<ItemDTO>>() {
                 @Override
                 public void success(List<ItemDTO> response) {
                     progressBar.dismiss();
@@ -276,7 +276,7 @@ public class SaleableActivity extends BaseAuthActivity implements View.OnClickLi
             return;
         }
 
-        itemService.findItemByUnit(itemType, userService.getGroceryDTO(), new ResponseListner<List<ItemDTO>>() {
+        itemService.findItemByUnit(itemType, userService.getUnitDTO(), new ResponseListner<List<ItemDTO>>() {
             @Override
             public void success(List<ItemDTO> response) {
                 progressBar.dismiss();
@@ -309,7 +309,7 @@ public class SaleableActivity extends BaseAuthActivity implements View.OnClickLi
         progressBar.show();
 
         if (ActionType.ADD.equals(actionType)) {
-            saleableItemService.findSaleableItemsNotInThisUnitByItem(itemDTO, userService.getGroceryDTO(), new ResponseListner<List<SaleableItemDTO>>() {
+            saleableItemService.findSaleableItemsNotInThisUnitByItem(itemDTO, userService.getUnitDTO(), new ResponseListner<List<SaleableItemDTO>>() {
                 @Override
                 public void success(List<SaleableItemDTO> response) {
                     progressBar.dismiss();
@@ -329,7 +329,7 @@ public class SaleableActivity extends BaseAuthActivity implements View.OnClickLi
             return;
         }
 
-        saleableItemService.findSalebleItemByItemAndUnit(itemDTO, userService.getGroceryDTO(), new ResponseListner<List<SaleableItemDTO>>() {
+        saleableItemService.findSalebleItemByItemAndUnit(itemDTO, userService.getUnitDTO(), new ResponseListner<List<SaleableItemDTO>>() {
             @Override
             public void success(List<SaleableItemDTO> response) {
                 progressBar.dismiss();

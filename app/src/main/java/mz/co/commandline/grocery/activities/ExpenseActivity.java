@@ -115,7 +115,7 @@ public class ExpenseActivity extends BaseAuthActivity implements View.OnClickLis
     @Override
     public void onSelectExpenseType(ExpenseTypeDTO expenseTypeDTO) {
         this.expenseDTO = new ExpenseDTO();
-        this.expenseDTO.setGroceryDTO(userService.getGroceryDTO());
+        this.expenseDTO.setUnitDTO(userService.getUnitDTO());
         this.expenseDTO.setExpenseTypeDTO(expenseTypeDTO);
         showFragment(new AddExpenseFragment(), Boolean.TRUE);
     }

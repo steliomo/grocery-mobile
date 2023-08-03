@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.item.dto.ProductDTO;
 import mz.co.commandline.grocery.generics.service.AbstractService;
@@ -29,7 +29,7 @@ public class StockServiceImpl extends AbstractService implements StockService {
     }
 
     @Override
-    public void findProductStocksByGroceryAndProduct(GroceryDTO groceryDTO, ProductDTO productDTO, final ResponseListner<List<StockDTO>> responseListner) {
+    public void findProductStocksByGroceryAndProduct(UnitDTO groceryDTO, ProductDTO productDTO, final ResponseListner<List<StockDTO>> responseListner) {
         getResource().findStocksByGroceyAndProduct(groceryDTO.getUuid(), productDTO.getUuid()).enqueue(new Callback<List<StockDTO>>() {
             @Override
             public void onResponse(Call<List<StockDTO>> call, Response<List<StockDTO>> response) {
@@ -49,7 +49,7 @@ public class StockServiceImpl extends AbstractService implements StockService {
     }
 
     @Override
-    public void findAllStocksByGrocery(GroceryDTO groceryDTO, final ResponseListner<List<StockDTO>> responseListner) {
+    public void findAllStocksByGrocery(UnitDTO groceryDTO, final ResponseListner<List<StockDTO>> responseListner) {
         getResource().findAllStocksByGrocery(groceryDTO.getUuid()).enqueue(new Callback<List<StockDTO>>() {
             @Override
             public void onResponse(Call<List<StockDTO>> call, Response<List<StockDTO>> response) {
@@ -69,7 +69,7 @@ public class StockServiceImpl extends AbstractService implements StockService {
     }
 
     @Override
-    public void findLowStocksByGroceryAndSalePeriod(GroceryDTO groceryDTO, String startDate, String endDate, final ResponseListner<List<StockDTO>> responseListner) {
+    public void findLowStocksByGroceryAndSalePeriod(UnitDTO groceryDTO, String startDate, String endDate, final ResponseListner<List<StockDTO>> responseListner) {
         getResource().findLowStocksByGroceryAndSalePeriod(groceryDTO.getUuid(), startDate, endDate).enqueue(new Callback<List<StockDTO>>() {
             @Override
             public void onResponse(Call<List<StockDTO>> call, Response<List<StockDTO>> response) {
@@ -89,7 +89,7 @@ public class StockServiceImpl extends AbstractService implements StockService {
     }
 
     @Override
-    public void findProductStocksNotInThisGroceryByProduct(GroceryDTO grocery, ProductDTO productDTO, final ResponseListner<List<StockDTO>> responseListner) {
+    public void findProductStocksNotInThisGroceryByProduct(UnitDTO grocery, ProductDTO productDTO, final ResponseListner<List<StockDTO>> responseListner) {
         getResource().findProductStocksNotInThisGroceryByProduct(grocery.getUuid(), productDTO.getUuid()).enqueue(new Callback<List<StockDTO>>() {
             @Override
             public void onResponse(Call<List<StockDTO>> call, Response<List<StockDTO>> response) {

@@ -1,18 +1,13 @@
 package mz.co.commandline.grocery.customer.fragment;
 
 import android.view.MenuItem;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -22,7 +17,6 @@ import mz.co.commandline.grocery.customer.delegate.CustomerDelegate;
 import mz.co.commandline.grocery.customer.model.CustomerDTO;
 import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.generics.listner.ClickListner;
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
 
 
 public class CustomersFragment extends BaseFragment implements SearchView.OnQueryTextListener, ClickListner<CustomerDTO> {

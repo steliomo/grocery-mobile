@@ -40,9 +40,9 @@ import mz.co.commandline.grocery.main.fragment.MenuFragment;
 import mz.co.commandline.grocery.menu.Menu;
 import mz.co.commandline.grocery.menu.MenuItem;
 import mz.co.commandline.grocery.module.GroceryComponent;
-import mz.co.commandline.grocery.rent.dto.GuideDTO;
-import mz.co.commandline.grocery.rent.dto.GuideItemDTO;
-import mz.co.commandline.grocery.rent.dto.GuideType;
+import mz.co.commandline.grocery.guide.dto.GuideDTO;
+import mz.co.commandline.grocery.guide.dto.GuideItemDTO;
+import mz.co.commandline.grocery.guide.dto.GuideType;
 import mz.co.commandline.grocery.sale.delegate.SaleDelegate;
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
 import mz.co.commandline.grocery.sale.dto.SaleItemDTO;
@@ -308,7 +308,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
     @Override
     public void issueDeliveryGuide() {
         sale.setCustomerDTO(customerDTO);
-        sale.setGrocery(userService.getGroceryDTO());
+        sale.setUnitDTO(userService.getUnitDTO());
         GuideDTO guideDTO = new GuideDTO(sale, GuideType.DELIVERY);
 
         for (SaleItemDTO saleItemDTO : sale.getItems()) {
@@ -331,7 +331,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.delivered_guide_successfuly_issued), () -> {
                     resetFragment();
                     showFragment(new MenuFragment(), Boolean.FALSE);
-                    downLoadFile(fileService, response.getFileName());
+                    downLoadFile(fileService, response.getFilePath());
                 });
             }
 
@@ -358,7 +358,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
             return;
         }
 
-        sale.setGrocery(userService.getGroceryDTO());
+        sale.setUnitDTO(userService.getUnitDTO());
 
         saleTypeDialog.dialog((saleType) -> {
             switch (saleType) {
@@ -377,7 +377,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
     private void loadCustomers() {
         progressBar.show();
-        customerService.findCustomersByUnit(userService.getGroceryDTO().getUuid(), 0, 100, new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersByUnit(userService.getUnitDTO().getUuid(), 0, 100, new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();
@@ -442,7 +442,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
         this.itemType = itemType;
         progressBar.show();
 
-        itemService.findItemByUnit(itemType, userService.getGroceryDTO(), new ResponseListner<List<ItemDTO>>() {
+        itemService.findItemByUnit(itemType, userService.getUnitDTO(), new ResponseListner<List<ItemDTO>>() {
             @Override
             public void success(List<ItemDTO> response) {
                 progressBar.dismiss();
@@ -476,7 +476,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
         KeyboardUtil.hideKeyboard(this, toolbar);
         progressBar.show();
 
-        saleableItemService.findSalebleItemByItemAndUnit(itemDTO, userService.getGroceryDTO(), new ResponseListner<List<SaleableItemDTO>>() {
+        saleableItemService.findSalebleItemByItemAndUnit(itemDTO, userService.getUnitDTO(), new ResponseListner<List<SaleableItemDTO>>() {
             @Override
             public void success(List<SaleableItemDTO> response) {
                 progressBar.dismiss();
@@ -534,7 +534,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
     public void registCustomer(CustomerDTO customerDTO) {
         progressBar.show();
 
-        customerDTO.setUnit(userService.getGroceryDTO());
+        customerDTO.setUnit(userService.getUnitDTO());
         customerService.registCustomer(customerDTO, new ResponseListner<CustomerDTO>() {
             @Override
             public void success(CustomerDTO response) {
@@ -688,7 +688,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
     private void loadCustomersWithDeliveredCustomers() {
         progressBar.show();
-        customerService.findCustomersWithDeliveredGuidesByUnit(userService.getGroceryDTO().getUuid(), new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersWithDeliveredGuidesByUnit(userService.getUnitDTO().getUuid(), new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();
@@ -713,7 +713,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
     private void loadCustomersWithPendingOrIncompleteDeliveryStatusSaleByUnit() {
         progressBar.show();
-        customerService.findCustomersWithPendingOrIncompleteDeliveryStatusSalesByUnit(userService.getGroceryDTO().getUuid(), new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersWithPendingOrIncompleteDeliveryStatusSalesByUnit(userService.getUnitDTO().getUuid(), new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();
@@ -744,7 +744,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
     private void loadCustomersWithPendingOrIncompleteSalesPayment() {
         progressBar.show();
-        customerService.findCustomersSaleWithPendindOrIncompletePaymentByUnit(userService.getGroceryDTO().getUuid(), new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersSaleWithPendindOrIncompletePaymentByUnit(userService.getUnitDTO().getUuid(), new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();
@@ -803,7 +803,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.guide_re_issued_success), () -> {
                     resetFragment();
                     showFragment(new MenuFragment(), Boolean.FALSE);
-                    downLoadFile(fileService, response.getFileName());
+                    downLoadFile(fileService, response.getFilePath());
                 });
             }
 

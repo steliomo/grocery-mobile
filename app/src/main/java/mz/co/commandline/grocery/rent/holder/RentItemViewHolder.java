@@ -22,9 +22,6 @@ public class RentItemViewHolder extends BaseViewHolder<RentItemDTO> {
     @BindView(R.id.rent_item_days)
     TextView days;
 
-    @BindView(R.id.rent_item_discount)
-    TextView discount;
-
     @BindView(R.id.rent_item_value)
     TextView value;
 
@@ -42,7 +39,6 @@ public class RentItemViewHolder extends BaseViewHolder<RentItemDTO> {
         quantity.setText(String.valueOf(rentItemDTO.getPlannedQuantity()));
         days.setText(String.valueOf(rentItemDTO.getPlannedDays()));
         value.setText(FormatterUtil.mtFormat(rentItemDTO.calculatePlannedValue()));
-        discount.setText(FormatterUtil.mtFormat(rentItemDTO.getDiscount()));
     }
 
     @Override

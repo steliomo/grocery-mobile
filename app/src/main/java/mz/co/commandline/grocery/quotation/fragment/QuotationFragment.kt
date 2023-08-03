@@ -1,4 +1,4 @@
-package mz.co.commandline.grocery.rent.fragment
+package mz.co.commandline.grocery.quotation.fragment
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import mz.co.commandline.grocery.R
 import mz.co.commandline.grocery.databinding.FragmentQuotationBinding
 import mz.co.commandline.grocery.generics.fragment.BaseFragment
-import mz.co.commandline.grocery.rent.adapter.RentItemAdapter
-import mz.co.commandline.grocery.rent.delegate.RentDelegate
+import mz.co.commandline.grocery.quotation.adapter.QuotationItemAdapter
+import mz.co.commandline.grocery.quotation.delegate.QuotationDelegate
 import mz.co.commandline.grocery.util.FormatterUtil
 
 
@@ -17,7 +17,7 @@ class QuotationFragment : BaseFragment(), View.OnClickListener {
     private var _binding: FragmentQuotationBinding? = null
     private val binding get() = _binding!!
 
-    private var _delegate: RentDelegate? = null
+    private var _delegate: QuotationDelegate? = null
     private val delegate get() = _delegate!!
 
     override fun getResourceId(): Int {
@@ -25,13 +25,13 @@ class QuotationFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun onCreateView() {
-        _delegate = activity as RentDelegate
-        val rent = delegate.rent
+        _delegate = activity as QuotationDelegate
+        val quotation = delegate.quotation()
 
-        binding.quotationGrandTotal.text = FormatterUtil.mtFormat(rent.total);
+        binding.quotationGrandTotal.text = FormatterUtil.mtFormat(quotation.totalValue);
         val quotationRecyclerView = binding.quotationRecyclerView
 
-        quotationRecyclerView.adapter = RentItemAdapter(activity, rent.rentItemsDTO)
+        quotationRecyclerView.adapter = QuotationItemAdapter(activity, quotation.items)
         quotationRecyclerView.addItemDecoration(DividerItemDecoration(quotationRecyclerView.context, DividerItemDecoration.VERTICAL))
 
         binding.quotationSelectItemBtn.setOnClickListener(this)
@@ -58,7 +58,7 @@ class QuotationFragment : BaseFragment(), View.OnClickListener {
             delegate.selectItem()
             return
         }
-
-        delegate.nextStep()
+        
+        delegate.quote()
     }
 }

@@ -5,7 +5,6 @@ import javax.inject.Inject;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.generics.service.AbstractService;
 import mz.co.commandline.grocery.generics.service.RetrofitService;
-import mz.co.commandline.grocery.rent.dto.GuideDTO;
 import mz.co.commandline.grocery.rent.dto.RentDTO;
 import mz.co.commandline.grocery.rent.dto.RentPaymentDTO;
 import mz.co.commandline.grocery.rent.dto.RentReport;
@@ -123,26 +122,6 @@ public class RentServiceImpl extends AbstractService implements RentService {
 
             @Override
             public void onFailure(Call<RentsDTO> call, Throwable t) {
-                responseListner.error(t.getMessage());
-            }
-        });
-    }
-
-    @Override
-    public void issueQuotation(final RentDTO rentDTO, final ResponseListner<RentReport> responseListner) {
-        getResource().issueQuotation(rentDTO).enqueue(new Callback<RentReport>() {
-            @Override
-            public void onResponse(Call<RentReport> call, Response<RentReport> response) {
-                if (response.isSuccessful()) {
-                    responseListner.success(response.body());
-                    return;
-                }
-
-                setBodyError(response, responseListner);
-            }
-
-            @Override
-            public void onFailure(Call<RentReport> call, Throwable t) {
                 responseListner.error(t.getMessage());
             }
         });

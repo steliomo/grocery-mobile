@@ -1,4 +1,4 @@
-package mz.co.commandline.grocery.rent.dto
+package mz.co.commandline.grocery.guide.dto
 
 import mz.co.commandline.grocery.R
 

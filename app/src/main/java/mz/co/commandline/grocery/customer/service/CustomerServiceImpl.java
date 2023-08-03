@@ -242,6 +242,26 @@ public class CustomerServiceImpl extends AbstractService implements CustomerServ
     }
 
     @Override
+    public void findCustomersWithQuotationsByUnitAndType(String unitUuid, String quotationType, ResponseListner<CustomersDTO> responseListner) {
+        getResource().findCustomersWithQuotationsByUnitAndType(unitUuid, quotationType).enqueue(new Callback<CustomersDTO>() {
+            @Override
+            public void onResponse(Call<CustomersDTO> call, Response<CustomersDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<CustomersDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
     public CustomerResource getResource() {
         return retrofitService.getResource(CustomerResource.class);
     }

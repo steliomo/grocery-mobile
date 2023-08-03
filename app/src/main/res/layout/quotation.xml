@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:elevation="2dp">
+
+    <View
+        android:id="@+id/quotationView"
+        android:layout_width="0dp"
+        android:layout_height="118dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/textview_borders"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/quotationDateLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="7dp"
+        android:text="Data de emissão"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/quotationDate"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/quotationView"
+        app:layout_constraintStart_toStartOf="@+id/quotationView"
+        app:layout_constraintTop_toTopOf="@+id/quotationView" />
+
+    <TextView
+        android:id="@+id/quotationDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="7dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/quotationDateLabel"
+        app:layout_constraintEnd_toEndOf="@+id/quotationView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/quotationDateLabel"
+        app:layout_constraintTop_toTopOf="@+id/quotationDateLabel"
+        tools:text="01-09-2021" />
+
+    <TextView
+        android:id="@+id/quotationCodeLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:text="Código"
+        app:layout_constraintEnd_toEndOf="@+id/quotationDateLabel"
+        app:layout_constraintStart_toStartOf="@+id/quotationDateLabel"
+        app:layout_constraintTop_toBottomOf="@+id/quotationDateLabel" />
+
+    <TextView
+        android:id="@+id/quotationCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:textAlignment="viewEnd"
+        android:textColor="#D32F2F"
+        app:layout_constraintBottom_toBottomOf="@+id/quotationCodeLabel"
+        app:layout_constraintEnd_toEndOf="@+id/quotationDate"
+        app:layout_constraintStart_toEndOf="@+id/quotationDateLabel"
+        tools:text="00005" />
+
+    <TextView
+        android:id="@+id/quotationDiscountLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:text="Desconto"
+        app:layout_constraintEnd_toEndOf="@+id/quotationCodeLabel"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="@+id/quotationCodeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/quotationCodeLabel" />
+
+    <TextView
+        android:id="@+id/quotationDiscount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/quotationDiscountLabel"
+        app:layout_constraintEnd_toEndOf="@+id/quotationCode"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/quotationDiscountLabel"
+        app:layout_constraintTop_toBottomOf="@+id/quotationCodeLabel"
+        tools:text="500,00 MT" />
+
+    <TextView
+        android:id="@+id/quotationTotalValueLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:text="Valor Total"
+        app:layout_constraintEnd_toEndOf="@+id/quotationDiscountLabel"
+        app:layout_constraintStart_toStartOf="@+id/quotationDiscountLabel"
+        app:layout_constraintTop_toBottomOf="@+id/quotationDiscountLabel" />
+
+    <TextView
+        android:id="@+id/quotationTotalValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/quotationTotalValueLabel"
+        app:layout_constraintEnd_toEndOf="@+id/quotationDiscount"
+        app:layout_constraintStart_toEndOf="@+id/quotationDiscountLabel"
+        app:layout_constraintTop_toBottomOf="@+id/quotationDiscountLabel"
+        tools:text="1.000,00 MT" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

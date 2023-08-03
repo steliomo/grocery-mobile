@@ -9,7 +9,7 @@
     </style>
 
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark">
-        <item name="android:fontFamily">@font/courgette</item>
+        <!-- <item name="android:fontFamily">@font/courgette</item>-->
         <item name="android:textColorPrimary">@color/white</item>
         <item name="colorAccent">@color/white</item>
     </style>

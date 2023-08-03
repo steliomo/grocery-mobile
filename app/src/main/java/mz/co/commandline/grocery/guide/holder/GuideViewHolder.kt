@@ -4,7 +4,7 @@ import android.view.View
 import mz.co.commandline.grocery.databinding.GuideBinding
 import mz.co.commandline.grocery.generics.holder.BaseViewHolder
 import mz.co.commandline.grocery.generics.listner.ClickListner
-import mz.co.commandline.grocery.rent.dto.GuideDTO
+import mz.co.commandline.grocery.guide.dto.GuideDTO
 
 class GuideViewHolder(private val binding: GuideBinding) : BaseViewHolder<GuideDTO>(binding) {
 

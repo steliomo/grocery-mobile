@@ -24,8 +24,6 @@ public class SaleItemDTO extends GenericDTO {
 
     private BigDecimal deliveredQuantity;
 
-    private BigDecimal toDeliveryQuantity;
-
     private boolean selected;
 
     private BigDecimal sendQuantity;
@@ -66,7 +64,7 @@ public class SaleItemDTO extends GenericDTO {
     }
 
     public BigDecimal getToDeliveryQuantity() {
-        return toDeliveryQuantity;
+        return quantity.subtract(deliveredQuantity);
     }
 
     public void setSelected(boolean selected) {

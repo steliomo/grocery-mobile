@@ -3,91 +3,107 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#FFF">
 
     <ImageView
         android:id="@+id/rent_item_image_view"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
+        android:layout_width="80dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         android:contentDescription="@string/rent"
+        android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.49"
         app:srcCompat="@mipmap/ic_services" />
+
+    <View
+        android:id="@+id/rent_item_view"
+        android:layout_width="0dp"
+        android:layout_height="82dp"
+        android:background="@drawable/textview_borders"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/rent_item_image_view"
+        app:layout_constraintTop_toTopOf="@+id/rent_item_image_view" />
 
     <TextView
         android:id="@+id/rent_item_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#017a84"
+        android:padding="7dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/rent_item_view"
         app:layout_constraintStart_toEndOf="@+id/rent_item_image_view"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rent_item_view"
         tools:text="Parqueamento de Viatura" />
 
     <TextView
-        android:id="@+id/rent_item_days_label"
-        android:layout_width="wrap_content"
+        android:id="@+id/rent_item_quantity_label"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:padding="2dp"
-        android:text="@string/days"
-        android:textSize="6pt"
+        android:text="@string/quantity"
+        app:layout_constraintEnd_toStartOf="@+id/rent_item_quantity"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/rent_item_image_view"
         app:layout_constraintTop_toBottomOf="@+id/rent_item_name" />
 
     <TextView
-        android:id="@+id/rent_item_days"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:padding="2dp"
-        android:textSize="6pt"
-        app:layout_constraintBottom_toBottomOf="@+id/rent_item_days_label"
-        app:layout_constraintEnd_toStartOf="@+id/rent_item_discount_label"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/rent_item_days_label"
-        app:layout_constraintTop_toTopOf="@+id/rent_item_days_label"
-        tools:text="10" />
-
-    <TextView
-        android:id="@+id/rent_item_discount_label"
+        android:id="@+id/rent_item_quantity"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="2dp"
-        android:text="@string/discount"
-        android:textAlignment="textEnd"
-        android:textSize="6pt"
-        app:layout_constraintBottom_toBottomOf="@+id/rent_item_days"
-        app:layout_constraintEnd_toStartOf="@+id/rent_item_discount"
+        app:layout_constraintBottom_toBottomOf="@+id/rent_item_quantity_label"
+        app:layout_constraintEnd_toStartOf="@+id/rent_item_value_label"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/rent_item_days" />
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/rent_item_quantity_label"
+        app:layout_constraintTop_toTopOf="@+id/rent_item_quantity_label"
+        tools:text="50" />
 
     <TextView
-        android:id="@+id/rent_item_discount"
+        android:id="@+id/rent_item_days_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="2dp"
-        android:textAlignment="textEnd"
-        android:textSize="6pt"
-        app:layout_constraintBottom_toBottomOf="@+id/rent_item_discount_label"
-        app:layout_constraintEnd_toEndOf="@+id/rent_item_name"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/rent_item_discount_label"
-        tools:text="0,00 MT" />
+        android:text="@string/days"
+        app:layout_constraintEnd_toEndOf="@+id/rent_item_quantity_label"
+        app:layout_constraintStart_toStartOf="@+id/rent_item_quantity_label"
+        app:layout_constraintTop_toBottomOf="@+id/rent_item_quantity_label" />
 
     <TextView
         android:id="@+id/rent_item_value_label"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:padding="2dp"
         android:text="@string/value"
-        android:textAlignment="textEnd"
-        android:textSize="6pt"
-        app:layout_constraintBottom_toBottomOf="@+id/rent_item_value"
-        app:layout_constraintEnd_toEndOf="@+id/rent_item_discount_label"
-        app:layout_constraintEnd_toStartOf="@+id/rent_item_value"
+        android:textAlignment="viewEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toEndOf="@+id/rent_item_quantity"
+        app:layout_constraintTop_toTopOf="@+id/rent_item_quantity" />
+
+    <TextView
+        android:id="@+id/rent_item_days"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rent_item_days_label"
+        app:layout_constraintEnd_toEndOf="@+id/rent_item_quantity"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/rent_item_days" />
+        app:layout_constraintStart_toEndOf="@+id/rent_item_days_label"
+        app:layout_constraintTop_toTopOf="@+id/rent_item_days_label"
+        tools:text="10" />
 
     <TextView
         android:id="@+id/rent_item_value"
@@ -95,34 +111,11 @@
         android:layout_height="wrap_content"
         android:padding="2dp"
         android:textAlignment="textEnd"
-        android:textSize="6pt"
-        app:layout_constraintEnd_toEndOf="@+id/rent_item_discount"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/rent_item_value_label"
-        app:layout_constraintTop_toBottomOf="@+id/rent_item_discount"
+        android:textColor="#000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/rent_item_value_label"
+        app:layout_constraintStart_toEndOf="@+id/rent_item_days"
+        app:layout_constraintTop_toBottomOf="@+id/rent_item_value_label"
         tools:text="100.000,00 MT" />
-
-    <TextView
-        android:id="@+id/rent_item_quantity_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="2dp"
-        android:text="@string/quantity"
-        android:textSize="6pt"
-        app:layout_constraintBottom_toBottomOf="@+id/rent_item_quantity"
-        app:layout_constraintEnd_toEndOf="@+id/rent_item_days_label"
-        app:layout_constraintStart_toEndOf="@+id/rent_item_image_view"
-        app:layout_constraintTop_toBottomOf="@+id/rent_item_days_label" />
-
-    <TextView
-        android:id="@+id/rent_item_quantity"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="2dp"
-        android:textSize="6pt"
-        app:layout_constraintBottom_toBottomOf="@+id/rent_item_value_label"
-        app:layout_constraintEnd_toEndOf="@+id/rent_item_days"
-        app:layout_constraintStart_toEndOf="@+id/rent_item_days_label"
-        tools:text="10" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

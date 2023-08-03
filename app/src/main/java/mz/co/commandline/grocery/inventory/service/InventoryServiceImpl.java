@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.generics.service.AbstractService;
 import mz.co.commandline.grocery.generics.service.RetrofitService;
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.inventory.dto.InventoryDTO;
 import mz.co.commandline.grocery.inventory.dto.InventoryStatus;
 import retrofit2.Call;
@@ -22,7 +22,7 @@ public class InventoryServiceImpl extends AbstractService implements InventorySe
     }
 
     @Override
-    public void findInventoryByGroceryAndStatus(GroceryDTO grocery, InventoryStatus inventoryStatus, final ResponseListner<InventoryDTO> responseListner) {
+    public void findInventoryByGroceryAndStatus(UnitDTO grocery, InventoryStatus inventoryStatus, final ResponseListner<InventoryDTO> responseListner) {
         getResource().findInventoryByGroceryAndStatus(grocery.getUuid(), inventoryStatus).enqueue(new Callback<InventoryDTO>() {
             @Override
             public void onResponse(Call<InventoryDTO> call, Response<InventoryDTO> response) {

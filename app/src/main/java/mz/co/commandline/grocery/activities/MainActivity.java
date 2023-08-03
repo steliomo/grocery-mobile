@@ -114,11 +114,11 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
 
     private void loadMainMenu() {
         MainMenuBuilder mainMenuBuilder = new MainMenuBuilder();
-        menu = mainMenuBuilder.build(userService.getGroceryUser().getUserRole());
+        menu = mainMenuBuilder.build(userService.getUnitUser().getUserRole());
     }
 
     private void hideOperatorUserMenuItems() {
-        if (UserRole.OPERATOR.equals(userService.getGroceryUser().getUserRole())) {
+        if (UserRole.OPERATOR.equals(userService.getUnitUser().getUserRole())) {
             navigationView.getMenu().findItem(R.id.menu_drawer_add_user).setVisible(Boolean.FALSE);
             navigationView.getMenu().findItem(R.id.menu_drawer_payments).setVisible(Boolean.FALSE);
         }
@@ -180,13 +180,13 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
 
     private void paymentFragment() {
         progressBar.show();
-        userService.getUnitDetails(userService.getGroceryDTO().getUuid(), new ResponseListner<UnitDetail>() {
+        userService.getUnitDetails(userService.getUnitDTO().getUuid(), new ResponseListner<UnitDetail>() {
             @Override
             public void success(UnitDetail response) {
                 progressBar.dismiss();
 
                 payment = new PaymentDTO();
-                payment.setUnitUuid(userService.getGroceryDTO().getUuid());
+                payment.setUnitUuid(userService.getUnitDTO().getUuid());
 
                 unitDetail = response;
                 unitDetail.setManagerName(userService.getFullName());
@@ -205,7 +205,7 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
     private void loadDashboardData() {
         progressBar.show();
 
-        saleService.findMonthlyalesPerPeriod(userService.getGroceryDTO().getUuid(), DateUtil.getFirstDateOfTheYear(), DateUtil.getLastDateOfTheYear(), new ResponseListner<SalesDTO>() {
+        saleService.findMonthlyalesPerPeriod(userService.getUnitDTO().getUuid(), DateUtil.getFirstDateOfTheYear(), DateUtil.getLastDateOfTheYear(), new ResponseListner<SalesDTO>() {
             @Override
             public void success(SalesDTO response) {
                 progressBar.dismiss();
@@ -343,7 +343,7 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
     public void signUpNext(UserDTO userDTO) {
         progressBar.show();
 
-        userDTO.getGroceryUserDTO().setGroceryDTO(userService.getGroceryDTO());
+        userDTO.getUnitUserDTO().setUnitDTO(userService.getUnitDTO());
 
         userService.addSaler(userDTO, new ResponseListner<UserDTO>() {
             @Override

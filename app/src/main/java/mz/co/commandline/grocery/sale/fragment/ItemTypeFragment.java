@@ -10,7 +10,6 @@ public class ItemTypeFragment extends BaseFragment {
 
     private ItemDelegate itemDelegate;
 
-
     @Override
     public int getResourceId() {
         return R.layout.fragment_item_type;

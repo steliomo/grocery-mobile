@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import mz.co.commandline.grocery.R;
-import mz.co.commandline.grocery.expense.dto.ExpenseDTO;
 import mz.co.commandline.grocery.expense.dto.ExpenseReport;
 import mz.co.commandline.grocery.expense.dto.ExpensesDTO;
 import mz.co.commandline.grocery.expense.service.ExpenseService;
@@ -101,7 +99,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
         menu = new Menu();
         menu.addMenuItem(new MenuItem(R.string.sales, R.mipmap.ic_sale));
 
-        if (!UserRole.OPERATOR.equals(userService.getGroceryUser().getUserRole())) {
+        if (!UserRole.OPERATOR.equals(userService.getUnitUser().getUserRole())) {
             menu.addMenuItem(new MenuItem(R.string.expenses, R.mipmap.ic_costs));
             menu.addMenuItem(new MenuItem(R.string.stocks, R.mipmap.ic_stock));
             menu.addMenuItem(new MenuItem(R.string.bestsellers, R.mipmap.ic_bestseller));
@@ -129,7 +127,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     public void displayProductOnStock() {
         progressBar.show();
 
-        stockService.findAllStocksByGrocery(userService.getGroceryDTO(), new ResponseListner<List<StockDTO>>() {
+        stockService.findAllStocksByGrocery(userService.getUnitDTO(), new ResponseListner<List<StockDTO>>() {
             @Override
             public void success(List<StockDTO> response) {
                 progressBar.dismiss();
@@ -156,7 +154,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     public void displayRecommendedProductsToAcquire() {
         progressBar.show();
 
-        stockService.findLowStocksByGroceryAndSalePeriod(userService.getGroceryDTO(), DateUtil.getFirstDateOfTheYear(), DateUtil.getLastDateOfTheYear(), new ResponseListner<List<StockDTO>>() {
+        stockService.findLowStocksByGroceryAndSalePeriod(userService.getUnitDTO(), DateUtil.getFirstDateOfTheYear(), DateUtil.getLastDateOfTheYear(), new ResponseListner<List<StockDTO>>() {
             @Override
             public void success(List<StockDTO> response) {
                 progressBar.dismiss();
@@ -192,7 +190,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
                 this.endDate = endDate;
 
                 progressBar.show();
-                expenseService.findExpensesByUnitAndPeriod(userService.getGroceryDTO().getUuid(), startDate, endDate, new ResponseListner<ExpensesDTO>() {
+                expenseService.findExpensesByUnitAndPeriod(userService.getUnitDTO().getUuid(), startDate, endDate, new ResponseListner<ExpensesDTO>() {
                     @Override
                     public void success(ExpensesDTO response) {
                         progressBar.dismiss();
@@ -215,7 +213,7 @@ public class ReportActivity extends BaseAuthActivity implements View.OnClickList
     private void salesReport(String startDate, String endDate) {
         progressBar.show();
 
-        saleService.findSalesPerPeriod(userService.getGroceryDTO().getUuid(), startDate, endDate, new ResponseListner<SalesDTO>() {
+        saleService.findSalesPerPeriod(userService.getUnitDTO().getUuid(), startDate, endDate, new ResponseListner<SalesDTO>() {
             @Override
             public void success(SalesDTO response) {
                 progressBar.dismiss();

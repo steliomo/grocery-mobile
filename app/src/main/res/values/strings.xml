@@ -1,18 +1,18 @@
 <resources>
     <string name="app_name">Negócio na Mão</string>
-    <string name="app_version">© 2023 © v2.7.1</string>
+    <string name="app_version">© 2023 © v2.8.0</string>
     <string name="sales">Vendas</string>
     <string name="reports">Relatórios</string>
     <string name="products_and_services">Produtos e Serviços</string>
     <string name="sale_regist">Registar Vendas</string>
 
     <string name="discount">Desconto:</string>
-    <string name="value">Valor:</string>
+    <string name="value">Valor</string>
     <string name="quantity">Qty:</string>
     <string name="total_sale">Valor Total da Venda</string>
     <string name="wait">Aguarde...</string>
     <string name="processing_request">A processar o pedido.</string>
-    <string name="products">Productos</string>
+    <string name="products">Produtos</string>
     <string name="required_field">*Campo obrigatório</string>
 
     <string name="sale_error_on_add_item">Ocorreu um erro ao adicionar o item. Por favor tente novamente!</string>
@@ -45,7 +45,7 @@
     <string name="pending">Pendente</string>
     <string name="approved">Aprovado</string>
     <string name="inventory_was_performed_with_success">O inventário foi realizado com sucesso!</string>
-    <string name="cannot_perform_inventory_without_items">Não é possivel realizar o inventario sem productos. Por favor adicione pelo menos um produto.</string>
+    <string name="cannot_perform_inventory_without_items">Não é possivel realizar o inventario sem Produtos. Por favor adicione pelo menos um produto.</string>
     <string name="no_inventory_to_approve">Nenhum Inventário disponível para aprovação</string>
     <string name="inventory_approved_with_success">O inventário foi aprovado com sucesso!</string>
     <string name="error_on_approving_inventory">Ocorreu um erro ao aprovar o inventário. Por favor tente novamente.</string>
@@ -67,7 +67,7 @@
     <string name="period">Período</string>
     <string name="sales_report">Relatório de Vendas</string>
     <string name="product_on_stock">Produtos no stock</string>
-    <string name="recommended_products_to_aquire">Productos recomendados para compra</string>
+    <string name="recommended_products_to_aquire">Produtos recomendados para compra</string>
     <string name="dashboard">Dashboard</string>
     <string name="main_menu">Menú principal</string>
 
@@ -90,7 +90,7 @@
     <string name="update">Actualizar</string>
     <string name="select_product">Seleccionar o producto</string>
     <string name="add">Adicionar</string>
-    <string name="grocery_without_products">Mercearia sem productos por actualizar. Por favor adicione.</string>
+    <string name="grocery_without_products">Mercearia sem Produtos por actualizar. Por favor adicione.</string>
     <string name="new_products_added_with_success">Novo(s) producto(s) adicionado(s) com sucesso!</string>
     <string name="error_on_adding_products">Ocorreu um erro ao adicionar produto(s). Por favor tente mais tarde.</string>
     <string name="select_item">Seleccionar o Item</string>
@@ -103,7 +103,7 @@
     <string name="saleable_items_updated">Item(s) actualizado(s) com sucesso!</string>
     <string name="saleable_items_update_error">Ocorreu um erro ao actualizar item(s)</string>
     <string name="no_items_available">Nenhum item disponível para selecção!</string>
-    <string name="update_stocks">Actualizar productos</string>
+    <string name="update_stocks">Actualizar Produtos</string>
     <string name="add_service">Adicionar serviço</string>
     <string name="update_service">Actualizar serviço</string>
     <string name="unit_type">Tipo de Estabelecimento</string>
@@ -160,7 +160,7 @@
     <string name="quotation_successfuly_processed">A cotação foi processada com sucesso!</string>
     <string name="open_with">Abrir com...</string>
     <string name="bestsellers">Mais vendidos</string>
-    <string name="stocks">Productos no stock</string>
+    <string name="stocks">Produtos no stock</string>
     <string name="error_on_loading_expenses">Ocorreu um erro ao carregar as despesas! Tente novamente.</string>
     <string name="error_payment_loading">"Erro ao carregar pagamentos! Tente novamente. "</string>
     <string name="rent_item_description">Descrição</string>
@@ -184,13 +184,13 @@
     <string name="total_paid">Total Pago:</string>
     <string name="error_loading_contracts">O correu um erro ao carregar os contractos! Tente novamente</string>
     <string name="no_pending_customers_for_payment">Nenhum cliente com pagamentos pendentes foi encontrado!</string>
-    <string name="item_track">Productos em análise</string>
+    <string name="item_track">Produtos em análise</string>
     <string name="product">Producto</string>
     <string name="discrepancy">Discrepância</string>
     <string name="total_in_cash">Total em dinheiro</string>
-    <string name="total_missing">Total de productos em falta</string>
-    <string name="unit_without_stocks_in_analysis">Unidade sem productos em análise!</string>
-    <string name="error_loading_stock_in_analysis">Ocorreu um erro ao carregar os productos em análise!</string>
+    <string name="total_missing">Total de Produtos em falta</string>
+    <string name="unit_without_stocks_in_analysis">Unidade sem Produtos em análise!</string>
+    <string name="error_loading_stock_in_analysis">Ocorreu um erro ao carregar os Produtos em análise!</string>
     <string name="purchase_value_lbl">Valor de compra:</string>
     <string name="sale_value_lbl">Valor da venda:</string>
     <string name="quantity_lbl">Quantidade:</string>
@@ -234,4 +234,7 @@
     <string name="delivery_guide">Guia de Remessa</string>
     <string name="delivered_guide_successfuly_issued">A guia de remessa foi emitida com sucesso!</string>
     <string name="return_date">Data da devolução</string>
+    <string name="quotations">Cotações</string>
+    <string name="error_loading_quotations">Ocorreu um erro ao carregar as cotações. Tente novamente!</string>
+    <string name="quotation_details">Detalhes da cotação</string>
 </resources>

@@ -6,7 +6,9 @@ import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
 
-import java.time.LocalDateTime;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,19 +38,25 @@ import mz.co.commandline.grocery.main.fragment.MenuFragment;
 import mz.co.commandline.grocery.menu.Menu;
 import mz.co.commandline.grocery.menu.MenuItem;
 import mz.co.commandline.grocery.module.GroceryComponent;
+import mz.co.commandline.grocery.quotation.delegate.QuotationDelegate;
+import mz.co.commandline.grocery.quotation.dto.QuotationDTO;
+import mz.co.commandline.grocery.quotation.dto.QuotationItemDTO;
+import mz.co.commandline.grocery.quotation.dto.QuotationType;
+import mz.co.commandline.grocery.quotation.fragment.QuotationDetailsFragment;
+import mz.co.commandline.grocery.quotation.fragment.QuotationsFragment;
+import mz.co.commandline.grocery.quotation.service.QuotationService;
 import mz.co.commandline.grocery.rent.delegate.RentDelegate;
-import mz.co.commandline.grocery.rent.dto.GuideDTO;
-import mz.co.commandline.grocery.rent.dto.GuideItemDTO;
-import mz.co.commandline.grocery.rent.dto.GuideType;
+import mz.co.commandline.grocery.guide.dto.GuideDTO;
+import mz.co.commandline.grocery.guide.dto.GuideItemDTO;
+import mz.co.commandline.grocery.guide.dto.GuideType;
 import mz.co.commandline.grocery.rent.dto.RentDTO;
 import mz.co.commandline.grocery.rent.dto.RentItemDTO;
 import mz.co.commandline.grocery.rent.dto.RentPaymentDTO;
-import mz.co.commandline.grocery.rent.dto.RentReport;
 import mz.co.commandline.grocery.rent.dto.RentType;
 import mz.co.commandline.grocery.rent.dto.RentsDTO;
 import mz.co.commandline.grocery.rent.dto.ReturnItemDTO;
 import mz.co.commandline.grocery.rent.fragment.AddRentItemFragment;
-import mz.co.commandline.grocery.rent.fragment.QuotationFragment;
+import mz.co.commandline.grocery.quotation.fragment.QuotationFragment;
 import mz.co.commandline.grocery.rent.fragment.RegistRentFragment;
 import mz.co.commandline.grocery.rent.fragment.RentItemsFragment;
 import mz.co.commandline.grocery.rent.fragment.RentPaymentDetailsFragment;
@@ -71,7 +79,7 @@ import mz.co.commandline.grocery.util.alert.Option;
 import mz.co.commandline.grocery.util.alert.OptionDialog;
 import okhttp3.ResponseBody;
 
-public class RentActivity extends BaseAuthActivity implements View.OnClickListener, RentDelegate, ItemDelegate, CustomerDelegate, GuideDelegate {
+public class RentActivity extends BaseAuthActivity implements View.OnClickListener, RentDelegate, ItemDelegate, CustomerDelegate, GuideDelegate, QuotationDelegate {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -96,6 +104,9 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     @Inject
     GuideService guideService;
+
+    @Inject
+    QuotationService quotationService;
 
     private Menu menu;
 
@@ -131,6 +142,10 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
     private Option option;
 
     private GuideDTO guideDTO;
+
+    private QuotationDTO quotation;
+
+    private List<QuotationDTO> quotations;
 
     @Override
     public void onGroceryCreate(Bundle bundle) {
@@ -191,7 +206,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
                 resetPage();
                 rentType = RentType.RENT;
                 showFragment(new RentItemsFragment(), Boolean.TRUE);
-                rent = new RentDTO(userService.getGroceryDTO());
+                rent = new RentDTO(userService.getUnitDTO());
                 break;
 
             case R.mipmap.ic_payment:
@@ -245,15 +260,50 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
             case R.mipmap.ic_quotation:
                 resetPage();
                 rentType = RentType.QUOTATION;
-                showFragment(new QuotationFragment(), Boolean.TRUE);
-                rent = new RentDTO(userService.getGroceryDTO());
+                optionDialog.dialog(getString(R.string.quotation), R.mipmap.ic_quotation, option -> {
+                    this.option = option;
+                    switch (option) {
+                        case ISSUE:
+                            quotation = new QuotationDTO(QuotationType.RENT);
+                            showFragment(new QuotationFragment(), Boolean.TRUE);
+                            break;
+                        case VISUALIZE:
+                            loadCustomerWithQuotationsByUnitAndType();
+                            break;
+                    }
+                });
                 break;
         }
     }
 
+    private void loadCustomerWithQuotationsByUnitAndType() {
+        progressBar.show();
+
+        customerService.findCustomersWithQuotationsByUnitAndType(userService.getUnitDTO().getUuid(), QuotationType.RENT.toString(), new ResponseListner<CustomersDTO>() {
+            @Override
+            public void success(CustomersDTO response) {
+                progressBar.dismiss();
+                customersDTO = response;
+                if (customersDTO.getCustomerDTOs().isEmpty()) {
+                    dialogManager.dialog(AlertType.INFO, getString(R.string.no_customers_found), null);
+                    return;
+                }
+
+                showFragment(new CustomersFragment(), Boolean.TRUE);
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_customers), null);
+                Log.e("CUSTOMERS", message);
+            }
+        });
+    }
+
     private void loadCustomersWithPayments() {
         progressBar.show();
-        customerService.findCustomersWithPaymentsByUnit(userService.getGroceryDTO().getUuid(), new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersWithPaymentsByUnit(userService.getUnitDTO().getUuid(), new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();
@@ -277,7 +327,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     private void loadCustomersWithIssuedGuidesByType(String guideType) {
         progressBar.show();
-        customerService.findCustomersWithIssuedGuidesByTypeAndUnit(guideType, userService.getGroceryDTO().getUuid(), new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersWithIssuedGuidesByTypeAndUnit(guideType, userService.getUnitDTO().getUuid(), new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();
@@ -301,7 +351,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     private void loadCustomersWithPendingOrInCompleteRentItemsToLoadByUnit() {
         progressBar.show();
-        customerService.findCustomersWithPendingOrInCompleteRentItemsToLoadByUnit(userService.getGroceryDTO().getUuid(), new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersWithPendingOrInCompleteRentItemsToLoadByUnit(userService.getUnitDTO().getUuid(), new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();
@@ -333,7 +383,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     private void loadCustomersWithPendingOrIncompleteRentItemsToReturnByUnit() {
         progressBar.show();
-        customerService.findCustomersWithPendingOrIncompleteRentItemsToReturnByUnit(userService.getGroceryDTO().getUuid(), CURRENT_PAGE, MAX_RESULT, new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersWithPendingOrIncompleteRentItemsToReturnByUnit(userService.getUnitDTO().getUuid(), CURRENT_PAGE, MAX_RESULT, new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();
@@ -358,7 +408,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     private void loadCustomersWithPendingPayments() {
         progressBar.show();
-        customerService.findCustomersWithPendingPaymentsByUnit(userService.getGroceryDTO().getUuid(), CURRENT_PAGE, MAX_RESULT, new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersWithPendingPaymentsByUnit(userService.getUnitDTO().getUuid(), CURRENT_PAGE, MAX_RESULT, new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();
@@ -394,14 +444,20 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
     @Override
     public void addRentItem(RentItemDTO rentItemDTO) {
         resetFragment();
-        rent.addRentItem(rentItemDTO);
 
         if (RentType.RENT.equals(rentType)) {
+            rent.addRentItem(rentItemDTO);
             showFragment(new RentItemsFragment(), Boolean.TRUE);
             return;
         }
 
-        rent.setUnitDTO(rentItemDTO.getUnit());
+        QuotationItemDTO quotationItemDTO = new QuotationItemDTO(new QuotationDTO(QuotationType.RENT), rentItemDTO.getSaleableItemDTO().getSalableItemType().getIconId());
+        quotationItemDTO.setDays(rentItemDTO.getPlannedDays());
+        quotationItemDTO.setQuantity(rentItemDTO.getPlannedQuantity());
+        quotationItemDTO.setServiceItemDTO(rentItemDTO.getServiceItemDTO() != null ? rentItemDTO.getServiceItemDTO() : null);
+        quotationItemDTO.setStockDTO(rentItemDTO.getStockDTO() != null ? rentItemDTO.getStockDTO() : null);
+
+        quotation.addItem(quotationItemDTO);
         showFragment(new QuotationFragment(), Boolean.TRUE);
     }
 
@@ -551,7 +607,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     @Override
     public void issueTransportGuide() {
-        rent.setUnitDTO(userService.getGroceryDTO());
+        rent.setUnitDTO(userService.getUnitDTO());
         rent.setCustomerDTO(customerDTO);
         GuideDTO guideDTO = new GuideDTO(rent, GuideType.valueOf(rentType.toString()));
 
@@ -574,7 +630,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.transport_guide_successfuly_issued), () -> {
                     resetFragment();
                     showFragment(new MenuFragment(), Boolean.FALSE);
-                    downLoadFile(fileService, response.getFileName());
+                    downLoadFile(fileService, response.getFilePath());
                 });
             }
 
@@ -596,7 +652,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     @Override
     public void issueReturnGuide(String issueDate) {
-        rent.setUnitDTO(userService.getGroceryDTO());
+        rent.setUnitDTO(userService.getUnitDTO());
         rent.setCustomerDTO(customerDTO);
         GuideDTO guideDTO = new GuideDTO(rent, GuideType.valueOf(rentType.toString()));
         guideDTO.setIssueDate(issueDate);
@@ -620,7 +676,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.return_guide_was_successfully_issued), () -> {
                     resetFragment();
                     showFragment(new MenuFragment(), Boolean.FALSE);
-                    downLoadFile(fileService, response.getFileName());
+                    downLoadFile(fileService, response.getFilePath());
                 });
             }
 
@@ -667,7 +723,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.guide_re_issued_success), () -> {
                     resetFragment();
                     showFragment(new MenuFragment(), Boolean.FALSE);
-                    downLoadFile(fileService, response.getFileName());
+                    downLoadFile(fileService, response.getFilePath());
                 });
             }
 
@@ -695,7 +751,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     private void loadCustomers() {
         progressBar.show();
-        customerService.findCustomersByUnit(userService.getGroceryDTO().getUuid(), CURRENT_PAGE, MAX_RESULT, new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersByUnit(userService.getUnitDTO().getUuid(), CURRENT_PAGE, MAX_RESULT, new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();
@@ -717,7 +773,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
         this.itemType = itemType;
         progressBar.show();
 
-        itemService.findItemByUnit(itemType, userService.getGroceryDTO(), new ResponseListner<List<ItemDTO>>() {
+        itemService.findItemByUnit(itemType, userService.getUnitDTO(), new ResponseListner<List<ItemDTO>>() {
             @Override
             public void success(List<ItemDTO> response) {
                 progressBar.dismiss();
@@ -751,7 +807,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
         KeyboardUtil.hideKeyboard(this, toolbar);
         progressBar.show();
 
-        saleableItemService.findSalebleItemByItemAndUnit(itemDTO, userService.getGroceryDTO(), new ResponseListner<List<SaleableItemDTO>>() {
+        saleableItemService.findSalebleItemByItemAndUnit(itemDTO, userService.getUnitDTO(), new ResponseListner<List<SaleableItemDTO>>() {
             @Override
             public void success(List<SaleableItemDTO> response) {
                 progressBar.dismiss();
@@ -802,7 +858,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     @Override
     public void registCustomer(CustomerDTO customerDTO) {
-        customerDTO.setUnit(userService.getGroceryDTO());
+        customerDTO.setUnit(userService.getUnitDTO());
         progressBar.show();
 
         customerService.registCustomer(customerDTO, new ResponseListner<CustomerDTO>() {
@@ -875,11 +931,36 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
                 break;
 
             case QUOTATION:
-                rent.setCustomerDTO(customerDTO);
-                popBackStack();
-                dialogManager.dialog(AlertType.INFO, getString(R.string.confirm_the_request), () -> processQuotation());
+                switch (option) {
+                    case ISSUE:
+                        quotation.setCustomerDTO(customerDTO);
+                        popBackStack();
+                        dialogManager.dialog(AlertType.INFO, getString(R.string.confirm_the_request), () -> issueQuotation());
+                        break;
+                    case VISUALIZE:
+                        loadQuotationsByCustomers(customerDTO);
+                        break;
+                }
                 break;
         }
+    }
+
+    private void loadQuotationsByCustomers(CustomerDTO customerDTO) {
+        progressBar.show();
+        quotationService.fetchQuotationsByCustomer(customerDTO.getUuid(), new ResponseListner<List<QuotationDTO>>() {
+            @Override
+            public void success(List<QuotationDTO> response) {
+                progressBar.dismiss();
+                quotations = response;
+                showFragment(new QuotationsFragment(), Boolean.TRUE);
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_quotations), null);
+            }
+        });
     }
 
     private void loadRentsWithIssuedGuidesByTypeAndCustomer(String guideType, CustomerDTO customerDTO) {
@@ -950,19 +1031,19 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
         });
     }
 
-    private void processQuotation() {
+    private void issueQuotation() {
         progressBar.show();
-        rent.setCreatedAt(LocalDateTime.now().toString());
-        rentService.issueQuotation(rent, new ResponseListner<RentReport>() {
+        quotation.setUnitDTO(userService.getUnitDTO());
+        quotationService.issueQuotation(quotation, new ResponseListner<QuotationDTO>() {
             @Override
-            public void success(final RentReport response) {
-                fileService.loadPdfFile(response.getFileName(), new ResponseListner<ResponseBody>() {
+            public void success(final QuotationDTO response) {
+                fileService.loadPdfFile(response.getName(), new ResponseListner<ResponseBody>() {
                     @Override
                     public void success(final ResponseBody body) {
                         progressBar.dismiss();
                         dialogManager.dialog(AlertType.SUCCESS, getString(R.string.quotation_successfuly_processed), () -> {
                             popBackStack();
-                            displayFile(body, response.getFileName());
+                            displayFile(body, response.getName());
                         });
                     }
 
@@ -985,7 +1066,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     @Override
     public int addBtnVisibility() {
-        if (RentType.RENT.equals(rentType) || RentType.QUOTATION.equals(rentType)) {
+        if (RentType.RENT.equals(rentType) || Option.ISSUE.equals(option)) {
             return View.VISIBLE;
         }
         return View.GONE;
@@ -1019,12 +1100,11 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
             @Override
             public void success(RentsDTO response) {
                 progressBar.dismiss();
-
                 rentsDTO = response.getRentsDTO();
 
                 for (RentDTO rentDTO : rentsDTO) {
                     rentDTO.setCustomerDTO(customerDTO);
-                    rentDTO.setUnitDTO(userService.getGroceryDTO());
+                    rentDTO.setUnitDTO(userService.getUnitDTO());
                 }
 
                 showFragment(new RentsFragment(), Boolean.TRUE);
@@ -1042,5 +1122,67 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
     @Override
     public List<GuideDTO> getGuidesDTO() {
         return rent.getGuidesDTO();
+    }
+
+    @NotNull
+    @Override
+    public QuotationDTO quotation() {
+        return quotation;
+    }
+
+    @Override
+    public void quote() {
+        if (quotation.getItems().isEmpty()) {
+            dialogManager.dialog(AlertType.INFO, getString(R.string.select_items), null);
+            return;
+        }
+
+        loadCustomers();
+    }
+
+    @Override
+    public void selectedQuotation(QuotationDTO quotation) {
+        this.quotation = quotation;
+        showFragment(new QuotationDetailsFragment(), Boolean.TRUE);
+    }
+
+    @NotNull
+    @Override
+    public List<QuotationDTO> quotations() {
+        return quotations;
+    }
+
+    @Override
+    public void reIssueQuotation() {
+        progressBar.show();
+        quotationService.reIssueQuotation(quotation, new ResponseListner<QuotationDTO>() {
+            @Override
+            public void success(final QuotationDTO response) {
+                fileService.loadPdfFile(response.getName(), new ResponseListner<ResponseBody>() {
+                    @Override
+                    public void success(final ResponseBody body) {
+                        progressBar.dismiss();
+                        dialogManager.dialog(AlertType.SUCCESS, getString(R.string.quotation_successfuly_processed), () -> {
+                            resetFragment();
+                            showFragment(new MenuFragment(), Boolean.FALSE);
+                            displayFile(body, response.getName());
+                        });
+                    }
+
+                    @Override
+                    public void error(String message) {
+                        progressBar.dismiss();
+                        dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_quotation), null);
+                    }
+                });
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_processing_quotation), null);
+                Log.e("RE_PROCESSING_QUOTATION", message);
+            }
+        });
     }
 }

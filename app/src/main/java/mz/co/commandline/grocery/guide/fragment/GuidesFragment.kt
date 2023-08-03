@@ -10,8 +10,7 @@ import mz.co.commandline.grocery.generics.fragment.BaseFragment
 import mz.co.commandline.grocery.generics.listner.ClickListner
 import mz.co.commandline.grocery.guide.delegate.GuideDelegate
 import mz.co.commandline.grocery.rent.adapter.GuideAdapter
-import mz.co.commandline.grocery.rent.delegate.RentDelegate
-import mz.co.commandline.grocery.rent.dto.GuideDTO
+import mz.co.commandline.grocery.guide.dto.GuideDTO
 
 
 class GuidesFragment : BaseFragment(), ClickListner<GuideDTO> {

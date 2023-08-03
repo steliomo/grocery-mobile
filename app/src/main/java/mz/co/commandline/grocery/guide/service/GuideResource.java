@@ -1,6 +1,6 @@
 package mz.co.commandline.grocery.guide.service;
 
-import mz.co.commandline.grocery.rent.dto.GuideDTO;
+import mz.co.commandline.grocery.guide.dto.GuideDTO;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;

@@ -9,12 +9,13 @@ import java.util.List;
 import mz.co.commandline.grocery.customer.model.CustomerDTO;
 import mz.co.commandline.grocery.generics.dto.EnumDTO;
 import mz.co.commandline.grocery.generics.dto.GenericDTO;
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
+import mz.co.commandline.grocery.guide.dto.GuideDTO;
 import mz.co.commandline.grocery.util.DateUtil;
 
 public class RentDTO extends GenericDTO {
 
-    private GroceryDTO unitDTO;
+    private UnitDTO unitDTO;
 
     private String rentDate;
 
@@ -42,7 +43,7 @@ public class RentDTO extends GenericDTO {
 
     private List<RentPaymentDTO> rentPaymentsDTO;
 
-    public RentDTO(GroceryDTO unit) {
+    public RentDTO(UnitDTO unit) {
         this.unitDTO = unit;
         rentItemsDTO = new ArrayList<>();
         rentDate = DateUtil.format(new Date(), DateUtil.NORMAL_PATTERN);
@@ -66,11 +67,11 @@ public class RentDTO extends GenericDTO {
         return Collections.unmodifiableList(rentItemsDTO);
     }
 
-    public GroceryDTO getUnitDTO() {
+    public UnitDTO getUnitDTO() {
         return unitDTO;
     }
 
-    public void setUnitDTO(GroceryDTO unitDTO) {
+    public void setUnitDTO(UnitDTO unitDTO) {
         this.unitDTO = unitDTO;
     }
 

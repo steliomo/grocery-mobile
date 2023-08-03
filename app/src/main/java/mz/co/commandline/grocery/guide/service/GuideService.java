@@ -1,7 +1,7 @@
 package mz.co.commandline.grocery.guide.service;
 
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
-import mz.co.commandline.grocery.rent.dto.GuideDTO;
+import mz.co.commandline.grocery.guide.dto.GuideDTO;
 
 public interface GuideService {
 

@@ -9,8 +9,8 @@ import java.util.List;
 import mz.co.commandline.grocery.customer.model.CustomerDTO;
 import mz.co.commandline.grocery.generics.dto.EnumDTO;
 import mz.co.commandline.grocery.generics.dto.GenericDTO;
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
-import mz.co.commandline.grocery.rent.dto.GuideDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
+import mz.co.commandline.grocery.guide.dto.GuideDTO;
 import mz.co.commandline.grocery.util.DateUtil;
 
 public class SaleDTO extends GenericDTO {
@@ -21,7 +21,7 @@ public class SaleDTO extends GenericDTO {
 
     private String saleDate;
 
-    private GroceryDTO groceryDTO;
+    private UnitDTO unitDTO;
 
     private CustomerDTO customerDTO;
 
@@ -63,12 +63,12 @@ public class SaleDTO extends GenericDTO {
         return saleDate;
     }
 
-    public void setGrocery(GroceryDTO groceryDTO) {
-        this.groceryDTO = groceryDTO;
+    public void setUnitDTO(UnitDTO unitDTO) {
+        this.unitDTO = unitDTO;
     }
 
-    public GroceryDTO getGrocery() {
-        return groceryDTO;
+    public UnitDTO getUnitDTO() {
+        return unitDTO;
     }
 
     public CustomerDTO getCustomerDTO() {

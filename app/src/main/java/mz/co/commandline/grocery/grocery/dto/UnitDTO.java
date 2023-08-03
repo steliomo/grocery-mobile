@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import mz.co.commandline.grocery.generics.dto.GenericDTO;
 
-public class GroceryDTO extends GenericDTO {
+public class UnitDTO extends GenericDTO {
 
     private String name;
 
@@ -18,10 +18,10 @@ public class GroceryDTO extends GenericDTO {
 
     private BigDecimal balance;
 
-    public GroceryDTO() {
+    public UnitDTO() {
     }
 
-    public GroceryDTO(String name, String address, String phoneNumber, String email) {
+    public UnitDTO(String name, String address, String phoneNumber, String email) {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;

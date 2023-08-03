@@ -17,7 +17,7 @@ import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
 import mz.co.commandline.grocery.generics.dto.EnumDTO;
 import mz.co.commandline.grocery.generics.dto.EnumsDTO;
 import mz.co.commandline.grocery.generics.dto.ErrorMessage;
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.login.delegate.LoginDelegate;
 import mz.co.commandline.grocery.login.fragment.LoginFragment;
@@ -179,8 +179,8 @@ public class LoginActivity extends BaseActivity implements LoginDelegate {
     }
 
     @Override
-    public void signUp(GroceryDTO grocery) {
-        this.user.getGroceryUserDTO().setGroceryDTO(grocery);
+    public void signUp(UnitDTO grocery) {
+        this.user.getUnitUserDTO().setUnitDTO(grocery);
         progressBar.show();
 
         userService.signUp(user, new ResponseListner<UserDTO>() {

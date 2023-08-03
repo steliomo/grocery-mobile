@@ -9,13 +9,11 @@ import androidx.appcompat.widget.Toolbar;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import kotlin.SuccessOrFailureKt;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.contract.delegate.ContractDelegate;
 import mz.co.commandline.grocery.contract.dto.ContractDTO;
@@ -36,7 +34,6 @@ import mz.co.commandline.grocery.generics.dto.EnumDTO;
 import mz.co.commandline.grocery.generics.dto.EnumsDTO;
 import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
-import mz.co.commandline.grocery.main.delegate.MenuDelegate;
 import mz.co.commandline.grocery.main.fragment.MenuFragment;
 import mz.co.commandline.grocery.menu.Menu;
 import mz.co.commandline.grocery.menu.MenuItem;
@@ -129,7 +126,7 @@ public class ContractActivity extends BaseAuthActivity implements ContractDelega
 
     @Override
     public void registCustomer(CustomerDTO customerDTO) {
-        customerDTO.setUnit(userService.getGroceryDTO());
+        customerDTO.setUnit(userService.getUnitDTO());
         progressBar.show();
 
         customerService.registCustomer(customerDTO, new ResponseListner<CustomerDTO>() {
@@ -208,7 +205,7 @@ public class ContractActivity extends BaseAuthActivity implements ContractDelega
 
         switch (this.menuItem.getIconId()) {
             case R.mipmap.ic_contracts:
-                contractDTO = new ContractDTO(userService.getGroceryDTO());
+                contractDTO = new ContractDTO(userService.getUnitDTO());
                 contractTypes = new ArrayList<>();
                 contractTypes.add(new EnumDTO(null, getString(R.string.contract_type)));
                 loadContractTypes();
@@ -216,7 +213,7 @@ public class ContractActivity extends BaseAuthActivity implements ContractDelega
 
             case R.mipmap.ic_payment:
                 progressBar.show();
-                customerService.findCustomersWithContractPendingPaymentByUnit(userService.getGroceryDTO().getUuid(), CURRENT_PAGE, MAX_RESULT, DateUtil.format(new Date(), DateUtil.NORMAL_PATTERN), new ResponseListner<CustomersDTO>() {
+                customerService.findCustomersWithContractPendingPaymentByUnit(userService.getUnitDTO().getUuid(), CURRENT_PAGE, MAX_RESULT, DateUtil.format(new Date(), DateUtil.NORMAL_PATTERN), new ResponseListner<CustomersDTO>() {
                     @Override
                     public void success(CustomersDTO response) {
                         progressBar.dismiss();
@@ -276,7 +273,7 @@ public class ContractActivity extends BaseAuthActivity implements ContractDelega
 
     private void loadCustomers() {
         progressBar.show();
-        customerService.findCustomersByUnit(userService.getGroceryDTO().getUuid(), CURRENT_PAGE, MAX_RESULT, new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersByUnit(userService.getUnitDTO().getUuid(), CURRENT_PAGE, MAX_RESULT, new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();

@@ -1,11 +1,11 @@
 package mz.co.commandline.grocery.customer.model;
 
 import mz.co.commandline.grocery.generics.dto.GenericDTO;
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 
 public class CustomerDTO extends GenericDTO {
 
-    private GroceryDTO unitDTO;
+    private UnitDTO unitDTO;
 
     private String name;
 
@@ -26,11 +26,11 @@ public class CustomerDTO extends GenericDTO {
         this.name = name;
     }
 
-    public void setUnit(GroceryDTO unitDTO) {
+    public void setUnit(UnitDTO unitDTO) {
         this.unitDTO = unitDTO;
     }
 
-    public GroceryDTO getUnitDTO() {
+    public UnitDTO getUnitDTO() {
         return unitDTO;
     }
 

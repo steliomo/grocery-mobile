@@ -2,16 +2,15 @@ package mz.co.commandline.grocery.saleable.dto;
 
 import java.math.BigDecimal;
 
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.item.dto.ItemType;
 import mz.co.commandline.grocery.item.dto.ServiceDescriptionDTO;
-import mz.co.commandline.grocery.saleable.dto.SaleableItemDTO;
 
 public class ServiceItemDTO extends SaleableItemDTO {
 
     private ServiceDescriptionDTO serviceDescriptionDTO;
 
-    private GroceryDTO unitDTO;
+    private UnitDTO unitDTO;
 
     private String salePrice;
 
@@ -45,11 +44,11 @@ public class ServiceItemDTO extends SaleableItemDTO {
         this.salePrice = salePrice;
     }
 
-    public void setUnitDTO(GroceryDTO unitDTO) {
+    public void setUnitDTO(UnitDTO unitDTO) {
         this.unitDTO = unitDTO;
     }
 
-    public GroceryDTO getUnitDTO() {
+    public UnitDTO getUnitDTO() {
         return unitDTO;
     }
 }

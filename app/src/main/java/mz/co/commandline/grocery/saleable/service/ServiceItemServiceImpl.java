@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.item.dto.ServiceDTO;
 import mz.co.commandline.grocery.generics.service.AbstractService;
@@ -29,7 +29,7 @@ public class ServiceItemServiceImpl extends AbstractService implements ServiceIt
     }
 
     @Override
-    public void findServiceItemsByServiceAndUnit(ServiceDTO service, GroceryDTO unit, final ResponseListner<List<ServiceItemDTO>> responseListner) {
+    public void findServiceItemsByServiceAndUnit(ServiceDTO service, UnitDTO unit, final ResponseListner<List<ServiceItemDTO>> responseListner) {
 
         getResource().findServiceItemByServiceAndUnit(service.getUuid(), unit.getUuid()).enqueue(new Callback<List<ServiceItemDTO>>() {
             @Override
@@ -50,7 +50,7 @@ public class ServiceItemServiceImpl extends AbstractService implements ServiceIt
     }
 
     @Override
-    public void findServiceItemsNotInThisUnitByService(ServiceDTO service, GroceryDTO unit, final ResponseListner<List<ServiceItemDTO>> responseListner) {
+    public void findServiceItemsNotInThisUnitByService(ServiceDTO service, UnitDTO unit, final ResponseListner<List<ServiceItemDTO>> responseListner) {
         getResource().findServiceItemsNotInThisUnitByService(service.getUuid(), unit.getUuid()).enqueue(new Callback<List<ServiceItemDTO>>() {
             @Override
             public void onResponse(Call<List<ServiceItemDTO>> call, Response<List<ServiceItemDTO>> response) {

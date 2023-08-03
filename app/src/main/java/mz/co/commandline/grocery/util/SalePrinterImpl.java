@@ -1,7 +1,6 @@
 package mz.co.commandline.grocery.util;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
 import mz.co.commandline.grocery.sale.dto.SaleItemDTO;
@@ -21,8 +20,8 @@ public class SalePrinterImpl implements SalePrinter {
 
         printer.printImage(bitmap);
         printer.printNewLine();
-        printer.printBoldCenterText(saleDTO.getGrocery().getName());
-        printer.printBoldCenterText(saleDTO.getGrocery().getPhoneNumber());
+        printer.printBoldCenterText(saleDTO.getUnitDTO().getName());
+        printer.printBoldCenterText(saleDTO.getUnitDTO().getPhoneNumber());
 
         printer.printNewLine();
         printer.printText("Data: " + saleDTO.getSaleDate());

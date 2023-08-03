@@ -8,7 +8,7 @@ public class UserDTO {
 
     private String fullName;
 
-    private GroceryUserDTO groceryUserDTO;
+    private UnitUserDTO unitUserDTO;
 
     private String email;
 
@@ -29,7 +29,7 @@ public class UserDTO {
         this.username = username;
         this.password = password;
         this.email = email;
-        groceryUserDTO = new GroceryUserDTO();
+        unitUserDTO = new UnitUserDTO();
     }
 
     public String getUsername() {
@@ -44,8 +44,8 @@ public class UserDTO {
         return fullName;
     }
 
-    public GroceryUserDTO getGroceryUserDTO() {
-        return groceryUserDTO;
+    public UnitUserDTO getUnitUserDTO() {
+        return unitUserDTO;
     }
 
     public String getEmail() {

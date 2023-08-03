@@ -5,12 +5,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.generics.dto.GenericDTO;
 
 public class InventoryDTO extends GenericDTO {
 
-    private GroceryDTO groceryDTO;
+    private UnitDTO unitDTO;
 
     private String inventoryDate;
 
@@ -18,16 +18,16 @@ public class InventoryDTO extends GenericDTO {
 
     private List<StockInventoryDTO> stockInventoriesDTO;
 
-    public InventoryDTO(GroceryDTO groceryDTO, String inventoryDate, InventoryStatus inventoryStatus) {
-        this.groceryDTO = groceryDTO;
+    public InventoryDTO(UnitDTO groceryDTO, String inventoryDate, InventoryStatus inventoryStatus) {
+        this.unitDTO = groceryDTO;
         this.inventoryDate = inventoryDate;
         this.inventoryStatus = inventoryStatus;
 
         stockInventoriesDTO = new ArrayList<>();
     }
 
-    public GroceryDTO getGroceryDTO() {
-        return groceryDTO;
+    public UnitDTO getUnitDTO() {
+        return unitDTO;
     }
 
     public String getInventoryDate() {

@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.generics.service.AbstractService;
 import mz.co.commandline.grocery.generics.service.RetrofitService;
-import mz.co.commandline.grocery.rent.dto.GuideDTO;
+import mz.co.commandline.grocery.guide.dto.GuideDTO;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -16,6 +16,8 @@ import mz.co.commandline.grocery.expense.service.ExpenseTypeService;
 import mz.co.commandline.grocery.expense.service.ExpenseTypeServiceImpl;
 import mz.co.commandline.grocery.files.FileService;
 import mz.co.commandline.grocery.files.FileServiceImpl;
+import mz.co.commandline.grocery.generics.service.RetrofitService;
+import mz.co.commandline.grocery.generics.service.RetrofitServiceImpl;
 import mz.co.commandline.grocery.guide.service.GuideService;
 import mz.co.commandline.grocery.guide.service.GuideServiceImpl;
 import mz.co.commandline.grocery.infra.SharedPreferencesManager;
@@ -23,22 +25,22 @@ import mz.co.commandline.grocery.inventory.service.InventoryService;
 import mz.co.commandline.grocery.inventory.service.InventoryServiceImpl;
 import mz.co.commandline.grocery.item.service.ItemService;
 import mz.co.commandline.grocery.item.service.ItemServiceImpl;
-import mz.co.commandline.grocery.payment.service.PaymentService;
-import mz.co.commandline.grocery.payment.service.PaymentServiceImpl;
-import mz.co.commandline.grocery.rent.service.RentService;
-import mz.co.commandline.grocery.rent.service.RentServiceImpl;
-import mz.co.commandline.grocery.saleable.service.SaleableItemService;
-import mz.co.commandline.grocery.saleable.service.SaleableItemServiceImpl;
 import mz.co.commandline.grocery.item.service.ProductService;
 import mz.co.commandline.grocery.item.service.ProductServiceImpl;
 import mz.co.commandline.grocery.item.service.ServiceService;
 import mz.co.commandline.grocery.item.service.ServiceServiceImpl;
+import mz.co.commandline.grocery.payment.service.PaymentService;
+import mz.co.commandline.grocery.payment.service.PaymentServiceImpl;
+import mz.co.commandline.grocery.quotation.service.QuotationService;
+import mz.co.commandline.grocery.quotation.service.QuotationServiceImpl;
+import mz.co.commandline.grocery.rent.service.RentService;
+import mz.co.commandline.grocery.rent.service.RentServiceImpl;
 import mz.co.commandline.grocery.sale.service.SaleService;
 import mz.co.commandline.grocery.sale.service.SaleServiceImpl;
+import mz.co.commandline.grocery.saleable.service.SaleableItemService;
+import mz.co.commandline.grocery.saleable.service.SaleableItemServiceImpl;
 import mz.co.commandline.grocery.saleable.service.SaleableService;
 import mz.co.commandline.grocery.saleable.service.SaleableServiceImpl;
-import mz.co.commandline.grocery.generics.service.RetrofitService;
-import mz.co.commandline.grocery.generics.service.RetrofitServiceImpl;
 import mz.co.commandline.grocery.saleable.service.ServiceItemService;
 import mz.co.commandline.grocery.saleable.service.ServiceItemServiceImpl;
 import mz.co.commandline.grocery.saleable.service.StockService;
@@ -155,5 +157,10 @@ public class GroceryModule {
     @Provides
     public GuideService provideGuideService(GuideServiceImpl guideService) {
         return guideService;
+    }
+
+    @Provides
+    public QuotationService provideQuotationService(QuotationServiceImpl quotationService) {
+        return quotationService;
     }
 }

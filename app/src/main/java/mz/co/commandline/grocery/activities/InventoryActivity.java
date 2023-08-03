@@ -104,7 +104,7 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
         menu = new Menu();
         menu.addMenuItem(new MenuItem(R.string.perform_inventory, R.mipmap.ic_perform_inventory));
 
-        if (!UserRole.OPERATOR.equals(userService.getGroceryUser().getUserRole())) {
+        if (!UserRole.OPERATOR.equals(userService.getUnitUser().getUserRole())) {
             menu.addMenuItem(new MenuItem(R.string.approve_inventory, R.mipmap.ic_approved_stock));
             menu.addMenuItem(new MenuItem(R.string.item_track, R.mipmap.ic_item_track));
         }
@@ -120,7 +120,7 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
     public void displayPerformInventoryFragment() {
         progressBar.show();
 
-        inventoryService.findInventoryByGroceryAndStatus(userService.getGroceryDTO(), InventoryStatus.PENDING, new ResponseListner<InventoryDTO>() {
+        inventoryService.findInventoryByGroceryAndStatus(userService.getUnitDTO(), InventoryStatus.PENDING, new ResponseListner<InventoryDTO>() {
             @Override
             public void success(InventoryDTO response) {
                 progressBar.dismiss();
@@ -137,7 +137,7 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
             @Override
             public void businessError(ErrorMessage errorMessage) {
                 progressBar.dismiss();
-                inventory = new InventoryDTO(userService.getGroceryDTO(), DateUtil.format(new Date(), DateUtil.NORMAL_PATTERN), InventoryStatus.PENDING);
+                inventory = new InventoryDTO(userService.getUnitDTO(), DateUtil.format(new Date(), DateUtil.NORMAL_PATTERN), InventoryStatus.PENDING);
                 showFragment(new PerformInventoryFragment(), Boolean.TRUE);
             }
         });
@@ -146,7 +146,7 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
     public void displayApproveInventoryFragment() {
         progressBar.show();
 
-        inventoryService.findInventoryByGroceryAndStatus(userService.getGroceryDTO(), InventoryStatus.PENDING, new ResponseListner<InventoryDTO>() {
+        inventoryService.findInventoryByGroceryAndStatus(userService.getUnitDTO(), InventoryStatus.PENDING, new ResponseListner<InventoryDTO>() {
             @Override
             public void success(InventoryDTO response) {
                 progressBar.dismiss();
@@ -301,7 +301,7 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
     public void selectItemType(ItemType itemType) {
         progressBar.show();
 
-        itemService.findItemByUnit(itemType, userService.getGroceryDTO(), new ResponseListner<List<ItemDTO>>() {
+        itemService.findItemByUnit(itemType, userService.getUnitDTO(), new ResponseListner<List<ItemDTO>>() {
             @Override
             public void success(List<ItemDTO> response) {
                 progressBar.dismiss();
@@ -330,7 +330,7 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
 
         ProductDTO productDTO = (ProductDTO) itemDTO;
 
-        stockService.findProductStocksByGroceryAndProduct(userService.getGroceryDTO(), productDTO, new ResponseListner<List<StockDTO>>() {
+        stockService.findProductStocksByGroceryAndProduct(userService.getUnitDTO(), productDTO, new ResponseListner<List<StockDTO>>() {
             @Override
             public void success(List<StockDTO> response) {
                 progressBar.dismiss();
@@ -404,7 +404,7 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
 
     private void stockInAnalysisDisplay() {
         progressBar.show();
-        stockService.findStocksInAnalysis(userService.getGroceryDTO().getUuid(), new ResponseListner<List<StockDTO>>() {
+        stockService.findStocksInAnalysis(userService.getUnitDTO().getUuid(), new ResponseListner<List<StockDTO>>() {
             @Override
             public void success(List<StockDTO> response) {
                 progressBar.dismiss();

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <View
-        android:id="@+id/guideItemsView"
+        android:id="@+id/guideItemView"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginStart="8dp"
@@ -27,9 +27,9 @@
         android:padding="7dp"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/guideItemsView"
-        app:layout_constraintStart_toStartOf="@+id/guideItemsView"
-        app:layout_constraintTop_toTopOf="@+id/guideItemsView"
+        app:layout_constraintEnd_toEndOf="@+id/guideItemView"
+        app:layout_constraintStart_toStartOf="@+id/guideItemView"
+        app:layout_constraintTop_toTopOf="@+id/guideItemView"
         tools:text="Prumo de cofragem média" />
 
     <TextView

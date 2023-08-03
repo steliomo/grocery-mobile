@@ -3,7 +3,7 @@ package mz.co.commandline.grocery.login.delegate;
 import java.util.List;
 
 import mz.co.commandline.grocery.generics.dto.EnumDTO;
-import mz.co.commandline.grocery.grocery.dto.GroceryDTO;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 
 public interface LoginDelegate extends SignUpDelegate {
 
@@ -15,7 +15,7 @@ public interface LoginDelegate extends SignUpDelegate {
 
     void signUp();
 
-    void signUp(GroceryDTO grocery);
+    void signUp(UnitDTO grocery);
 
     void cancel();
 

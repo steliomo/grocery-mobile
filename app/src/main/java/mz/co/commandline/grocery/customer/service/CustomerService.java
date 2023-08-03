@@ -27,4 +27,6 @@ public interface CustomerService {
     void findCustomersWithPendingOrIncompleteDeliveryStatusSalesByUnit(String unitUuid, ResponseListner<CustomersDTO> responseListner);
 
     void findCustomersWithDeliveredGuidesByUnit(String unitUuid, ResponseListner<CustomersDTO> responseListner);
+
+    void findCustomersWithQuotationsByUnitAndType(String unitUuid, String quotationType, ResponseListner<CustomersDTO> responseListner);
 }
