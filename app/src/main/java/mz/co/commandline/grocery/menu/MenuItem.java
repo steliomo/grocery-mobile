@@ -8,6 +8,8 @@ public class MenuItem {
 
     private int iconId;
 
+    private int number;
+
     public MenuItem(int title, MenuItemType menuItemType, int iconId) {
         this.title = title;
         this.menuItemType = menuItemType;
@@ -30,4 +32,13 @@ public class MenuItem {
     public int getIconId() {
         return iconId;
     }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
 }
+

@@ -41,6 +41,7 @@ import mz.co.commandline.grocery.payment.fragment.MpesaPaymentFragment;
 import mz.co.commandline.grocery.payment.fragment.PaymentConfirmationFragment;
 import mz.co.commandline.grocery.payment.fragment.PaymentFragment;
 import mz.co.commandline.grocery.payment.service.PaymentService;
+import mz.co.commandline.grocery.pos.fragment.OpenTableFragment;
 import mz.co.commandline.grocery.sale.dto.SalesDTO;
 import mz.co.commandline.grocery.sale.service.SaleService;
 import mz.co.commandline.grocery.user.dto.UnitDetail;
@@ -172,6 +173,11 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
             case R.id.menu_drawer_payments:
                 drawerLayout.closeDrawer(GravityCompat.START);
                 paymentFragment();
+                break;
+
+            case R.id.menu_drawer_pos:
+                startActivity(new Intent(this, PosActivity.class));
+                drawerLayout.closeDrawer(GravityCompat.START);
                 break;
         }
 

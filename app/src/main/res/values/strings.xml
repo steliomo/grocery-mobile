@@ -237,4 +237,8 @@
     <string name="quotations">Cotações</string>
     <string name="error_loading_quotations">Ocorreu um erro ao carregar as cotações. Tente novamente!</string>
     <string name="quotation_details">Detalhes da cotação</string>
+    <string name="pos">POS</string>
+    <string name="customer_whatsapp">WhatsApp</string>
+    <string name="open">Abrir</string>
+    <string name="open_table">Abrir a mesa</string>
 </resources>

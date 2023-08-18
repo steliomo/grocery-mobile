@@ -17,6 +17,9 @@ public class MenuViewHolder extends BaseViewHolder<MenuItem> {
     @BindView(R.id.main_menu_title)
     TextView textView;
 
+    @BindView(R.id.main_menu_number)
+    TextView numenberView;
+
     private MenuItem menuItem;
 
     private ClickListner listner;
@@ -30,6 +33,11 @@ public class MenuViewHolder extends BaseViewHolder<MenuItem> {
         this.menuItem = menuItem;
         imageView.setImageResource(menuItem.getIconId());
         textView.setText(menuItem.getTitle());
+        numenberView.setText("#" + menuItem.getNumber());
+
+        if (menuItem.getNumber() == 0) {
+            numenberView.setVisibility(View.GONE);
+        }
     }
 
     @Override

@@ -3,7 +3,6 @@
     package="mz.co.commandline.grocery">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -17,8 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.ContractActivity"></activity>
+
+        <activity android:name=".activities.PosActivity" />
+
+        <activity android:name=".activities.ContractActivity" />
+
         <activity android:name=".activities.RentActivity" />
+
         <activity
             android:name=".activities.ExpenseActivity"
             android:screenOrientation="portrait" />
@@ -28,6 +32,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

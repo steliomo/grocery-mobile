@@ -1066,9 +1066,14 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     @Override
     public int addBtnVisibility() {
-        if (RentType.RENT.equals(rentType) || Option.ISSUE.equals(option)) {
+        if (RentType.RENT.equals(rentType)) {
             return View.VISIBLE;
         }
+
+        if (RentType.QUOTATION.equals(rentType) && Option.ISSUE.equals(option)) {
+            return View.VISIBLE;
+        }
+
         return View.GONE;
     }
 

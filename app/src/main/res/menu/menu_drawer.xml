@@ -6,15 +6,21 @@
     <group android:checkableBehavior="single">
 
         <item
+            android:id="@+id/menu_drawer_dashboard"
+            android:checkable="true"
+            android:icon="@drawable/ic_dashboard"
+            android:title="@string/dashboard" />
+
+        <item
             android:id="@+id/menu_drawer_main_menu"
             android:icon="@drawable/ic_home"
             android:title="@string/main_menu" />
 
         <item
-            android:id="@+id/menu_drawer_dashboard"
+            android:id="@+id/menu_drawer_pos"
             android:checkable="true"
-            android:icon="@drawable/ic_dashboard"
-            android:title="@string/dashboard" />
+            android:icon="@drawable/ic_pos"
+            android:title="@string/pos" />
 
     </group>
 

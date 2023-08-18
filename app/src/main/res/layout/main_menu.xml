@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
@@ -10,9 +11,7 @@
     app:cardPreventCornerOverlap="false"
     app:cardUseCompatPadding="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -29,10 +28,10 @@
             android:id="@+id/main_menu_image_icon"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/main_menu_title"
             app:layout_constraintEnd_toEndOf="@+id/fragment_report_menu_view"
             app:layout_constraintStart_toStartOf="@+id/fragment_report_menu_view"
@@ -54,6 +53,20 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Vendas" />
 
+        <TextView
+            android:id="@+id/main_menu_number"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="#017a84"
+            android:elevation="10dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/fragment_report_menu_view"
+            app:layout_constraintTop_toTopOf="@+id/fragment_report_menu_view"
+            tools:text="#300" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
