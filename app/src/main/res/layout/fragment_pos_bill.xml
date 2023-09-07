@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".pos.fragment.PosBillFragment">
+
+    <View
+        android:id="@+id/sendBillView"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/textview_borders"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sendBillCodeLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="5dp"
+        android:text="Código"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/sendBillCode"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/sendBillView"
+        app:layout_constraintTop_toTopOf="@+id/sendBillView" />
+
+    <TextView
+        android:id="@+id/sendBillCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/sendBillCodeLabel"
+        app:layout_constraintEnd_toEndOf="@+id/sendBillView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/sendBillCodeLabel"
+        app:layout_constraintTop_toTopOf="@+id/sendBillCodeLabel"
+        tools:text="#128393" />
+
+    <TextView
+        android:id="@+id/sendBillOwnerLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/customer"
+        app:layout_constraintEnd_toEndOf="@+id/sendBillCodeLabel"
+        app:layout_constraintStart_toStartOf="@+id/sendBillCodeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/sendBillCodeLabel" />
+
+    <TextView
+        android:id="@+id/sendBillOwner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/sendBillOwnerLabel"
+        app:layout_constraintEnd_toEndOf="@+id/sendBillCode"
+        app:layout_constraintStart_toEndOf="@+id/sendBillCodeLabel"
+        app:layout_constraintTop_toTopOf="@+id/sendBillOwnerLabel"
+        tools:text="Alima Moiane" />
+
+    <TextView
+        android:id="@+id/sendBillTotalLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Valor total"
+        app:layout_constraintEnd_toEndOf="@+id/sendBillOwnerLabel"
+        app:layout_constraintStart_toStartOf="@+id/sendBillOwnerLabel"
+        app:layout_constraintTop_toBottomOf="@+id/sendBillOwnerLabel" />
+
+    <TextView
+        android:id="@+id/sendBillTotal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/sendBillTotalLabel"
+        app:layout_constraintEnd_toEndOf="@+id/sendBillOwner"
+        app:layout_constraintStart_toEndOf="@+id/sendBillOwnerLabel"
+        app:layout_constraintTop_toTopOf="@+id/sendBillTotalLabel"
+        tools:text="10.530,00 MT" />
+
+    <TextView
+        android:id="@+id/sendBillTotalPaidLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Valor total pago"
+        app:layout_constraintEnd_toEndOf="@+id/sendBillTotalLabel"
+        app:layout_constraintStart_toStartOf="@+id/sendBillTotalLabel"
+        app:layout_constraintTop_toBottomOf="@+id/sendBillTotalLabel" />
+
+    <TextView
+        android:id="@+id/sendBillTotalPaid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/sendBillTotalPaidLabel"
+        app:layout_constraintEnd_toEndOf="@+id/sendBillTotal"
+        app:layout_constraintStart_toEndOf="@+id/sendBillTotalLabel"
+        app:layout_constraintTop_toTopOf="@+id/sendBillTotalPaidLabel"
+        tools:text="3.000,00 MT" />
+
+    <TextView
+        android:id="@+id/sendBillTotalToPayLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:padding="5dp"
+        android:text="Valor total a pagar"
+        app:layout_constraintBottom_toBottomOf="@+id/sendBillView"
+        app:layout_constraintEnd_toEndOf="@+id/sendBillTotalPaidLabel"
+        app:layout_constraintStart_toStartOf="@+id/sendBillTotalPaidLabel"
+        app:layout_constraintTop_toBottomOf="@+id/sendBillTotalPaidLabel" />
+
+    <TextView
+        android:id="@+id/sendBillTotalToPay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/sendBillTotalToPayLabel"
+        app:layout_constraintEnd_toEndOf="@+id/sendBillTotalPaid"
+        app:layout_constraintStart_toEndOf="@+id/sendBillTotalPaidLabel"
+        app:layout_constraintTop_toTopOf="@+id/sendBillTotalToPayLabel"
+        tools:text="7.530,00 MT" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/sendBillRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/sendBillPrintImageView"
+        app:layout_constraintEnd_toEndOf="@+id/sendBillView"
+        app:layout_constraintStart_toStartOf="@+id/sendBillView"
+        app:layout_constraintTop_toBottomOf="@+id/sendBillView"
+        tools:listitem="@layout/order" />
+
+    <ImageView
+        android:id="@+id/sendBillPrintImageView"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/textview_borders"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sendBillWhatsAppImageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/ic_receipt_printer" />
+
+    <ImageView
+        android:id="@+id/sendBillWhatsAppImageView"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:background="@drawable/textview_borders"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/sendBillPrintImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/sendBillPrintImageView"
+        app:layout_constraintTop_toTopOf="@+id/sendBillPrintImageView"
+        app:srcCompat="@mipmap/ic_whatsapp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

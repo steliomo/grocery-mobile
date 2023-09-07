@@ -15,8 +15,6 @@ import mz.co.commandline.grocery.util.DateUtil;
 
 public class SaleDTO extends GenericDTO {
 
-    private BigDecimal totalSale = BigDecimal.ZERO;
-
     private List<SaleItemDTO> saleItemsDTO;
 
     private String saleDate;
@@ -42,6 +40,7 @@ public class SaleDTO extends GenericDTO {
     private List<GuideDTO> guidesDTO;
 
     public SaleDTO() {
+        total = BigDecimal.ZERO;
         this.saleItemsDTO = new ArrayList<>();
         saleDate = DateUtil.format(new Date(), DateUtil.NORMAL_PATTERN);
     }
@@ -51,12 +50,8 @@ public class SaleDTO extends GenericDTO {
     }
 
     public void addSaleItem(SaleItemDTO saleItem) {
-        totalSale = totalSale.add(saleItem.getTotal());
+        total = total.add(saleItem.getTotal());
         saleItemsDTO.add(saleItem);
-    }
-
-    public BigDecimal getTotalSale() {
-        return totalSale;
     }
 
     public String getSaleDate() {
@@ -92,7 +87,7 @@ public class SaleDTO extends GenericDTO {
     }
 
     public BigDecimal getTotalPaid() {
-        return totalPaid;
+        return totalPaid == null ? new BigDecimal(0) : totalPaid;
     }
 
     public void setDueDate(String dueDate) {
@@ -129,5 +124,20 @@ public class SaleDTO extends GenericDTO {
 
     public void setGuidesDTO(List<GuideDTO> guidesDTO) {
         this.guidesDTO = guidesDTO;
+    }
+
+    public BigDecimal totalToPay() {
+        return total.subtract(getTotalPaid());
+    }
+
+    public void cleanItems() {
+        saleItemsDTO = new ArrayList<>();
+    }
+
+    public void removeAll(List<SaleItemDTO> items) {
+        for (SaleItemDTO saleItem : items) {
+            total = total.subtract(saleItem.getTotal());
+            saleItemsDTO.remove(saleItem);
+        }
     }
 }

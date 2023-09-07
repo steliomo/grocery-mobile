@@ -9,7 +9,7 @@ public interface ItemDelegate {
 
     void selectItemType(ItemType itemType);
 
-    List<ItemDTO> getItemsDTO();
+    List<ItemDTO> getItems();
 
     void selectedItem(ItemDTO itemDTO);
 

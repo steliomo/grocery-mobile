@@ -34,7 +34,7 @@ public class SalePrinterImpl implements SalePrinter {
         }
 
         printer.lineDivision('-');
-        printer.printBoldText("Total", FormatterUtil.mtFormat(saleDTO.getTotalSale()));
+        printer.printBoldText("Total", FormatterUtil.mtFormat(saleDTO.getTotal()));
         printer.printNewLine();
         printer.printText("Obrigado pela preferencia!");
         printer.printNewLine();

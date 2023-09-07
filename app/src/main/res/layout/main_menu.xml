@@ -44,7 +44,6 @@
             android:layout_height="wrap_content"
             android:background="#CFD8DC"
             android:padding="4dp"
-            android:text="TextView"
             android:textAlignment="center"
             android:textColor="#000"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -7,6 +7,7 @@ import android.view.View;
 
 import butterknife.ButterKnife;
 import mz.co.commandline.grocery.generics.listner.ClickListner;
+import mz.co.commandline.grocery.generics.listner.LongClickListner;
 
 public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
@@ -28,4 +29,8 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder implemen
     public abstract void bind(T t);
 
     public abstract void setItemClickListner(ClickListner listner);
+
+    public void setItemLongClickListner(LongClickListner listner) {
+        throw new RuntimeException("implement LongClickListner");
+    }
 }

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/orderImageView"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_add_order" />
+
+    <TextView
+        android:id="@+id/orderName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingTop="7dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="7dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/orderImageView"
+        app:layout_constraintTop_toTopOf="@+id/orderImageView"
+        tools:text="Carneiro Assado a gomes de sá" />
+
+    <TextView
+        android:id="@+id/orderQuantityLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/quantity_lbl"
+        app:layout_constraintBottom_toBottomOf="@+id/orderImageView"
+        app:layout_constraintEnd_toStartOf="@+id/orderQuantity"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toEndOf="@+id/orderImageView"
+        app:layout_constraintTop_toBottomOf="@+id/orderName"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/orderQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/orderQuantityLabel"
+        app:layout_constraintEnd_toStartOf="@+id/orderTotalLabel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/orderQuantityLabel"
+        app:layout_constraintTop_toTopOf="@+id/orderQuantityLabel"
+        tools:text="100,00" />
+
+    <TextView
+        android:id="@+id/orderTotalLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/value"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/orderQuantity"
+        app:layout_constraintEnd_toStartOf="@+id/orderTotal"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/orderQuantity"
+        app:layout_constraintTop_toTopOf="@+id/orderQuantity" />
+
+    <TextView
+        android:id="@+id/orderTotal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="200.000,00 MT"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/orderTotalLabel"
+        app:layout_constraintEnd_toEndOf="@+id/orderName"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toEndOf="@+id/orderTotalLabel"
+        app:layout_constraintTop_toTopOf="@+id/orderTotalLabel"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/orderSelectedImageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/select_view"
+        android:elevation="4dp"
+        android:src="@drawable/ic_selected"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/orderImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/orderImageView"
+        app:layout_constraintVertical_bias="0.2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

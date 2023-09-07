@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pos.fragment.PosAddOrdersFragment">
+
+    <View
+        android:id="@+id/addOrdersView"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/textview_borders"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/addOrdersCodeLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="5dp"
+        android:text="Código"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/addOrdersCode"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/addOrdersView"
+        app:layout_constraintTop_toTopOf="@+id/addOrdersView" />
+
+    <TextView
+        android:id="@+id/addOrdersCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/addOrdersCodeLabel"
+        app:layout_constraintEnd_toEndOf="@+id/addOrdersView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/addOrdersCodeLabel"
+        app:layout_constraintTop_toTopOf="@+id/addOrdersCodeLabel"
+        tools:text="#128393" />
+
+    <TextView
+        android:id="@+id/addOrdersOwnerLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/customer"
+        app:layout_constraintEnd_toEndOf="@+id/addOrdersCodeLabel"
+        app:layout_constraintStart_toStartOf="@+id/addOrdersCodeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/addOrdersCodeLabel" />
+
+    <TextView
+        android:id="@+id/addOrdersOwner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/addOrdersOwnerLabel"
+        app:layout_constraintEnd_toEndOf="@+id/addOrdersCode"
+        app:layout_constraintStart_toEndOf="@+id/addOrdersCodeLabel"
+        app:layout_constraintTop_toTopOf="@+id/addOrdersOwnerLabel"
+        tools:text="Alima Moiane" />
+
+    <TextView
+        android:id="@+id/addOrdersTotalLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Valor total"
+        app:layout_constraintEnd_toEndOf="@+id/addOrdersOwnerLabel"
+        app:layout_constraintStart_toStartOf="@+id/addOrdersOwnerLabel"
+        app:layout_constraintTop_toBottomOf="@+id/addOrdersOwnerLabel" />
+
+    <TextView
+        android:id="@+id/addOrdersTotal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/addOrdersTotalLabel"
+        app:layout_constraintEnd_toEndOf="@+id/addOrdersOwner"
+        app:layout_constraintStart_toEndOf="@+id/addOrdersOwnerLabel"
+        app:layout_constraintTop_toTopOf="@+id/addOrdersTotalLabel"
+        tools:text="10.530,00 MT" />
+
+    <TextView
+        android:id="@+id/addOrdersTotalPaidLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Valor total pago"
+        app:layout_constraintEnd_toEndOf="@+id/addOrdersTotalLabel"
+        app:layout_constraintStart_toStartOf="@+id/addOrdersTotalLabel"
+        app:layout_constraintTop_toBottomOf="@+id/addOrdersTotalLabel" />
+
+    <TextView
+        android:id="@+id/addOrdersTotalPaid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/addOrdersTotalPaidLabel"
+        app:layout_constraintEnd_toEndOf="@+id/addOrdersTotal"
+        app:layout_constraintStart_toEndOf="@+id/addOrdersTotalLabel"
+        app:layout_constraintTop_toTopOf="@+id/addOrdersTotalPaidLabel"
+        tools:text="3.000,00 MT" />
+
+    <TextView
+        android:id="@+id/addOrdersTotalToPayLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:padding="5dp"
+        android:text="Valor total a pagar"
+        app:layout_constraintBottom_toBottomOf="@+id/addOrdersView"
+        app:layout_constraintEnd_toEndOf="@+id/addOrdersTotalPaidLabel"
+        app:layout_constraintStart_toStartOf="@+id/addOrdersTotalPaidLabel"
+        app:layout_constraintTop_toBottomOf="@+id/addOrdersTotalPaidLabel" />
+
+    <TextView
+        android:id="@+id/addOrdersTotalToPay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/addOrdersTotalToPayLabel"
+        app:layout_constraintEnd_toEndOf="@+id/addOrdersTotalPaid"
+        app:layout_constraintStart_toEndOf="@+id/addOrdersTotalPaidLabel"
+        app:layout_constraintTop_toTopOf="@+id/addOrdersTotalToPayLabel"
+        tools:text="7.530,00 MT" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/addOrdersRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/addOrdersSelectBtn"
+        app:layout_constraintEnd_toEndOf="@+id/addOrdersView"
+        app:layout_constraintStart_toStartOf="@+id/addOrdersView"
+        app:layout_constraintTop_toBottomOf="@+id/addOrdersView"
+        tools:listitem="@layout/order" />
+
+    <Button
+        android:id="@+id/addOrdersSelectBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="8dp"
+        android:background="#017a84"
+        android:padding="8dp"
+        android:text="@string/select_order"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addOrdersRegistBtn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/addOrdersView" />
+
+    <Button
+        android:id="@+id/addOrdersRegistBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="#017a84"
+        android:padding="8dp"
+        android:text="@string/regist"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="@+id/addOrdersSelectBtn"
+        app:layout_constraintEnd_toEndOf="@+id/addOrdersView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/addOrdersSelectBtn"
+        app:layout_constraintTop_toTopOf="@+id/addOrdersSelectBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

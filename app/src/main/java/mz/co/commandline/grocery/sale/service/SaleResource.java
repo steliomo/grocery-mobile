@@ -33,4 +33,16 @@ public interface SaleResource {
 
     @GET("sales/fetch-sales-with-delivery-guides-by-customer/{customerUuid}")
     Call<SalesDTO> fetchSalesWithDeliveryGuidesByCustomer(@Path("customerUuid") String customerUuid);
+
+    @POST("sales/open-table")
+    Call<SaleDTO> processOpenTable(@Body SaleDTO table);
+
+    @GET("sales/fetch-opened-tables")
+    Call<SalesDTO> fetchOpenedTables(@Query("unitUuid") String unitUuid);
+
+    @POST("sales/regist-items")
+    Call<SaleDTO> registAddedItems(@Body SaleDTO sale);
+
+    @GET("sales/fetch-table-by-uuid/{tableUuid}")
+    Call<SaleDTO> fetchOpenedTableByUuid(@Path("tableUuid") String tableUuid);
 }

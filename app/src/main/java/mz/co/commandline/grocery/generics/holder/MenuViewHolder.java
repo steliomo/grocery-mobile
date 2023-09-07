@@ -33,7 +33,7 @@ public class MenuViewHolder extends BaseViewHolder<MenuItem> {
         this.menuItem = menuItem;
         imageView.setImageResource(menuItem.getIconId());
         textView.setText(menuItem.getTitle());
-        numenberView.setText("#" + menuItem.getNumber());
+        numenberView.setText("#" + menuItem.getNumber() % 100);
 
         if (menuItem.getNumber() == 0) {
             numenberView.setVisibility(View.GONE);

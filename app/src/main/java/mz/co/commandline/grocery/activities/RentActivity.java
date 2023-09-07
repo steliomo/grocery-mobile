@@ -797,7 +797,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
     }
 
     @Override
-    public List<ItemDTO> getItemsDTO() {
+    public List<ItemDTO> getItems() {
         return items;
     }
 

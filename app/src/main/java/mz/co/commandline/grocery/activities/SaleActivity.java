@@ -466,7 +466,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
     }
 
     @Override
-    public List<ItemDTO> getItemsDTO() {
+    public List<ItemDTO> getItems() {
         return itemsDTO;
     }
 

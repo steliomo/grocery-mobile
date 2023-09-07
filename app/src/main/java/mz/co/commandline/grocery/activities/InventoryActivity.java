@@ -319,7 +319,7 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
     }
 
     @Override
-    public List<ItemDTO> getItemsDTO() {
+    public List<ItemDTO> getItems() {
         return new ArrayList<>(productsDTO);
     }
 

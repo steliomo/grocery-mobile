@@ -300,7 +300,7 @@ public class SaleableActivity extends BaseAuthActivity implements View.OnClickLi
     }
 
     @Override
-    public List<ItemDTO> getItemsDTO() {
+    public List<ItemDTO> getItems() {
         return items;
     }
 

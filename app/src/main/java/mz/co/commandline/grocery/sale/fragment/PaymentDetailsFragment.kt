@@ -32,7 +32,7 @@ class PaymentDetailsFragment : BaseFragment(), View.OnClickListener {
         delegate = activity as SaleDelegate
 
         sale = delegate?.sale
-        binding.salePaymentDetailsTotalAmountValue.text = FormatterUtil.mtFormat(sale?.totalSale)
+        binding.salePaymentDetailsTotalAmountValue.text = FormatterUtil.mtFormat(sale?.total)
         binding.salePaymentDetailsCustomerName.text = sale?.customerDTO?.name
 
         validators = listOf(DateValidator(activity, binding.salePaymentDetailsDueDate, false, true))

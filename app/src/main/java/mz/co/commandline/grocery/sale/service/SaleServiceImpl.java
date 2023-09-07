@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
 import mz.co.commandline.grocery.sale.dto.SalePaymentDTO;
+import mz.co.commandline.grocery.sale.dto.SaleStatus;
 import mz.co.commandline.grocery.sale.dto.SalesDTO;
 import mz.co.commandline.grocery.generics.service.AbstractService;
 import mz.co.commandline.grocery.generics.service.RetrofitService;
@@ -157,6 +158,86 @@ public class SaleServiceImpl extends AbstractService implements SaleService {
 
             @Override
             public void onFailure(Call<SalesDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void processOpenTable(SaleDTO table, ResponseListner<SaleDTO> responseListner) {
+        getResource().processOpenTable(table).enqueue(new Callback<SaleDTO>() {
+            @Override
+            public void onResponse(Call<SaleDTO> call, Response<SaleDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<SaleDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void fetchOpenedTables(String unitUuid, ResponseListner<SalesDTO> responseListner) {
+        getResource().fetchOpenedTables(unitUuid).enqueue(new Callback<SalesDTO>() {
+            @Override
+            public void onResponse(Call<SalesDTO> call, Response<SalesDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<SalesDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void registAddedItems(SaleDTO table, ResponseListner<SaleDTO> responseListner) {
+        getResource().registAddedItems(table).enqueue(new Callback<SaleDTO>() {
+            @Override
+            public void onResponse(Call<SaleDTO> call, Response<SaleDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<SaleDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void fetchOpenedTableByUuid(String tableUuid, ResponseListner<SaleDTO> responseListner) {
+        getResource().fetchOpenedTableByUuid(tableUuid).enqueue(new Callback<SaleDTO>() {
+            @Override
+            public void onResponse(Call<SaleDTO> call, Response<SaleDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<SaleDTO> call, Throwable t) {
                 responseListner.error(t.getMessage());
             }
         });

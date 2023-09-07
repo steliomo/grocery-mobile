@@ -1,16 +1,12 @@
 package mz.co.commandline.grocery.item.fragment;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
@@ -50,7 +46,7 @@ public class ProductFragment extends BaseFragment implements ClickListner<ItemDT
         delegate = (ItemDelegate) getActivity();
         setTitle(toolBar);
 
-        adapter = new ProductAdapter(getActivity(), delegate.getItemsDTO());
+        adapter = new ProductAdapter(getActivity(), delegate.getItems());
         adapter.setItemClickListner(this);
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);

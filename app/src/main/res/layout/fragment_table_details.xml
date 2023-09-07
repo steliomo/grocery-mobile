@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pos.fragment.TableDetailsFragment">
+
+    <View
+        android:id="@+id/tableDetailsView"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/textview_borders"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tableDetailsCodeLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="5dp"
+        android:text="Código"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tableDetailsCode"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/tableDetailsView"
+        app:layout_constraintTop_toTopOf="@+id/tableDetailsView" />
+
+    <TextView
+        android:id="@+id/tableDetailsCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tableDetailsCodeLabel"
+        app:layout_constraintEnd_toEndOf="@+id/tableDetailsView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tableDetailsCodeLabel"
+        app:layout_constraintTop_toTopOf="@+id/tableDetailsCodeLabel"
+        tools:text="#128393" />
+
+    <TextView
+        android:id="@+id/tableDetailsOwnerLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/customer"
+        app:layout_constraintEnd_toEndOf="@+id/tableDetailsCodeLabel"
+        app:layout_constraintStart_toStartOf="@+id/tableDetailsCodeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tableDetailsCodeLabel" />
+
+    <TextView
+        android:id="@+id/tableDetailsOwner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/tableDetailsOwnerLabel"
+        app:layout_constraintEnd_toEndOf="@+id/tableDetailsCode"
+        app:layout_constraintStart_toEndOf="@+id/tableDetailsCodeLabel"
+        app:layout_constraintTop_toTopOf="@+id/tableDetailsOwnerLabel"
+        tools:text="Alima Moiane" />
+
+    <TextView
+        android:id="@+id/tableDetailsTotalLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Valor total"
+        app:layout_constraintEnd_toEndOf="@+id/tableDetailsOwnerLabel"
+        app:layout_constraintStart_toStartOf="@+id/tableDetailsOwnerLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tableDetailsOwnerLabel" />
+
+    <TextView
+        android:id="@+id/tableDetailsTotal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/tableDetailsTotalLabel"
+        app:layout_constraintEnd_toEndOf="@+id/tableDetailsOwner"
+        app:layout_constraintStart_toEndOf="@+id/tableDetailsOwnerLabel"
+        app:layout_constraintTop_toTopOf="@+id/tableDetailsTotalLabel"
+        tools:text="10.530,00 MT" />
+
+    <TextView
+        android:id="@+id/tableDetailsTotalPaidLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Valor total pago"
+        app:layout_constraintEnd_toEndOf="@+id/tableDetailsTotalLabel"
+        app:layout_constraintStart_toStartOf="@+id/tableDetailsTotalLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tableDetailsTotalLabel" />
+
+    <TextView
+        android:id="@+id/tableDetailsTotalPaid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/tableDetailsTotalPaidLabel"
+        app:layout_constraintEnd_toEndOf="@+id/tableDetailsTotal"
+        app:layout_constraintStart_toEndOf="@+id/tableDetailsTotalLabel"
+        app:layout_constraintTop_toTopOf="@+id/tableDetailsTotalPaidLabel"
+        tools:text="3.000,00 MT" />
+
+    <TextView
+        android:id="@+id/tableDetailsTotalToPayLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:padding="5dp"
+        android:text="Valor total a pagar"
+        app:layout_constraintBottom_toBottomOf="@+id/tableDetailsView"
+        app:layout_constraintEnd_toEndOf="@+id/tableDetailsTotalPaidLabel"
+        app:layout_constraintStart_toStartOf="@+id/tableDetailsTotalPaidLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tableDetailsTotalPaidLabel" />
+
+    <TextView
+        android:id="@+id/tableDetailsTotalToPay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/tableDetailsTotalToPayLabel"
+        app:layout_constraintEnd_toEndOf="@+id/tableDetailsTotalPaid"
+        app:layout_constraintStart_toEndOf="@+id/tableDetailsTotalPaidLabel"
+        app:layout_constraintTop_toTopOf="@+id/tableDetailsTotalToPayLabel"
+        tools:text="7.530,00 MT" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tableDetailsRecycleview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tableDetailsView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tableDetailsView"
+        app:layout_constraintTop_toBottomOf="@+id/tableDetailsView"
+        app:layout_constraintVertical_bias="0.0"
+        app:spanCount="2"
+        tools:listitem="@layout/main_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

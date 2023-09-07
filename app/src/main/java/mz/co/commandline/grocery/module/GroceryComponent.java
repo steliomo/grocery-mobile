@@ -10,6 +10,7 @@ import mz.co.commandline.grocery.activities.ExpenseActivity;
 import mz.co.commandline.grocery.activities.InventoryActivity;
 import mz.co.commandline.grocery.activities.LoginActivity;
 import mz.co.commandline.grocery.activities.MainActivity;
+import mz.co.commandline.grocery.activities.PosActivity;
 import mz.co.commandline.grocery.activities.RentActivity;
 import mz.co.commandline.grocery.activities.SaleableActivity;
 import mz.co.commandline.grocery.activities.ReportActivity;
@@ -38,4 +39,6 @@ public interface GroceryComponent {
     void inject(RentActivity activity);
 
     void inject(ContractActivity activity);
+
+    void inject(PosActivity activity);
 }

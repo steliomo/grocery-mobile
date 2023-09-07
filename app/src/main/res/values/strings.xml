@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Negócio na Mão</string>
-    <string name="app_version">© 2023 © v2.8.0</string>
+    <string name="app_version">© 2023 © v2.9.0</string>
     <string name="sales">Vendas</string>
     <string name="reports">Relatórios</string>
     <string name="products_and_services">Produtos e Serviços</string>
@@ -142,7 +142,7 @@
     <string name="rent_registed_with_success">O aluguer foi registado com sucesso!</string>
     <string name="error_on_registing_rent">Ocorreu um erro ao registar ao aluguer. Por favor tente novamente.</string>
     <string name="error_loading_rents">Ocorreu um erro ao carregar alugueres. Tente novamente!</string>
-    <string name="payment_regist">Registo de pagamentos</string>
+    <string name="payment_regist">Registar de pagamento</string>
     <string name="payment_success">Pagamento realizado com sucesso!</string>
     <string name="payment_error">Ocorreu um erro no pagamento do aluguer. Tente novamente!</string>
     <string name="unit_without_pending_payments">Unidade sem pagamentos pendentes!</string>
@@ -241,4 +241,18 @@
     <string name="customer_whatsapp">WhatsApp</string>
     <string name="open">Abrir</string>
     <string name="open_table">Abrir a mesa</string>
+    <string name="table_was_successfully_opened">A mesa foi aberta com sucesso! Adicione os pedidos.</string>
+    <string name="there_was_an_error_opening_table">Ocorreu um erro ao abrir a mesa! Por favor tente novamente</string>
+    <string name="there_was_an_error_loading_tables">Ocorreu um erro ao carregar a(s) mesa(s)!</string>
+    <string name="pos_table_details">Detalhes da Mesa</string>
+    <string name="add_order">Adicionar pedido</string>
+    <string name="print_bill">Imprimir a conta</string>
+    <string name="select_order">Seleccionar pedido</string>
+    <string name="order_item">Item do pedido</string>
+    <string name="pos_orders_successfully_added">Pedido(s) adicionado(s) com sucesso!</string>
+    <string name="there_was_an_error_adding_orders">Ocorreu um erro ao adicionar pedidos. Tente novamente.</string>
+    <string name="add_orders">Adicione o(s) pedido(s)</string>
+    <string name="printer_not_connected">Connecte a impressora e tente novamente</string>
+    <string name="install_whatsapp">Instale o aplicativo WhatsApp</string>
+    <string name="whatsapp_receipt_under_development">O envio de recibos para o WhatsApp está em desenvolvimento. Use a impressora!</string>
 </resources>

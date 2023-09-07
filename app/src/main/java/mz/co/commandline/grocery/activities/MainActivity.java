@@ -41,7 +41,6 @@ import mz.co.commandline.grocery.payment.fragment.MpesaPaymentFragment;
 import mz.co.commandline.grocery.payment.fragment.PaymentConfirmationFragment;
 import mz.co.commandline.grocery.payment.fragment.PaymentFragment;
 import mz.co.commandline.grocery.payment.service.PaymentService;
-import mz.co.commandline.grocery.pos.fragment.OpenTableFragment;
 import mz.co.commandline.grocery.sale.dto.SalesDTO;
 import mz.co.commandline.grocery.sale.service.SaleService;
 import mz.co.commandline.grocery.user.dto.UnitDetail;

@@ -3,6 +3,7 @@ package mz.co.commandline.grocery.sale.fragment;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -38,7 +39,7 @@ public class SaleRegistFragment extends BaseFragment {
         saleDelegate = (SaleDelegate) getActivity();
         SaleDTO sale = saleDelegate.getSale();
 
-        totalSale.setText(FormatterUtil.mtFormat(sale.getTotalSale()));
+        totalSale.setText(FormatterUtil.mtFormat(sale.getTotal()));
         SaleItemAdapter adapter = new SaleItemAdapter(getActivity(), sale.getItems());
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
