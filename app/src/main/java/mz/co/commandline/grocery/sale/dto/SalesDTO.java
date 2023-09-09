@@ -1,6 +1,7 @@
 package mz.co.commandline.grocery.sale.dto;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SalesDTO {
@@ -38,6 +39,6 @@ public class SalesDTO {
     }
 
     public List<SaleDTO> getSalesDTO() {
-        return salesDTO;
+        return salesDTO == null ? new ArrayList<>() : salesDTO;
     }
 }
