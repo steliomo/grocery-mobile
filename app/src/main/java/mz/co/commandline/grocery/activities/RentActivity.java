@@ -7,7 +7,6 @@ import android.view.View;
 import androidx.appcompat.widget.Toolbar;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -630,7 +629,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.transport_guide_successfuly_issued), () -> {
                     resetFragment();
                     showFragment(new MenuFragment(), Boolean.FALSE);
-                    downLoadFile(fileService, response.getFilePath());
+                    downLoadFile(fileService, response.getFilename());
                 });
             }
 
@@ -676,7 +675,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.return_guide_was_successfully_issued), () -> {
                     resetFragment();
                     showFragment(new MenuFragment(), Boolean.FALSE);
-                    downLoadFile(fileService, response.getFilePath());
+                    downLoadFile(fileService, response.getFilename());
                 });
             }
 
@@ -723,7 +722,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.guide_re_issued_success), () -> {
                     resetFragment();
                     showFragment(new MenuFragment(), Boolean.FALSE);
-                    downLoadFile(fileService, response.getFilePath());
+                    downLoadFile(fileService, response.getFilename());
                 });
             }
 

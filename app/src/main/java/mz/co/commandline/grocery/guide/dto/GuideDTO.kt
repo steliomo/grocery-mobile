@@ -8,7 +8,7 @@ class GuideDTO() : GenericDTO() {
 
     var guideItemsDTO = mutableListOf<GuideItemDTO>()
 
-    var filePath: String? = null
+    var filename: String? = null
 
     var issueDate: String? = null
 

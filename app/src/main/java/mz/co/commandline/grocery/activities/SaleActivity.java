@@ -331,7 +331,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.delivered_guide_successfuly_issued), () -> {
                     resetFragment();
                     showFragment(new MenuFragment(), Boolean.FALSE);
-                    downLoadFile(fileService, response.getFilePath());
+                    downLoadFile(fileService, response.getFilename());
                 });
             }
 
@@ -803,7 +803,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.guide_re_issued_success), () -> {
                     resetFragment();
                     showFragment(new MenuFragment(), Boolean.FALSE);
-                    downLoadFile(fileService, response.getFilePath());
+                    downLoadFile(fileService, response.getFilename());
                 });
             }
 

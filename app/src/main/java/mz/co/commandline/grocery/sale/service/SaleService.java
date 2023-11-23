@@ -29,4 +29,6 @@ public interface SaleService {
     void registAddedItems(SaleDTO table, ResponseListner<SaleDTO> responseListner);
 
     void fetchOpenedTableByUuid(String tableUuid, ResponseListner<SaleDTO> responseListner);
+
+    void sendTableBill(SaleDTO table, ResponseListner<SaleDTO> responseListner);
 }

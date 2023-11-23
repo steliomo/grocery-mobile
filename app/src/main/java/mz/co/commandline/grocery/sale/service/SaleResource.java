@@ -45,4 +45,7 @@ public interface SaleResource {
 
     @GET("sales/fetch-table-by-uuid/{tableUuid}")
     Call<SaleDTO> fetchOpenedTableByUuid(@Path("tableUuid") String tableUuid);
+
+    @POST("sales/send-table-bill")
+    Call<SaleDTO> sendTableBill(@Body SaleDTO table);
 }
