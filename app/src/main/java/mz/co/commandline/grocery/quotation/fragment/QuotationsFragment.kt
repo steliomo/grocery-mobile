@@ -10,6 +10,7 @@ import mz.co.commandline.grocery.generics.fragment.BaseFragment
 import mz.co.commandline.grocery.generics.listner.ClickListner
 import mz.co.commandline.grocery.quotation.adapter.QuotationAdapter
 import mz.co.commandline.grocery.quotation.delegate.QuotationDelegate
+import mz.co.commandline.grocery.quotation.delegate.VisualiseQuotationDelegate
 import mz.co.commandline.grocery.quotation.dto.QuotationDTO
 
 class QuotationsFragment : BaseFragment(), ClickListner<QuotationDTO> {
@@ -17,7 +18,7 @@ class QuotationsFragment : BaseFragment(), ClickListner<QuotationDTO> {
     private var _binding: FragmentQuotationsBinding? = null
     private val binding get() = _binding!!
 
-    private var _delegate: QuotationDelegate? = null
+    private var _delegate: VisualiseQuotationDelegate? = null
     private val delegate get() = _delegate!!
 
     override fun getResourceId(): Int {
@@ -25,7 +26,7 @@ class QuotationsFragment : BaseFragment(), ClickListner<QuotationDTO> {
     }
 
     override fun onCreateView() {
-        _delegate = activity as QuotationDelegate
+        _delegate = activity as VisualiseQuotationDelegate
         val adapter = QuotationAdapter(activity, delegate.quotations())
         adapter.setItemClickListner(this)
 

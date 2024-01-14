@@ -39,6 +39,8 @@ public class SaleDTO extends GenericDTO {
 
     private List<GuideDTO> guidesDTO;
 
+    private int tableNumber;
+
     public SaleDTO() {
         total = BigDecimal.ZERO;
         this.saleItemsDTO = new ArrayList<>();
@@ -139,5 +141,13 @@ public class SaleDTO extends GenericDTO {
             total = total.subtract(saleItem.getTotal());
             saleItemsDTO.remove(saleItem);
         }
+    }
+
+    public void setTableNumber(int tableNumber) {
+        this.tableNumber = tableNumber;
+    }
+
+    public int getTableNumber() {
+        return tableNumber;
     }
 }

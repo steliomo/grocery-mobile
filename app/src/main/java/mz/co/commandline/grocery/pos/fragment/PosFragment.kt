@@ -35,7 +35,7 @@ class PosFragment : BaseFragment(), ClickListner<MenuItem> {
 
         tables.forEach { table ->
             val menuItem = MenuItem(R.string.pos, R.mipmap.ic_table)
-            menuItem.number = (table.id).toInt()
+            menuItem.number = table.tableNumber
             menuItems.add(menuItem)
         }
 
@@ -48,7 +48,7 @@ class PosFragment : BaseFragment(), ClickListner<MenuItem> {
     }
 
     override fun getTitle(): String {
-        return getString(R.string.sales)
+        return getString(R.string.pos_opened_tables)
     }
 
     override fun getView(inflater: LayoutInflater, container: ViewGroup?): View {
@@ -62,7 +62,7 @@ class PosFragment : BaseFragment(), ClickListner<MenuItem> {
     }
 
     override fun onClickListner(menuItem: MenuItem?) {
-        val table = tables.find { table -> table.id.toInt() == menuItem!!.number }
+        val table = tables.find { table -> table.tableNumber == menuItem!!.number }
 
         delegate.selectedTable(table)
     }

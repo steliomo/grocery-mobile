@@ -33,7 +33,7 @@ public class CustomerViewHolder extends BaseViewHolder<CustomerDTO> {
     @Override
     public void bind(CustomerDTO customerDTO) {
         this.customer = customerDTO;
-        icon.setText(String.valueOf(customerDTO.getName().charAt(BigDecimal.ZERO.intValue())));
+        icon.setText(String.valueOf(customerDTO.getName().charAt(BigDecimal.ZERO.intValue())).toUpperCase());
         name.setText(customerDTO.getName());
         phoneNumber.setText(customerDTO.getContact());
     }

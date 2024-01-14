@@ -27,9 +27,9 @@ class PosPaymentFragment : BaseFragment(), View.OnClickListener {
 
     override fun onCreateView() {
         delegate = activity as PosDelegate
-        val table = delegate!!.getSelectedTable()
+        val table = delegate!!.getTable()
 
-        binding.posPaymentCode.text = "#" + table.id
+        binding.posPaymentCode.text = "#" + table.tableNumber.toString().padStart(2, '0')
         binding.posPaymentOwner.text = table.customerDTO.name
         binding.posPaymentTotal.text = FormatterUtil.mtFormat(table.total)
         binding.posPaymentTotalPaid.text = FormatterUtil.mtFormat(table.totalPaid)
@@ -53,7 +53,7 @@ class PosPaymentFragment : BaseFragment(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-        val table = delegate!!.getSelectedTable()
+        val table = delegate!!.getTable()
         val validator = UnexpectedValuesValidator(binding.posPaymentValue, table.totalToPay(), getString(R.string.payment_value_unexpected))
 
         if (!validator!!.isValid) {

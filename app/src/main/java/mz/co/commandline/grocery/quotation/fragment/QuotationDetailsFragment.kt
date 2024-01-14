@@ -9,6 +9,7 @@ import mz.co.commandline.grocery.databinding.FragmentQuotationDetailsBinding
 import mz.co.commandline.grocery.generics.fragment.BaseFragment
 import mz.co.commandline.grocery.quotation.adapter.ItemAdapter
 import mz.co.commandline.grocery.quotation.delegate.QuotationDelegate
+import mz.co.commandline.grocery.quotation.delegate.VisualiseQuotationDelegate
 import mz.co.commandline.grocery.util.FormatterUtil
 
 
@@ -24,6 +25,7 @@ class QuotationDetailsFragment : BaseFragment() {
 
     override fun onCreateView() {
         val delegate = activity as QuotationDelegate
+        val visualiseQuotationDelegate = activity as VisualiseQuotationDelegate
         val quotation = delegate.quotation()
 
         binding.quotationDetailsDate.text = quotation.issueDate
@@ -36,7 +38,7 @@ class QuotationDetailsFragment : BaseFragment() {
         quotationItemRecyclerView.adapter = ItemAdapter(activity, quotation.items)
         quotationItemRecyclerView.addItemDecoration(DividerItemDecoration(quotationItemRecyclerView.context, DividerItemDecoration.VERTICAL))
 
-        binding.reIssueQuotationBtn.setOnClickListener { delegate.reIssueQuotation() }
+        binding.reIssueQuotationBtn.setOnClickListener { visualiseQuotationDelegate.reIssueQuotation() }
     }
 
     override fun getView(inflater: LayoutInflater, container: ViewGroup?): View {

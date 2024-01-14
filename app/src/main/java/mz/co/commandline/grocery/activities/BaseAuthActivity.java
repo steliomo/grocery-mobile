@@ -89,4 +89,12 @@ public abstract class BaseAuthActivity extends BaseActivity {
         startActivity(chooser);
     }
 
+
+    public void sleep(long seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

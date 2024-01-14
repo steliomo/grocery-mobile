@@ -8,7 +8,12 @@ import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -23,6 +28,7 @@ import mz.co.commandline.grocery.customer.model.CustomersDTO;
 import mz.co.commandline.grocery.customer.service.CustomerService;
 import mz.co.commandline.grocery.files.FileService;
 import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
+import mz.co.commandline.grocery.generics.dto.Action;
 import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.guide.delegate.GuideDelegate;
@@ -43,6 +49,13 @@ import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.guide.dto.GuideDTO;
 import mz.co.commandline.grocery.guide.dto.GuideItemDTO;
 import mz.co.commandline.grocery.guide.dto.GuideType;
+import mz.co.commandline.grocery.quotation.delegate.IssueQuotationDelegate;
+import mz.co.commandline.grocery.quotation.delegate.QuotationDelegate;
+import mz.co.commandline.grocery.quotation.dto.QuotationDTO;
+import mz.co.commandline.grocery.quotation.dto.QuotationItemDTO;
+import mz.co.commandline.grocery.quotation.dto.QuotationType;
+import mz.co.commandline.grocery.quotation.fragment.QuotationFragment;
+import mz.co.commandline.grocery.quotation.service.QuotationService;
 import mz.co.commandline.grocery.sale.delegate.SaleDelegate;
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
 import mz.co.commandline.grocery.sale.dto.SaleItemDTO;
@@ -55,11 +68,14 @@ import mz.co.commandline.grocery.sale.fragment.DeliveryItemFragment;
 import mz.co.commandline.grocery.sale.fragment.ItemTypeFragment;
 import mz.co.commandline.grocery.sale.fragment.PaymentDetailsFragment;
 import mz.co.commandline.grocery.sale.fragment.SalePaymentFragment;
+import mz.co.commandline.grocery.sale.fragment.SaleQuotationDetailsFragment;
 import mz.co.commandline.grocery.sale.fragment.SaleRegistFragment;
 import mz.co.commandline.grocery.sale.fragment.SalesFragment;
 import mz.co.commandline.grocery.sale.service.SaleService;
 import mz.co.commandline.grocery.saleable.delegate.SaleableItemDelegate;
 import mz.co.commandline.grocery.saleable.dto.SaleableItemDTO;
+import mz.co.commandline.grocery.saleable.dto.ServiceItemDTO;
+import mz.co.commandline.grocery.saleable.dto.StockDTO;
 import mz.co.commandline.grocery.saleable.fragment.StockFragment;
 import mz.co.commandline.grocery.saleable.service.SaleableItemService;
 import mz.co.commandline.grocery.saleable.service.StockService;
@@ -75,8 +91,9 @@ import mz.co.commandline.grocery.util.alert.Option;
 import mz.co.commandline.grocery.util.alert.OptionDialog;
 import mz.co.commandline.grocery.util.alert.PrinterDialog;
 import mz.co.commandline.grocery.util.alert.SaleTypeDialog;
+import okhttp3.ResponseBody;
 
-public class SaleActivity extends BaseAuthActivity implements SaleDelegate, SaleableItemDelegate, View.OnClickListener, ItemDelegate, CustomerDelegate, MenuDelegate, GuideDelegate {
+public class SaleActivity extends BaseAuthActivity implements SaleDelegate, SaleableItemDelegate, View.OnClickListener, ItemDelegate, CustomerDelegate, MenuDelegate, GuideDelegate, QuotationDelegate, IssueQuotationDelegate {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -107,6 +124,9 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
     @Inject
     FileService fileService;
+
+    @Inject
+    QuotationService quotationService;
 
     private ProgressDialog progressBar;
 
@@ -148,6 +168,10 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
     private SalePrinter salePrinter;
 
+    private QuotationDTO quotation;
+
+    private Action action;
+
     @Override
     public void onGroceryCreate(Bundle bundle) {
         setContentView(R.layout.activity_sale);
@@ -169,20 +193,43 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
         menu.addMenuItem(new MenuItem(R.string.sale_regist, R.mipmap.ic_sale));
         menu.addMenuItem(new MenuItem(R.string.payments, R.mipmap.ic_payment));
         menu.addMenuItem(new MenuItem(R.string.delivery_guides, R.mipmap.ic_delivery));
+        menu.addMenuItem(new MenuItem(R.string.quotation, R.mipmap.ic_quotation));
 
         optionDialog = new OptionDialog(this);
         printerDialog = new PrinterDialog(this);
-
-        salePrinter = new SalePrinterImpl();
 
         showFragment(new MenuFragment(), Boolean.FALSE);
     }
 
     @Override
     public void addSaleItem(SaleItemDTO saleItem) {
-        sale.addSaleItem(saleItem);
-        resetFragment();
-        showFragment(new SaleRegistFragment(), Boolean.FALSE);
+
+        switch (action) {
+            case SALE:
+                sale.addSaleItem(saleItem);
+                resetFragment();
+                showFragment(new SaleRegistFragment(), Boolean.TRUE);
+                break;
+
+            case QUOTATION:
+                QuotationItemDTO quotationItemDTO = new QuotationItemDTO(new QuotationDTO(QuotationType.SALE), saleItem.getSaleableItemDTO().getSalableItemType().getIconId());
+                quotationItemDTO.setQuantity(saleItem.getQuantity());
+
+                switch (saleItem.getSaleableItemDTO().getSalableItemType()) {
+                    case PRODUCT:
+                        quotationItemDTO.setStockDTO((StockDTO) saleItem.getSaleableItemDTO());
+                        break;
+
+                    case SERVICE:
+                        quotationItemDTO.setServiceItemDTO((ServiceItemDTO) saleItem.getSaleableItemDTO());
+                        break;
+                }
+
+                quotation.addItem(quotationItemDTO);
+                resetFragment();
+                showFragment(new QuotationFragment(), Boolean.TRUE);
+                break;
+        }
     }
 
     @Override
@@ -404,13 +451,21 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
                     @Override
                     public void perform() {
                         resetFragment();
+
                         showFragment(new MenuFragment(), Boolean.FALSE);
+
+                        salePrinter = new SalePrinterImpl();
 
                         if (!salePrinter.hasDevice()) {
                             return;
                         }
+
                         printerDialog.dialog(option -> {
                             salePrinter.printReceipt(sale, BitmapFactory.decodeResource(getResources(), R.drawable.ic_logo));
+
+                            sleep(2);
+
+                            salePrinter.closeConnection();
                         });
                     }
                 });
@@ -568,6 +623,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
         this.customerDTO = customerDTO;
 
         switch (selectecMenu) {
+
             case R.mipmap.ic_payment:
                 loadPendingOrIncompletePaymentSales(customerDTO);
                 break;
@@ -584,6 +640,11 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
                 } else {
                     loadSalesWithDeliveryGuidesByCustomer(customerDTO);
                 }
+                break;
+
+            case R.mipmap.ic_quotation:
+                quotation.setCustomerDTO(customerDTO);
+                showFragment(new SaleQuotationDetailsFragment(), Boolean.TRUE);
                 break;
         }
     }
@@ -657,22 +718,30 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
     @Override
     public void onClickMenuItem(MenuItem menuItem) {
+        itemsDTO = new ArrayList<>();
+
         switch (menuItem.getIconId()) {
+
             case R.mipmap.ic_sale:
                 selectecMenu = R.mipmap.ic_sale;
+                action = Action.SALE;
                 sale = new SaleDTO();
                 showFragment(new SaleRegistFragment(), Boolean.TRUE);
                 break;
 
             case R.mipmap.ic_payment:
                 selectecMenu = R.mipmap.ic_payment;
+                action = Action.SALE_PAYMENT;
                 loadCustomersWithPendingOrIncompleteSalesPayment();
                 break;
 
             case R.mipmap.ic_delivery:
                 selectecMenu = R.mipmap.ic_delivery;
+                action = Action.DELIVERY_GUIDE;
+
                 optionDialog.dialog(getString(R.string.delivery_guides), R.mipmap.ic_delivery, option -> {
                     this.option = option;
+
                     switch (option) {
                         case ISSUE:
                             loadCustomersWithPendingOrIncompleteDeliveryStatusSaleByUnit();
@@ -682,6 +751,13 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
                             break;
                     }
                 });
+                break;
+
+            case R.mipmap.ic_quotation:
+                selectecMenu = R.mipmap.ic_quotation;
+                action = Action.QUOTATION;
+                quotation = new QuotationDTO(QuotationType.SALE);
+                showFragment(new QuotationFragment(), Boolean.TRUE);
                 break;
         }
     }
@@ -826,8 +902,59 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (salePrinter.hasDevice()) {
+        if (salePrinter != null && salePrinter.hasDevice()) {
             salePrinter.closeConnection();
         }
+    }
+
+    @NotNull
+    @Override
+    public QuotationDTO quotation() {
+        return quotation;
+    }
+
+    @Override
+    public void quote() {
+        if (quotation.getItems().isEmpty()) {
+            dialogManager.dialog(AlertType.INFO, getString(R.string.select_items), null);
+            return;
+        }
+
+        loadCustomers();
+    }
+
+    @Override
+    public void issue() {
+        progressBar.show();
+        quotation.setUnitDTO(userService.getUnitDTO());
+        quotationService.issueQuotation(quotation, new ResponseListner<QuotationDTO>() {
+            @Override
+            public void success(final QuotationDTO response) {
+                fileService.loadPdfFile(response.getName(), new ResponseListner<ResponseBody>() {
+                    @Override
+                    public void success(final ResponseBody body) {
+                        progressBar.dismiss();
+                        dialogManager.dialog(AlertType.SUCCESS, getString(R.string.quotation_successfuly_processed), () -> {
+                            displayFile(body, response.getName());
+                            resetFragment();
+                            showFragment(new MenuFragment(), Boolean.FALSE);
+                        });
+                    }
+
+                    @Override
+                    public void error(String message) {
+                        progressBar.dismiss();
+                        dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_quotation), null);
+                    }
+                });
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_processing_quotation), null);
+                Log.e("PROCESSING_QUOTATION", message);
+            }
+        });
     }
 }

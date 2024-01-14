@@ -21,8 +21,8 @@ import retrofit2.Response;
 public class UserServiceImpl extends AbstractService implements UserService {
 
     private static final String TOKEN = "TOKEN";
-    private static final String GROCERY = "GROCERY";
-    private static final String GROCERY_USER = "GROCERY_USER";
+    private static final String UNIT = "UNIT";
+    private static final String UNIT_USER = "UNIT_USER";
     private static final String FULL_NAME = "FULL_NAME";
 
     @Inject
@@ -60,8 +60,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
                     String token = prepareToken(username, password);
 
                     preferencesManager.storeString(TOKEN, token);
-                    preferencesManager.storeString(GROCERY, userDTO.getUnitUserDTO().getUnitDTO().toString());
-                    preferencesManager.storeString(GROCERY_USER, userDTO.getUnitUserDTO().toString());
+                    preferencesManager.storeString(UNIT, userDTO.getUnitUserDTO().getUnitDTO().toString());
+                    preferencesManager.storeString(UNIT_USER, userDTO.getUnitUserDTO().toString());
                     preferencesManager.storeString(FULL_NAME, userDTO.getFullName());
 
                     return;
@@ -97,23 +97,24 @@ public class UserServiceImpl extends AbstractService implements UserService {
     @Override
     public UnitUserDTO getUnitUser() {
 
-        String groceryString = preferencesManager.getString(GROCERY);
-        String groceryUserString = preferencesManager.getString(GROCERY_USER);
+        String groceryString = preferencesManager.getString(UNIT);
+        String groceryUserString = preferencesManager.getString(UNIT_USER);
 
         String[] split = groceryString.split("_");
-        UnitDTO groceryDTO = new UnitDTO();
-        groceryDTO.setId(Long.valueOf(split[0]));
-        groceryDTO.setUuid(split[1]);
-        groceryDTO.setName(split[2]);
-        groceryDTO.setPhoneNumber(split[3]);
+        UnitDTO unitDTO = new UnitDTO();
+        unitDTO.setId(Long.valueOf(split[0]));
+        unitDTO.setUuid(split[1]);
+        unitDTO.setName(split[2]);
+        unitDTO.setPhoneNumber(split[3]);
+        unitDTO.setNumberOfTables(Integer.valueOf(split[4]));
 
-        UnitUserDTO groceryUserDTO = new UnitUserDTO();
+        UnitUserDTO unitUserDTO = new UnitUserDTO();
         String[] groceryUserSplit = groceryUserString.split("_");
-        groceryUserDTO.setUnitDTO(groceryDTO);
-        groceryUserDTO.setUserRole(UserRole.valueOf(groceryUserSplit[0]));
-        groceryUserDTO.setExpiryDate(groceryUserSplit[1]);
+        unitUserDTO.setUnitDTO(unitDTO);
+        unitUserDTO.setUserRole(UserRole.valueOf(groceryUserSplit[0]));
+        unitUserDTO.setExpiryDate(groceryUserSplit[1]);
 
-        return groceryUserDTO;
+        return unitUserDTO;
     }
 
     @Override

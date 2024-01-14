@@ -6,7 +6,4 @@ interface QuotationDelegate {
     fun quotation(): QuotationDTO
     fun selectItem()
     fun quote()
-    fun quotations(): List<QuotationDTO>
-    fun selectedQuotation(quotation: QuotationDTO?)
-    fun reIssueQuotation()
 }

@@ -60,7 +60,7 @@ public class PaymentConfirmationFragment extends BaseFragment {
         paymentTotal.setText(FormatterUtil.mtFormat(payment.getTotal()));
     }
 
-    @OnClick({R.id.fragment_payment_confirmation_mpesa_confirm_btn})
+    @OnClick({R.id.openTableDetailsOpenBtn})
     public void onClickConfirmBtn() {
         delegate.paymentExecution(payment);
     }

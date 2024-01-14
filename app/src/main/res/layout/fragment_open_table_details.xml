@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pos.fragment.OpenTableDetailsFragment">
+
+    <ImageView
+        android:id="@+id/OpenTableDetailsImageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@mipmap/ic_table"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/openTableDetailsView"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/textview_borders"
+        app:layout_constraintEnd_toEndOf="@+id/OpenTableDetailsImageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OpenTableDetailsImageView" />
+
+    <TextView
+        android:id="@+id/openTableDetailsTableNumberLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="5dp"
+        android:text="Número da mesa"
+        android:textColor="#FFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/openTableDetailsTableNumber"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/openTableDetailsView"
+        app:layout_constraintTop_toTopOf="@+id/openTableDetailsView" />
+
+    <TextView
+        android:id="@+id/openTableDetailsTableNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        android:textColor="#FFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/openTableDetailsView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/openTableDetailsTableNumberLbl"
+        app:layout_constraintTop_toTopOf="@+id/openTableDetailsView"
+        tools:text="#03" />
+
+    <TextView
+        android:id="@+id/openTableDetailsCustomerLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Cliente"
+        app:layout_constraintEnd_toEndOf="@+id/openTableDetailsTableNumberLbl"
+        app:layout_constraintStart_toStartOf="@+id/openTableDetailsTableNumberLbl"
+        app:layout_constraintTop_toBottomOf="@+id/openTableDetailsTableNumberLbl" />
+
+    <TextView
+        android:id="@+id/openTableDetailsCustomer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/openTableDetailsCustomerLbl"
+        app:layout_constraintEnd_toEndOf="@+id/openTableDetailsTableNumber"
+        app:layout_constraintStart_toEndOf="@+id/openTableDetailsTableNumberLbl"
+        app:layout_constraintTop_toBottomOf="@+id/openTableDetailsTableNumberLbl"
+        tools:text="Stélio Moiane" />
+
+    <TextView
+        android:id="@+id/openTableDetailsCustomerContactLbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Contacto(WhatsApp)"
+        app:layout_constraintEnd_toEndOf="@+id/openTableDetailsCustomerLbl"
+        app:layout_constraintStart_toStartOf="@+id/openTableDetailsCustomerLbl"
+        app:layout_constraintTop_toBottomOf="@+id/openTableDetailsCustomerLbl" />
+
+    <TextView
+        android:id="@+id/openTableDetailsCustomerContact"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/openTableDetailsCustomerContactLbl"
+        app:layout_constraintEnd_toEndOf="@+id/openTableDetailsCustomer"
+        app:layout_constraintStart_toEndOf="@+id/openTableDetailsCustomerLbl"
+        app:layout_constraintTop_toBottomOf="@+id/openTableDetailsCustomer"
+        tools:text="+(258) 82 254 6100" />
+
+    <Button
+        android:id="@+id/openTableDetailsOpenBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="#017a84"
+        android:padding="8dp"
+        android:text="@string/open"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_payment_confirmation_details_view"
+        app:layout_constraintEnd_toEndOf="@+id/openTableDetailsView"
+        app:layout_constraintStart_toStartOf="@+id/openTableDetailsView"
+        app:layout_constraintTop_toBottomOf="@+id/openTableDetailsView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

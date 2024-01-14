@@ -62,9 +62,6 @@ class OpenTableFragment : BaseFragment(), View.OnClickListener {
         customer.contact = TextInputLayoutUtil.getInpuText(binding.fragmentOpenTableContact)
         customer.email = TextInputLayoutUtil.getInpuText(binding.fragmentOpenTableEmail)
 
-        var table = SaleDTO()
-        table.customerDTO = customer
-
-        delegate.processOpenTable(table)
+        delegate.selectTable(customer)
     }
 }

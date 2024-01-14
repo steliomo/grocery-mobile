@@ -4,12 +4,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.apache.commons.lang3.StringUtils;
+
 import butterknife.BindView;
 import mz.co.commandline.grocery.generics.listner.ClickListner;
 import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.menu.MenuItem;
 
 public class MenuViewHolder extends BaseViewHolder<MenuItem> {
+
+    private static int SIZE_PAD = 3;
+
+    private static String PAD = "#0";
 
     @BindView(R.id.main_menu_image_icon)
     ImageView imageView;
@@ -33,7 +39,7 @@ public class MenuViewHolder extends BaseViewHolder<MenuItem> {
         this.menuItem = menuItem;
         imageView.setImageResource(menuItem.getIconId());
         textView.setText(menuItem.getTitle());
-        numenberView.setText("#" + menuItem.getNumber() % 100);
+        numenberView.setText(StringUtils.leftPad(menuItem.getNumber() + "", SIZE_PAD, PAD));
 
         if (menuItem.getNumber() == 0) {
             numenberView.setVisibility(View.GONE);

@@ -28,9 +28,8 @@ class TableDetailsFragment : BaseFragment(), ClickListner<MenuItem> {
 
         delegate = activity as PosDelegate
 
-
-        val table = delegate.getSelectedTable()
-        binding.tableDetailsCode.text = "#" + table.id
+        val table = delegate.getTable()
+        binding.tableDetailsCode.text = "#" + table.tableNumber.toString().padStart(2, '0')
         binding.tableDetailsOwner.text = table.customerDTO.name
         binding.tableDetailsTotal.text = FormatterUtil.mtFormat(table.total)
         binding.tableDetailsTotalPaid.text = FormatterUtil.mtFormat(table.totalPaid)

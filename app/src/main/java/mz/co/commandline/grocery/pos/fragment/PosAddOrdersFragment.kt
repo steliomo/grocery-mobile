@@ -35,9 +35,9 @@ class PosAddOrdersFragment : BaseFragment(), ClickListner<SaleItemDTO>, LongClic
 
         setHasOptionsMenu(true)
         val delegate = activity as PosDelegate
-        table = delegate.getSelectedTable()
+        table = delegate.getTable()
 
-        binding.addOrdersCode.text = "#" + table?.id
+        binding.addOrdersCode.text = "#" + table?.tableNumber.toString().padStart(2, '0')
         binding.addOrdersOwner.text = table?.customerDTO?.name
 
         updateBill()

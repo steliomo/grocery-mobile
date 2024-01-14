@@ -8,7 +8,9 @@ import mz.co.commandline.grocery.R
 import mz.co.commandline.grocery.databinding.FragmentQuotationBinding
 import mz.co.commandline.grocery.generics.fragment.BaseFragment
 import mz.co.commandline.grocery.quotation.adapter.QuotationItemAdapter
+import mz.co.commandline.grocery.quotation.adapter.QuotationSaleItemAdapter
 import mz.co.commandline.grocery.quotation.delegate.QuotationDelegate
+import mz.co.commandline.grocery.quotation.dto.QuotationType
 import mz.co.commandline.grocery.util.FormatterUtil
 
 
@@ -31,7 +33,12 @@ class QuotationFragment : BaseFragment(), View.OnClickListener {
         binding.quotationGrandTotal.text = FormatterUtil.mtFormat(quotation.totalValue);
         val quotationRecyclerView = binding.quotationRecyclerView
 
-        quotationRecyclerView.adapter = QuotationItemAdapter(activity, quotation.items)
+        if (QuotationType.RENT == quotation.type) {
+            quotationRecyclerView.adapter = QuotationItemAdapter(activity, quotation.items)
+        } else {
+            quotationRecyclerView.adapter = QuotationSaleItemAdapter(activity, quotation.items)
+        }
+
         quotationRecyclerView.addItemDecoration(DividerItemDecoration(quotationRecyclerView.context, DividerItemDecoration.VERTICAL))
 
         binding.quotationSelectItemBtn.setOnClickListener(this)
@@ -58,7 +65,7 @@ class QuotationFragment : BaseFragment(), View.OnClickListener {
             delegate.selectItem()
             return
         }
-        
+
         delegate.quote()
     }
 }

@@ -12,10 +12,10 @@ class QuotationItemViewHolder(private val binding: RentItemBinding) : BaseViewHo
     override fun setItemClickListner(listner: ClickListner<*>?) {
     }
 
-    override fun onClick(p0: View?) {
+    override fun onClick(view: View?) {
     }
 
-    override fun onLongClick(p0: View?): Boolean {
+    override fun onLongClick(view: View?): Boolean {
         return false
     }
 

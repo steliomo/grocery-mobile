@@ -18,6 +18,8 @@ public class UnitDTO extends GenericDTO {
 
     private BigDecimal balance;
 
+    private Integer numberOfTables;
+
     public UnitDTO() {
     }
 
@@ -66,6 +68,14 @@ public class UnitDTO extends GenericDTO {
 
     @Override
     public String toString() {
-        return getId() + "_" + getUuid() + "_" + name + "_" + phoneNumber;
+        return getId() + "_" + getUuid() + "_" + name + "_" + phoneNumber + "_" + numberOfTables;
+    }
+
+    public Integer getNumberOfTables() {
+        return numberOfTables;
+    }
+
+    public void setNumberOfTables(Integer numberOfTables) {
+        this.numberOfTables = numberOfTables;
     }
 }

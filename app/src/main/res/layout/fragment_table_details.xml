@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:background="#017a84"
         android:padding="5dp"
-        android:text="Código"
+        android:text="Número da mesa"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/tableDetailsCode"

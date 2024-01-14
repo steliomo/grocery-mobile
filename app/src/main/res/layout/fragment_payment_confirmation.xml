@@ -202,7 +202,7 @@
         tools:text="4.750,00 MT" />
 
     <Button
-        android:id="@+id/fragment_payment_confirmation_mpesa_confirm_btn"
+        android:id="@+id/openTableDetailsOpenBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

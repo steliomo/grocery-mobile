@@ -38,6 +38,7 @@ import mz.co.commandline.grocery.menu.Menu;
 import mz.co.commandline.grocery.menu.MenuItem;
 import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.quotation.delegate.QuotationDelegate;
+import mz.co.commandline.grocery.quotation.delegate.VisualiseQuotationDelegate;
 import mz.co.commandline.grocery.quotation.dto.QuotationDTO;
 import mz.co.commandline.grocery.quotation.dto.QuotationItemDTO;
 import mz.co.commandline.grocery.quotation.dto.QuotationType;
@@ -78,7 +79,7 @@ import mz.co.commandline.grocery.util.alert.Option;
 import mz.co.commandline.grocery.util.alert.OptionDialog;
 import okhttp3.ResponseBody;
 
-public class RentActivity extends BaseAuthActivity implements View.OnClickListener, RentDelegate, ItemDelegate, CustomerDelegate, GuideDelegate, QuotationDelegate {
+public class RentActivity extends BaseAuthActivity implements View.OnClickListener, RentDelegate, ItemDelegate, CustomerDelegate, GuideDelegate, QuotationDelegate, VisualiseQuotationDelegate {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

@@ -25,9 +25,9 @@ class PosBillFragment : BaseFragment() {
 
         val delegate = activity as PosDelegate
 
-        val table = delegate.getSelectedTable();
+        val table = delegate.getTable();
 
-        binding.sendBillCode.text = "#" + table.id
+        binding.sendBillCode.text = "#" + table.tableNumber.toString().padStart(2, '0')
         binding.sendBillOwner.text = table.customerDTO.name
         binding.sendBillTotal.text = FormatterUtil.mtFormat(table.total)
         binding.sendBillTotalPaid.text = FormatterUtil.mtFormat(table.totalPaid)

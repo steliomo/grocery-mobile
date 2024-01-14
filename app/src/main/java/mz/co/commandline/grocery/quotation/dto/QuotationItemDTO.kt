@@ -28,16 +28,15 @@ class QuotationItemDTO(private var quotationDTO: QuotationDTO, var icon: Int) {
     fun getValue(): BigDecimal {
 
         if (QuotationType.RENT == quotationDTO.type) {
-            return calculateValue(days!!)
+            if (stockDTO == null) {
+                return quantity?.multiply(days)!!.multiply(BigDecimal(serviceItemDTO?.rentPrice))
+            }
+            return quantity?.multiply(days)!!.multiply(BigDecimal(stockDTO?.rentPrice))
         }
 
-        return calculateValue(BigDecimal.ONE)
-    }
-
-    private fun calculateValue(days: BigDecimal): BigDecimal {
         if (stockDTO == null) {
-            return quantity?.multiply(days)!!.multiply(BigDecimal(serviceItemDTO?.rentPrice))
+            return quantity!!.multiply(BigDecimal(serviceItemDTO?.salePrice))
         }
-        return quantity?.multiply(days)!!.multiply(BigDecimal(stockDTO?.rentPrice))
+        return quantity!!.multiply(BigDecimal(stockDTO?.salePrice))
     }
 }

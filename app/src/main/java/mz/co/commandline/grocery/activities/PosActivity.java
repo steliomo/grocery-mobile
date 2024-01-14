@@ -17,21 +17,25 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
+import mz.co.commandline.grocery.customer.model.CustomerDTO;
 import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
 import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
+import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.item.dto.ItemDTO;
 import mz.co.commandline.grocery.item.dto.ItemType;
 import mz.co.commandline.grocery.item.fragment.ProductFragment;
 import mz.co.commandline.grocery.item.service.ItemService;
 import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.pos.delegate.PosDelegate;
+import mz.co.commandline.grocery.pos.fragment.OpenTableDetailsFragment;
 import mz.co.commandline.grocery.pos.fragment.OpenTableFragment;
 import mz.co.commandline.grocery.pos.fragment.PosAddOrderItemFragment;
 import mz.co.commandline.grocery.pos.fragment.PosAddOrdersFragment;
 import mz.co.commandline.grocery.pos.fragment.PosBillFragment;
 import mz.co.commandline.grocery.pos.fragment.PosFragment;
 import mz.co.commandline.grocery.pos.fragment.PosPaymentFragment;
+import mz.co.commandline.grocery.pos.fragment.SelectTableFragment;
 import mz.co.commandline.grocery.pos.fragment.TableDetailsFragment;
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
 import mz.co.commandline.grocery.sale.dto.SaleItemDTO;
@@ -134,6 +138,8 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
 
     @Override
     public void openTable() {
+        table = new SaleDTO();
+        table.setUnitDTO(userService.getUnitDTO());
         showFragment(new OpenTableFragment(), Boolean.TRUE);
     }
 
@@ -153,7 +159,8 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
                         public void success(SalesDTO response) {
                             progressBar.dismiss();
                             tables = response.getSalesDTO();
-                            popBackStack();
+                            resetFragment();
+                            showFragment(new PosFragment(), Boolean.FALSE);
                         }
 
                         @Override
@@ -178,7 +185,6 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
                 progressBar.dismiss();
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.there_was_an_error_opening_table), null);
                 Log.e("POS_OPEN_TABLE", message);
-                Log.e("POS_OPEN_TABLE", message);
             }
         });
     }
@@ -197,7 +203,7 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
 
     @NotNull
     @Override
-    public SaleDTO getSelectedTable() {
+    public SaleDTO getTable() {
         return table;
     }
 
@@ -443,14 +449,6 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
         salePrinter.closeConnection();
     }
 
-    private void sleep(long seconds) {
-        try {
-            Thread.sleep(seconds * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public void sendToWhatsApp() {
 
@@ -491,5 +489,17 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
                 Log.e("SEND_BILL", message);
             }
         });
+    }
+
+    @Override
+    public void selectTable(CustomerDTO customer) {
+        table.setCustomerDTO(customer);
+        showFragment(new SelectTableFragment(), Boolean.TRUE);
+    }
+
+    @Override
+    public void selectedTableNumber(int tableNumber) {
+        table.setTableNumber(tableNumber);
+        showFragment(new OpenTableDetailsFragment(), Boolean.TRUE);
     }
 }
