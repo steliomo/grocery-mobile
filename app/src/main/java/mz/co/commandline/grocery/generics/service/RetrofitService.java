@@ -12,7 +12,7 @@ public interface RetrofitService {
 
     String SIGN_UP = "users/signup";
 
-    String UNIT_TYPES = "groceries/unit-types";
+    String UNIT_TYPES = "units/unit-types";
 
     <T> T getResource(Class<T> clazz);
 }
