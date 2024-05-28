@@ -4,44 +4,44 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import mz.co.commandline.grocery.R
+import mz.co.commandline.grocery.customer.delegate.CustomerDelegate
 import mz.co.commandline.grocery.customer.model.CustomerDTO
-import mz.co.commandline.grocery.databinding.FragmentOpenTableBinding
+import mz.co.commandline.grocery.databinding.FragmentCustomerOpenTableBinding
 import mz.co.commandline.grocery.generics.fragment.BaseFragment
 import mz.co.commandline.grocery.pos.delegate.PosDelegate
-import mz.co.commandline.grocery.sale.dto.SaleDTO
 import mz.co.commandline.grocery.util.TextInputLayoutUtil
 import mz.co.commandline.grocery.validator.DefaultValidator
 import mz.co.commandline.grocery.validator.PhoneNumberValidator
 import mz.co.commandline.grocery.validator.Validator
 
 
-class OpenTableFragment : BaseFragment(), View.OnClickListener {
+class OpenTableCustomerFragment : BaseFragment(), View.OnClickListener {
 
-    private var _binding: FragmentOpenTableBinding? = null
+    private var _binding: FragmentCustomerOpenTableBinding? = null
     private val binding get() = _binding!!
 
     private var validators: List<Validator>? = null
 
-    private var _delegate: PosDelegate? = null
+    private var _delegate: CustomerDelegate? = null
     private val delegate get() = _delegate!!
 
     override fun getResourceId(): Int {
-        return R.layout.fragment_open_table
+        return R.layout.fragment_customer_open_table
     }
 
     override fun onCreateView() {
-        _delegate = activity as PosDelegate
+        _delegate = activity as CustomerDelegate
         validators = listOf(DefaultValidator(binding.fragmentOpenTableCustomer), PhoneNumberValidator(binding.fragmentOpenTableContact))
 
         binding.fragmentOpenTableOpenBtn.setOnClickListener(this)
     }
 
     override fun getTitle(): String {
-        return getString(R.string.open_table)
+        return getString(R.string.customer)
     }
 
     override fun getView(inflater: LayoutInflater, container: ViewGroup?): View {
-        _binding = FragmentOpenTableBinding.inflate(inflater, container, false)
+        _binding = FragmentCustomerOpenTableBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -62,6 +62,6 @@ class OpenTableFragment : BaseFragment(), View.OnClickListener {
         customer.contact = TextInputLayoutUtil.getInpuText(binding.fragmentOpenTableContact)
         customer.email = TextInputLayoutUtil.getInpuText(binding.fragmentOpenTableEmail)
 
-        delegate.selectTable(customer)
+        delegate.registCustomer(customer)
     }
 }

@@ -20,4 +20,8 @@ public class CustomersDTO {
     public Long getTotalCustomers() {
         return this.totalCustomers;
     }
+
+    public void setCustomerDTOs(List<CustomerDTO> customerDTOs) {
+        this.customerDTOs = customerDTOs;
+    }
 }

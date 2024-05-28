@@ -56,7 +56,7 @@
         app:layout_constraintTop_toTopOf="@+id/fragment_sign_up_user_imageView" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fragment_sign_up_user_fullname"
+        android:id="@+id/fragment_sign_up_user_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_user"
             android:drawableLeft="@drawable/ic_user"
-            android:hint="@string/fullname"
+            android:hint="@string/name"
             android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -79,9 +79,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_sign_up_user_fullname"
-        app:layout_constraintStart_toStartOf="@+id/fragment_sign_up_user_fullname"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_user_fullname">
+        app:layout_constraintEnd_toEndOf="@+id/fragment_sign_up_user_name"
+        app:layout_constraintStart_toStartOf="@+id/fragment_sign_up_user_name"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_user_name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

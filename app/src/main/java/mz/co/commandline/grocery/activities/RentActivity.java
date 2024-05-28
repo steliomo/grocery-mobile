@@ -15,6 +15,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
+import mz.co.commandline.grocery.customer.adapter.CustomerAdapter;
 import mz.co.commandline.grocery.customer.delegate.CustomerDelegate;
 import mz.co.commandline.grocery.customer.fragment.CustomersFragment;
 import mz.co.commandline.grocery.customer.fragment.RegistCustomerFragment;
@@ -128,10 +129,9 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     private RentItemDTO rentItemDTO;
 
-    //Change
-    private final int CURRENT_PAGE = 0;
+    private int currentPage = 0;
 
-    private final int MAX_RESULT = 100;
+    private int maxResult = 100;
 
     private CustomerDTO customerDTO;
 
@@ -383,7 +383,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     private void loadCustomersWithPendingOrIncompleteRentItemsToReturnByUnit() {
         progressBar.show();
-        customerService.findCustomersWithPendingOrIncompleteRentItemsToReturnByUnit(userService.getUnitDTO().getUuid(), CURRENT_PAGE, MAX_RESULT, new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersWithPendingOrIncompleteRentItemsToReturnByUnit(userService.getUnitDTO().getUuid(), currentPage, maxResult, new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();
@@ -408,7 +408,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     private void loadCustomersWithPendingPayments() {
         progressBar.show();
-        customerService.findCustomersWithPendingPaymentsByUnit(userService.getUnitDTO().getUuid(), CURRENT_PAGE, MAX_RESULT, new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersWithPendingPaymentsByUnit(userService.getUnitDTO().getUuid(), currentPage, maxResult, new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();
@@ -751,7 +751,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     private void loadCustomers() {
         progressBar.show();
-        customerService.findCustomersByUnit(userService.getUnitDTO().getUuid(), CURRENT_PAGE, MAX_RESULT, new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersByUnit(userService.getUnitDTO().getUuid(), currentPage, maxResult, new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();
@@ -858,6 +858,8 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
 
     @Override
     public void registCustomer(CustomerDTO customerDTO) {
+        currentPage = 0;
+
         customerDTO.setUnit(userService.getUnitDTO());
         progressBar.show();
 
@@ -865,7 +867,7 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
             @Override
             public void success(CustomerDTO response) {
                 progressBar.dismiss();
-                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.user_was_successfully_registed), new AlertListner() {
+                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.customer_was_successfully_registed), new AlertListner() {
                     @Override
                     public void perform() {
                         loadCustomers();
@@ -1075,6 +1077,28 @@ public class RentActivity extends BaseAuthActivity implements View.OnClickListen
         }
 
         return View.GONE;
+    }
+
+    @Override
+    public void updateData(CustomerAdapter adapter) {
+        currentPage++;
+
+        progressBar.show();
+        customerService.findCustomersByUnit(userService.getUnitDTO().getUuid(), currentPage, maxResult, new ResponseListner<CustomersDTO>() {
+            @Override
+            public void success(CustomersDTO response) {
+                progressBar.dismiss();
+                customersDTO.getCustomerDTOs().addAll(response.getCustomerDTOs());
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_customers), null);
+                Log.e("POS_LOAD_CUSTOMERS", message);
+            }
+        });
     }
 
     private void loadRentsWithPendingOrIncompleteRentItemToTransportByCustomer(CustomerDTO customerDTO) {

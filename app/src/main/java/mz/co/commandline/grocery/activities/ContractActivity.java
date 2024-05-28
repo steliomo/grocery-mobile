@@ -24,6 +24,7 @@ import mz.co.commandline.grocery.contract.fragment.CelebrateContractFragment;
 import mz.co.commandline.grocery.contract.fragment.ContractPaymentFragment;
 import mz.co.commandline.grocery.contract.fragment.ContractsFragment;
 import mz.co.commandline.grocery.contract.service.ContractService;
+import mz.co.commandline.grocery.customer.adapter.CustomerAdapter;
 import mz.co.commandline.grocery.customer.delegate.CustomerDelegate;
 import mz.co.commandline.grocery.customer.fragment.CustomersFragment;
 import mz.co.commandline.grocery.customer.fragment.RegistCustomerFragment;
@@ -45,9 +46,9 @@ import mz.co.commandline.grocery.util.alert.AlertType;
 
 public class ContractActivity extends BaseAuthActivity implements ContractDelegate, CustomerDelegate {
 
-    private static final int CURRENT_PAGE = 0;
+    private int currentPage = 0;
 
-    private static final int MAX_RESULT = 100;
+    private int maxResult = 100;
 
     @Inject
     CustomerService customerService;
@@ -133,7 +134,7 @@ public class ContractActivity extends BaseAuthActivity implements ContractDelega
             @Override
             public void success(CustomerDTO response) {
                 progressBar.dismiss();
-                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.user_was_successfully_registed), new AlertListner() {
+                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.customer_was_successfully_registed), new AlertListner() {
                     @Override
                     public void perform() {
                         loadCustomers();
@@ -195,6 +196,29 @@ public class ContractActivity extends BaseAuthActivity implements ContractDelega
     }
 
     @Override
+    public void updateData(CustomerAdapter adapter) {
+        currentPage++;
+        currentPage = currentPage * maxResult;
+
+        progressBar.show();
+        customerService.findCustomersByUnit(userService.getUnitDTO().getUuid(), currentPage, maxResult, new ResponseListner<CustomersDTO>() {
+            @Override
+            public void success(CustomersDTO response) {
+                progressBar.dismiss();
+                customersDTO.getCustomerDTOs().addAll(response.getCustomerDTOs());
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_customers), null);
+                Log.e("POS_LOAD_CUSTOMERS", message);
+            }
+        });
+    }
+
+    @Override
     public List<MenuItem> getMenuItems() {
         return menu.getMenuItems();
     }
@@ -213,7 +237,7 @@ public class ContractActivity extends BaseAuthActivity implements ContractDelega
 
             case R.mipmap.ic_payment:
                 progressBar.show();
-                customerService.findCustomersWithContractPendingPaymentByUnit(userService.getUnitDTO().getUuid(), CURRENT_PAGE, MAX_RESULT, DateUtil.format(new Date(), DateUtil.NORMAL_PATTERN), new ResponseListner<CustomersDTO>() {
+                customerService.findCustomersWithContractPendingPaymentByUnit(userService.getUnitDTO().getUuid(), currentPage, maxResult, DateUtil.format(new Date(), DateUtil.NORMAL_PATTERN), new ResponseListner<CustomersDTO>() {
                     @Override
                     public void success(CustomersDTO response) {
                         progressBar.dismiss();
@@ -273,7 +297,7 @@ public class ContractActivity extends BaseAuthActivity implements ContractDelega
 
     private void loadCustomers() {
         progressBar.show();
-        customerService.findCustomersByUnit(userService.getUnitDTO().getUuid(), CURRENT_PAGE, MAX_RESULT, new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersByUnit(userService.getUnitDTO().getUuid(), currentPage, maxResult, new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();

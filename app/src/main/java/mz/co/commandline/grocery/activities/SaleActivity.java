@@ -9,17 +9,16 @@ import android.view.View;
 import androidx.appcompat.widget.Toolbar;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
+import mz.co.commandline.grocery.customer.adapter.CustomerAdapter;
 import mz.co.commandline.grocery.customer.delegate.CustomerDelegate;
 import mz.co.commandline.grocery.customer.fragment.CustomersFragment;
 import mz.co.commandline.grocery.customer.fragment.RegistCustomerFragment;
@@ -172,6 +171,10 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
     private Action action;
 
+    private int currentPage = 0;
+
+    private int maxResult = 100;
+
     @Override
     public void onGroceryCreate(Bundle bundle) {
         setContentView(R.layout.activity_sale);
@@ -194,6 +197,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
         menu.addMenuItem(new MenuItem(R.string.payments, R.mipmap.ic_payment));
         menu.addMenuItem(new MenuItem(R.string.delivery_guides, R.mipmap.ic_delivery));
         menu.addMenuItem(new MenuItem(R.string.quotation, R.mipmap.ic_quotation));
+        menu.addMenuItem(new MenuItem(R.string.invoice, R.mipmap.ic_invoice));
 
         optionDialog = new OptionDialog(this);
         printerDialog = new PrinterDialog(this);
@@ -424,7 +428,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
     private void loadCustomers() {
         progressBar.show();
-        customerService.findCustomersByUnit(userService.getUnitDTO().getUuid(), 0, 100, new ResponseListner<CustomersDTO>() {
+        customerService.findCustomersByUnit(userService.getUnitDTO().getUuid(), currentPage, maxResult, new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
                 progressBar.dismiss();
@@ -587,6 +591,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
 
     @Override
     public void registCustomer(CustomerDTO customerDTO) {
+        currentPage = 0;
         progressBar.show();
 
         customerDTO.setUnit(userService.getUnitDTO());
@@ -594,7 +599,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
             @Override
             public void success(CustomerDTO response) {
                 progressBar.dismiss();
-                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.user_was_successfully_registed), new AlertListner() {
+                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.customer_was_successfully_registed), new AlertListner() {
                     @Override
                     public void perform() {
                         popBackStack();
@@ -709,6 +714,28 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
         }
 
         return View.VISIBLE;
+    }
+
+    @Override
+    public void updateData(CustomerAdapter adapter) {
+        currentPage++;
+
+        progressBar.show();
+        customerService.findCustomersByUnit(userService.getUnitDTO().getUuid(), currentPage, maxResult, new ResponseListner<CustomersDTO>() {
+            @Override
+            public void success(CustomersDTO response) {
+                progressBar.dismiss();
+                customersDTO.getCustomerDTOs().addAll(response.getCustomerDTOs());
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_customers), null);
+                Log.e("POS_LOAD_CUSTOMERS", message);
+            }
+        });
     }
 
     @Override

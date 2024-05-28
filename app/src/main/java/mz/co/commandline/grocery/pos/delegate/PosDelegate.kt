@@ -1,7 +1,5 @@
 package mz.co.commandline.grocery.pos.delegate
 
-import mz.co.commandline.grocery.customer.model.CustomerDTO
-import mz.co.commandline.grocery.grocery.dto.UnitDTO
 import mz.co.commandline.grocery.item.delegate.ItemDelegate
 import mz.co.commandline.grocery.sale.dto.SaleDTO
 import mz.co.commandline.grocery.sale.dto.SaleItemDTO
@@ -36,7 +34,7 @@ interface PosDelegate : ItemDelegate, SaleableItemDelegate {
 
     fun sendToWhatsApp()
 
-    fun selectTable(customer: CustomerDTO)
-
     fun selectedTableNumber(tableNumber: Int)
+
+    fun numberOfTables(): Int
 }

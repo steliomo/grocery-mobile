@@ -81,7 +81,7 @@
     <string name="user">Utilizador</string>
     <string name="next">Prosseguir</string>
     <string name="email">Email</string>
-    <string name="fullname">Nome completo</string>
+    <string name="name">Nome (primeiro e último)</string>
     <string name="welcome">Seja muito bem-vindo ao Negócio Na Mão. Um email com as credências foi enviado para</string>
     <string name="welcome_saler">Um email com as credências foi enviado ao novo utilizador para</string>
     <string name="error_on_sign_up">Ocorreu um erro ao registar o utilizador. por favor tente mais tarde.</string>
@@ -135,7 +135,7 @@
     <string name="customer_email">" Email"</string>
     <string name="customer_vehicle_number_plate">" Matricula do veículo"</string>
     <string name="regist_customer">Registar cliente</string>
-    <string name="user_was_successfully_registed">O cliente foi registado com sucesso!</string>
+    <string name="customer_was_successfully_registed">O cliente foi registado com sucesso!</string>
     <string name="there_was_an_error_registing_customer">Ocorreu um erro ao registar o cliente. Por favor tente novamente!</string>
     <string name="error_loading_customers">Ocorreu um erro ao carregar clientes. Por favor tente novamente!</string>
     <string name="regist_rent">Registar o aluguer</string>
@@ -261,4 +261,5 @@
     <string name="pos_select_table">Seleccione a mesa</string>
     <string name="pos_available_tables">Mesas disponiveis</string>
     <string name="pos_opened_tables">Mesas ocupadas</string>
+    <string name="invoice">Facturas</string>
 </resources>

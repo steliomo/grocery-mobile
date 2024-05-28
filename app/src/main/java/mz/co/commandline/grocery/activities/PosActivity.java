@@ -17,19 +17,23 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import mz.co.commandline.grocery.R;
+import mz.co.commandline.grocery.customer.adapter.CustomerAdapter;
+import mz.co.commandline.grocery.customer.delegate.CustomerDelegate;
+import mz.co.commandline.grocery.customer.fragment.CustomersFragment;
 import mz.co.commandline.grocery.customer.model.CustomerDTO;
+import mz.co.commandline.grocery.customer.model.CustomersDTO;
+import mz.co.commandline.grocery.customer.service.CustomerService;
 import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
 import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
-import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.item.dto.ItemDTO;
 import mz.co.commandline.grocery.item.dto.ItemType;
 import mz.co.commandline.grocery.item.fragment.ProductFragment;
 import mz.co.commandline.grocery.item.service.ItemService;
 import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.pos.delegate.PosDelegate;
+import mz.co.commandline.grocery.pos.fragment.OpenTableCustomerFragment;
 import mz.co.commandline.grocery.pos.fragment.OpenTableDetailsFragment;
-import mz.co.commandline.grocery.pos.fragment.OpenTableFragment;
 import mz.co.commandline.grocery.pos.fragment.PosAddOrderItemFragment;
 import mz.co.commandline.grocery.pos.fragment.PosAddOrdersFragment;
 import mz.co.commandline.grocery.pos.fragment.PosBillFragment;
@@ -52,10 +56,9 @@ import mz.co.commandline.grocery.util.SalePrinter;
 import mz.co.commandline.grocery.util.SalePrinterImpl;
 import mz.co.commandline.grocery.util.alert.AlertListner;
 import mz.co.commandline.grocery.util.alert.AlertType;
-import mz.co.commandline.grocery.util.alert.DialogManager;
 import mz.co.commandline.grocery.util.alert.OptionDialog;
 
-public class PosActivity extends BaseAuthActivity implements View.OnClickListener, PosDelegate {
+public class PosActivity extends BaseAuthActivity implements View.OnClickListener, PosDelegate, CustomerDelegate {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -72,6 +75,9 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
     @Inject
     SaleableItemService saleableItemService;
 
+    @Inject
+    CustomerService customerService;
+
     private OptionDialog optionDialog;
 
     private List<SaleDTO> tables;
@@ -87,6 +93,12 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
     private SaleableItemDTO saleableItem;
 
     private SalePrinter salePrinter;
+
+    private CustomersDTO customersDTO;
+
+    private int currentPage = 0;
+
+    private int maxResult = 10;
 
     @Override
     public int getActivityFrameLayoutId() {
@@ -138,16 +150,40 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
 
     @Override
     public void openTable() {
+        currentPage = 0;
         table = new SaleDTO();
         table.setUnitDTO(userService.getUnitDTO());
-        showFragment(new OpenTableFragment(), Boolean.TRUE);
+        loadCustomers();
+    }
+
+    private void loadCustomers() {
+        progressBar.show();
+        customerService.findCustomersByUnit(userService.getUnitDTO().getUuid(), currentPage, maxResult, new ResponseListner<CustomersDTO>() {
+            @Override
+            public void success(CustomersDTO response) {
+                progressBar.dismiss();
+                customersDTO = response;
+
+                if (customersDTO.getCustomerDTOs().isEmpty()) {
+                    dialogManager.dialog(AlertType.INFO, getString(R.string.no_customers_found), null);
+                    return;
+                }
+                showFragment(new CustomersFragment(), Boolean.TRUE);
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_customers), null);
+                Log.e("POS_LOAD_CUSTOMERS", message);
+            }
+        });
     }
 
     @Override
     public void processOpenTable(@NotNull SaleDTO table) {
         progressBar.show();
 
-        table.setUnitDTO(userService.getUnitDTO());
         saleService.processOpenTable(table, new ResponseListner<SaleDTO>() {
             @Override
             public void success(SaleDTO response) {
@@ -492,14 +528,91 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
     }
 
     @Override
-    public void selectTable(CustomerDTO customer) {
-        table.setCustomerDTO(customer);
+    public void selectedTableNumber(int tableNumber) {
+        table.setTableNumber(tableNumber);
+        showFragment(new OpenTableDetailsFragment(), Boolean.TRUE);
+    }
+
+    @Override
+    public void addCustomer() {
+        showFragment(new OpenTableCustomerFragment(), Boolean.TRUE);
+    }
+
+    @Override
+    public void registCustomer(CustomerDTO customerDTO) {
+        currentPage = 0;
+        progressBar.show();
+
+        customerDTO.setUnit(userService.getUnitDTO());
+        customerDTO.setAddress("NA");
+
+        customerService.registCustomer(customerDTO, new ResponseListner<mz.co.commandline.grocery.customer.model.CustomerDTO>() {
+            @Override
+            public void success(mz.co.commandline.grocery.customer.model.CustomerDTO response) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.customer_was_successfully_registed), () -> {
+                    popBackStack();
+                    popBackStack();
+                    loadCustomers();
+                });
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("B_POS_REGIST_CUSTOMER", errorMessage.getDeveloperMessage());
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.there_was_an_error_registing_customer), null);
+                Log.e("POS_REGIST_CUSTOMER", message);
+            }
+        });
+    }
+
+    @Override
+    public CustomersDTO getCustomersDTO() {
+        return customersDTO;
+    }
+
+    @Override
+    public void selectedCustomer(CustomerDTO customerDTO) {
+        table.setCustomerDTO(customerDTO);
         showFragment(new SelectTableFragment(), Boolean.TRUE);
     }
 
     @Override
-    public void selectedTableNumber(int tableNumber) {
-        table.setTableNumber(tableNumber);
-        showFragment(new OpenTableDetailsFragment(), Boolean.TRUE);
+    public int addBtnVisibility() {
+        return View.VISIBLE;
+    }
+
+    @Override
+    public void updateData(CustomerAdapter adapter) {
+        currentPage++;
+
+        progressBar.show();
+        customerService.findCustomersByUnit(userService.getUnitDTO().getUuid(), currentPage, maxResult, new ResponseListner<CustomersDTO>() {
+            @Override
+            public void success(CustomersDTO response) {
+                progressBar.dismiss();
+                customersDTO.getCustomerDTOs().addAll(response.getCustomerDTOs());
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_customers), null);
+                Log.e("POS_LOAD_CUSTOMERS", message);
+            }
+        });
+    }
+
+    @Override
+    public int numberOfTables() {
+        return userService.getUnitDTO().getNumberOfTables();
     }
 }

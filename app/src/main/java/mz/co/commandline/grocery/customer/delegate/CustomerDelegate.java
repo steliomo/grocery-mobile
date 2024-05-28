@@ -1,5 +1,6 @@
 package mz.co.commandline.grocery.customer.delegate;
 
+import mz.co.commandline.grocery.customer.adapter.CustomerAdapter;
 import mz.co.commandline.grocery.customer.model.CustomerDTO;
 import mz.co.commandline.grocery.customer.model.CustomersDTO;
 
@@ -14,4 +15,6 @@ public interface CustomerDelegate {
     void selectedCustomer(CustomerDTO customerDTO);
 
     int addBtnVisibility();
+
+    void updateData(CustomerAdapter adapter);
 }

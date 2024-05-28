@@ -3,11 +3,19 @@ package mz.co.commandline.grocery.customer.fragment;
 import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -29,6 +37,8 @@ public class CustomersFragment extends BaseFragment implements SearchView.OnQuer
 
     private CustomerDelegate delegate;
 
+    private CustomerAdapter adapter;
+
     @Override
     public int getResourceId() {
         return R.layout.fragment_customers;
@@ -48,11 +58,26 @@ public class CustomersFragment extends BaseFragment implements SearchView.OnQuer
 
         addCustomer.setVisibility(delegate.addBtnVisibility());
 
-        CustomerAdapter adapter = new CustomerAdapter(getActivity(), delegate.getCustomersDTO().getCustomerDTOs());
+        adapter = new CustomerAdapter(getActivity(), delegate.getCustomersDTO().getCustomerDTOs());
         adapter.setItemClickListner(this);
 
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+
+                if (delegate.getCustomersDTO().getTotalCustomers() != delegate.getCustomersDTO().getCustomerDTOs().size()) {
+                    if (layoutManager.findLastCompletelyVisibleItemPosition() == delegate.getCustomersDTO().getCustomerDTOs().size() - 1) {
+                        delegate.updateData(adapter);
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -66,8 +91,20 @@ public class CustomersFragment extends BaseFragment implements SearchView.OnQuer
     }
 
     @Override
-    public boolean onQueryTextChange(String newText) {
-        return false;
+    public boolean onQueryTextChange(String query) {
+        List<CustomerDTO> filteredCustomers = new ArrayList<>();
+
+        for (CustomerDTO customerDTO : delegate.getCustomersDTO().getCustomerDTOs()) {
+            String searchedData = (customerDTO.getName() + customerDTO.getContact()).toLowerCase();
+            if (!searchedData.contains(query.toLowerCase())) {
+                filteredCustomers.add(customerDTO);
+            }
+        }
+
+        delegate.getCustomersDTO().getCustomerDTOs().removeAll(filteredCustomers);
+        adapter.notifyDataSetChanged();
+
+        return true;
     }
 
     @OnClick(R.id.fragment_customers_add)

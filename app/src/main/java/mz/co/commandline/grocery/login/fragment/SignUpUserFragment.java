@@ -18,8 +18,8 @@ import mz.co.commandline.grocery.validator.Validator;
 
 public class SignUpUserFragment extends BaseFragment {
 
-    @BindView(R.id.fragment_sign_up_user_fullname)
-    TextInputLayout fullName;
+    @BindView(R.id.fragment_sign_up_user_name)
+    TextInputLayout name;
 
     @BindView(R.id.fragment_sign_up_user_username)
     TextInputLayout username;
@@ -43,7 +43,7 @@ public class SignUpUserFragment extends BaseFragment {
     public void onCreateView() {
         delegate = (SignUpDelegate) getActivity();
         validators = new ArrayList<>();
-        validators.addAll(Arrays.asList(new DefaultValidator(fullName), new DefaultValidator(username), new DefaultValidator(password), new DefaultValidator(email)));
+        validators.addAll(Arrays.asList(new DefaultValidator(name), new DefaultValidator(username), new DefaultValidator(password), new DefaultValidator(email)));
     }
 
     @OnClick(R.id.fragment_sign_up_user_next_btn)
@@ -55,7 +55,7 @@ public class SignUpUserFragment extends BaseFragment {
             }
         }
 
-        UserDTO user = new UserDTO(TextInputLayoutUtil.getInpuText(fullName), TextInputLayoutUtil.getInpuText(username), TextInputLayoutUtil.getInpuText(password), TextInputLayoutUtil.getInpuText(email));
+        UserDTO user = new UserDTO(TextInputLayoutUtil.getInpuText(name), TextInputLayoutUtil.getInpuText(username), TextInputLayoutUtil.getInpuText(password), TextInputLayoutUtil.getInpuText(email));
 
         delegate.signUpNext(user);
     }

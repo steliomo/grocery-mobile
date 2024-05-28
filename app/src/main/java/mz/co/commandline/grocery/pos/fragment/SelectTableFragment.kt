@@ -28,11 +28,10 @@ class SelectTableFragment : BaseFragment(), ClickListner<MenuItem> {
         delegate = activity as PosDelegate
 
         val openedTables = delegate.getTables()
-        val table = delegate.getTable();
 
         val availableTables = mutableListOf<MenuItem>()
 
-        for (tableNumber in 1..table.unitDTO.numberOfTables) {
+        for (tableNumber in 1..delegate.numberOfTables()) {
             val menuItem = MenuItem(R.string.pos, R.mipmap.ic_table)
             menuItem.number = tableNumber
 

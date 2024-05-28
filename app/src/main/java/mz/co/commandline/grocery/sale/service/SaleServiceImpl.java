@@ -22,7 +22,6 @@ public class SaleServiceImpl extends AbstractService implements SaleService {
     public SaleServiceImpl() {
     }
 
-
     @Override
     public void registSale(SaleDTO sale, final ResponseListner<SaleDTO> responseListner) {
         getResource().registeSale(sale).enqueue(new Callback<SaleDTO>() {
