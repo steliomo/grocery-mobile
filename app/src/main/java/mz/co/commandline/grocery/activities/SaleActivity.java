@@ -746,6 +746,7 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
     @Override
     public void onClickMenuItem(MenuItem menuItem) {
         itemsDTO = new ArrayList<>();
+        currentPage = 0;
 
         switch (menuItem.getIconId()) {
 
@@ -786,6 +787,9 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
                 quotation = new QuotationDTO(QuotationType.SALE);
                 showFragment(new QuotationFragment(), Boolean.TRUE);
                 break;
+
+            case R.mipmap.ic_invoice:
+                dialogManager.dialog(AlertType.INFO, getString(R.string.in_development), null);
         }
     }
 

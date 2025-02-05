@@ -37,4 +37,6 @@ interface PosDelegate : ItemDelegate, SaleableItemDelegate {
     fun selectedTableNumber(tableNumber: Int)
 
     fun numberOfTables(): Int
+
+    fun cancelTable()
 }

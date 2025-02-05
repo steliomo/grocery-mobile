@@ -48,4 +48,7 @@ public interface SaleResource {
 
     @POST("sales/send-table-bill")
     Call<SaleDTO> sendTableBill(@Body SaleDTO table);
+
+    @POST("sales/cancel-table")
+    Call<SaleDTO> cancelTable(@Body SaleDTO table);
 }

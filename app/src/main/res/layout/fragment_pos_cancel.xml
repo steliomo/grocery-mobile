@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pos.fragment.PosCancelFragment">
+
+    <View
+        android:id="@+id/cancelTableView"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/textview_borders"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cancelTableCodeLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="5dp"
+        android:text="Número da mesa"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/cancelTableCode"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/cancelTableView"
+        app:layout_constraintTop_toTopOf="@+id/cancelTableView" />
+
+    <TextView
+        android:id="@+id/cancelTableCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#017a84"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/cancelTableCodeLabel"
+        app:layout_constraintEnd_toEndOf="@+id/cancelTableView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cancelTableCodeLabel"
+        app:layout_constraintTop_toTopOf="@+id/cancelTableCodeLabel"
+        tools:text="#128393" />
+
+    <TextView
+        android:id="@+id/cancelTableOwnerLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/customer"
+        app:layout_constraintEnd_toEndOf="@+id/cancelTableCodeLabel"
+        app:layout_constraintStart_toStartOf="@+id/cancelTableCodeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/cancelTableCodeLabel" />
+
+    <TextView
+        android:id="@+id/cancelTableOwner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/cancelTableOwnerLabel"
+        app:layout_constraintEnd_toEndOf="@+id/cancelTableCode"
+        app:layout_constraintStart_toEndOf="@+id/cancelTableCodeLabel"
+        app:layout_constraintTop_toTopOf="@+id/cancelTableOwnerLabel"
+        tools:text="Alima Moiane" />
+
+    <TextView
+        android:id="@+id/cancelTableTotalLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Valor total"
+        app:layout_constraintEnd_toEndOf="@+id/cancelTableOwnerLabel"
+        app:layout_constraintStart_toStartOf="@+id/cancelTableOwnerLabel"
+        app:layout_constraintTop_toBottomOf="@+id/cancelTableOwnerLabel" />
+
+    <TextView
+        android:id="@+id/cancelTableTotal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/cancelTableTotalLabel"
+        app:layout_constraintEnd_toEndOf="@+id/cancelTableOwner"
+        app:layout_constraintStart_toEndOf="@+id/cancelTableOwnerLabel"
+        app:layout_constraintTop_toTopOf="@+id/cancelTableTotalLabel"
+        tools:text="10.530,00 MT" />
+
+    <TextView
+        android:id="@+id/cancelTableTotalPaidLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Valor total pago"
+        app:layout_constraintEnd_toEndOf="@+id/cancelTableTotalLabel"
+        app:layout_constraintStart_toStartOf="@+id/cancelTableTotalLabel"
+        app:layout_constraintTop_toBottomOf="@+id/cancelTableTotalLabel" />
+
+    <TextView
+        android:id="@+id/cancelTableTotalPaid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/cancelTableTotalPaidLabel"
+        app:layout_constraintEnd_toEndOf="@+id/cancelTableTotal"
+        app:layout_constraintStart_toEndOf="@+id/cancelTableTotalLabel"
+        app:layout_constraintTop_toTopOf="@+id/cancelTableTotalPaidLabel"
+        tools:text="3.000,00 MT" />
+
+    <TextView
+        android:id="@+id/cancelTableTotalToPayLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:padding="5dp"
+        android:text="Valor total a pagar"
+        app:layout_constraintBottom_toBottomOf="@+id/cancelTableView"
+        app:layout_constraintEnd_toEndOf="@+id/cancelTableTotalPaidLabel"
+        app:layout_constraintStart_toStartOf="@+id/cancelTableTotalPaidLabel"
+        app:layout_constraintTop_toBottomOf="@+id/cancelTableTotalPaidLabel" />
+
+    <TextView
+        android:id="@+id/cancelTableTotalToPay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/cancelTableTotalToPayLabel"
+        app:layout_constraintEnd_toEndOf="@+id/cancelTableTotalPaid"
+        app:layout_constraintStart_toEndOf="@+id/cancelTableTotalPaidLabel"
+        app:layout_constraintTop_toTopOf="@+id/cancelTableTotalToPayLabel"
+        tools:text="7.530,00 MT" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cancelTableRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/posCancelTableBtn"
+        app:layout_constraintEnd_toEndOf="@+id/cancelTableView"
+        app:layout_constraintStart_toStartOf="@+id/cancelTableView"
+        app:layout_constraintTop_toBottomOf="@+id/cancelTableView"
+        tools:listitem="@layout/order" />
+
+    <Button
+        android:id="@+id/posCancelTableBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="#017a84"
+        android:padding="8dp"
+        android:text="@string/cancel"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/posPaymentValue" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

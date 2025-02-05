@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Negócio na Mão</string>
-    <string name="app_version">© 2024 © v2.11.1</string>
+    <string name="app_version">© 2025 © v2.11.2</string>
     <string name="sales">Vendas</string>
     <string name="reports">Relatórios</string>
     <string name="products_and_services">Produtos e Serviços</string>
@@ -245,7 +245,7 @@
     <string name="there_was_an_error_opening_table">Ocorreu um erro ao abrir a mesa! Por favor tente novamente</string>
     <string name="there_was_an_error_loading_tables">Ocorreu um erro ao carregar a(s) mesa(s)!</string>
     <string name="pos_table_details">Detalhes da Mesa</string>
-    <string name="add_order">Adicionar pedido</string>
+    <string name="add_order">Adicionar pedido(s)</string>
     <string name="print_bill">Imprimir a conta</string>
     <string name="select_order">Seleccionar pedido</string>
     <string name="order_item">Item do pedido</string>
@@ -262,4 +262,10 @@
     <string name="pos_available_tables">Mesas disponiveis</string>
     <string name="pos_opened_tables">Mesas ocupadas</string>
     <string name="invoice">Facturas</string>
+    <string name="cancel">Cancelar</string>
+    <string name="cancel_table">Cancelar a mesa</string>
+    <string name="pos_table_was_successfully_canceled">A mesa foi cancelada com sucesso</string>
+    <string name="pos_there_was_an_error_caneling_tabe">Ocorreu um erro ao cancelar a mesa. Tente novmente</string>
+    <string name="pos_unit_empty">O estabelecimento está sem mesas ocupadas.</string>
+    <string name="in_development">Funcionalidade em desenvolvimento!.</string>
 </resources>

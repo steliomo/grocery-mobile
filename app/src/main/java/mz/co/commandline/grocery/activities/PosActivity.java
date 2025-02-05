@@ -25,6 +25,7 @@ import mz.co.commandline.grocery.customer.model.CustomersDTO;
 import mz.co.commandline.grocery.customer.service.CustomerService;
 import mz.co.commandline.grocery.generics.dialog.ProgressDialogManager;
 import mz.co.commandline.grocery.generics.dto.ErrorMessage;
+import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
 import mz.co.commandline.grocery.item.dto.ItemDTO;
 import mz.co.commandline.grocery.item.dto.ItemType;
@@ -37,6 +38,7 @@ import mz.co.commandline.grocery.pos.fragment.OpenTableDetailsFragment;
 import mz.co.commandline.grocery.pos.fragment.PosAddOrderItemFragment;
 import mz.co.commandline.grocery.pos.fragment.PosAddOrdersFragment;
 import mz.co.commandline.grocery.pos.fragment.PosBillFragment;
+import mz.co.commandline.grocery.pos.fragment.PosCancelFragment;
 import mz.co.commandline.grocery.pos.fragment.PosFragment;
 import mz.co.commandline.grocery.pos.fragment.PosPaymentFragment;
 import mz.co.commandline.grocery.pos.fragment.SelectTableFragment;
@@ -131,6 +133,11 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
             public void success(SalesDTO response) {
                 progressBar.dismiss();
                 tables = response.getSalesDTO();
+
+                if(tables.isEmpty()){
+                    dialogManager.dialog(AlertType.INFO, getString(R.string.pos_unit_empty), null);
+                }
+
                 showFragment(new PosFragment(), Boolean.FALSE);
             }
 
@@ -250,6 +257,7 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
                 table.cleanItems();
                 showFragment(new PosAddOrdersFragment(), Boolean.TRUE);
                 break;
+
             case R.mipmap.ic_payment:
                 if (!hasOrders()) {
                     return;
@@ -257,12 +265,17 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
 
                 showFragment(new PosPaymentFragment(), Boolean.TRUE);
                 break;
+
             case R.mipmap.ic_bill:
                 if (!hasOrders()) {
                     return;
                 }
 
-                loadTable();
+                loadTable(new PosBillFragment());
+                break;
+
+            case R.mipmap.ic_cancel:
+                loadTable(new PosCancelFragment());
                 break;
         }
     }
@@ -276,14 +289,14 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
         return true;
     }
 
-    private void loadTable() {
+    private void loadTable(BaseFragment fragment) {
         progressBar.show();
         saleService.fetchOpenedTableByUuid(table.getUuid(), new ResponseListner<SaleDTO>() {
             @Override
             public void success(SaleDTO response) {
                 progressBar.dismiss();
                 table = response;
-                showFragment(new PosBillFragment(), Boolean.TRUE);
+                showFragment(fragment, Boolean.TRUE);
             }
 
             @Override
@@ -614,5 +627,36 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
     @Override
     public int numberOfTables() {
         return userService.getUnitDTO().getNumberOfTables();
+    }
+
+    @Override
+    public void cancelTable() {
+        progressBar.show();
+
+        saleService.cancelTable(table, new ResponseListner<SaleDTO>() {
+            @Override
+            public void success(SaleDTO response) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.pos_table_was_successfully_canceled), () -> {
+                    resetFragment();
+                    loadOpenedTables();
+                });
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("B_POS_CANCEL_TABLE", errorMessage.getDeveloperMessage());
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.pos_there_was_an_error_caneling_tabe), null);
+                Log.e("POS_CANCEL_TABLE", message);
+            }
+        });
+
     }
 }

@@ -35,7 +35,11 @@ class TableDetailsFragment : BaseFragment(), ClickListner<MenuItem> {
         binding.tableDetailsTotalPaid.text = FormatterUtil.mtFormat(table.totalPaid)
         binding.tableDetailsTotalToPay.text = FormatterUtil.mtFormat(table.totalToPay())
 
-        val menuItems = listOf(MenuItem(R.string.add_order, R.mipmap.ic_add_order), MenuItem(R.string.payments, R.mipmap.ic_payment), MenuItem(R.string.print_bill, R.mipmap.ic_bill))
+        val menuItems = listOf(MenuItem(R.string.add_order, R.mipmap.ic_add_order),
+                MenuItem(R.string.payments, R.mipmap.ic_payment),
+                MenuItem(R.string.print_bill, R.mipmap.ic_bill),
+                MenuItem(R.string.cancel, R.mipmap.ic_cancel))
+
         val adapter = MenuAdapter(activity, menuItems)
 
         adapter.setItemClickListner(this)

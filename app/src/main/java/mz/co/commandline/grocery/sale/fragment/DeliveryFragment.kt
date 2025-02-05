@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
-import kotlinx.android.synthetic.main.sale.*
 import mz.co.commandline.grocery.R
 import mz.co.commandline.grocery.databinding.FragmentDeliveryBinding
 import mz.co.commandline.grocery.generics.fragment.BaseFragment

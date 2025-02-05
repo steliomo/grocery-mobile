@@ -69,12 +69,16 @@ public class CustomersFragment extends BaseFragment implements SearchView.OnQuer
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                if (dy > 0) {
 
-                if (delegate.getCustomersDTO().getTotalCustomers() != delegate.getCustomersDTO().getCustomerDTOs().size()) {
-                    if (layoutManager.findLastCompletelyVisibleItemPosition() == delegate.getCustomersDTO().getCustomerDTOs().size() - 1) {
-                        delegate.updateData(adapter);
+                    LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+
+                    if (delegate.getCustomersDTO().getTotalCustomers() != delegate.getCustomersDTO().getCustomerDTOs().size()) {
+                        if (layoutManager.findLastCompletelyVisibleItemPosition() == delegate.getCustomersDTO().getCustomerDTOs().size() - 1) {
+                            delegate.updateData(adapter);
+                        }
                     }
+
                 }
             }
         });

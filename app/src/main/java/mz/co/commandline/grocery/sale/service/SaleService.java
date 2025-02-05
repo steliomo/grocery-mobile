@@ -31,4 +31,6 @@ public interface SaleService {
     void fetchOpenedTableByUuid(String tableUuid, ResponseListner<SaleDTO> responseListner);
 
     void sendTableBill(SaleDTO table, ResponseListner<SaleDTO> responseListner);
+
+    void cancelTable(SaleDTO table, ResponseListner<SaleDTO> responseListner);
 }

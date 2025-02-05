@@ -263,6 +263,26 @@ public class SaleServiceImpl extends AbstractService implements SaleService {
     }
 
     @Override
+    public void cancelTable(SaleDTO table, ResponseListner<SaleDTO> responseListner) {
+        getResource().cancelTable(table).enqueue(new Callback<SaleDTO>() {
+            @Override
+            public void onResponse(Call<SaleDTO> call, Response<SaleDTO> response) {
+                if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<SaleDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
     public SaleResource getResource() {
         return retrofitService.getResource(SaleResource.class);
     }
