@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import mz.co.commandline.grocery.generics.dto.ErrorMessage;
 import mz.co.commandline.grocery.grocery.dto.UnitDTO;
 import mz.co.commandline.grocery.item.dto.ItemDTO;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
@@ -84,6 +85,11 @@ public class ItemServiceImpl implements ItemService {
             public void error(String message) {
                 responseListner.error(message);
             }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                responseListner.businessError(errorMessage);
+            }
         });
     }
 
@@ -97,6 +103,11 @@ public class ItemServiceImpl implements ItemService {
             @Override
             public void error(String message) {
                 responseListner.error(message);
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                responseListner.businessError(errorMessage);
             }
         });
     }

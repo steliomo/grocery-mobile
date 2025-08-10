@@ -16,7 +16,7 @@ import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.payment.delegate.PaymentDelegate;
 import mz.co.commandline.grocery.payment.dto.PaymentDTO;
 import mz.co.commandline.grocery.user.dto.UnitDetail;
-import mz.co.commandline.grocery.util.FormatterUtil;
+import mz.co.commandline.grocery.util.DateUtil;
 import mz.co.commandline.grocery.util.TextInputLayoutUtil;
 import mz.co.commandline.grocery.validator.PhoneNumberValidator;
 import mz.co.commandline.grocery.validator.Validator;
@@ -30,8 +30,8 @@ public class MpesaPaymentFragment extends BaseFragment implements AdapterView.On
     @BindView(R.id.fragment_mpesa_payment_number_of_users)
     TextView numberOfUsers;
 
-    @BindView(R.id.fragment_mpesa_payment_balance)
-    TextView balance;
+    @BindView(R.id.fragment_mpesa_payment_subscription)
+    TextView subscription;
 
     @BindView(R.id.fragment_mpesa_voucher_spinner)
     Spinner vouchers;
@@ -54,7 +54,7 @@ public class MpesaPaymentFragment extends BaseFragment implements AdapterView.On
         UnitDetail unitDetail = delegate.getUnitDetail();
         managerName.setText(unitDetail.getManagerName());
         numberOfUsers.setText(String.valueOf(unitDetail.getUsers()));
-        balance.setText(FormatterUtil.mtFormat(unitDetail.getBalance()));
+        subscription.setText(DateUtil.format(unitDetail.getSubscriptionEndDate()));
 
         ArrayAdapter<EnumDTO> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, delegate.getVouchers());
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
@@ -78,7 +78,7 @@ public class MpesaPaymentFragment extends BaseFragment implements AdapterView.On
             return;
         }
 
-        payment.setMpesaNumber(TextInputLayoutUtil.getInpuText(mpesaNumber));
+        payment.setWalletNumber(TextInputLayoutUtil.getInpuText(mpesaNumber));
         delegate.proceed();
     }
 

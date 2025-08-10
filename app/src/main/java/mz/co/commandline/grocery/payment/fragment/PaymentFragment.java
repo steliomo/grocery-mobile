@@ -8,8 +8,7 @@ import mz.co.commandline.grocery.R;
 import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.payment.delegate.PaymentDelegate;
 import mz.co.commandline.grocery.user.dto.UnitDetail;
-import mz.co.commandline.grocery.user.dto.UserDTO;
-import mz.co.commandline.grocery.util.FormatterUtil;
+import mz.co.commandline.grocery.util.DateUtil;
 
 
 public class PaymentFragment extends BaseFragment {
@@ -20,8 +19,8 @@ public class PaymentFragment extends BaseFragment {
     @BindView(R.id.fragment_payment_number_of_users)
     TextView numberOfUsers;
 
-    @BindView(R.id.fragment_payment_balance)
-    TextView balance;
+    @BindView(R.id.fragment_payment_subscription)
+    TextView subscription;
 
     private PaymentDelegate delegate;
 
@@ -36,7 +35,7 @@ public class PaymentFragment extends BaseFragment {
         UnitDetail unitDetail = delegate.getUnitDetail();
         managerName.setText(unitDetail.getManagerName());
         numberOfUsers.setText(String.valueOf(unitDetail.getUsers()));
-        balance.setText(FormatterUtil.mtFormat(unitDetail.getBalance()));
+        subscription.setText(DateUtil.format(unitDetail.getSubscriptionEndDate()));
     }
 
     @OnClick({R.id.fragment_payment_mpesa_view, R.id.fragment_payment_mpesa_label})

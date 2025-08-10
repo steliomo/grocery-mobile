@@ -225,6 +225,13 @@ public class MainActivity extends BaseAuthActivity implements MainDelegate, Sign
                 dialogManager.dialog(AlertType.ERROR, "Ocorreu um erro ao processar os dados. Por favor tente novamente", null);
                 Log.e("DASHBOARD", message);
             }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.INFO, errorMessage.getMessage(), null);
+                Log.e("DASHBOARD_B", errorMessage.getDeveloperMessage());
+            }
         });
     }
 

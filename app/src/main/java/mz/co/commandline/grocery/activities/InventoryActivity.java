@@ -315,6 +315,13 @@ public class InventoryActivity extends BaseAuthActivity implements View.OnClickL
                 progressBar.dismiss();
                 Log.e("PRODUCTS", message);
             }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.INFO, errorMessage.getMessage(), null);
+                Log.e("ITEMS_B", errorMessage.getDeveloperMessage());
+            }
         });
     }
 

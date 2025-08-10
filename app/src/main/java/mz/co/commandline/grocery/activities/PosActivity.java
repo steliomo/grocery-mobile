@@ -184,6 +184,13 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
                 dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_customers), null);
                 Log.e("POS_LOAD_CUSTOMERS", message);
             }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.INFO, errorMessage.getMessage(), null);
+                Log.e("POS_LOAD_CUSTOMERS_B", errorMessage.getDeveloperMessage());
+            }
         });
     }
 

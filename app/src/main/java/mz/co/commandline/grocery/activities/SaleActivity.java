@@ -521,6 +521,13 @@ public class SaleActivity extends BaseAuthActivity implements SaleDelegate, Sale
                 progressBar.dismiss();
                 Log.e("ITEMS", message);
             }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.INFO, errorMessage.getMessage(), null);
+                Log.e("ITEMS_B", errorMessage.getDeveloperMessage());
+            }
         });
     }
 

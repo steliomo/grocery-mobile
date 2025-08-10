@@ -66,19 +66,19 @@
         tools:text="10" />
 
     <TextView
-        android:id="@+id/fragment_payment_balance_label"
+        android:id="@+id/fragment_payment_subscription_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5px"
-        android:text="Saldo:"
+        android:text="Validade da subscrição:"
         android:textColor="#000"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_payment_balance"
-        app:layout_constraintEnd_toStartOf="@+id/fragment_payment_balance"
-        app:layout_constraintTop_toTopOf="@+id/fragment_payment_balance" />
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_payment_subscription"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_payment_subscription"
+        app:layout_constraintTop_toTopOf="@+id/fragment_payment_subscription" />
 
     <TextView
-        android:id="@+id/fragment_payment_balance"
+        android:id="@+id/fragment_payment_subscription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"

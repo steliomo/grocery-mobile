@@ -7,7 +7,7 @@ import mz.co.commandline.grocery.generics.dto.EnumDTO;
 public class PaymentDTO {
     private String voucher;
     private String voucherLabel;
-    private String mpesaNumber;
+    private String walletNumber;
     private BigDecimal discountValue;
     private BigDecimal total;
     private String unitUuid;
@@ -20,8 +20,8 @@ public class PaymentDTO {
         this.voucherLabel = voucher.getLabel();
     }
 
-    public void setMpesaNumber(String mpesaNumber) {
-        this.mpesaNumber = mpesaNumber;
+    public void setWalletNumber(String walletNumber) {
+        this.walletNumber = walletNumber;
     }
 
     public String getVoucher() {
@@ -32,8 +32,8 @@ public class PaymentDTO {
         return voucherLabel;
     }
 
-    public String getMpesaNumber() {
-        return mpesaNumber;
+    public String getWalletNumber() {
+        return walletNumber;
     }
 
     public void setDiscountValue(BigDecimal discountValue) {

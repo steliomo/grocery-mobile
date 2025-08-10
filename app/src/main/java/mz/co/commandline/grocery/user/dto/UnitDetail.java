@@ -10,9 +10,9 @@ public class UnitDetail {
 
     private Long users;
 
-    private BigDecimal balance;
-
     private String managerName;
+
+    private String subscriptionEndDate;
 
     public String getUuid() {
         return uuid;
@@ -26,10 +26,12 @@ public class UnitDetail {
         return users;
     }
 
-    public BigDecimal getBalance() {
-        return balance;
+    public String getSubscriptionEndDate() {
+        if(subscriptionEndDate == null){
+            return "";
+        }
+        return subscriptionEndDate;
     }
-
     public void setManagerName(String managerName) {
         this.managerName = managerName;
     }

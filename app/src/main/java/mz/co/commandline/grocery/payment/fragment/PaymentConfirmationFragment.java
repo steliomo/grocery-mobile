@@ -9,6 +9,7 @@ import mz.co.commandline.grocery.generics.fragment.BaseFragment;
 import mz.co.commandline.grocery.payment.delegate.PaymentDelegate;
 import mz.co.commandline.grocery.payment.dto.PaymentDTO;
 import mz.co.commandline.grocery.user.dto.UnitDetail;
+import mz.co.commandline.grocery.util.DateUtil;
 import mz.co.commandline.grocery.util.FormatterUtil;
 
 
@@ -20,8 +21,8 @@ public class PaymentConfirmationFragment extends BaseFragment {
     @BindView(R.id.fragment_payment_confirmation_number_of_users)
     TextView numberOfUsers;
 
-    @BindView(R.id.fragment_payment_confirmation_balance)
-    TextView balance;
+    @BindView(R.id.fragment_payment_confirmation_subscription)
+    TextView subscription;
 
     @BindView(R.id.fragment_payment_confirmation_mpesa_number)
     TextView mpesaNumber;
@@ -51,10 +52,10 @@ public class PaymentConfirmationFragment extends BaseFragment {
         UnitDetail unitDetail = delegate.getUnitDetail();
         managenName.setText(unitDetail.getManagerName());
         numberOfUsers.setText(String.valueOf(unitDetail.getUsers()));
-        balance.setText(FormatterUtil.mtFormat(unitDetail.getBalance()));
+        subscription.setText(DateUtil.format(unitDetail.getSubscriptionEndDate()));
 
         payment = delegate.getPayment();
-        mpesaNumber.setText(payment.getMpesaNumber());
+        mpesaNumber.setText(payment.getWalletNumber());
         voucher.setText(payment.getVoucherLabel());
         paymentDiscount.setText(FormatterUtil.mtFormat(payment.getDiscountValue()));
         paymentTotal.setText(FormatterUtil.mtFormat(payment.getTotal()));
