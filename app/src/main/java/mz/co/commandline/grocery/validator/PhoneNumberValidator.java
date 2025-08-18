@@ -25,8 +25,13 @@ public class PhoneNumberValidator implements Validator {
 
         String phoneNumber = TextInputLayoutUtil.getInpuText(textInputLayout);
 
-        if (phoneNumber.length() != 9) {
+        if (phoneNumber.length() < 9) {
             textInputLayout.setError(textInputLayout.getContext().getResources().getString(R.string.phone_number_cannot_be_less_than_9_digits));
+            return false;
+        }
+
+        if (phoneNumber.length() > 15) {
+            textInputLayout.setError(textInputLayout.getContext().getResources().getString(R.string.phone_number_cannot_be_greater_than_15_digits));
             return false;
         }
 

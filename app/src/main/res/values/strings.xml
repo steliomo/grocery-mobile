@@ -118,7 +118,7 @@
     <string name="mpesa_fee_advice">*O valor total não inclui taxa de transacção do M-pesa</string>
     <string name="confirm">Confirmar</string>
     <string name="voucher_types">Tipo de Recarga</string>
-    <string name="phone_number_cannot_be_less_than_9_digits">O número do telefone deve 9 dígitos!</string>
+    <string name="phone_number_cannot_be_less_than_9_digits">O número do telefone deve ter no mínimo 9 dígitos!</string>
     <string name="rents">Alugueres</string>
     <string name="rent">Aluguer</string>
     <string name="payment">Pagamento</string>
@@ -268,4 +268,5 @@
     <string name="pos_there_was_an_error_caneling_tabe">Ocorreu um erro ao cancelar a mesa. Tente novmente</string>
     <string name="pos_unit_empty">O estabelecimento está sem mesas ocupadas.</string>
     <string name="in_development">Funcionalidade em desenvolvimento!.</string>
+    <string name="phone_number_cannot_be_greater_than_15_digits">O número do telefone não deve conter mais de 15 dígitos!</string>
 </resources>
