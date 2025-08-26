@@ -293,4 +293,8 @@ public class BluetoothPrinter {
     public BluetoothDevice getBluetoothDevice() {
         return bluetoothDevice;
     }
+
+    public InputStream getInputStream(){
+        return inputStream;
+    }
 }

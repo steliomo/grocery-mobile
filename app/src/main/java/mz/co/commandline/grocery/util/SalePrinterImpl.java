@@ -48,6 +48,6 @@ public class SalePrinterImpl implements SalePrinter {
 
     @Override
     public boolean hasDevice() {
-        return printer.getBluetoothDevice() != null;
+        return printer.getBluetoothDevice() != null && printer.getInputStream() != null;
     }
 }

@@ -1,5 +1,6 @@
 package mz.co.commandline.grocery.activities;
 
+import android.Manifest;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
@@ -490,6 +491,8 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
 
     @Override
     public void print() {
+        requestPermissions(new String[]{Manifest.permission.BLUETOOTH_CONNECT},1);
+
         salePrinter = new SalePrinterImpl();
 
         if (!salePrinter.hasDevice()) {
