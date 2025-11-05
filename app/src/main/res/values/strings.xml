@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Negócio na Mão</string>
-    <string name="app_version">© 2025 © v2.12.2</string>
+    <string name="app_version">© 2025 © v2.13.0</string>
     <string name="sales">Vendas</string>
     <string name="reports">Relatórios</string>
     <string name="products_and_services">Produtos e Serviços</string>
@@ -142,9 +142,9 @@
     <string name="rent_registed_with_success">O aluguer foi registado com sucesso!</string>
     <string name="error_on_registing_rent">Ocorreu um erro ao registar ao aluguer. Por favor tente novamente.</string>
     <string name="error_loading_rents">Ocorreu um erro ao carregar alugueres. Tente novamente!</string>
-    <string name="payment_regist">Registar de pagamento</string>
+    <string name="payment_regist">Registar pagamento</string>
     <string name="payment_success">Pagamento realizado com sucesso!</string>
-    <string name="payment_error">Ocorreu um erro no pagamento do aluguer. Tente novamente!</string>
+    <string name="payment_error">Ocorreu um erro ao registar o pagamento. Tente novamente!</string>
     <string name="unit_without_pending_payments">Unidade sem pagamentos pendentes!</string>
     <string name="unit_without_pending_or_incomplete_devolutions">Unidade sem devoluções pendentes ou incompletas!</string>
     <string name="item_details">Detalhes do Item</string>
@@ -269,4 +269,14 @@
     <string name="pos_unit_empty">O estabelecimento está sem mesas ocupadas.</string>
     <string name="in_development">Funcionalidade em desenvolvimento!.</string>
     <string name="phone_number_cannot_be_greater_than_15_digits">O número do telefone não deve conter mais de 15 dígitos!</string>
+    <string name="credit_payment_success">Pagamento à crédito realizado com sucesso!</string>
+    <string name="pos_menu">Menú POS</string>
+    <string name="pos_manage_table">Gerir Mesas</string>
+    <string name="pos_manage_dept">Gerir Dívidas</string>
+    <string name="pay_bill">Pagar a conta</string>
+    <string name="amount_paying">Montante a pagar</string>
+    <string name="pos_pay_dept_sucess">O pagamento da dívida foi registado com sucesso!</string>
+    <string name="pos_pay_dept_error">Ocoreu um erro ao registar o pagamento da dívida. Tente novamente!</string>
+    <string name="pos_find_debt">Ocorreu um erro ao carregar a dívida. Tente novamente!</string>
+    <string name="error_loading_dept_items">Ocorreu um erro ao carregar os itens da dívida</string>
 </resources>

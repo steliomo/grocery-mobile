@@ -1,6 +1,7 @@
 package mz.co.commandline.grocery.pos.delegate
 
 import mz.co.commandline.grocery.item.delegate.ItemDelegate
+import mz.co.commandline.grocery.pos.dto.DebtDTO
 import mz.co.commandline.grocery.sale.dto.SaleDTO
 import mz.co.commandline.grocery.sale.dto.SaleItemDTO
 import mz.co.commandline.grocery.sale.dto.SalePaymentDTO
@@ -39,4 +40,14 @@ interface PosDelegate : ItemDelegate, SaleableItemDelegate {
     fun numberOfTables(): Int
 
     fun cancelTable()
+
+    fun registCreditSale(tableUuid: String)
+
+    fun selectedPosMenuItem(iconId: Int)
+    
+    fun selectedPosDeptMenu(iconId: Int)
+
+    fun getDebt(): DebtDTO
+
+    fun payDept(dept: DebtDTO)
 }

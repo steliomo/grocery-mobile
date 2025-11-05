@@ -34,14 +34,20 @@ import mz.co.commandline.grocery.item.fragment.ProductFragment;
 import mz.co.commandline.grocery.item.service.ItemService;
 import mz.co.commandline.grocery.module.GroceryComponent;
 import mz.co.commandline.grocery.pos.delegate.PosDelegate;
+import mz.co.commandline.grocery.pos.dto.DebtDTO;
+import mz.co.commandline.grocery.pos.dto.DebtItemDTO;
 import mz.co.commandline.grocery.pos.fragment.OpenTableCustomerFragment;
 import mz.co.commandline.grocery.pos.fragment.OpenTableDetailsFragment;
 import mz.co.commandline.grocery.pos.fragment.PosAddOrderItemFragment;
 import mz.co.commandline.grocery.pos.fragment.PosAddOrdersFragment;
 import mz.co.commandline.grocery.pos.fragment.PosBillFragment;
 import mz.co.commandline.grocery.pos.fragment.PosCancelFragment;
+import mz.co.commandline.grocery.pos.fragment.PosDebtMenuFragment;
 import mz.co.commandline.grocery.pos.fragment.PosFragment;
+import mz.co.commandline.grocery.pos.fragment.PosMenuFragment;
+import mz.co.commandline.grocery.pos.fragment.PosPayDebtFragment;
 import mz.co.commandline.grocery.pos.fragment.PosPaymentFragment;
+import mz.co.commandline.grocery.pos.fragment.PosPrintDebtFragment;
 import mz.co.commandline.grocery.pos.fragment.SelectTableFragment;
 import mz.co.commandline.grocery.pos.fragment.TableDetailsFragment;
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
@@ -103,6 +109,12 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
 
     private int maxResult = 10;
 
+    private Boolean manageDebt;
+
+    private Boolean toPayDebt;
+
+    private DebtDTO debt;
+
     @Override
     public int getActivityFrameLayoutId() {
         return R.id.pos_activity_frame_layout;
@@ -124,7 +136,7 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
 
         optionDialog = new OptionDialog(this);
 
-        loadOpenedTables();
+        showFragment(new PosMenuFragment(), Boolean.FALSE);
     }
 
     private void loadOpenedTables() {
@@ -139,7 +151,7 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
                     dialogManager.dialog(AlertType.INFO, getString(R.string.pos_unit_empty), null);
                 }
 
-                showFragment(new PosFragment(), Boolean.FALSE);
+                showFragment(new PosFragment(), Boolean.TRUE);
             }
 
             @Override
@@ -211,7 +223,8 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
                             progressBar.dismiss();
                             tables = response.getSalesDTO();
                             resetFragment();
-                            showFragment(new PosFragment(), Boolean.FALSE);
+                            showFragment(new PosMenuFragment(), Boolean.FALSE);
+                            showFragment(new PosFragment(), Boolean.TRUE);
                         }
 
                         @Override
@@ -434,6 +447,7 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
                 table = response;
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.pos_orders_successfully_added), () -> {
                     resetFragment();
+                    showFragment(new PosMenuFragment(), Boolean.FALSE);
                     loadOpenedTables();
                 });
             }
@@ -500,6 +514,34 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
             return;
         }
 
+        if(manageDebt){
+            progressBar.show();
+            saleService.findDebtItemsbByCustomer(debt.getCustomer().getUuid(), new ResponseListner<List<DebtItemDTO>>() {
+
+                @Override
+                public void success(List<DebtItemDTO> response) {
+                    progressBar.dismiss();
+
+                    debt.getDebtItems().addAll(response);
+                    salePrinter.printDept(debt, BitmapFactory.decodeResource(getResources(), R.drawable.ic_logo));
+
+                    sleep(2);
+
+                    resetFragment();
+                    showFragment(new PosMenuFragment(), Boolean.FALSE);
+                    salePrinter.closeConnection();
+                }
+
+                @Override
+                public void error(String message) {
+                    progressBar.dismiss();
+                    dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_dept_items), null);
+                }
+            });
+
+            return;
+        }
+
         salePrinter.printReceipt(table, BitmapFactory.decodeResource(getResources(), R.drawable.ic_logo));
 
         sleep(2);
@@ -510,41 +552,55 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
 
     @Override
     public void sendToWhatsApp() {
+        if(manageDebt){
+            progressBar.show();
+            saleService.sendCustomerDebt(debt, new ResponseListner<Void>() {
+                @Override
+                public void success(Void response) {
+                    progressBar.dismiss();
+                    dialogManager.dialog(AlertType.SUCCESS, getString(R.string.whatsapp_bill_successfully_sent), () -> {
+                        resetFragment();
+                        showFragment(new PosMenuFragment(), Boolean.FALSE);
+                    });
+                }
+
+                @Override
+                public void businessError(ErrorMessage errorMessage) {
+                    progressBar.dismiss();
+                    dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                    Log.e("SEND_DEPT_B", errorMessage.getDeveloperMessage());
+                }
+
+                @Override
+                public void error(String message) {
+                    progressBar.dismiss();
+                    dialogManager.dialog(AlertType.ERROR, getString(R.string.there_was_an_error_sending_the_bill), null);
+                    Log.e("SEND_DEPT", message);
+                }
+            });
+
+            return;
+        }
 
         progressBar.show();
         saleService.sendTableBill(table, new ResponseListner<SaleDTO>() {
             @Override
             public void success(SaleDTO response) {
                 progressBar.dismiss();
-                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.whatsapp_bill_successfully_sent), new AlertListner() {
-                    @Override
-                    public void perform() {
-                        popBackStack();
-                    }
-                });
+                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.whatsapp_bill_successfully_sent), () -> popBackStack());
             }
 
             @Override
             public void businessError(ErrorMessage errorMessage) {
                 progressBar.dismiss();
-                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), new AlertListner() {
-                    @Override
-                    public void perform() {
-                        popBackStack();
-                    }
-                });
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), () -> popBackStack());
                 Log.e("SEND_BILL_B", errorMessage.getDeveloperMessage());
             }
 
             @Override
             public void error(String message) {
                 progressBar.dismiss();
-                dialogManager.dialog(AlertType.ERROR, getString(R.string.there_was_an_error_sending_the_bill), new AlertListner() {
-                    @Override
-                    public void perform() {
-                        popBackStack();
-                    }
-                });
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.there_was_an_error_sending_the_bill), () -> popBackStack());
                 Log.e("SEND_BILL", message);
             }
         });
@@ -603,20 +659,80 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
 
     @Override
     public void selectedCustomer(CustomerDTO customerDTO) {
+        if(manageDebt){
+
+            progressBar.show();
+            saleService.findDebtByCustomer(customerDTO.getUuid(), new ResponseListner<DebtDTO>() {
+                @Override
+                public void success(DebtDTO response) {
+                    progressBar.dismiss();
+                    debt = response;
+
+                    customerDTO.setUnit(userService.getUnitDTO());
+                    debt.setCustomer(customerDTO);
+
+                    if(toPayDebt){
+                        showFragment(new PosPayDebtFragment(), Boolean.TRUE);
+                        return;
+                    }
+
+                    showFragment(new PosPrintDebtFragment(), Boolean.TRUE);
+                }
+
+                @Override
+                public void error(String message) {
+                    progressBar.dismiss();
+                    dialogManager.dialog(AlertType.ERROR, getString(R.string.pos_find_debt), null);
+                    Log.e("POS_LOAD_DEPT", message);
+                }
+
+                @Override
+                public void businessError(ErrorMessage errorMessage) {
+                    progressBar.dismiss();
+                    dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(),null);
+                    Log.e("POS_LOAD_DEPT_B", errorMessage.getDeveloperMessage());
+                }
+            });
+            return;
+        }
+
         table.setCustomerDTO(customerDTO);
         showFragment(new SelectTableFragment(), Boolean.TRUE);
     }
 
     @Override
     public int addBtnVisibility() {
+        if(manageDebt){
+            return View.GONE;
+        }
         return View.VISIBLE;
     }
 
     @Override
     public void updateData(CustomerAdapter adapter) {
         currentPage++;
-
         progressBar.show();
+
+        if(manageDebt){
+            customerService.findCustomersInDeptByUnit(userService.getUnitDTO().getUuid(), currentPage, maxResult, new ResponseListner<CustomersDTO>() {
+                @Override
+                public void success(CustomersDTO response) {
+                    progressBar.dismiss();
+                    customersDTO.getCustomerDTOs().addAll(response.getCustomerDTOs());
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void error(String message) {
+                    progressBar.dismiss();
+                    dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_customers), null);
+                    Log.e("DEPT_LOAD_CUSTOMERS", message);
+                }
+            });
+
+            return;
+        }
+
         customerService.findCustomersByUnit(userService.getUnitDTO().getUuid(), currentPage, maxResult, new ResponseListner<CustomersDTO>() {
             @Override
             public void success(CustomersDTO response) {
@@ -649,6 +765,7 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
                 progressBar.dismiss();
                 dialogManager.dialog(AlertType.SUCCESS, getString(R.string.pos_table_was_successfully_canceled), () -> {
                     resetFragment();
+                    showFragment(new PosMenuFragment(), Boolean.FALSE);
                     loadOpenedTables();
                 });
             }
@@ -667,6 +784,136 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
                 Log.e("POS_CANCEL_TABLE", message);
             }
         });
+    }
 
+    @Override
+    public void registCreditSale(@NotNull String tableUuid) {
+        KeyboardUtil.hideKeyboard(this, toolbar);
+        progressBar.show();
+
+        saleService.registCreditSale(tableUuid, new ResponseListner<SaleDTO>() {
+            @Override
+            public void success(SaleDTO response) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.credit_payment_success), () -> {
+                    resetFragment();
+                    showFragment(new PosMenuFragment(), Boolean.FALSE);
+                    loadOpenedTables();
+                });
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.payment_error), null);
+                Log.e("POS_CREDIT_PAYMENT", message);
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("POS_CREDIT_PAYMENT_B", errorMessage.getDeveloperMessage());
+            }
+        });
+    }
+
+    @Override
+    public void selectedPosMenuItem(int iconId) {
+        manageDebt = Boolean.FALSE;
+
+        if(R.mipmap.ic_table == iconId){
+            loadOpenedTables();
+            return;
+        }
+
+        manageDebt = Boolean.TRUE;
+        showFragment(new PosDebtMenuFragment(), Boolean.TRUE);
+    }
+
+    @Override
+    public void selectedPosDeptMenu(int iconId) {
+        toPayDebt = Boolean.FALSE;
+        currentPage = 0;
+
+        if(R.mipmap.ic_payment == iconId){
+            toPayDebt = Boolean.TRUE;
+
+            loadCustomersInDept();
+            return;
+        }
+
+        loadCustomersInDept();
+    }
+
+    private void loadCustomersInDept() {
+        progressBar.show();
+        customerService.findCustomersInDeptByUnit(userService.getUnitDTO().getUuid(), currentPage, maxResult, new ResponseListner<CustomersDTO>() {
+            @Override
+            public void success(CustomersDTO response) {
+                progressBar.dismiss();
+
+                customersDTO = response;
+
+                if (customersDTO.getCustomerDTOs().isEmpty()) {
+                    dialogManager.dialog(AlertType.INFO, getString(R.string.no_customers_found), null);
+                    return;
+                }
+
+                showFragment(new CustomersFragment(), Boolean.TRUE);
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.error_loading_customers), null);
+                Log.e("DEPT_LOAD_CUSTOMERS", message);
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("DEPT_LOAD_CUSTOMERS_B", errorMessage.getDeveloperMessage());
+            }
+        });
+    }
+
+    @NotNull
+    @Override
+    public DebtDTO getDebt() {
+        return debt;
+    }
+
+    @Override
+    public void payDept(@NotNull DebtDTO dept) {
+        progressBar.show();
+
+        saleService.payDebt(dept, new ResponseListner<DebtDTO>() {
+            @Override
+            public void success(DebtDTO response) {
+                progressBar.dismiss();
+
+                dialogManager.dialog(AlertType.SUCCESS, getString(R.string.pos_pay_dept_sucess), () ->{
+                    resetFragment();
+                    showFragment(new PosMenuFragment(), Boolean.FALSE);
+                });
+            }
+
+            @Override
+            public void error(String message) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, getString(R.string.pos_pay_dept_error), null);
+                Log.e("PAY_DEPT_ERROR", message);
+
+            }
+
+            @Override
+            public void businessError(ErrorMessage errorMessage) {
+                progressBar.dismiss();
+                dialogManager.dialog(AlertType.ERROR, errorMessage.getMessage(), null);
+                Log.e("PAY_DEPT_ERROR_B", errorMessage.getDeveloperMessage());
+            }
+        });
     }
 }

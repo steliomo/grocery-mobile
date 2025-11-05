@@ -1,11 +1,14 @@
 package mz.co.commandline.grocery.sale.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
+import mz.co.commandline.grocery.pos.dto.DebtDTO;
+import mz.co.commandline.grocery.pos.dto.DebtItemDTO;
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
 import mz.co.commandline.grocery.sale.dto.SalePaymentDTO;
-import mz.co.commandline.grocery.sale.dto.SaleStatus;
 import mz.co.commandline.grocery.sale.dto.SalesDTO;
 import mz.co.commandline.grocery.generics.service.AbstractService;
 import mz.co.commandline.grocery.generics.service.RetrofitService;
@@ -277,6 +280,107 @@ public class SaleServiceImpl extends AbstractService implements SaleService {
 
             @Override
             public void onFailure(Call<SaleDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void registCreditSale(String saleUuid, ResponseListner<SaleDTO> responseListner) {
+        getResource().registCreditSale(saleUuid).enqueue(new Callback<SaleDTO>() {
+            @Override
+            public void onResponse(Call<SaleDTO> call, Response<SaleDTO> response) {
+
+                if(response.isSuccessful()){
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<SaleDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void payDebt(DebtDTO dept, ResponseListner<DebtDTO> responseListner) {
+        getResource().payDebt(dept).enqueue(new Callback<DebtDTO>(){
+
+            @Override
+            public void onResponse(Call<DebtDTO> call, Response<DebtDTO> response) {
+                if(response.isSuccessful()){
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<DebtDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void findDebtByCustomer(String customerUuid, ResponseListner<DebtDTO> responseListner) {
+        getResource().findDebtByCustomer(customerUuid).enqueue(new Callback<DebtDTO>() {
+            @Override
+            public void onResponse(Call<DebtDTO> call, Response<DebtDTO> response) {
+                if(response.isSuccessful()){
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<DebtDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void findDebtItemsbByCustomer(String customerUuid, ResponseListner<List<DebtItemDTO>> responseListner) {
+        getResource().findDebtItemsbByCustomer(customerUuid).enqueue(new Callback<List<DebtItemDTO>>() {
+            @Override
+            public void onResponse(Call<List<DebtItemDTO>> call, Response<List<DebtItemDTO>> response) {
+                if (response.isSuccessful()){
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<List<DebtItemDTO>> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void sendCustomerDebt(DebtDTO dept, ResponseListner<Void> responseListner) {
+        getResource().sendDebt(dept).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    responseListner.success(response.body());
+                    return;
+                }
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
                 responseListner.error(t.getMessage());
             }
         });

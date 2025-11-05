@@ -1,9 +1,12 @@
 package mz.co.commandline.grocery.sale.service;
 
+import java.util.List;
+
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
+import mz.co.commandline.grocery.pos.dto.DebtDTO;
+import mz.co.commandline.grocery.pos.dto.DebtItemDTO;
 import mz.co.commandline.grocery.sale.dto.SaleDTO;
 import mz.co.commandline.grocery.sale.dto.SalePaymentDTO;
-import mz.co.commandline.grocery.sale.dto.SaleStatus;
 import mz.co.commandline.grocery.sale.dto.SalesDTO;
 
 public interface SaleService {
@@ -33,4 +36,13 @@ public interface SaleService {
     void sendTableBill(SaleDTO table, ResponseListner<SaleDTO> responseListner);
 
     void cancelTable(SaleDTO table, ResponseListner<SaleDTO> responseListner);
+
+    void registCreditSale(String saleUuid, ResponseListner<SaleDTO> responseListner);
+
+    void payDebt(DebtDTO bill, ResponseListner<DebtDTO> responseListner);
+
+    void findDebtByCustomer(String customerUuid, ResponseListner<DebtDTO> responseListner);
+
+    void findDebtItemsbByCustomer(String customerUuid, ResponseListner<List<DebtItemDTO>> responseListner);
+    void sendCustomerDebt(DebtDTO debt, ResponseListner<Void> voidResponseListner);
 }

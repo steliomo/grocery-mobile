@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pos.fragment.PosPayDebtFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/posPayDeptImageView"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@mipmap/ic_payment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/posPayDeptCustomerLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="#017a84"
+            android:padding="10dp"
+            android:text="@string/customer"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/posPayDeptImageView" />
+
+        <TextView
+            android:id="@+id/posPayDeptCustomer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textview_borders"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/posPayDeptCustomerLabel"
+            app:layout_constraintStart_toStartOf="@+id/posPayDeptCustomerLabel"
+            app:layout_constraintTop_toBottomOf="@+id/posPayDeptCustomerLabel"
+            tools:text="Stélio Klésio Adriano Moiane" />
+
+        <TextView
+            android:id="@+id/posPayDeptBillDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="#017a84"
+            android:padding="10dp"
+            android:text="Detalhes da Dívida"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/posPayDeptCustomer"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/posPayDeptCustomer"
+            app:layout_constraintTop_toBottomOf="@+id/posPayDeptCustomer" />
+
+        <View
+            android:id="@+id/posPayDeptView"
+            android:layout_width="0dp"
+            android:layout_height="110dp"
+            android:background="@drawable/textview_borders"
+            app:layout_constraintEnd_toEndOf="@+id/posPayDeptBillDetails"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/posPayDeptBillDetails"
+            app:layout_constraintTop_toBottomOf="@+id/posPayDeptBillDetails" />
+
+        <TextView
+            android:id="@+id/posPayDeptTotalToPayLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Total a Pagar"
+            app:layout_constraintEnd_toStartOf="@+id/posPayDeptTotalToPay"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="@+id/posPayDeptView"
+            app:layout_constraintTop_toBottomOf="@+id/posPayDeptBillDetails" />
+
+        <TextView
+            android:id="@+id/posPayDeptTotalToPay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textAlignment="textEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/posPayDeptTotalToPayLabel"
+            app:layout_constraintEnd_toEndOf="@+id/posPayDeptView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/posPayDeptTotalToPayLabel"
+            app:layout_constraintTop_toTopOf="@+id/posPayDeptTotalToPayLabel"
+            tools:text="10.000,00 MT" />
+
+        <TextView
+            android:id="@+id/posPayDeptTotalPaidLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Total Pago"
+            app:layout_constraintEnd_toStartOf="@+id/posPayDeptTotalPaid"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="@+id/posPayDeptTotalToPayLabel"
+            app:layout_constraintTop_toBottomOf="@+id/posPayDeptTotalToPayLabel" />
+
+        <TextView
+            android:id="@+id/posPayDeptTotalPaid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/posPayDeptTotalPaidLabel"
+            app:layout_constraintEnd_toEndOf="@+id/posPayDeptTotalToPay"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/posPayDeptTotalPaidLabel"
+            app:layout_constraintTop_toTopOf="@+id/posPayDeptTotalPaidLabel"
+            tools:text="8.000,00 MT" />
+
+        <TextView
+            android:id="@+id/posPayDeptTotalInDeptLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Total em dívida"
+            app:layout_constraintEnd_toStartOf="@+id/posPayDeptTotalInDept"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="@+id/posPayDeptTotalPaidLabel"
+            app:layout_constraintTop_toBottomOf="@+id/posPayDeptTotalPaidLabel" />
+
+        <TextView
+            android:id="@+id/posPayDeptTotalInDept"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textAlignment="textEnd"
+            app:layout_constraintBottom_toBottomOf="@+id/posPayDeptTotalInDeptLabel"
+            app:layout_constraintEnd_toEndOf="@+id/posPayDeptTotalPaid"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:textColor="#E53935"
+            app:layout_constraintStart_toEndOf="@+id/posPayDeptTotalInDeptLabel"
+            app:layout_constraintTop_toTopOf="@+id/posPayDeptTotalInDeptLabel"
+            tools:text="2.000,00 MT" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/posPayDeptAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/posPayDeptTotalInDept"
+            app:layout_constraintStart_toStartOf="@+id/posPayDeptTotalInDeptLabel"
+            app:layout_constraintTop_toBottomOf="@+id/posPayDeptView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_money"
+                android:drawableLeft="@drawable/ic_money"
+                android:hint="@string/amount_paying"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/posPayDeptBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="32dp"
+            android:background="#017a84"
+            android:padding="8dp"
+            android:text="@string/pay"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/posPayDeptAmount"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/posPayDeptAmount"
+            app:layout_constraintTop_toBottomOf="@+id/posPayDeptAmount" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

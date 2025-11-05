@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".pos.fragment.PosPrintDebtFragment">
+
+    <ImageView
+        android:id="@+id/posPrintDeptImageView"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@mipmap/ic_bill"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/posPrintDeptCustomerLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#017a84"
+        android:padding="10dp"
+        android:text="@string/customer"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/posPrintDeptImageView" />
+
+    <TextView
+        android:id="@+id/posPrintDeptCustomer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textview_borders"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/posPrintDeptCustomerLabel"
+        app:layout_constraintStart_toStartOf="@+id/posPrintDeptCustomerLabel"
+        app:layout_constraintTop_toBottomOf="@+id/posPrintDeptCustomerLabel"
+        tools:text="Stélio Klésio Adriano Moiane" />
+
+    <TextView
+        android:id="@+id/posPrintDeptBillDetails"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#017a84"
+        android:padding="10dp"
+        android:text="Detalhes da Dívida"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/posPrintDeptCustomer"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/posPrintDeptCustomer"
+        app:layout_constraintTop_toBottomOf="@+id/posPrintDeptCustomer" />
+
+    <View
+        android:id="@+id/posPrintDeptView"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:background="@drawable/textview_borders"
+        app:layout_constraintEnd_toEndOf="@+id/posPrintDeptBillDetails"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/posPrintDeptBillDetails"
+        app:layout_constraintTop_toBottomOf="@+id/posPrintDeptBillDetails" />
+
+    <TextView
+        android:id="@+id/posPrintDeptTotalToPayLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Total a Pagar"
+        app:layout_constraintEnd_toStartOf="@+id/posPrintDeptTotalToPay"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/posPrintDeptView"
+        app:layout_constraintTop_toBottomOf="@+id/posPrintDeptBillDetails" />
+
+    <TextView
+        android:id="@+id/posPrintDeptTotalToPay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/posPrintDeptTotalToPayLabel"
+        app:layout_constraintEnd_toEndOf="@+id/posPrintDeptView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/posPrintDeptTotalToPayLabel"
+        app:layout_constraintTop_toTopOf="@+id/posPrintDeptTotalToPayLabel"
+        tools:text="10.000,00 MT" />
+
+    <TextView
+        android:id="@+id/posPrintDeptTotalPaidLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Total Pago"
+        app:layout_constraintEnd_toStartOf="@+id/posPrintDeptTotalPaid"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/posPrintDeptTotalToPayLabel"
+        app:layout_constraintTop_toBottomOf="@+id/posPrintDeptTotalToPayLabel" />
+
+    <TextView
+        android:id="@+id/posPrintDeptTotalPaid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/posPrintDeptTotalPaidLabel"
+        app:layout_constraintEnd_toEndOf="@+id/posPrintDeptTotalToPay"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/posPrintDeptTotalPaidLabel"
+        app:layout_constraintTop_toTopOf="@+id/posPrintDeptTotalPaidLabel"
+        tools:text="8.000,00 MT" />
+
+    <TextView
+        android:id="@+id/posPrintDeptTotalInDeptLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Total em dívida"
+        app:layout_constraintEnd_toStartOf="@+id/posPrintDeptTotalInDept"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/posPrintDeptTotalPaidLabel"
+        app:layout_constraintTop_toBottomOf="@+id/posPrintDeptTotalPaidLabel" />
+
+    <TextView
+        android:id="@+id/posPrintDeptTotalInDept"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/posPrintDeptTotalInDeptLabel"
+        app:layout_constraintEnd_toEndOf="@+id/posPrintDeptTotalPaid"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:textColor="#E53935"
+        app:layout_constraintStart_toEndOf="@+id/posPrintDeptTotalInDeptLabel"
+        app:layout_constraintTop_toTopOf="@+id/posPrintDeptTotalInDeptLabel"
+        tools:text="2.000,00 MT" />
+
+
+    <ImageView
+        android:id="@+id/posPrintDeptPrintImageView"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/textview_borders"
+        android:padding="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/posPrintDeptWhatsAppImageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/posPrintDeptView"
+        app:srcCompat="@mipmap/ic_receipt_printer" />
+
+    <ImageView
+        android:id="@+id/posPrintDeptWhatsAppImageView"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:background="@drawable/textview_borders"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/posPrintDeptPrintImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/posPrintDeptPrintImageView"
+        app:layout_constraintTop_toTopOf="@+id/posPrintDeptPrintImageView"
+        app:srcCompat="@mipmap/ic_whatsapp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

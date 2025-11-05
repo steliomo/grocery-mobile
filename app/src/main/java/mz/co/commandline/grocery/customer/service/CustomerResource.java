@@ -46,4 +46,7 @@ public interface CustomerResource {
 
     @GET("customers/find-customers-with-quotations-by-unit-and-type")
     Call<CustomersDTO> findCustomersWithQuotationsByUnitAndType(@Query("unitUuid") String unitUuid, @Query("quotationType") String quotationType);
+
+    @GET("customers/find-customers-in-dept-by-unit/{unitUuid}")
+    Call<CustomersDTO> findCustomersInDeptByUnit(@Path("unitUuid") String unitUuid, @Query("currentPage") int currentPage, @Query("maxResult") int maxResult);
 }

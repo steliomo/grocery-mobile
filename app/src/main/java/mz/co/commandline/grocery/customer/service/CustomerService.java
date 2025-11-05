@@ -3,6 +3,7 @@ package mz.co.commandline.grocery.customer.service;
 import mz.co.commandline.grocery.customer.model.CustomerDTO;
 import mz.co.commandline.grocery.customer.model.CustomersDTO;
 import mz.co.commandline.grocery.generics.listner.ResponseListner;
+import retrofit2.http.Query;
 
 public interface CustomerService {
 
@@ -29,4 +30,6 @@ public interface CustomerService {
     void findCustomersWithDeliveredGuidesByUnit(String unitUuid, ResponseListner<CustomersDTO> responseListner);
 
     void findCustomersWithQuotationsByUnitAndType(String unitUuid, String quotationType, ResponseListner<CustomersDTO> responseListner);
+
+    void findCustomersInDeptByUnit(String unitUuid, int currentPage, int maxResult, ResponseListner<CustomersDTO> responseListner);
 }

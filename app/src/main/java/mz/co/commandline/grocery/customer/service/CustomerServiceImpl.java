@@ -10,6 +10,7 @@ import mz.co.commandline.grocery.generics.service.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Query;
 
 public class CustomerServiceImpl extends AbstractService implements CustomerService {
 
@@ -247,6 +248,26 @@ public class CustomerServiceImpl extends AbstractService implements CustomerServ
             @Override
             public void onResponse(Call<CustomersDTO> call, Response<CustomersDTO> response) {
                 if (response.isSuccessful()) {
+                    responseListner.success(response.body());
+                    return;
+                }
+
+                setBodyError(response, responseListner);
+            }
+
+            @Override
+            public void onFailure(Call<CustomersDTO> call, Throwable t) {
+                responseListner.error(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void findCustomersInDeptByUnit(String unitUuid, int currentPage, int maxResult, ResponseListner<CustomersDTO> responseListner) {
+        getResource().findCustomersInDeptByUnit(unitUuid, currentPage, maxResult).enqueue(new Callback<>() {
+            @Override
+            public void onResponse(Call<CustomersDTO> call, Response<CustomersDTO> response) {
+                if(response.isSuccessful()){
                     responseListner.success(response.body());
                     return;
                 }
