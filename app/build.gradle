@@ -9,8 +9,8 @@ android {
         applicationId "mz.co.commandline.grocery"
         minSdkVersion 21
         targetSdkVersion 35
-        versionCode 34
-        versionName "2.13.0"
+        versionCode 35
+        versionName "2.13.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 

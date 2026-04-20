@@ -703,7 +703,7 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
     @Override
     public int addBtnVisibility() {
         if(manageDebt){
-            return View.GONE;
+            return View.INVISIBLE;
         }
         return View.VISIBLE;
     }
