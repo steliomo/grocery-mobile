@@ -46,6 +46,7 @@ captures/
 .idea/vcs.xml
 .idea/compiler.xml
 .idea/jarRepositories.xml
+.idea/deploymentTargetSelector.xml
 
 #IDE
 .DS_Store
@@ -74,3 +75,4 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+

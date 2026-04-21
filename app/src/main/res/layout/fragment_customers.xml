@@ -31,7 +31,7 @@
         android:layout_marginBottom="8dp"
         android:elevation="3dp"
         android:src="@mipmap/customer"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/fragment_customers_recycler_view"
         app:layout_constraintHorizontal_bias="1.0"

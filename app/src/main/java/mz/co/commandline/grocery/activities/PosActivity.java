@@ -107,7 +107,7 @@ public class PosActivity extends BaseAuthActivity implements View.OnClickListene
 
     private int currentPage = 0;
 
-    private int maxResult = 10;
+    private int maxResult = 25;
 
     private Boolean manageDebt;
 
